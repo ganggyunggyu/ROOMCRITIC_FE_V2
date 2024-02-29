@@ -1,7 +1,12 @@
+import Sun from './icons/Sun';
 import './styles/App.css';
 
 function App() {
-  return <> </>;
+  return (
+    <>
+      <Sun />
+    </>
+  );
 }
 
 export default App;

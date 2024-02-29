@@ -3,7 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Protest+Strike&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Protest+Strike&display=swap');
 
 @font-face {
   font-family: 'GangwonEdu_OTFBoldA';
@@ -11,7 +11,7 @@
     format('woff');
   font-weight: normal;
   font-style: normal;
-}
+} */
 body {
   line-height: 1;
 }

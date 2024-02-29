@@ -1,12 +1,8 @@
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
-import path from 'path';
+
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-  plugins: [reactRefresh()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
+  plugins: [svgr()],
+  resolve: {},
 });
