@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { HOST } from '../env-config';
 
 const axiosConfig = axios.create({
-  baseURL: HOST,
+  baseURL: 'http://3.37.157.222',
   headers: {
     Authorization: 'Bearer your-token',
   },

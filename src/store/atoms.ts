@@ -9,7 +9,7 @@ export const isLoggedInState = atom({
 });
 export const userInfoState = atom({
   key: 'userInfoState',
-  default: {},
+  default: { _id: '', displayName: '' },
 });
 export const searchContentsState = atom({
   key: 'searchContentsState',
