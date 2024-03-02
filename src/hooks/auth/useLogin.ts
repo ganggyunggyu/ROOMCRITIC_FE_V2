@@ -7,8 +7,6 @@ import { isLoggedInState, userInfoState } from '../../store/atoms';
 type TRequestUserInfo = {
   email: string;
   password: string;
-  displayName: string;
-  phoneNumber: string;
 };
 
 const useLogin = (requestUserInfo: TRequestUserInfo) => {
@@ -47,7 +45,7 @@ const useLogin = (requestUserInfo: TRequestUserInfo) => {
       }
       if (result.status === 201) {
         setIsLoggedIn(false);
-        setUserInfo({});
+        setUserInfo({ _id: '', displayName: '' });
       }
     } catch (error) {
       console.error('fetchLoginERROR !!', error);

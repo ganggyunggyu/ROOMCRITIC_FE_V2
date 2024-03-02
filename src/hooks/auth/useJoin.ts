@@ -3,10 +3,10 @@ import axiosConfig from '../../api/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 type TRequestUserInfo = {
-  email: string;
-  password: string;
-  displayName: string;
-  phoneNumber: string;
+  email?: string;
+  password?: string;
+  displayName?: string;
+  phoneNumber?: string;
 };
 
 type TJoinHook = {
