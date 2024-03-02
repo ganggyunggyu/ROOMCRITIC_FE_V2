@@ -1,3 +1,3 @@
-export const TMDMAPIKEY = process.env.REACT_APP_TMDB_API_KEY;
-export const HOST = process.env.REACT_APP_HOST;
-export const KAKAOREST = process.env.REACT_APP_KAKAO_REST;
+export const TMDMAPIKEY = import.meta.env.VITE_API_TMDB_API_KEY;
+export const HOST = import.meta.env.VITE_API_HOST;
+export const KAKAOREST = import.meta.env.VITE_API_KAKAO_REST;
