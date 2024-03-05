@@ -10,7 +10,7 @@ type ContentInfoProps = {
 
 const ContentInfo: React.FC<ContentInfoProps> = ({ content }) => {
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='flex flex-col justify-start w-full gap-3'>
       <p className='text-3xl'>{content.title || content.name}</p>
       <p className='leading-loose overflow-y-scroll'>{content.overview}</p>
     </div>

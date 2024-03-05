@@ -57,7 +57,11 @@ const CardWrapProvider: React.FC<CardWrapProviderProps> = ({
       navigator(`/detail/review/${content.userId}/${content._id}`);
     }
 
-    window.scrollTo(0, 0);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth', // 이 옵션을 추가하여 부드러운 스크롤 효과를 줄 수 있습니다.
+    });
   };
 
   return (

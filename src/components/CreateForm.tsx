@@ -3,7 +3,7 @@ import React from 'react';
 import StarIcon from '../icons/StarIcon';
 import useReviewCreate from '../hooks/review/useReviewCreate';
 import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../store/atoms';
+import { isDarkModeState, userInfoState } from '../store/atoms';
 import Input from './AtomComponent/Input';
 
 interface Content {
@@ -19,6 +19,7 @@ interface CreateFormProps {
 }
 
 const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
+  const isDarkMode = useRecoilValue(isDarkModeState);
   const userInfo = useRecoilValue(userInfoState);
   const [grade, setGrade] = React.useState(3);
   const [review, setReview] = React.useState('');
@@ -51,11 +52,11 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
   return (
     <React.Fragment>
-      <div className='flex items-center justify-center gap-3 w-full z-20'>
+      <div className='flex items-center md:justify-start justify-center gap-3 w-full z-20'>
         {stars.map((star, i) => {
           return (
             <div
-              className='cursor-pointer'
+              className='cursor-pointer hover:scale-150 transition-all'
               key={i}
               onClick={() => {
                 isGrade(star);
@@ -67,11 +68,12 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
         })}
       </div>
       <span>
-        {userInfo.displayName}님의 평점 <span className='text-violet-400'>{grade}점!</span>
+        {userInfo.displayName}님의 평점{' '}
+        <span className={isDarkMode ? `text-yellow-500` : `text-yellow-700`}>{grade}점!</span>
       </span>
       <Input
         label={'한줄평 작성'}
-        className='w-full'
+        className='w-full mt-0'
         type='text'
         value={review}
         onChange={(e) => {

@@ -45,17 +45,23 @@ export default function ContentDetail() {
           <ContentInfo content={content} />
 
           <div className={'flex flex-col w-full gap-5 z-10'}>
-            <div className='flex gap-5'>
-              <Button label={'봤어요 🤩'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
-              <Button label={'보고싶어요 🧐'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
-            </div>
             {isLoggedIn ? (
-              <CreateForm content={content} />
+              <React.Fragment>
+                <div className='flex gap-5'>
+                  <Button label={'봤어요 🤩'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
+                  <Button
+                    label={'보고싶어요 🧐'}
+                    bg={'main'}
+                    className={'lg:w-6/12 w-full text-lg'}
+                  />
+                </div>
+                <CreateForm content={content} />
+              </React.Fragment>
             ) : (
               <Button
-                label={'로그인'}
+                label={'로그인하고 리뷰 써요!'}
                 bg={'main'}
-                className={'lg:w-3/12 w-full text-lg'}
+                className={'w-full text-lg'}
                 onClick={() => navigator(`/login`)}
               />
             )}
