@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosConfig = axios.create({
-  baseURL: 'http://3.37.157.222',
+  baseURL: 'http://api.room-critic.online',
   headers: {
     Authorization: 'Bearer your-token',
   },
