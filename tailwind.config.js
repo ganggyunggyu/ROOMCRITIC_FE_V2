@@ -11,6 +11,9 @@ export default {
         '[card-img-h]': '386px',
         '[card-img-sm-h]': '193px',
       },
+      transform: {
+        'translate-x-42': 'translateX(10.5rem)',
+      },
     },
   },
   plugins: [],
