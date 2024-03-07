@@ -1,18 +1,14 @@
 import React from 'react';
 
-type IconProps = {
-  color: string;
-};
-
-const StarIcon: React.FC<IconProps> = ({ color }) => {
+export default function HalfStar({ color }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       fill={color || 'white'}
-      viewBox='0 0 24 24'
+      viewBox='0 0 12 24'
       strokeWidth={1.5}
       stroke='#ccc'
-      className='w-14 h-14'
+      className='w-7 h-14'
     >
       <path
         strokeLinecap='round'
@@ -21,6 +17,4 @@ const StarIcon: React.FC<IconProps> = ({ color }) => {
       />
     </svg>
   );
-};
-
-export default StarIcon;
+}

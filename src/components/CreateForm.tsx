@@ -1,10 +1,9 @@
 import React from 'react';
-
-import StarIcon from '../icons/StarIcon';
 import useReviewCreate from '../hooks/review/useReviewCreate';
 import { useRecoilValue } from 'recoil';
 import { isDarkModeState, userInfoState } from '../store/atoms';
 import Input from './AtomComponent/Input';
+import Stars from './Stars';
 
 interface Content {
   _id: string;
@@ -21,7 +20,7 @@ interface CreateFormProps {
 const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   const isDarkMode = useRecoilValue(isDarkModeState);
   const userInfo = useRecoilValue(userInfoState);
-  const [grade, setGrade] = React.useState(3);
+  const [grade, setGrade] = React.useState(0);
   const [review, setReview] = React.useState('');
 
   const reviewData = {
@@ -40,11 +39,6 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   const { createMutate, isWritingCompleted } = useReviewCreate(reviewData, setReview);
   const { mutate } = createMutate;
 
-  const stars = [1, 2, 3, 4, 5];
-  const isGrade = (star: number) => {
-    setGrade(star);
-  };
-
   const buttonConfig = {
     label: '발행',
     bg: 'main',
@@ -52,25 +46,27 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
   return (
     <React.Fragment>
-      <div className='flex items-center md:justify-start justify-center gap-3 w-full z-20'>
-        {stars.map((star, i) => {
-          return (
-            <div
-              className='cursor-pointer hover:scale-150 transition-all'
-              key={i}
-              onClick={() => {
-                isGrade(star);
-              }}
-            >
-              <StarIcon color={'yellow'} />
-            </div>
-          );
-        })}
-      </div>
-      <span>
-        {userInfo.displayName}님의 평점{' '}
-        <span className={isDarkMode ? `text-yellow-500` : `text-yellow-700`}>{grade}점!</span>
-      </span>
+      <Stars grade={grade} setGrade={setGrade} />
+
+      {grade === 0 ? (
+        <p className='text-lg'>
+          <span className={isDarkMode ? `text-yellow-400` : `text-yellow-500`}>별</span>을 클릭해서
+          평점을 선택해주세요 !
+        </p>
+      ) : (
+        <p className={`text-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-800'} `}>
+          {grade === 0.5 && <span>최악이에요</span>}
+          {grade === 1 && <span>싫어요</span>}
+          {grade === 1.5 && <span>재미없어요</span>}
+          {grade === 2 && <span>별로에요</span>}
+          {grade === 2.5 && <span>부족해요</span>}
+          {grade === 3 && <span>보통이에요</span>}
+          {grade === 3.5 && <span>볼만해요</span>}
+          {grade === 4 && <span>재미있어요</span>}
+          {grade === 4.5 && <span>훌륭해요!</span>}
+          {grade === 5 && <span>최고에요!</span>}
+        </p>
+      )}
       <Input
         label={'한줄평 작성'}
         className='w-full mt-0'
@@ -79,21 +75,13 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
         onChange={(e) => {
           setReview(e.target.value);
         }}
-        // onKeyDown={(e) => {
-        //   if (e.key === 'Enter') {
-        //     e.preventDefault();
-        //     mutate();
-        //   }
-        // }}
         // @ts-expect-error
         buttonConfig={buttonConfig}
       />
       {isWritingCompleted && (
-        <div>
-          <p className=''>
-            리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>
-          </p>
-        </div>
+        <p className=''>
+          리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>
+        </p>
       )}
     </React.Fragment>
   );

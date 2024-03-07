@@ -43,7 +43,6 @@ export default function ContentDetail() {
         <ResponsiveProvider direction={'col'} className={'gap-10'}>
           <DetailBackground path={content.backdrop_path} />
           <ContentInfo content={content} />
-
           <div className={'flex flex-col w-full gap-5 z-10'}>
             {isLoggedIn ? (
               <React.Fragment>
