@@ -87,16 +87,15 @@ const CategoryReviewList = () => {
     const ownerTvs = ownerPickTvData?.data?.tvs || [];
     const topRatedMovies = topRatedMovieData?.data?.movies || [];
 
+    const ownerContents = [...ownerMovies, ...ownerTvs];
+
     return (
       <ResponsiveProvider direction={'col'}>
         {isLoggedIn && searchContents.length !== 0 && (
           <CardWrapProvider title={'최근 검색 결과'} cardList={searchContents} />
         )}
         {ownerMovies && ownerTvs && (
-          <CardWrapProvider
-            title={'주인장 선정 작품입니다!'}
-            cardList={[...ownerMovies, ...ownerTvs]}
-          />
+          <CardWrapProvider title={'주인장 선정 작품입니다!'} cardList={ownerContents} />
         )}
 
         {latestMovies && (

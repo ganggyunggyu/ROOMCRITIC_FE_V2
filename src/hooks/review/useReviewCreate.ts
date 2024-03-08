@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import axiosConfig from '../../api/axiosConfig';
-import { useNavigate } from 'react-router-dom';
+
 import useSelectedContentReviews from '../content/useSelectedContentReviewsQuery';
 import { useState } from 'react';
 
@@ -17,7 +17,9 @@ type createData = {
   contentType: string;
 };
 
-const reviewCreate = async (createData: createData, setReview) => {
+const reviewCreate = async (createData: createData) => {
+  if (createData.grade === 0) throw new Error('별점 입력 필요');
+  if (createData.lineReview === '') throw new Error('한줄 평 입력 필요');
   try {
     const result = await axiosConfig.post(
       'review/create',
@@ -43,8 +45,6 @@ const useReviewCreate = (
   );
 
   const createMutate = useMutation({
-    // @ts-expect-error
-
     mutationFn: () => reviewCreate(createData),
     onSuccess: () => {
       console.log('글쓰기 성공');

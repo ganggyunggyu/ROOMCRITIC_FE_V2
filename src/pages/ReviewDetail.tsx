@@ -21,41 +21,52 @@ export default function ReviewDetail() {
   const { selectReviewQuery } = useReviewSelect(userId, reviewId);
   const { reviewDeleteMutate } = useReviewDelete(reviewId, userId);
   const user = useRecoilValue(userInfoState);
+
+  const { isLoading: isReviewLoading, data: reviewData } = selectReviewQuery;
+
   const directUpdate = () => {
     navigator(`/update/${userId}/${reviewId}`);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth', // 이 옵션을 추가하여 부드러운 스크롤 효과를 줄 수 있습니다.
+    });
   };
 
   useEffect(() => {
-    if (!selectReviewQuery.isPending) {
+    if (!isReviewLoading) {
       const stars = Array.from({ length: +selectReviewQuery.data.data.review.grade }, () => 0);
       setStars(stars);
     }
-  }, [selectReviewQuery.isPending]);
+  }, [isReviewLoading]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth', // 이 옵션을 추가하여 부드러운 스크롤 효과를 줄 수 있습니다.
+    });
   }, []);
 
-  if (selectReviewQuery.isPending) {
+  if (isReviewLoading) {
     return <Loading />;
   }
   const { formattedDateEnd } = formatDateWithTime(selectReviewQuery.data.data.review.createTime);
+  const { review } = reviewData.data;
+  console.log(review);
   return (
     <React.Fragment>
-      <DetailBackground path={selectReviewQuery.data.data.review.contentBackdropImg} />
+      <DetailBackground path={review.contentBackdropImg} />
       <ResponsiveProvider direction={'col'} className={'gap-5 z-10'}>
-        <p>
-          {selectReviewQuery.data.data.review.userName}님의{' '}
-          {selectReviewQuery.data.data.review.contentName} 리뷰
-        </p>
+        <Link to={`/profile/${review.userId}`}>
+          {review.userName}님의 {review.contentName} 리뷰
+        </Link>
         <p>{formattedDateEnd} 작성</p>
         <p className='border border-b-4 p-2 text-center leading-loose text-3xl md:text-5xl'>
-          {selectReviewQuery.data.data.review.lineReview}
+          {review.lineReview}
         </p>
-        {selectReviewQuery.data.data.review.longReview !== '' && (
-          <p className='leading-loose text-lg md:text-5xl'>
-            {selectReviewQuery.data.data.review.longReview}
-          </p>
+        {review.longReview !== '' && (
+          <p className='leading-loose text-lg md:text-5xl'>{review.longReview}</p>
         )}
 
         <p className='flex flex-row gap-1'>
@@ -67,7 +78,7 @@ export default function ReviewDetail() {
       <ResponsiveProvider direction={'col'} className={'gap-5 z-10 lg:flex-row transition-all'}>
         <Button label={'좋아요 🤩'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
         <Button label={'별로에요 🧐'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
-        {user._id === selectReviewQuery.data.data.review.userId && (
+        {user._id === review.userId && (
           <React.Fragment>
             <Button
               onClick={directUpdate}
@@ -89,9 +100,9 @@ export default function ReviewDetail() {
       <ResponsiveProvider direction='col'>
         <Link
           className='text-xl cursor-pointer hover:text-violet-400 z-10'
-          to={`/content/${selectReviewQuery.data.data.review.contentType}/${selectReviewQuery.data.data.review.contentId}`}
+          to={`/content/${review.contentType}/${selectReviewQuery.data.data.review.contentId}`}
         >
-          {selectReviewQuery.data.data.review.contentName} 다른 리뷰도 보러가기 !
+          {review.contentName} 다른 리뷰도 보러가기 !
         </Link>
       </ResponsiveProvider>
       <CategoryReviewList />
