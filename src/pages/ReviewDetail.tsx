@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userInfoState } from '../store/atoms';
@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/AtomComponent/Button';
 import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import StarIcon from '../icons/StarIcon';
 import useReviewDelete from '../hooks/review/useReviewDelete';
 import useReviewSelect from '../hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
@@ -17,7 +16,7 @@ import Loading from '../components/Loading';
 export default function ReviewDetail() {
   const { userId, reviewId } = useParams();
   const navigator = useNavigate();
-  const [stars, setStars] = React.useState([]);
+
   const { selectReviewQuery } = useReviewSelect(userId, reviewId);
   const { reviewDeleteMutate } = useReviewDelete(reviewId, userId);
   const user = useRecoilValue(userInfoState);
@@ -33,27 +32,12 @@ export default function ReviewDetail() {
     });
   };
 
-  useEffect(() => {
-    if (!isReviewLoading) {
-      const stars = Array.from({ length: +selectReviewQuery.data.data.review.grade }, () => 0);
-      setStars(stars);
-    }
-  }, [isReviewLoading]);
-
-  useEffect(() => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth', // 이 옵션을 추가하여 부드러운 스크롤 효과를 줄 수 있습니다.
-    });
-  }, []);
-
   if (isReviewLoading) {
     return <Loading />;
   }
   const { formattedDateEnd } = formatDateWithTime(selectReviewQuery.data.data.review.createTime);
   const { review } = reviewData.data;
-  console.log(review);
+
   return (
     <React.Fragment>
       <DetailBackground path={review.contentBackdropImg} />
@@ -68,12 +52,6 @@ export default function ReviewDetail() {
         {review.longReview !== '' && (
           <p className='leading-loose text-lg md:text-5xl'>{review.longReview}</p>
         )}
-
-        <p className='flex flex-row gap-1'>
-          {stars.map((_, i) => {
-            return <StarIcon key={i} color={'yellow'} />;
-          })}
-        </p>
       </ResponsiveProvider>
       <ResponsiveProvider direction={'col'} className={'gap-5 z-10 lg:flex-row transition-all'}>
         <Button label={'좋아요 🤩'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
@@ -87,9 +65,7 @@ export default function ReviewDetail() {
               className={'lg:w-3/12 w-full text-lg'}
             />
             <Button
-              // @ts-expect-error
-
-              onClick={reviewDeleteMutate.mutate}
+              onClick={() => reviewDeleteMutate.mutate()}
               label={'삭제'}
               bg={'alert'}
               className={'lg:w-3/12 w-full text-lg'}

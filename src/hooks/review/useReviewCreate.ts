@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import axiosConfig from '../../api/axiosConfig';
-
 import useSelectedContentReviews from '../content/useSelectedContentReviewsQuery';
 import { useState } from 'react';
 
@@ -26,7 +25,7 @@ const reviewCreate = async (createData: createData) => {
       { createData },
       { withCredentials: true },
     );
-    console.log(result);
+
     return result; // 서버 응답 데이터의 내용만 반환합니다.
   } catch (err) {
     throw new Error('Failed to update user data');
