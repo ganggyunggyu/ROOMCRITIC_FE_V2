@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { isDarkModeState, userInfoState } from '../store/atoms';
 import Input from './AtomComponent/Input';
 import Stars from './Stars';
-
+import Button from './AtomComponent/Button';
 interface Content {
   _id: string;
   title: string;
@@ -37,13 +37,7 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
 
   const { createMutate, isWritingCompleted } = useReviewCreate(reviewData, setReview);
-  const { mutate } = createMutate;
 
-  const buttonConfig = {
-    label: '발행',
-    bg: 'main',
-    onClick: mutate,
-  };
   return (
     <React.Fragment>
       <Stars grade={grade} setGrade={setGrade} />
@@ -75,9 +69,9 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
         onChange={(e) => {
           setReview(e.target.value);
         }}
-        // @ts-expect-error
-        buttonConfig={buttonConfig}
       />
+
+      <Button label='발행' bg='main' onClick={() => createMutate.mutate()} />
       {isWritingCompleted && (
         <p className=''>
           리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>
