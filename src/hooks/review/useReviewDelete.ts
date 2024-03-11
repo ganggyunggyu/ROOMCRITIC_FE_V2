@@ -25,7 +25,7 @@ const useReviewDelete = (reviewId: string, userId: string) => {
     mutationFn: () => reviewDelete(reviewId, userId),
     onSuccess: () => {
       console.log('요청 성공');
-      navigator(`/mypage/${userId}`);
+      navigator(`/profile/${userId}`);
     },
     onError: () => {
       console.error('에러 발생');

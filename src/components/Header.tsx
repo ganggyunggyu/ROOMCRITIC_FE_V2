@@ -36,7 +36,7 @@ export default function Header() {
             <div className='flex gap-3 items-center justify-center w-min-fit'>
               <Link
                 className='hover:text-violet-400 transition-all w-min-fit'
-                to={`/mypage/${userInfo._id}`}
+                to={`/profile/${userInfo._id}`}
               >
                 {userInfo.displayName} 평론가
               </Link>
