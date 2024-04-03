@@ -11,11 +11,10 @@ import ContentDetail from './pages/ContentDetail';
 import Create from './pages/Create';
 import ReviewDetail from './pages/ReviewDetail';
 import DarkModeButton from './components/AtomComponent/DarkModeButton';
-
 import useDarkMode from './hooks/useDarkMode';
 import Update from './pages/Update';
+import axiosConfig from './api/AxiosConfig';
 import { cn } from './util/cn';
-import axiosConfig from './api/axiosConfig';
 import { useSetRecoilState } from 'recoil';
 import { isLoggedInState, userInfoState } from './store/atoms';
 
