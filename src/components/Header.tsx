@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoggedInState, userInfoState } from '../store/atoms';
-import axiosConfig from '../api/axiosConfig';
+import axiosConfig from '../api/AxiosConfig';
 import useDarkMode from '../hooks/useDarkMode';
 
 export default function Header() {

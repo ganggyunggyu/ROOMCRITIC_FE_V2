@@ -3,7 +3,7 @@ import { isLoggedInState, searchContentsState } from '../store/atoms';
 import CardWrapProvider from './WrapProvider/CardWrapProvider';
 
 import Loading from './Loading';
-import axiosConfig from '../api/axiosConfig';
+import axiosConfig from '../api/AxiosConfig';
 import { useQuery } from '@tanstack/react-query';
 import ResponsiveProvider from './WrapProvider/ResponsiveProvider';
 

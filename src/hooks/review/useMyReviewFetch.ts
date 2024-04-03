@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axiosConfig from '../../api/axiosConfig';
+import axiosConfig from '../../api/AxiosConfig';
 
 const fetchMyReviews = async (userId: string) => {
   const result = await axiosConfig.get(`review/${userId}`);

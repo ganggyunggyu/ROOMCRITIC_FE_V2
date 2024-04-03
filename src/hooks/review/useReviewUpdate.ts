@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import axiosConfig from '../../api/axiosConfig';
+import axiosConfig from '../../api/AxiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 const reviewUpdate = async (updateData) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import axiosConfig from '../../api/axiosConfig';
+import axiosConfig from '../../api/AxiosConfig';
 import { isLoggedInState, userInfoState } from '../../store/atoms';
 
 type TRequestUserInfo = {

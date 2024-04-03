@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { searchContentsState } from '../../store/atoms';
 
-import axiosConfig from '../../api/axiosConfig';
+import axiosConfig from '../../api/AxiosConfig';
 
 const useSearchContents = (searchValue: string) => {
   const setSerchContents = useSetRecoilState(searchContentsState);
