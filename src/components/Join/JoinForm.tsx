@@ -13,7 +13,7 @@ const JoinForm = () => {
   const [displayName, setDisplayName] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const navigator = useNavigate();
-  const { mutate, data, isPending } = useJoin();
+  const { mutate, data, isSuccess } = useJoin();
 
   const FormItems = [
     {
@@ -74,10 +74,12 @@ const JoinForm = () => {
     };
     mutate(joinData, { onSuccess: () => console.log('성공'), onError: () => console.log('에러') });
   };
-  console.log(isPending);
-  console.log(data);
+
+  if (isSuccess) {
+    if (data.status === 200) navigator('/login');
+  }
   return (
-    <form action='' className='flex flex-col gap-3 md:w-1/2 w-full pb-10'>
+    <form className='flex flex-col gap-3 md:w-1/2 w-full pb-10'>
       {FormItems.map((FormItem, i) => {
         return (
           <Input
@@ -93,7 +95,8 @@ const JoinForm = () => {
           />
         );
       })}
-      {isPending ? 'true' : 'false'}
+
+      {isSuccess && <p className='text-red-400'>{data.data.message}</p>}
       <Button
         onClick={handleJoin}
         disabled={!activeJoin}
