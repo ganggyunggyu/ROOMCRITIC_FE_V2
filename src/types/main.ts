@@ -1,12 +1,12 @@
+export type TLoginUserDTO = {
+  email: string;
+  password: string;
+};
 export type TJoinUserDTO = {
   email: string;
   password: string;
   displayName: string;
   phoneNumber: string;
-};
-export type TLoginUserDTO = {
-  email: string;
-  password: string;
 };
 export type TContent = {
   adult: boolean;

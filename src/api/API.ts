@@ -1,18 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
+import { TContent, TJoinUserDTO, TLoginUserDTO, TReviewCreateDTO } from '../types/main';
 import AxiosConfig from './AxiosConfig';
-import { TContent, TReviewCreateDTO } from '../types/main';
-type TJoinData = {
-  email?: string;
-  password?: string;
-  displayName?: string;
-  phoneNumber?: string;
-};
-type TLoginData = {
-  email: string;
-  password: string;
-};
 
-export const submitJoin = async (requestUserInfo: TJoinData) => {
+export const submitJoin = async (requestUserInfo: TJoinUserDTO) => {
   try {
     const result = await AxiosConfig.post('/auth/join', {
       email: requestUserInfo.email,
@@ -29,7 +19,7 @@ export const submitJoin = async (requestUserInfo: TJoinData) => {
     console.debug(error);
   }
 };
-export const submitLogin = async (requestUserInfo: TLoginData) => {
+export const submitLogin = async (requestUserInfo: TLoginUserDTO) => {
   try {
     const result = await AxiosConfig.post('/auth/login', requestUserInfo);
     console.debug(result);
@@ -43,7 +33,7 @@ export const submitLogin = async (requestUserInfo: TLoginData) => {
 export const fetchLoginStatus = async () => {
   try {
     const result = await AxiosConfig.get('/auth/login/check');
-    console.log(result);
+    console.debug(result);
     if (result.status === 200) {
       return result;
     }
