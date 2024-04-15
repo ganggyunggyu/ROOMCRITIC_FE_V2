@@ -13,33 +13,11 @@ import DarkModeButton from './components/AtomComponent/DarkModeButton';
 import useDarkMode from './hooks/useDarkMode';
 import Update from './pages/Update';
 import { cn } from './util/cn';
-import { useSetRecoilState } from 'recoil';
-import { isLoggedInState, userInfoState } from './store/atoms';
-import useLoginStatus from './hooks/auth/useLoginStatus';
+import useCheckLoginStatus from './hooks/auth/useCheckLoginStatus';
 
 function App() {
   const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
-  const setUserInfo = useSetRecoilState(userInfoState);
-  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-  const { data, error, isError, isSuccess } = useLoginStatus();
-  if (isSuccess) {
-    console.log(data);
-    if (data.status === 200) {
-      const { isLoggedIn, userInfo } = data.data;
-      setIsLoggedIn(isLoggedIn);
-      setUserInfo(userInfo.user);
-      console.log(userInfo.user);
-    }
-    if (data.status === 201) {
-      setIsLoggedIn(false);
-      setUserInfo({ _id: '', displayName: '' });
-    }
-  }
-  if (isError) {
-    console.error(error);
-    setIsLoggedIn(false);
-    setUserInfo({ _id: '', displayName: '' });
-  }
+  useCheckLoginStatus();
 
   return (
     <main className={cn(`${darkModeClasses} transition-all`)}>
@@ -53,7 +31,6 @@ function App() {
           <Route path='/search' element={<Search />} />
           <Route path='/content/:contentType/:contentId' element={<ContentDetail />} />
           <Route path='/detail/review/:userId/:reviewId' element={<ReviewDetail />} />
-
           <Route path='/update/:userId/:reviewId' element={<Update />} />
         </Routes>
       </section>
