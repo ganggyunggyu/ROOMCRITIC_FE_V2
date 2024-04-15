@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../AtomComponent/Button';
 import Input from '../AtomComponent/Input';
 import useJoin from '../../hooks/auth/useJoin';
-import { PasswordRegTest, emailRegTest, isSame, isTrim, phoneNumberRegTest } from '../../util/Regs';
+import { passwordRegTest, emailRegTest, isSame, isTrim, phoneNumberRegTest } from '../../util/regs';
 import { inputHandler } from '../../util/inputValue';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const JoinForm = () => {
       type: 'password',
       placeholder: '영문 숫자 특수기호 조합 8자리 이상',
       name: '비밀번호',
-      isReg: PasswordRegTest(password),
+      isReg: passwordRegTest(password),
     },
     {
       value: confirmPassword,
