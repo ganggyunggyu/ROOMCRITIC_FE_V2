@@ -1,57 +1,29 @@
-import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import axiosConfig from '../../api/AxiosConfig';
+import { useMutation } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
 import { isLoggedInState, userInfoState } from '../../store/atoms';
+import * as API from '../../api/API';
 
-type TRequestUserInfo = {
-  email: string;
-  password: string;
-};
-
-const useLogin = (requestUserInfo: TRequestUserInfo) => {
+const useLogin = () => {
   const navigator = useNavigate();
   const setUserInfo = useSetRecoilState(userInfoState);
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-  const [data, setData] = useState('');
 
-  const submitLogin = async () => {
-    try {
-      const result = await axiosConfig.post('/auth/login', {
-        email: requestUserInfo.email,
-        password: requestUserInfo.password,
-      });
-      console.log(result);
-      if (result.status === 200) {
-        setUserInfo(result.data.userInfo._doc);
-        setIsLoggedIn(result.data.isLoggedIn);
-        navigator('/');
-      }
-      if (result.status === 201) {
-        setData(result.data.message);
-      }
-    } catch (error) {
-      console.log('로그인 요청 실패 : ');
-    }
-  };
+  return useMutation({
+    mutationKey: ['login'],
+    mutationFn: API.submitLogin,
+    //로그인 성공 시 실행되는 부분
 
-  const fetchLogin = async () => {
-    try {
-      const result = await axiosConfig.get('/auth/login/check');
-      console.log(result.data);
-      if (result.status === 200) {
-        setIsLoggedIn(true);
-        setUserInfo(result.data.userInfo.user);
-      }
-      if (result.status === 201) {
-        setIsLoggedIn(false);
-        setUserInfo({ _id: '', displayName: '' });
-      }
-    } catch (error) {
-      console.error('fetchLoginERROR !!', error);
-    }
-  };
-
-  return { submitLogin, fetchLogin, data };
+    onSuccess: (result) => {
+      const userInfo = result.data.userInfo._doc;
+      const isLoggedIn = result.data.isLoggedIn;
+      setUserInfo(userInfo);
+      setIsLoggedIn(isLoggedIn);
+      navigator('/');
+    },
+    onError: (error) => {
+      throw error;
+    },
+  });
 };
 export default useLogin;

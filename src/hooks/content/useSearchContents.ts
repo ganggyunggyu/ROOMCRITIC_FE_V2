@@ -1,43 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
-
 import { searchContentsState } from '../../store/atoms';
-
-import axiosConfig from '../../api/AxiosConfig';
+import * as API from '../../api/API';
 
 const useSearchContents = (searchValue: string) => {
-  const setSerchContents = useSetRecoilState(searchContentsState);
-
-  const fetchSearchContents = async () => {
-    const result = await axiosConfig.get(`content/search?search_value=${searchValue}`);
-
-    setSerchContents(result.data.contents);
-    return result;
-  };
-  const fetchSearchTvContents = async () => {
-    const result = await axiosConfig.get(`content/search/tv?search_value=${searchValue}`);
-
-    setSerchContents(result.data.contents);
-    return result;
-  };
-  const fetchSearchMovieContents = async () => {
-    const result = await axiosConfig.get(`content/search/movie?search_value=${searchValue}`);
-
-    setSerchContents(result.data.contents);
-    return result;
-  };
+  const setSearchContents = useSetRecoilState(searchContentsState);
 
   const searchContentsQuery = useQuery({
     queryKey: ['searchContents', searchValue],
-    queryFn: fetchSearchContents,
+    queryFn: () => API.fetchSearchContents(searchValue, setSearchContents),
   });
   const searchTvContentsQuery = useQuery({
     queryKey: ['searchTvContents', searchValue],
-    queryFn: fetchSearchTvContents,
+    queryFn: () => API.fetchSearchTvContents(searchValue, setSearchContents),
   });
   const searchMovieContentsQuery = useQuery({
     queryKey: ['searchMovieContents', searchValue],
-    queryFn: fetchSearchMovieContents,
+    queryFn: () => API.fetchSearchMovieContents(searchValue, setSearchContents),
   });
 
   return { searchContentsQuery, searchTvContentsQuery, searchMovieContentsQuery };
