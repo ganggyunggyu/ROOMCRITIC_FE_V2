@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoggedInState, userInfoState } from '../store/atoms';
-import axiosConfig from '../api/AxiosConfig';
+import AxiosConfig from '../api/AxiosConfig';
 import useDarkMode from '../hooks/useDarkMode';
 
 export default function Header() {
@@ -12,7 +12,7 @@ export default function Header() {
 
   const submitLogout = async () => {
     try {
-      const result = await axiosConfig.get('auth/logout');
+      const result = await AxiosConfig.get('auth/logout');
       if (result.status === 200) {
         navigator('/');
         window.location.reload();
@@ -46,7 +46,7 @@ export default function Header() {
               >
                 로그아웃
               </button>
-              <Link className='hover:text-violet-400 transition-all w-min-fit' to={'/serch'}>
+              <Link className='hover:text-violet-400 transition-all w-min-fit' to={'/search'}>
                 검색
               </Link>
             </div>

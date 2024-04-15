@@ -2,7 +2,7 @@ import React from 'react';
 import CardImage from './CardImage';
 import CardHover from './CardHover';
 import { cva } from 'class-variance-authority';
-import { formatDateWithTime } from '../../util/Regs';
+import { formatDateWithTime } from '../../util/regs';
 export const CardWrapVariants = cva(``);
 
 type TContent = {

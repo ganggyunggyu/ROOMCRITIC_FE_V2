@@ -18,17 +18,17 @@ export default function Update() {
   const [review, setReview] = useState(
     selectReviewQuery.isLoading ? '' : selectReviewQuery.data?.data.review.lineReview,
   );
-  const [addReview, setAddReview] = useState(
-    selectReviewQuery.isLoading ? '' : selectReviewQuery.data?.data.review.longReview,
-  );
+  // const [addReview, setAddReview] = useState(
+  //   selectReviewQuery.isLoading ? '' : selectReviewQuery.data?.data.review.longReview,
+  // );
   const [grade, setGrade] = useState(
     selectReviewQuery.isLoading ? 3 : selectReviewQuery.data?.data.review.grade,
   );
   const updateData = {
-    userId: userInfo._id,
+    userId: userId,
     reviewId: reviewId,
     lineReview: review,
-    longReview: addReview,
+    // longReview: addReview,
     grade: grade,
   };
 
@@ -91,7 +91,7 @@ export default function Update() {
                   // }}
                 />
               </div>
-              <div className='w-full py-5'>
+              {/* <div className='w-full py-5'>
                 <textarea
                   className='w-full text-center h-80 text-zinc-900 bg-slate-100 p-2 rounded-md shadow-md'
                   placeholder='긴평 쓰기'
@@ -106,15 +106,10 @@ export default function Update() {
                   //   }
                   // }}
                 />
-              </div>
+              </div> */}
               <div className='w-full flex'>
                 <div className='grow' />
-                <Button
-                  label={'수정'}
-                  bg={'main'}
-                  // @ts-expect-error
-                  onClick={updateMutate.mutate}
-                />
+                <Button label={'수정'} bg={'main'} onClick={() => updateMutate.mutate()} />
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ export const emailRegTest = (email: string): boolean => {
   return emailReg.test(email);
 };
 
-export const PasswordRegTest = (password: string): boolean => {
+export const passwordRegTest = (password: string): boolean => {
   const passwordReg: RegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
   return passwordReg.test(password);
 };

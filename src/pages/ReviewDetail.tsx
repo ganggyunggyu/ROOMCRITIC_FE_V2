@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../store/atoms';
+// import { useRecoilValue } from 'recoil';
+// import { userInfoState } from '../store/atoms';
 
-import { formatDateWithTime } from '../util/Regs';
+import { formatDateWithTime } from '../util/regs';
 import CategoryReviewList from '../components/CategoryReviewList';
 import Footer from '../components/Footer';
 import DetailBackground from '../components/DetailBackground';
@@ -19,7 +19,7 @@ export default function ReviewDetail() {
 
   const { selectReviewQuery } = useReviewSelect(userId, reviewId);
   const { reviewDeleteMutate } = useReviewDelete(reviewId, userId);
-  const user = useRecoilValue(userInfoState);
+  // const { displayName } = useRecoilValue(userInfoState);
 
   const { isLoading: isReviewLoading, data: reviewData } = selectReviewQuery;
 
@@ -28,7 +28,7 @@ export default function ReviewDetail() {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: 'smooth', // 이 옵션을 추가하여 부드러운 스크롤 효과를 줄 수 있습니다.
+      behavior: 'smooth',
     });
   };
 
@@ -56,7 +56,7 @@ export default function ReviewDetail() {
       <ResponsiveProvider direction={'col'} className={'gap-5 z-10 lg:flex-row transition-all'}>
         <Button label={'좋아요 🤩'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
         <Button label={'별로에요 🧐'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
-        {user._id === review.userId && (
+        {userId === review.userId && (
           <React.Fragment>
             <Button
               onClick={directUpdate}
