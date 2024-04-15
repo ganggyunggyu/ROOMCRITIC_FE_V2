@@ -1,12 +1,18 @@
+import { Dispatch, SetStateAction } from 'react';
 import AxiosConfig from './AxiosConfig';
-type TRequestUserInfo = {
+import { TContent, TReviewCreateDTO } from '../types/main';
+type TJoinData = {
   email?: string;
   password?: string;
   displayName?: string;
   phoneNumber?: string;
 };
+type TLoginData = {
+  email: string;
+  password: string;
+};
 
-export const submitJoin = async (requestUserInfo: TRequestUserInfo) => {
+export const submitJoin = async (requestUserInfo: TJoinData) => {
   try {
     const result = await AxiosConfig.post('/auth/join', {
       email: requestUserInfo.email,
@@ -20,7 +26,33 @@ export const submitJoin = async (requestUserInfo: TRequestUserInfo) => {
     // }
     return result;
   } catch (error) {
-    console.log(error);
+    console.debug(error);
+  }
+};
+export const submitLogin = async (requestUserInfo: TLoginData) => {
+  try {
+    const result = await AxiosConfig.post('/auth/login', requestUserInfo);
+    console.debug(result);
+    return result;
+  } catch (error) {
+    console.debug(error);
+    throw Error(error.response.data);
+  }
+};
+
+export const fetchLoginStatus = async () => {
+  try {
+    const result = await AxiosConfig.get('/auth/login/check');
+    console.log(result);
+    if (result.status === 200) {
+      return result;
+    }
+    // if (result.status === 201) {
+    //   throw Error('세션 만료');
+    //   // return result
+    // }
+  } catch (error) {
+    console.error('fetchLoginERROR !!', error);
   }
 };
 
@@ -29,6 +61,53 @@ export const getDetailContent = async (contentType: string, contentId: string) =
     const result = await AxiosConfig.get(`content/${contentType}/${contentId}`);
     return result;
   } catch (err) {
-    console.log(err);
+    console.debug(err);
+  }
+};
+
+export const fetchSearchContents = async (
+  searchValue: string,
+  setSearchContents: Dispatch<SetStateAction<TContent[]>>,
+) => {
+  const result = await AxiosConfig.get(`content/search?search_value=${searchValue}`);
+  const contents: TContent[] = result.data.contents;
+  setSearchContents(contents);
+  return result;
+};
+
+export const fetchSearchTvContents = async (
+  searchValue: string,
+  setSearchContents: Dispatch<SetStateAction<TContent[]>>,
+) => {
+  const result = await AxiosConfig.get(`content/search/tv?search_value=${searchValue}`);
+  const contents: TContent[] = result.data.contents;
+  setSearchContents(contents);
+
+  return result;
+};
+export const fetchSearchMovieContents = async (
+  searchValue: string,
+  setSearchContents: Dispatch<SetStateAction<TContent[]>>,
+) => {
+  const result = await AxiosConfig.get(`content/search/movie?search_value=${searchValue}`);
+  const contents: TContent[] = result.data.contents;
+  setSearchContents(contents);
+  console.table(contents);
+  return result;
+};
+export const reviewCreate = async (reviewCreateDTO: TReviewCreateDTO) => {
+  if (reviewCreateDTO.grade === 0) throw new Error('별점 입력 필요');
+  if (reviewCreateDTO.lineReview === '') throw new Error('한줄 평 입력 필요');
+  try {
+    const result = await AxiosConfig.post(
+      'review/create',
+      { createData: reviewCreateDTO },
+      { withCredentials: true },
+    );
+    console.debug(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw Error(error);
   }
 };
