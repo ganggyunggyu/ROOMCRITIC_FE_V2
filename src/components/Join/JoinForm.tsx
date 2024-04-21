@@ -1,9 +1,15 @@
 import Button from '../AtomComponent/Button';
 import Input from '../AtomComponent/Input';
-import useJoin from '../../hooks/auth/useJoin';
-import { passwordRegTest, emailRegTest, isSame, isTrim, phoneNumberRegTest } from '../../util/regs';
+import useJoin from '../../shared/hooks/auth/useJoin';
+import {
+  passwordRegTest,
+  emailRegTest,
+  isSame,
+  isTrim,
+  phoneNumberRegTest,
+} from '../../shared/util/regs';
 import { useNavigate } from 'react-router-dom';
-import useFormInput from '../../hooks/common/useFormInput';
+import useFormInput from '../../shared/hooks/common/useFormInput';
 
 const JoinForm = () => {
   const navigator = useNavigate();

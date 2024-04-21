@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../Card/Card';
 import Loading from '../Loading';
-import { cn } from '../../util/cn';
+import { cn } from '../../shared/util/cn';
 import { useNavigate } from 'react-router-dom';
-import { scrollToTop } from '../../util/scrollToTop';
+import { scrollToTop } from '../../shared/util/scrollToTop';
 
 type TContent = {
   id: string;

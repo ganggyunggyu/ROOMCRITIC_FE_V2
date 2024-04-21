@@ -3,17 +3,17 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 // import { useRecoilValue } from 'recoil';
 // import { userInfoState } from '../store/atoms';
 
-import { formatDateWithTime } from '../util/regs';
+import { formatDateWithTime } from '../shared/util/regs';
 import CategoryReviewList from '../components/CategoryContents';
 import Footer from '../components/Footer';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/AtomComponent/Button';
 import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import useReviewDelete from '../hooks/review/useReviewDelete';
-import useReviewSelect from '../hooks/review/useReviewSelect';
+import useReviewDelete from '../shared/hooks/review/useReviewDelete';
+import useReviewSelect from '../shared/hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
 import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../store/atoms';
+import { userInfoState } from '../shared/store/atoms';
 
 export default function ReviewDetail() {
   const { userId, reviewId } = useParams();

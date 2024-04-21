@@ -1,8 +1,8 @@
-import { userInfoState } from '../store/atoms';
+import { userInfoState } from '../shared/store/atoms';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router-dom';
 import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
-import useMyReviewFetch from '../hooks/review/useMyReviewFetch';
+import useMyReviewFetch from '../shared/hooks/review/useMyReviewFetch';
 import Loading from '../components/Loading';
 import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
 import ProfileImage from '../components/Profile/ProfileImage';

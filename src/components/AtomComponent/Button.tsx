@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, MouseEvent } from 'react';
-import { cn } from '../../util/cn';
+import { cn } from '../../shared/util/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 export const ButtonVariants = cva(

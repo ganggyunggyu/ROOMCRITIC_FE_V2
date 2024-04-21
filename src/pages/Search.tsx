@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Input from '../components/AtomComponent/Input';
 import Button from '../components/AtomComponent/Button';
 import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import useSearchContents from '../hooks/content/useSearchContents';
+import useSearchContents from '../shared/hooks/content/useSearchContents';
 import Loading from '../components/Loading';
 export default function Serch() {
   const [searchValue, setSerchValue] = useState('');

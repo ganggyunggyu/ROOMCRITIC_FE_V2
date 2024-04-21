@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
-import { searchContentsState } from '../store/atoms';
+import { searchContentsState } from '../shared/store/atoms';
 import ResponsiveProvider from './WrapProvider/ResponsiveProvider';
 import CardWrapProvider from './WrapProvider/CardWrapProvider';
 import Loading from './Loading';
-import * as API from '../api/API';
+import * as API from '../shared/api/API';
 
 const CategoryContents = () => {
   const searchContents = useRecoilValue(searchContentsState);

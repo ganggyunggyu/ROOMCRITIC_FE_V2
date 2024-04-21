@@ -2,15 +2,15 @@ import React from 'react';
 import ContentInfo from '../components/ContentDetail/ContentInfo';
 import { useNavigate, useParams } from 'react-router-dom';
 import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import useContentFetch from '../hooks/content/useContentFetch';
+import useContentFetch from '../shared/hooks/content/useContentFetch';
 import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
 import Footer from '../components/Footer';
 import CategoryReviewList from '../components/CategoryContents';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/AtomComponent/Button';
 import { useRecoilValue } from 'recoil';
-import { isLoggedInState } from '../store/atoms';
-import useSeletedContentReviews from '../hooks/content/useSelectedContentReviewsQuery';
+import { isLoggedInState } from '../shared/store/atoms';
+import useSeletedContentReviews from '../shared/hooks/content/useSelectedContentReviewsQuery';
 import Loading from '../components/Loading';
 import CreateForm from '../components/CreateForm';
 

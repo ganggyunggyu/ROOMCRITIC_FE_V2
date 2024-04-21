@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { userInfoState } from '../store/atoms';
+import { userInfoState } from '../shared/store/atoms';
 import { useRecoilValue } from 'recoil';
 import Button from '../components/AtomComponent/Button';
 import DetailBackground from '../components/DetailBackground';
-import useReviewSelect from '../hooks/review/useReviewSelect';
+import useReviewSelect from '../shared/hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
-import useReviewUpdate from '../hooks/review/useReviewUpdate';
+import useReviewUpdate from '../shared/hooks/review/useReviewUpdate';
 import StarsInput from '../components/StarsInput';
 
 export default function Update() {

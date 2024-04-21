@@ -2,9 +2,9 @@ import { KeyboardEvent } from 'react';
 import Button from '../AtomComponent/Button';
 import Input from '../AtomComponent/Input';
 import { useNavigate } from 'react-router-dom';
-import { passwordRegTest, emailRegTest } from '../../util/regs';
-import useLogin from '../../hooks/auth/useLogin';
-import useFormInput from '../../hooks/common/useFormInput';
+import { passwordRegTest, emailRegTest } from '../../shared/util/regs';
+import useLogin from '../../shared/hooks/auth/useLogin';
+import useFormInput from '../../shared/hooks/common/useFormInput';
 
 const LoginForm = () => {
   const navigator = useNavigate();

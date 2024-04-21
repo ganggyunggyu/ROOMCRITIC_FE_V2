@@ -2,7 +2,7 @@ import React from 'react';
 import CardImage from './CardImage';
 import CardHover from './CardHover';
 
-import { formatDateWithTime } from '../../util/regs';
+import { formatDateWithTime } from '../../shared/util/regs';
 
 type TContent = {
   title?: string;

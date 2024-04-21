@@ -1,8 +1,8 @@
 import React, { InputHTMLAttributes } from 'react';
-import { cn } from '../../util/cn';
+import { cn } from '../../shared/util/cn';
 import { VariantProps, cva } from 'class-variance-authority';
 
-import { isDarkModeState } from '../../store/atoms';
+import { isDarkModeState } from '../../shared/store/atoms';
 import { useRecoilValue } from 'recoil';
 
 export const InputVariants = cva(

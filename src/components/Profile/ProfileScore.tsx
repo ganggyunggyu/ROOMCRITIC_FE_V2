@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosConfig from '../../api/AxiosConfig';
+import axiosConfig from '../../shared/api/AxiosConfig';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading';
 import { useParams } from 'react-router-dom';

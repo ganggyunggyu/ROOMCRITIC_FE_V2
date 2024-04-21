@@ -1,4 +1,4 @@
-import './styles/App.css';
+import './shared/styles/App.css';
 import { Routes, Route } from 'react-router-dom';
 import Join from './pages/Join';
 import Login from './pages/Login';
@@ -10,9 +10,9 @@ import ReviewDetail from './pages/ReviewDetail';
 import Update from './pages/Update';
 import Header from './components/Header';
 import DarkModeButton from './components/AtomComponent/DarkModeButton';
-import useCheckLoginStatus from './hooks/auth/useCheckLoginStatus';
-import useDarkMode from './hooks/common/useDarkMode';
-import { cn } from './util/cn';
+import useCheckLoginStatus from './shared/hooks/auth/useCheckLoginStatus';
+import useDarkMode from './shared/hooks/common/useDarkMode';
+import { cn } from './shared/util/cn';
 
 function App() {
   const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();

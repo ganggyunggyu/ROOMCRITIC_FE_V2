@@ -1,5 +1,5 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import SettingIcon from '../../icons/SettingIcon';
+import SettingIcon from '../../shared/icons/SettingIcon';
 import Button from '../AtomComponent/Button';
 
 const ProfileImage = () => {

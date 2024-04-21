@@ -1,6 +1,6 @@
 import React from 'react';
-import Sun from '../../icons/Sun';
-import Moon from '../../icons/Moon';
+import Sun from '../../shared/icons/Sun';
+import Moon from '../../shared/icons/Moon';
 
 // type DarkModeButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 //   VariantProps<typeof ButtonVariants> & {
