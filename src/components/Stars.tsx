@@ -2,122 +2,44 @@ import React from 'react';
 import StarIcon from '../icons/StarIcon';
 import HalfStar from '../icons/HalfStar';
 
-type TStars = {
-  grade: number;
-  setGrade: React.Dispatch<React.SetStateAction<number>>;
-};
-
-const Stars: React.FC<TStars> = ({ grade, setGrade }) => {
+export default function Stars({ hoverIndex }: { hoverIndex: number }) {
   const GRADES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
-  const [hoverIndex, setHoverIndex] = React.useState(-1);
-  const [isSelected, setIsSelected] = React.useState(false);
-
   return (
     <div className='relative flex transition-all'>
       {GRADES.map((GRADE, i) => {
         return (
-          <React.Fragment key={i}>
+          <React.Fragment key={GRADE}>
             {i % 2 ? (
-              <div
-                className=' transition-all cursor-pointer'
-                onMouseOver={() => setHoverIndex(i)}
-                onMouseLeave={() => {
-                  if (!isSelected) setHoverIndex(-1);
-                  if (isSelected) setHoverIndex(grade * 2 - 1);
-                }}
-                onClick={() => {
-                  setGrade(GRADE);
-                  setHoverIndex(i);
-                  setIsSelected(true);
-                }}
-              >
+              <div className='transition-all'>
                 <StarIcon color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
               </div>
             ) : (
               <React.Fragment>
                 {i === 0 && (
-                  <div
-                    className='absolute  transition-all cursor-pointer'
-                    onMouseOver={() => setHoverIndex(i)}
-                    onMouseLeave={() => {
-                      if (!isSelected) setHoverIndex(-1);
-                      if (isSelected) setHoverIndex(grade * 2 - 1);
-                    }}
-                    onClick={() => {
-                      setGrade(GRADE);
-                      setHoverIndex(i);
-                      setIsSelected(true);
-                    }}
-                  >
+                  <div className='absolute transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
                   </div>
                 )}
                 {i === 2 && (
-                  <div
-                    className='absolute translate-x-14  transition-all cursor-pointer'
-                    onMouseOver={() => setHoverIndex(i)}
-                    onMouseLeave={() => {
-                      if (!isSelected) setHoverIndex(-1);
-                      if (isSelected) setHoverIndex(grade * 2 - 1);
-                    }}
-                    onClick={() => {
-                      setGrade(GRADE);
-                      setHoverIndex(i);
-                      setIsSelected(true);
-                    }}
-                  >
+                  <div className='absolute translate-x-14 transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
                   </div>
                 )}
                 {i === 4 && (
-                  <div
-                    className='absolute translate-x-28  transition-all cursor-pointer'
-                    onMouseOver={() => setHoverIndex(i)}
-                    onMouseLeave={() => {
-                      if (!isSelected) setHoverIndex(-1);
-                      if (isSelected) setHoverIndex(grade * 2 - 1);
-                    }}
-                    onClick={() => {
-                      setGrade(GRADE);
-                      setHoverIndex(i);
-                      setIsSelected(true);
-                    }}
-                  >
+                  <div className='absolute translate-x-28 transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
                   </div>
                 )}
                 {i === 6 && (
                   <div
                     style={{ transform: 'translateX(10.5rem)' }}
-                    className='absolute translate-x-42  transition-all cursor-pointer'
-                    onMouseOver={() => setHoverIndex(i)}
-                    onMouseLeave={() => {
-                      if (!isSelected) setHoverIndex(-1);
-                      if (isSelected) setHoverIndex(grade * 2 - 1);
-                    }}
-                    onClick={() => {
-                      setGrade(GRADE);
-                      setHoverIndex(i);
-                      setIsSelected(true);
-                    }}
+                    className='absolute translate-x-42 transition-all '
                   >
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
                   </div>
                 )}
                 {i === 8 && (
-                  <div
-                    className='absolute translate-x-56  transition-all cursor-pointer'
-                    onMouseOver={() => setHoverIndex(i)}
-                    onMouseLeave={() => {
-                      if (!isSelected) setHoverIndex(-1);
-                      if (isSelected) setHoverIndex(grade * 2 - 1);
-                    }}
-                    onClick={() => {
-                      setGrade(GRADE);
-                      setHoverIndex(i);
-                      setIsSelected(true);
-                    }}
-                  >
+                  <div className='absolute translate-x-56 transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
                   </div>
                 )}
@@ -128,5 +50,4 @@ const Stars: React.FC<TStars> = ({ grade, setGrade }) => {
       })}
     </div>
   );
-};
-export default Stars;
+}
