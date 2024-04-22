@@ -4,13 +4,12 @@ import Input from '../AtomComponent/Input';
 import { useNavigate } from 'react-router-dom';
 import { passwordRegTest, emailRegTest } from '../../util/regs';
 import useLogin from '../../hooks/auth/useLogin';
-import useFormInput from '../../hooks/useFormInput';
+import useFormInput from '../../hooks/common/useFormInput';
 
 const LoginForm = () => {
   const navigator = useNavigate();
   const { mutate, isError, error } = useLogin();
-  const emailInput = useFormInput('');
-  const passwordInput = useFormInput('');
+  const [emailInput, passwordInput] = [useFormInput(''), useFormInput('')];
 
   const LoginInputs = [
     {
@@ -52,7 +51,13 @@ const LoginForm = () => {
       submitLogin();
     }
   };
-
+  const testLogin = () => {
+    const loginData = {
+      email: 'test@test.test',
+      password: '12Qwaszx!@',
+    };
+    mutate(loginData);
+  };
   return (
     <form className='flex flex-col gap-5 md:w-1/2 w-full pb-10 transition-all'>
       {LoginInputs.map((FormItem) => {
@@ -74,6 +79,7 @@ const LoginForm = () => {
         disabled={!isLoginAble}
         onClick={submitLogin}
       />
+      <Button label={'테스트 로그인'} bg={'main'} onClick={testLogin} />
       <Button label={'회원가입'} bg={'main'} onClick={directJoin} />
     </form>
   );

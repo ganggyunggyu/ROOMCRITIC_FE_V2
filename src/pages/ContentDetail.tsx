@@ -5,7 +5,7 @@ import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
 import useContentFetch from '../hooks/content/useContentFetch';
 import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
 import Footer from '../components/Footer';
-import CategoryReviewList from '../components/CategoryReviewList';
+import CategoryReviewList from '../components/CategoryContents';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/AtomComponent/Button';
 import { useRecoilValue } from 'recoil';

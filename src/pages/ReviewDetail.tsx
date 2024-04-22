@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 // import { userInfoState } from '../store/atoms';
 
 import { formatDateWithTime } from '../util/regs';
-import CategoryReviewList from '../components/CategoryReviewList';
+import CategoryReviewList from '../components/CategoryContents';
 import Footer from '../components/Footer';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/AtomComponent/Button';
@@ -12,6 +12,8 @@ import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
 import useReviewDelete from '../hooks/review/useReviewDelete';
 import useReviewSelect from '../hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
+import { useRecoilValue } from 'recoil';
+import { userInfoState } from '../store/atoms';
 
 export default function ReviewDetail() {
   const { userId, reviewId } = useParams();
@@ -19,7 +21,7 @@ export default function ReviewDetail() {
 
   const { selectReviewQuery } = useReviewSelect(userId, reviewId);
   const { reviewDeleteMutate } = useReviewDelete(reviewId, userId);
-  // const { displayName } = useRecoilValue(userInfoState);
+  const { _id } = useRecoilValue(userInfoState);
 
   const { isLoading: isReviewLoading, data: reviewData } = selectReviewQuery;
 
@@ -52,11 +54,10 @@ export default function ReviewDetail() {
         {review.longReview !== '' && (
           <p className='leading-loose text-lg md:text-5xl'>{review.longReview}</p>
         )}
-      </ResponsiveProvider>
-      <ResponsiveProvider direction={'col'} className={'gap-5 z-10 lg:flex-row transition-all'}>
+
         <Button label={'좋아요 🤩'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
         <Button label={'별로에요 🧐'} bg={'main'} className={'lg:w-6/12 w-full text-lg'} />
-        {userId === review.userId && (
+        {_id === review.userId && (
           <React.Fragment>
             <Button
               onClick={directUpdate}
@@ -72,8 +73,6 @@ export default function ReviewDetail() {
             />
           </React.Fragment>
         )}
-      </ResponsiveProvider>
-      <ResponsiveProvider direction='col'>
         <Link
           className='text-xl cursor-pointer hover:text-violet-400 z-10'
           to={`/content/${review.contentType}/${selectReviewQuery.data.data.review.contentId}`}

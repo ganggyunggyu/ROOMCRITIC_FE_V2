@@ -1,60 +1,63 @@
-import React from 'react';
 import Button from '../AtomComponent/Button';
 import Input from '../AtomComponent/Input';
 import useJoin from '../../hooks/auth/useJoin';
 import { passwordRegTest, emailRegTest, isSame, isTrim, phoneNumberRegTest } from '../../util/regs';
-import { inputHandler } from '../../util/inputValue';
 import { useNavigate } from 'react-router-dom';
+import useFormInput from '../../hooks/common/useFormInput';
 
 const JoinForm = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [confirmPassword, setContirmPassword] = React.useState('');
-  const [displayName, setDisplayName] = React.useState('');
-  const [phoneNumber, setPhoneNumber] = React.useState('');
   const navigator = useNavigate();
   const { mutate, data, isSuccess } = useJoin();
 
+  const [emailInput, passwordInput, confirmPasswordInput, displayNameInput, phoneNumberInput] = [
+    useFormInput(''),
+    useFormInput(''),
+    useFormInput(''),
+    useFormInput(''),
+    useFormInput(''),
+    useFormInput(''),
+  ];
+
   const FormItems = [
     {
-      value: email,
-      setValue: setEmail,
+      value: emailInput.value,
+      onChange: emailInput.onChange,
       type: 'email',
       placeholder: '이메일 형식에 맞춰 입력해주세요',
       name: '이메일',
-      isReg: emailRegTest(email),
+      isReg: emailRegTest(emailInput.value),
     },
     {
-      value: password,
-      setValue: setPassword,
+      value: passwordInput.value,
+      onChange: passwordInput.onChange,
       type: 'password',
       placeholder: '영문 숫자 특수기호 조합 8자리 이상',
       name: '비밀번호',
-      isReg: passwordRegTest(password),
+      isReg: passwordRegTest(passwordInput.value),
     },
     {
-      value: confirmPassword,
-      setValue: setContirmPassword,
+      value: confirmPasswordInput.value,
+      onChange: confirmPasswordInput.onChange,
       type: 'password',
       placeholder: '비밀번호를 한번 더 입력해주세요',
       name: '비밀번호 확인',
-      isReg: isSame(password, confirmPassword),
+      isReg: isSame(passwordInput.value, confirmPasswordInput.value),
     },
     {
-      value: displayName,
-      setValue: setDisplayName,
+      value: displayNameInput.value,
+      onChange: displayNameInput.onChange,
       type: 'text',
       placeholder: '이름을 입력해주세요',
       name: '이름',
-      isReg: isTrim(displayName),
+      isReg: isTrim(displayNameInput.value),
     },
     {
-      value: phoneNumber,
-      setValue: setPhoneNumber,
+      value: phoneNumberInput.value,
+      onChange: phoneNumberInput.onChange,
       type: 'text',
       placeholder: '(-)를 빼고 전화번호를 입력해주세요',
       name: '전화번호',
-      isReg: phoneNumberRegTest(phoneNumber),
+      isReg: phoneNumberRegTest(phoneNumberInput.value),
     },
   ];
 
@@ -66,13 +69,16 @@ const JoinForm = () => {
   const activeJoin = isJoinAble();
 
   const handleJoin = () => {
-    const joinData = {
-      email: email,
-      password: password,
-      displayName: displayName,
-      phoneNumber: phoneNumber,
+    const joinUserDTO = {
+      email: emailInput.value,
+      password: passwordInput.value,
+      displayName: displayNameInput.value,
+      phoneNumber: phoneNumberInput.value,
     };
-    mutate(joinData, { onSuccess: () => console.log('성공'), onError: () => console.log('에러') });
+    mutate(joinUserDTO, {
+      onSuccess: (result) => console.log(result),
+      onError: (error) => console.error(error),
+    });
   };
 
   if (isSuccess) {
@@ -86,11 +92,9 @@ const JoinForm = () => {
             key={i}
             label={FormItem.name}
             value={FormItem.value}
-            onChange={(event) => {
-              inputHandler({ event, setValue: FormItem.setValue });
-            }}
+            onChange={FormItem.onChange}
             type={FormItem.type}
-            maxLength={FormItem.value === phoneNumber ? 11 : undefined}
+            maxLength={FormItem.value === phoneNumberInput.value ? 11 : undefined}
             alertMessage={FormItem.isReg ? undefined : FormItem.placeholder}
           />
         );
