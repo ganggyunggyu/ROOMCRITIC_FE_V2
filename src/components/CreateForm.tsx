@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { KeyboardEvent, MouseEvent } from 'react';
 import useReviewCreate from '../hooks/review/useReviewCreate';
 import { useRecoilValue } from 'recoil';
 import { isDarkModeState, userInfoState } from '../store/atoms';
 import Input from './AtomComponent/Input';
-import Stars from './Stars';
+import StarsInput from './StarsInput';
+
 import Button from './AtomComponent/Button';
-import useFormInput from '../hooks/useFormInput';
+import useFormInput from '../hooks/common/useFormInput';
 import { getGradeText } from '../util/getGradeText';
 import { TContent } from '../types/main';
+import { ReviewCreateDTO } from '../types/dtos';
+import useSelectedContentReviews from '../hooks/content/useSelectedContentReviewsQuery';
 
 interface CreateFormProps {
   content: TContent;
@@ -19,11 +22,10 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   const [grade, setGrade] = React.useState(0);
   const reviewInput = useFormInput('');
 
-  const reviewData = {
+  const reviewCreateDTO: ReviewCreateDTO = {
     userId: userInfo._id,
     userName: userInfo.displayName,
     lineReview: reviewInput.value,
-    longReview: '',
     grade: grade,
     contentPosterImg: `https://www.themoviedb.org/t/p/original${content.poster_path}`,
     contentBackdropImg: `https://www.themoviedb.org/t/p/original${content.backdrop_path}`,
@@ -32,11 +34,31 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     contentType: content.content_type,
   };
 
-  const { mutate, isError, error, isSuccess } = useReviewCreate(reviewData);
+  const { mutate, isError, error, isSuccess } = useReviewCreate();
+  const { selectedContentReviewsQuery } = useSelectedContentReviews(
+    reviewCreateDTO.contentType,
+    reviewCreateDTO.contentId,
+  );
+
+  const successReviewCreate = () => {
+    reviewInput.setValue('');
+    selectedContentReviewsQuery.refetch();
+  };
+  const handleEnterKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.nativeEvent.isComposing) return;
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      mutate(reviewCreateDTO, { onSuccess: successReviewCreate });
+    }
+  };
+  const handleReviewCreate = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    mutate(reviewCreateDTO, { onSuccess: successReviewCreate });
+  };
 
   return (
     <React.Fragment>
-      <Stars grade={grade} setGrade={setGrade} />
+      <StarsInput grade={grade} setGrade={setGrade} />
 
       {grade === 0 && (
         <p className='text-lg'>
@@ -55,9 +77,10 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
         type='text'
         value={reviewInput.value}
         onChange={reviewInput.onChange}
+        onKeyDown={handleEnterKeyPress}
       />
 
-      <Button label='발행' bg='main' onClick={() => mutate(reviewData)} />
+      <Button type='button' label='발행' bg='main' onClick={handleReviewCreate} />
       {isSuccess && (
         <p className=''>
           리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>

@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 
 import { userInfoState } from '../store/atoms';
 import { useRecoilValue } from 'recoil';
-import StarIcon from '../icons/StarIcon';
 import Button from '../components/AtomComponent/Button';
 import DetailBackground from '../components/DetailBackground';
 import useReviewSelect from '../hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
 import useReviewUpdate from '../hooks/review/useReviewUpdate';
+import StarsInput from '../components/StarsInput';
 
 export default function Update() {
   const userInfo = useRecoilValue(userInfoState);
@@ -18,9 +18,7 @@ export default function Update() {
   const [review, setReview] = useState(
     selectReviewQuery.isLoading ? '' : selectReviewQuery.data?.data.review.lineReview,
   );
-  // const [addReview, setAddReview] = useState(
-  //   selectReviewQuery.isLoading ? '' : selectReviewQuery.data?.data.review.longReview,
-  // );
+
   const [grade, setGrade] = useState(
     selectReviewQuery.isLoading ? 3 : selectReviewQuery.data?.data.review.grade,
   );
@@ -28,16 +26,11 @@ export default function Update() {
     userId: userId,
     reviewId: reviewId,
     lineReview: review,
-    // longReview: addReview,
+
     grade: grade,
   };
 
   const { updateMutate } = useReviewUpdate(updateData);
-
-  const stars = [1, 2, 3, 4, 5];
-  const isGrade = (star: number) => {
-    setGrade(star);
-  };
 
   return (
     <React.Fragment>
@@ -55,20 +48,7 @@ export default function Update() {
               <p className='text-3xl pb-5'>
                 {selectReviewQuery.data?.data.review.contentName} 리뷰 수정
               </p>
-              <div className='flex items-center justify-center gap-1'>
-                {stars.map((star, i) => {
-                  return (
-                    <div
-                      key={i}
-                      onClick={() => {
-                        isGrade(star);
-                      }}
-                    >
-                      <StarIcon color={'yellow'} />
-                    </div>
-                  );
-                })}
-              </div>
+              <StarsInput grade={grade} setGrade={setGrade} />
               <div className='pt-5'>
                 <span>
                   {userInfo.displayName}님의 평점 <span className='text-red-400'>{grade}점!</span>
@@ -83,30 +63,9 @@ export default function Update() {
                   onChange={(e) => {
                     setReview(e.target.value);
                   }}
-                  // onKeyDown={(e) => {
-                  //   if (e.key === 'Enter') {
-                  //     e.preventDefault();
-                  //     createMutate.mutate();
-                  //   }
-                  // }}
                 />
               </div>
-              {/* <div className='w-full py-5'>
-                <textarea
-                  className='w-full text-center h-80 text-zinc-900 bg-slate-100 p-2 rounded-md shadow-md'
-                  placeholder='긴평 쓰기'
-                  value={addReview}
-                  onChange={(e) => {
-                    setAddReview(e.target.value);
-                  }}
-                  // onKeyDown={(e) => {
-                  //   if (e.key === 'Enter') {
-                  //     e.preventDefault();
-                  //     createMutate.mutate();
-                  //   }
-                  // }}
-                />
-              </div> */}
+
               <div className='w-full flex'>
                 <div className='grow' />
                 <Button label={'수정'} bg={'main'} onClick={() => updateMutate.mutate()} />

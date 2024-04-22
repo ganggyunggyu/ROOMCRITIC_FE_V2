@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoggedInState, userInfoState } from '../store/atoms';
 import AxiosConfig from '../api/AxiosConfig';
-import useDarkMode from '../hooks/useDarkMode';
+import useDarkMode from '../hooks/common/useDarkMode';
 
 export default function Header() {
   const navigator = useNavigate();

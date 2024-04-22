@@ -1,9 +1,8 @@
 import React from 'react';
 import CardImage from './CardImage';
 import CardHover from './CardHover';
-import { cva } from 'class-variance-authority';
+
 import { formatDateWithTime } from '../../util/regs';
-export const CardWrapVariants = cva(``);
 
 type TContent = {
   title?: string;
@@ -54,8 +53,8 @@ const Card: React.FC<CardProps> = ({ content, onClick, isHover }) => {
         {content.vote_average === 0 ? (
           <p className='text-sm z-10'>별점 정보가 없네요</p>
         ) : (
-          <p className='text-sm z-10'>
-            ⭐️{' '}
+          <p className='text-sm z-10 flex gap-1 w-full items-center justify-center'>
+            <span>⭐</span>
             <span className='text-yellow-500'>
               {content.grade || (content.vote_average / 2).toFixed(1)}
             </span>

@@ -17,8 +17,6 @@ const CardImage: React.FC<CardImageProps> = ({ path }) => {
       }
       alt='path'
       effect='blur'
-      // width={'256px'}
-      // height={'384px'}
     />
   );
 };

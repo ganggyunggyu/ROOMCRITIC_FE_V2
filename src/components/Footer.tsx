@@ -1,5 +1,5 @@
 import ResponsiveProvider from './WrapProvider/ResponsiveProvider';
-import useDarkMode from '../hooks/useDarkMode';
+import useDarkMode from '../hooks/common/useDarkMode';
 export default function Footer() {
   const { isDarkMode } = useDarkMode();
   return (
