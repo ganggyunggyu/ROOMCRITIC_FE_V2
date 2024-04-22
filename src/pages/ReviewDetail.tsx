@@ -13,7 +13,7 @@ import useReviewDelete from '../shared/hooks/review/useReviewDelete';
 import useReviewSelect from '../shared/hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
 import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../shared/store/atoms';
+import { userInfoState } from '../app/store/atoms';
 
 export default function ReviewDetail() {
   const { userId, reviewId } = useParams();

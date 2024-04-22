@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { isLoggedInState, userInfoState } from '../shared/store/atoms';
+import { isLoggedInState, userInfoState } from '../app/store/atoms';
 import AxiosConfig from '../shared/api/AxiosConfig';
 import useDarkMode from '../shared/hooks/common/useDarkMode';
 

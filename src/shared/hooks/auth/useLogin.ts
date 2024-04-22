@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
-import { isLoggedInState, userInfoState } from '../../store/atoms';
+import { isLoggedInState, userInfoState } from '../../../app/store/atoms';
 import * as API from '../../api/API';
 
 const useLogin = () => {

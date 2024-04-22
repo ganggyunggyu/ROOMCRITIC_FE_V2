@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
-import { TContent, TJoinUserDTO, TLoginUserDTO } from '../types/main';
+import { TContent, TJoinUserDTO, TLoginUserDTO } from '../../app/types/main';
 
 import AxiosConfig from './AxiosConfig';
-import { ReviewCreateDTO } from '../types/dtos';
+import { ReviewCreateDTO } from '../../app/types/dtos';
 
 export const submitJoin = async (joinUserDTO: TJoinUserDTO) => {
   try {

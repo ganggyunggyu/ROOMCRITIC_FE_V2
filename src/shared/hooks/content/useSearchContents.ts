@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
-import { searchContentsState } from '../../store/atoms';
+import { searchContentsState } from '../../../app/store/atoms';
 import * as API from '../../api/API';
 
 const useSearchContents = (searchValue: string) => {

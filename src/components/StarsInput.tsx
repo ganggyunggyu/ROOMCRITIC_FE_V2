@@ -12,6 +12,10 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
   const [hoverIndex, setHoverIndex] = React.useState(-1);
   const [isSelected, setIsSelected] = React.useState(false);
 
+  React.useEffect(() => {
+    if (grade !== 0) setHoverIndex(grade * 2 - 1);
+  }, []);
+
   return (
     <div className='relative flex transition-all'>
       {GRADES.map((GRADE, i) => {

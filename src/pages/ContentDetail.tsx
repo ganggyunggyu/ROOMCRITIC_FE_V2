@@ -9,7 +9,7 @@ import CategoryReviewList from '../components/CategoryContents';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/AtomComponent/Button';
 import { useRecoilValue } from 'recoil';
-import { isLoggedInState } from '../shared/store/atoms';
+import { isLoggedInState } from '../app/store/atoms';
 import useSeletedContentReviews from '../shared/hooks/content/useSelectedContentReviewsQuery';
 import Loading from '../components/Loading';
 import CreateForm from '../components/CreateForm';

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { isLoggedInState, userInfoState } from '../../store/atoms';
+import { isLoggedInState, userInfoState } from '../../../app/store/atoms';
 import useLoginStatus from './useLoginStatus';
 
 const useCheckLoginStatus = () => {

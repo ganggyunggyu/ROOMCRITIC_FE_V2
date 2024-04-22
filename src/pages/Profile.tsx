@@ -1,4 +1,4 @@
-import { userInfoState } from '../shared/store/atoms';
+import { userInfoState } from '../app/store/atoms';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router-dom';
 import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';

@@ -1,15 +1,15 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import useReviewCreate from '../shared/hooks/review/useReviewCreate';
 import { useRecoilValue } from 'recoil';
-import { isDarkModeState, userInfoState } from '../shared/store/atoms';
+import { isDarkModeState, userInfoState } from '../app/store/atoms';
 import Input from './AtomComponent/Input';
 import StarsInput from './StarsInput';
 
 import Button from './AtomComponent/Button';
 import useFormInput from '../shared/hooks/common/useFormInput';
 import { getGradeText } from '../shared/util/getGradeText';
-import { TContent } from '../shared/types/main';
-import { ReviewCreateDTO } from '../shared/types/dtos';
+import { TContent } from '../app/types/main';
+import { ReviewCreateDTO } from '../app/types/dtos';
 import useSelectedContentReviews from '../shared/hooks/content/useSelectedContentReviewsQuery';
 
 interface CreateFormProps {

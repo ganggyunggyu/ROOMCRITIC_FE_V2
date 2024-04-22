@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { darkModeClassesState, isDarkModeState } from '../../store/atoms';
+import { darkModeClassesState, isDarkModeState } from '../../../app/store/atoms';
 
 const useDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = useRecoilState(isDarkModeState);

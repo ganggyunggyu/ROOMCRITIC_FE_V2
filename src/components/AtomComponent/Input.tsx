@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from 'react';
 import { cn } from '../../shared/util/cn';
 import { VariantProps, cva } from 'class-variance-authority';
 
-import { isDarkModeState } from '../../shared/store/atoms';
+import { isDarkModeState } from '../../app/store/atoms';
 import { useRecoilValue } from 'recoil';
 
 export const InputVariants = cva(

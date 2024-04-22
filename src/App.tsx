@@ -1,4 +1,4 @@
-import './shared/styles/App.css';
+import './app/styles/App.css';
 import { Routes, Route } from 'react-router-dom';
 import Join from './pages/Join';
 import Login from './pages/Login';
