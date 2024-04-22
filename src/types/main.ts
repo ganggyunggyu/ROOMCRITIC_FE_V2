@@ -26,15 +26,18 @@ export type TContent = {
   vote_count: number;
   _id: string;
 };
-export type TReviewCreateDTO = {
-  userId: string;
-  userName: string;
-  lineReview: string;
-  longReview: string;
-  grade: number;
-  contentPosterImg: string;
-  contentBackdropImg: string;
-  contentName: string;
-  contentId: string;
-  contentType: string;
+export type TReview = {
+  review: string;
 };
+// export type TReviewCreateDTO = {
+//   userId: string;
+//   userName: string;
+//   lineReview: string;
+//   longReview: string;
+//   grade: number;
+//   contentPosterImg: string;
+//   contentBackdropImg: string;
+//   contentName: string;
+//   contentId: string;
+//   contentType: string;
+// };
