@@ -1,27 +1,23 @@
 import { Dispatch, SetStateAction } from 'react';
-import { TContent, TJoinUserDTO, TLoginUserDTO, TReviewCreateDTO } from '../types/main';
-import AxiosConfig from './AxiosConfig';
+import { TContent, TJoinUserDTO, TLoginUserDTO } from '../types/main';
 
-export const submitJoin = async (requestUserInfo: TJoinUserDTO) => {
+import AxiosConfig from './AxiosConfig';
+import { ReviewCreateDTO } from '../types/dtos';
+
+export const submitJoin = async (joinUserDTO: TJoinUserDTO) => {
   try {
     const result = await AxiosConfig.post('/auth/join', {
-      email: requestUserInfo.email,
-      password: requestUserInfo.password,
-      displayName: requestUserInfo.displayName,
-      phoneNumber: requestUserInfo.phoneNumber,
+      ...joinUserDTO,
     });
-    //이메일 또는 패스워드가 중복 되는 경우
-    // if (result.status === 201) {
-    //   throw new Error(result.data.message);
-    // }
+    // if (result.status === 201) throw Error();
     return result;
   } catch (error) {
     console.debug(error);
   }
 };
-export const submitLogin = async (requestUserInfo: TLoginUserDTO) => {
+export const submitLogin = async (loginUserDTO: TLoginUserDTO) => {
   try {
-    const result = await AxiosConfig.post('/auth/login', requestUserInfo);
+    const result = await AxiosConfig.post('/auth/login', loginUserDTO);
     console.debug(result);
     return result;
   } catch (error) {
@@ -37,10 +33,9 @@ export const fetchLoginStatus = async () => {
     if (result.status === 200) {
       return result;
     }
-    // if (result.status === 201) {
-    //   throw Error('세션 만료');
-    //   // return result
-    // }
+    if (result.status === 201) {
+      throw Error('세션 만료');
+    }
   } catch (error) {
     console.error('fetchLoginERROR !!', error);
   }
@@ -59,6 +54,7 @@ export const fetchSearchContents = async (
   searchValue: string,
   setSearchContents: Dispatch<SetStateAction<TContent[]>>,
 ) => {
+  if (!searchValue) throw new Error('검색어 입력 필요');
   const result = await AxiosConfig.get(`content/search?search_value=${searchValue}`);
   const contents: TContent[] = result.data.contents;
   setSearchContents(contents);
@@ -69,6 +65,7 @@ export const fetchSearchTvContents = async (
   searchValue: string,
   setSearchContents: Dispatch<SetStateAction<TContent[]>>,
 ) => {
+  if (!searchValue) throw new Error('검색어 입력 필요');
   const result = await AxiosConfig.get(`content/search/tv?search_value=${searchValue}`);
   const contents: TContent[] = result.data.contents;
   setSearchContents(contents);
@@ -79,13 +76,14 @@ export const fetchSearchMovieContents = async (
   searchValue: string,
   setSearchContents: Dispatch<SetStateAction<TContent[]>>,
 ) => {
+  if (!searchValue) throw new Error('검색어 입력 필요');
   const result = await AxiosConfig.get(`content/search/movie?search_value=${searchValue}`);
   const contents: TContent[] = result.data.contents;
   setSearchContents(contents);
   console.table(contents);
   return result;
 };
-export const reviewCreate = async (reviewCreateDTO: TReviewCreateDTO) => {
+export const reviewCreate = async (reviewCreateDTO: ReviewCreateDTO) => {
   if (reviewCreateDTO.grade === 0) throw new Error('별점 입력 필요');
   if (reviewCreateDTO.lineReview === '') throw new Error('한줄 평 입력 필요');
   try {
@@ -100,4 +98,26 @@ export const reviewCreate = async (reviewCreateDTO: TReviewCreateDTO) => {
     console.error(error);
     throw Error(error);
   }
+};
+
+export const fetchLatestTvContent = async () => {
+  const result = await AxiosConfig.get('tv/latest');
+  return result;
+};
+export const fetchLatestMovieContent = async () => {
+  const result = await AxiosConfig.get('movie/latest');
+  return result;
+};
+
+export const fetchOwnerPickTvContent = async () => {
+  const result = await AxiosConfig.get('tv/owner');
+  return result;
+};
+export const fetchOwnerPickMovieContent = async () => {
+  const result = await AxiosConfig.get('movie/owner');
+  return result;
+};
+export const fetchTopRatedMovie = async () => {
+  const result = await AxiosConfig.get('movie/top-rated-movies');
+  return result;
 };

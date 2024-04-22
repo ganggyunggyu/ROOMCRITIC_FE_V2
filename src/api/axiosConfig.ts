@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { HOST } from '../env-config';
 const AxiosConfig = axios.create({
   // baseURL: 'https://api.room-critic.online',
-  baseURL: 'http://localhost:4000',
-  // baseURL: 'https://room-critic.online',
+  // baseURL: 'http://localhost:4000',
+  baseURL: HOST,
+
   headers: {
     Authorization: 'Bearer your-token',
   },
@@ -12,6 +14,7 @@ const AxiosConfig = axios.create({
 AxiosConfig.interceptors.request.use(
   (config) => {
     // 요청 전에 수행할 작업을 여기에 추가할 수 있습니다.
+
     return config;
   },
   (error) => {

@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-export const API_URI = 'https://api.room-critic.online';
+import { HOST } from '../env-config';
+
+export const API_URI = HOST;
 interface ErrorResponse {
   message: string;
   // 기타 필요한 속성들을 추가할 수 있습니다.
