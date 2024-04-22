@@ -2,10 +2,10 @@ import React, { KeyboardEvent, MouseEvent } from 'react';
 import useReviewCreate from '../shared/hooks/review/useReviewCreate';
 import { useRecoilValue } from 'recoil';
 import { isDarkModeState, userInfoState } from '../app/store/atoms';
-import Input from './AtomComponent/Input';
+import Input from './atom-component/Input';
 import StarsInput from './StarsInput';
 
-import Button from './AtomComponent/Button';
+import Button from './atom-component/Button';
 import useFormInput from '../shared/hooks/common/useFormInput';
 import { getGradeText } from '../shared/util/getGradeText';
 import { TContent } from '../app/types/main';

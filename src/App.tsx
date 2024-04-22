@@ -9,7 +9,7 @@ import ContentDetail from './pages/ContentDetail';
 import ReviewDetail from './pages/ReviewDetail';
 import Update from './pages/Update';
 import Header from './components/Header';
-import DarkModeButton from './components/AtomComponent/DarkModeButton';
+import DarkModeButton from './components/atom-component/DarkModeButton';
 import useCheckLoginStatus from './shared/hooks/auth/useCheckLoginStatus';
 import useDarkMode from './shared/hooks/common/useDarkMode';
 import { cn } from './shared/util/cn';

@@ -1,13 +1,13 @@
 import { userInfoState } from '../app/store/atoms';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router-dom';
-import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
+import CardWrapProvider from '../components/wrap-provider/CardWrapProvider';
 import useMyReviewFetch from '../shared/hooks/review/useMyReviewFetch';
 import Loading from '../components/Loading';
-import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import ProfileImage from '../components/Profile/ProfileImage';
-import ProfileInfo from '../components/Profile/ProfileInfo';
-import ProfileScore from '../components/Profile/ProfileScore';
+import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
+import ProfileImage from '../components/profile/ProfileImage';
+import ProfileInfo from '../components/profile/ProfileInfo';
+import ProfileScore from '../components/profile/ProfileScore';
 
 //쓴 리뷰를 위한 정보 userId
 //취향점수를 위한 정보 userId

@@ -1,9 +1,9 @@
-import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
+import CardWrapProvider from '../components/wrap-provider/CardWrapProvider';
 import React, { useState } from 'react';
 
-import Input from '../components/AtomComponent/Input';
-import Button from '../components/AtomComponent/Button';
-import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
+import Input from '../components/atom-component/Input';
+import Button from '../components/atom-component/Button';
+import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
 import useSearchContents from '../shared/hooks/content/useSearchContents';
 import Loading from '../components/Loading';
 export default function Serch() {

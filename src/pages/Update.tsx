@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import DetailBackground from '../components/DetailBackground';
 import useReviewSelect from '../shared/hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
-import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import UpdateForm from '../components/Update/UpdateForm';
+import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
+import UpdateForm from '../components/update/UpdateForm';
 export default function Update() {
   const { userId = '', reviewId = '' } = useParams();
   const { selectReviewQuery } = useReviewSelect(userId, reviewId);

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { TContent, TJoinUserDTO, TLoginUserDTO } from '../../app/types/main';
 
-import AxiosConfig from './AxiosConfig';
+import AxiosConfig from '../../app/config/axios-config';
 import { ReviewCreateDTO } from '../../app/types/dtos';
 
 export const submitJoin = async (joinUserDTO: TJoinUserDTO) => {
@@ -9,7 +9,7 @@ export const submitJoin = async (joinUserDTO: TJoinUserDTO) => {
     const result = await AxiosConfig.post('/auth/join', {
       ...joinUserDTO,
     });
-    // if (result.status === 201) throw Error();
+
     return result;
   } catch (error) {
     console.debug(error);

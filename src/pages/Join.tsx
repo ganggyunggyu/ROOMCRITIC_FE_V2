@@ -1,6 +1,6 @@
-import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
+import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
 import FormHeader from '../components/FormHeader';
-import JoinForm from '../components/Join/JoinForm';
+import JoinForm from '../components/join/JoinForm';
 
 export default function Join() {
   return (

@@ -1,4 +1,4 @@
-import Button from '../AtomComponent/Button';
+import Button from '../atom-component/Button';
 
 const ProfileInfo = ({ name }) => {
   return (

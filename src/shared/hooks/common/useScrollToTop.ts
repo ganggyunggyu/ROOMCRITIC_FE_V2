@@ -5,7 +5,6 @@ function useScrollToTop() {
 
   useEffect(() => {
     // toTopScrollref.current.scrollIntoView({ behavior: 'smooth' });
-    console.log(toTopScrollref);
   }, []);
 
   return { toTopScrollref };

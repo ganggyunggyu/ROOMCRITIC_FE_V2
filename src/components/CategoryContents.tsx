@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
 import { searchContentsState } from '../app/store/atoms';
-import ResponsiveProvider from './WrapProvider/ResponsiveProvider';
-import CardWrapProvider from './WrapProvider/CardWrapProvider';
+import ResponsiveProvider from './wrap-provider/ResponsiveProvider';
+import CardWrapProvider from './wrap-provider/CardWrapProvider';
 import Loading from './Loading';
 import * as API from '../shared/api/API';
 

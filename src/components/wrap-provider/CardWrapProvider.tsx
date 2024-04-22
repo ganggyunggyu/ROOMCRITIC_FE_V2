@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../Card/Card';
+import Card from '../card/Card';
 import Loading from '../Loading';
 import { cn } from '../../shared/util/cn';
 import { useNavigate } from 'react-router-dom';

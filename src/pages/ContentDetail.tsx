@@ -1,13 +1,13 @@
 import React from 'react';
-import ContentInfo from '../components/ContentDetail/ContentInfo';
+import ContentInfo from '../components/content-detail/ContentInfo';
 import { useNavigate, useParams } from 'react-router-dom';
-import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
+import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
 import useContentFetch from '../shared/hooks/content/useContentFetch';
-import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
+import CardWrapProvider from '../components/wrap-provider/CardWrapProvider';
 import Footer from '../components/Footer';
 import CategoryReviewList from '../components/CategoryContents';
 import DetailBackground from '../components/DetailBackground';
-import Button from '../components/AtomComponent/Button';
+import Button from '../components/atom-component/Button';
 import { useRecoilValue } from 'recoil';
 import { isLoggedInState } from '../app/store/atoms';
 import useSeletedContentReviews from '../shared/hooks/content/useSelectedContentReviewsQuery';

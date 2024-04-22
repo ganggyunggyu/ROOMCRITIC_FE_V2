@@ -1,6 +1,6 @@
 import React, { KeyboardEvent } from 'react';
-import Input from '../AtomComponent/Input';
-import Button from '../AtomComponent/Button';
+import Input from '../atom-component/Input';
+import Button from '../atom-component/Button';
 import Loading from '../Loading';
 import useReviewSelect from '../../shared/hooks/review/useReviewSelect';
 import { useParams } from 'react-router-dom';
