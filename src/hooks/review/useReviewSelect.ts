@@ -1,8 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosConfig from '../../api/AxiosConfig';
 const fetchSelectReview = async (userId: string, reviewId: string) => {
-  const result = await axiosConfig.get(`review/detail/${userId}/${reviewId}`);
-  return result;
+  try {
+    const result = await axiosConfig.get(`review/detail/${userId}/${reviewId}`);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const useReviewSelect = (userId: string, reviewId: string) => {

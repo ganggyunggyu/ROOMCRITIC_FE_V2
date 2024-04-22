@@ -6,30 +6,28 @@ import useLoginStatus from './useLoginStatus';
 const useCheckLoginStatus = () => {
   const setUserInfo = useSetRecoilState(userInfoState);
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-  const { data, error, isSuccess } = useLoginStatus();
+  const { data, error, isSuccess, refetch } = useLoginStatus();
 
   useEffect(() => {
     if (isSuccess) {
-      console.log(data);
       if (data.status === 200) {
         const { isLoggedIn, userInfo } = data.data;
         setIsLoggedIn(isLoggedIn);
         setUserInfo(userInfo.user);
-        console.log(userInfo.user);
       }
       if (data.status === 201) {
         setIsLoggedIn(false);
-        setUserInfo({ _id: '', displayName: '' });
+        setUserInfo({ _id: '', displayName: '', phoneNumber: '', email: '' });
       }
     }
     if (error) {
       console.error(error);
       setIsLoggedIn(false);
-      setUserInfo({ _id: '', displayName: '' });
+      setUserInfo({ _id: '', displayName: '', phoneNumber: '', email: '' });
     }
   }, [isSuccess, error, data, setIsLoggedIn, setUserInfo]);
 
-  return { data, error, isSuccess };
+  return { data, error, refetch };
 };
 
 export default useCheckLoginStatus;

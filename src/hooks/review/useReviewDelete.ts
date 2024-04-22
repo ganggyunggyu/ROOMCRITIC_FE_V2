@@ -23,8 +23,8 @@ const useReviewDelete = (reviewId: string, userId: string) => {
   const navigator = useNavigate();
   const reviewDeleteMutate = useMutation({
     mutationFn: () => reviewDelete(reviewId, userId),
-    onSuccess: () => {
-      console.log('요청 성공');
+    onSuccess: (result) => {
+      console.log(result);
       navigator(`/profile/${userId}`);
     },
     onError: () => {

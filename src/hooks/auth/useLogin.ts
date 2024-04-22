@@ -12,9 +12,9 @@ const useLogin = () => {
   return useMutation({
     mutationKey: ['login'],
     mutationFn: API.submitLogin,
-    //로그인 성공 시 실행되는 부분
 
     onSuccess: (result) => {
+      console.log(result);
       const userInfo = result.data.userInfo._doc;
       const isLoggedIn = result.data.isLoggedIn;
       setUserInfo(userInfo);
