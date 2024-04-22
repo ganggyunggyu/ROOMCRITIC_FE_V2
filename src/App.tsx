@@ -1,7 +1,5 @@
 import './styles/App.css';
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
 import Join from './pages/Join';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -9,11 +7,12 @@ import Search from './pages/Search';
 import Home from './pages/Home';
 import ContentDetail from './pages/ContentDetail';
 import ReviewDetail from './pages/ReviewDetail';
-import DarkModeButton from './components/AtomComponent/DarkModeButton';
-import useDarkMode from './hooks/useDarkMode';
 import Update from './pages/Update';
-import { cn } from './util/cn';
+import Header from './components/Header';
+import DarkModeButton from './components/AtomComponent/DarkModeButton';
 import useCheckLoginStatus from './hooks/auth/useCheckLoginStatus';
+import useDarkMode from './hooks/common/useDarkMode';
+import { cn } from './util/cn';
 
 function App() {
   const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
