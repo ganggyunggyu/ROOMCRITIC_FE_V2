@@ -13,10 +13,16 @@ import DarkModeButton from './components/atom-component/DarkModeButton';
 import useCheckLoginStatus from './shared/hooks/auth/useCheckLoginStatus';
 import useDarkMode from './shared/hooks/common/useDarkMode';
 import { cn } from './shared/util/cn';
+import Footer from './components/Footer';
+import { useAppDispatch, useAppSelector } from './app/store';
+import Button from './components/atom-component/Button';
+import { decrement, increment, incrementByAmount } from './app/store/counterSlice';
 
 function App() {
   const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
   useCheckLoginStatus();
+  const dispatch = useAppDispatch();
+  const count = useAppSelector((state) => state.counter.value);
 
   return (
     <main className={cn(`${darkModeClasses} transition-all`)}>
@@ -33,7 +39,14 @@ function App() {
           <Route path='/update/:userId/:reviewId' element={<Update />} />
         </Routes>
       </section>
+      <Footer />
       <DarkModeButton darkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <div className='flex gap-5 p-10'>
+        <Button bg='main' label='증가' onClick={() => dispatch(increment())} />
+        <Button bg='main' label='하락' onClick={() => dispatch(decrement())} />
+        <Button bg='main' label='10증가' onClick={() => dispatch(incrementByAmount(10))} />
+        <p>{count}</p>
+      </div>
     </main>
   );
 }
