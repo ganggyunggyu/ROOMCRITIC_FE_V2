@@ -29,6 +29,21 @@ export type TContent = {
 export type TReview = {
   review: string;
 };
+
+export type TCardContent = {
+  title?: string;
+  contentName?: string;
+  release_date: string;
+  lineReview?: string;
+  grade?: number;
+  vote_average: number;
+  userName?: string;
+  contentPosterImg: string;
+  poster_path: string;
+  backdrop_path: string;
+};
+
+export type TUserInfo = { _id: string; displayName: string; phoneNumber: string; email: string };
 // export type TReviewCreateDTO = {
 //   userId: string;
 //   userName: string;
