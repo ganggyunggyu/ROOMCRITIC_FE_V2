@@ -53,8 +53,8 @@ const LoginForm = () => {
   };
   const testLogin = () => {
     const loginData = {
-      email: 'test@test.test',
-      password: '12Qwaszx!@',
+      email: 'test@test.com',
+      password: 'test',
     };
     mutate(loginData);
   };

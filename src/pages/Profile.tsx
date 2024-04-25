@@ -1,5 +1,3 @@
-import { userInfoState } from '../app/store/atoms';
-import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router-dom';
 import CardWrapProvider from '../components/wrap-provider/CardWrapProvider';
 import useMyReviewFetch from '../shared/hooks/review/useMyReviewFetch';
@@ -8,17 +6,20 @@ import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
 import ProfileImage from '../components/profile/ProfileImage';
 import ProfileInfo from '../components/profile/ProfileInfo';
 import ProfileScore from '../components/profile/ProfileScore';
+import { useAppSelector } from '../app/store';
 
 //쓴 리뷰를 위한 정보 userId
 //취향점수를 위한 정보 userId
 
 export default function Profile() {
   const { userId = '' } = useParams();
-
-  const userInfo = useRecoilValue(userInfoState);
+  //클릭한 userId
+  const { userInfo } = useAppSelector((state) => state.user);
+  const myId = userInfo ? userInfo._id : '';
+  //로그인 한 userId
   const { myReviewQuery } = useMyReviewFetch(userId);
   const { isLoading: isMyReviewLoading, data: myReviewData } = myReviewQuery;
-
+  const isMyProfile = userId === myId;
   if (isMyReviewLoading) return <Loading />;
 
   if (!isMyReviewLoading) {
@@ -31,7 +32,7 @@ export default function Profile() {
       >
         <article className='flex flex-col justify-start w-full gap-5'>
           <ProfileImage />
-          <ProfileInfo name={userInfo.displayName} />
+          <ProfileInfo name={userInfo.displayName} isMyProfile={isMyProfile} />
           <ProfileScore name={userInfo.displayName} />
         </article>
         <CardWrapProvider
