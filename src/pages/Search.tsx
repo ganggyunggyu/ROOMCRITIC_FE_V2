@@ -63,42 +63,46 @@ export default function Serch() {
         })}
       </div>
       {searchType === contentSearchInput.type && (
-        <SearchInput
-          label={'영화 & TV프로그램 검색'}
-          value={contentSearchInput.value}
-          onChange={contentSearchInput.onChange}
-        />
+        <React.Fragment>
+          <SearchInput
+            label={'영화 & TV프로그램 검색'}
+            value={contentSearchInput.value}
+            onChange={contentSearchInput.onChange}
+          />
+          <SearchContents
+            isActive={contentSearchInput.isEmpty}
+            isLoading={isContentsLoading}
+            contents={contents}
+          />
+        </React.Fragment>
       )}
       {searchType === movieSearchInput.type && (
-        <SearchInput
-          label={'영화 검색'}
-          value={movieSearchInput.value}
-          onChange={movieSearchInput.onChange}
-        />
+        <React.Fragment>
+          <SearchInput
+            label={'영화 검색'}
+            value={movieSearchInput.value}
+            onChange={movieSearchInput.onChange}
+          />
+          <SearchContents
+            isActive={movieSearchInput.isEmpty}
+            isLoading={isMoviesLoading}
+            contents={movies}
+          />
+        </React.Fragment>
       )}
       {searchType === tvSearchInput.type && (
-        <SearchInput
-          label={'TV프로그램 검색'}
-          value={tvSearchInput.value}
-          onChange={tvSearchInput.onChange}
-        />
-      )}
-      {searchType === contentSearchInput.type && (
-        <SearchContents
-          isActive={contentSearchInput.isEmpty}
-          isLoading={isContentsLoading}
-          contents={contents}
-        />
-      )}
-      {searchType === movieSearchInput.type && (
-        <SearchContents
-          isActive={movieSearchInput.isEmpty}
-          isLoading={isMoviesLoading}
-          contents={movies}
-        />
-      )}
-      {searchType === tvSearchInput.type && (
-        <SearchContents isActive={tvSearchInput.isEmpty} isLoading={isTvsLoading} contents={tvs} />
+        <React.Fragment>
+          <SearchInput
+            label={'TV프로그램 검색'}
+            value={tvSearchInput.value}
+            onChange={tvSearchInput.onChange}
+          />
+          <SearchContents
+            isActive={tvSearchInput.isEmpty}
+            isLoading={isTvsLoading}
+            contents={tvs}
+          />
+        </React.Fragment>
       )}
     </ResponsiveProvider>
   );
