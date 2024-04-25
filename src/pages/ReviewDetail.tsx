@@ -1,37 +1,29 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-// import { useRecoilValue } from 'recoil';
-// import { userInfoState } from '../store/atoms';
-
 import { formatDateWithTime } from '../shared/util/regs';
 import CategoryReviewList from '../components/CategoryContents';
-import Footer from '../components/Footer';
 import DetailBackground from '../components/DetailBackground';
 import Button from '../components/atom-component/Button';
 import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
 import useReviewDelete from '../shared/hooks/review/useReviewDelete';
 import useReviewSelect from '../shared/hooks/review/useReviewSelect';
 import Loading from '../components/Loading';
-import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../app/store/atoms';
+import { useAppSelector } from '../app/store';
+import { scrollToTop } from '../shared/util/scrollToTop';
 
 export default function ReviewDetail() {
   const { userId, reviewId } = useParams();
+  const _id = useAppSelector((state) => state.user.userInfo?._id);
   const navigator = useNavigate();
 
   const { selectReviewQuery } = useReviewSelect(userId, reviewId);
-  const { reviewDeleteMutate } = useReviewDelete(reviewId, userId);
-  const { _id } = useRecoilValue(userInfoState);
+  const { reviewDeleteMutate } = useReviewDelete(reviewId, _id);
 
   const { isLoading: isReviewLoading, data: reviewData } = selectReviewQuery;
 
   const directUpdate = () => {
     navigator(`/update/${userId}/${reviewId}`);
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+    scrollToTop();
   };
 
   if (isReviewLoading) {
@@ -81,7 +73,6 @@ export default function ReviewDetail() {
         </Link>
       </ResponsiveProvider>
       <CategoryReviewList />
-      <Footer />
     </React.Fragment>
   );
 }

@@ -2,9 +2,6 @@ import React, { InputHTMLAttributes } from 'react';
 import { cn } from '../../shared/util/cn';
 import { VariantProps, cva } from 'class-variance-authority';
 
-import { isDarkModeState } from '../../app/store/atoms';
-import { useRecoilValue } from 'recoil';
-
 export const InputVariants = cva(
   `block py-3 px-0 w-full text-sm bg-transparent border-0 border-b-2
    appearance-none dark:focus:border-violet-400
@@ -21,7 +18,6 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> &
   };
 
 const Input: React.FC<InputProps> = ({ label, alertMessage, className, ...props }) => {
-  const isDarkMode = useRecoilValue(isDarkModeState);
   return (
     <React.Fragment>
       <div className='relative z-0 py-1 w-full'>
@@ -29,7 +25,7 @@ const Input: React.FC<InputProps> = ({ label, alertMessage, className, ...props 
           id='floating_filled'
           placeholder=' '
           autoComplete='off'
-          className={cn(InputVariants({ className }), isDarkMode ? 'border-white' : 'border-black')}
+          className={cn(InputVariants({ className }))}
           {...props}
         />
         {label && (

@@ -1,6 +1,6 @@
 import Button from '../atom-component/Button';
 
-const ProfileInfo = ({ name }) => {
+const ProfileInfo = ({ name, isMyProfile }) => {
   return (
     <div className='flex gap-3 flex-col'>
       <p className='text-xl'>{name}</p>
@@ -10,7 +10,8 @@ const ProfileInfo = ({ name }) => {
         <p>팔로잉</p>
         <span>10</span>
       </div>
-      <Button label={'팔로우'} bg={'main'} />
+      {isMyProfile && '내 프로필'}
+      {!isMyProfile && <Button label={'팔로우'} bg={'main'} />}
     </div>
   );
 };
