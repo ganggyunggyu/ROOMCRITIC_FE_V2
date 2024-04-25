@@ -19,8 +19,8 @@ import Button from './components/atom-component/Button';
 import { decrement, increment, incrementByAmount } from './app/store/counterSlice';
 
 function App() {
-  const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
   useCheckLoginStatus();
+  const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
   const dispatch = useAppDispatch();
   const count = useAppSelector((state) => state.counter.value);
 
