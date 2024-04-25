@@ -4,27 +4,28 @@ import Loading from '../Loading';
 import { cn } from '../../shared/util/cn';
 import { useNavigate } from 'react-router-dom';
 import { scrollToTop } from '../../shared/util/scrollToTop';
+import { TCardContent } from '../../app/types/main';
 
 type TContent = {
-  id: string;
+  id: number;
   _id: string;
   title?: string;
   userId?: string;
   contentName?: string;
-  release_date: string;
+  release_date: Date;
   lineReview?: string;
   grade?: number;
   vote_average: number;
   userName?: string;
-  contentPosterImg: string;
-  poster_path: string;
-  backdrop_path: string;
-  content_type: string;
+  contentPosterImg?: string;
+  poster_path?: string;
+  backdrop_path?: string;
+  content_type?: string;
 };
 
 type CardWrapProviderProps = {
   title: string;
-  cardList: TContent[];
+  cardList: TContent[] | TCardContent[];
   isHover?: boolean;
 };
 

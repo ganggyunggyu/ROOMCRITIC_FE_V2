@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilValue } from 'recoil';
-import { searchContentsState } from '../app/store/atoms';
 import ResponsiveProvider from './wrap-provider/ResponsiveProvider';
 import CardWrapProvider from './wrap-provider/CardWrapProvider';
 import Loading from './Loading';
 import * as API from '../shared/api/API';
+import { useAppSelector } from '../app/store';
 
 const CategoryContents = () => {
-  const searchContents = useRecoilValue(searchContentsState);
+  const searchContents = useAppSelector((state) => state.search.searchContents);
 
   const latestTvContentQuery = useQuery({
     queryKey: ['latestTvContent'],
