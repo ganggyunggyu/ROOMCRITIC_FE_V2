@@ -15,7 +15,7 @@ const useSearchContents = (searchType: number) => {
     queryFn: () => {
       if (searchType === 0) {
         if (!contentSearchInput.value) return null;
-        return API.fetchSearchContents(contentSearchInput.value);
+        return API.fetchSearchedContent(contentSearchInput.value);
       }
     },
     select: (data) => {
@@ -30,7 +30,7 @@ const useSearchContents = (searchType: number) => {
     queryFn: () => {
       if (!movieSearchInput.value) return null;
       if (searchType === 1 && movieSearchInput.value) {
-        return API.fetchSearchMovieContents(movieSearchInput.value);
+        return API.fetchSearchedMovieContent(movieSearchInput.value);
       }
     },
     select: (data) => {
@@ -45,7 +45,7 @@ const useSearchContents = (searchType: number) => {
     queryFn: () => {
       if (!tvSearchInput.value) return null;
       if (searchType === 2) {
-        return API.fetchSearchTvContents(tvSearchInput.value);
+        return API.fetchSearchedTvContent(tvSearchInput.value);
       }
     },
     select: (data) => {
