@@ -1,7 +1,7 @@
 import React from 'react';
 import LeftChevrom from '../../shared/icons/LeftChevrom';
 import RightChevrom from '../../shared/icons/RightChevrom';
-import { BANNER_IMAGES } from '../../../public/banner-infos';
+import { BANNER_IMAGES } from '../../../public/constant/BANNER_INFO';
 
 type BannerBackgroundImageProps = {
   bannerIndex: number;
