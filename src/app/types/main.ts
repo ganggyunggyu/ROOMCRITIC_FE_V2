@@ -1,13 +1,3 @@
-export type TLoginUserDTO = {
-  email: string;
-  password: string;
-};
-export type TJoinUserDTO = {
-  email: string;
-  password: string;
-  displayName: string;
-  phoneNumber: string;
-};
 export type TContent = {
   adult: boolean;
   backdrop_path: string;
@@ -31,28 +21,21 @@ export type TReview = {
 };
 
 export type TCardContent = {
+  id: number;
+  _id: string;
   title?: string;
+  userId?: string;
   contentName?: string;
+  // release_date: Date | string;
   release_date: string;
   lineReview?: string;
   grade?: number;
   vote_average: number;
   userName?: string;
-  contentPosterImg: string;
-  poster_path: string;
-  backdrop_path: string;
+  contentPosterImg?: string;
+  poster_path?: string;
+  backdrop_path?: string;
+  content_type?: string;
 };
 
 export type TUserInfo = { _id: string; displayName: string; phoneNumber: string; email: string };
-// export type TReviewCreateDTO = {
-//   userId: string;
-//   userName: string;
-//   lineReview: string;
-//   longReview: string;
-//   grade: number;
-//   contentPosterImg: string;
-//   contentBackdropImg: string;
-//   contentName: string;
-//   contentId: string;
-//   contentType: string;
-// };
