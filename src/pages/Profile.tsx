@@ -9,12 +9,12 @@ import ProfileScore from '../components/profile/ProfileScore';
 import { useAppSelector } from '../app/store';
 
 export default function Profile() {
-  const { userId = '' } = useParams();
+  const { userIdParam = '' } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
   const myId = userInfo ? userInfo._id : '';
-  const { data: userReview, isLoading: isUserReviewLoading } = useUserReviewFetch(userId);
+  const { data: userReview, isLoading: isUserReviewLoading } = useUserReviewFetch(userIdParam);
 
-  const isMyProfile = userId === myId;
+  const isMyProfile = userIdParam === myId;
   if (isUserReviewLoading) return <Loading />;
 
   if (!isUserReviewLoading) {

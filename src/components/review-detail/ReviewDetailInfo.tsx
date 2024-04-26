@@ -1,14 +1,18 @@
 import React from 'react';
 import Stars from '../Stars';
 import { Link, useParams } from 'react-router-dom';
-import useReviewSelect from '../../shared/hooks/review/useReviewDetail';
+import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
 import Loading from '../Loading';
 import { formatDateWithTime } from '../../shared/util/regs';
 import DetailBackground from '../DetailBackground';
 
 export default function ReviewDetailInfo() {
-  const { userId, reviewId } = useParams();
-  const { isLoading: isReviewLoading, data: Review, isSuccess } = useReviewSelect(userId, reviewId);
+  const { userIdParam, reviewIdParam } = useParams();
+  const {
+    isLoading: isReviewLoading,
+    data: Review,
+    isSuccess,
+  } = useReviewDetail(userIdParam, reviewIdParam);
 
   if (isReviewLoading) {
     return <Loading />;

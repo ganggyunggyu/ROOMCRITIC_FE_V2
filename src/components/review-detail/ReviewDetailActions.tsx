@@ -10,17 +10,17 @@ import { ReviewDeleteDTO } from '../../app/types/dtos';
 
 export default function ReviewDetailActions() {
   const navigator = useNavigate();
-  const { userId, reviewId } = useParams();
+  const { userIdParam, reviewIdParam } = useParams();
   const _id = useAppSelector((state) => state.user.userInfo?._id);
 
-  const { isLoading: isReviewLoading, data: Review } = useReviewSelect(userId, reviewId);
+  const { isLoading: isReviewLoading, data: Review } = useReviewSelect(userIdParam, reviewIdParam);
   const { mutate } = useReviewDelete();
 
   if (isReviewLoading) return <Loading />;
   const { review } = Review;
 
   const directUpdate = () => {
-    navigator(`/update/${userId}/${reviewId}`);
+    navigator(`/update/${userIdParam}/${reviewIdParam}`);
     scrollToTop();
   };
   const handleReviewDelete = () => {

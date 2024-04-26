@@ -25,13 +25,13 @@ function App() {
       <section className='mt-12 flex flex-col items-center justify-center'>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/profile/:userId' element={<Profile />} />
+          <Route path='/profile/:userIdParam' element={<Profile />} />
           <Route path='/join' element={<Join />} />
           <Route path='/login' element={<Login />} />
           <Route path='/search' element={<Search />} />
-          <Route path='/content/:contentType/:contentId' element={<ContentDetail />} />
-          <Route path='/detail/review/:userId/:reviewId' element={<ReviewDetail />} />
-          <Route path='/update/:userId/:reviewId' element={<Update />} />
+          <Route path='/content/:contentTypeParam/:contentIdParam' element={<ContentDetail />} />
+          <Route path='/detail/review/:userIdParam/:reviewIdParam' element={<ReviewDetail />} />
+          <Route path='/update/:userIdParam/:reviewIdParam' element={<Update />} />
         </Routes>
       </section>
       <Footer />

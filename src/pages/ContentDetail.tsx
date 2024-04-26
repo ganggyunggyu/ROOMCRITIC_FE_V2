@@ -13,18 +13,18 @@ import Loading from '../components/Loading';
 import DetailBackground from '../components/DetailBackground';
 
 export default function ContentDetail() {
-  const { contentType = '', contentId = '' } = useParams();
-  const contentInfo = (contentType as string) + contentId;
+  const { contentTypeParam = '', contentIdParam = '' } = useParams();
+  const contentInfo = (contentTypeParam as string) + contentIdParam;
   const [isPrevInfo, setIsPrevInfo] = React.useState(contentInfo);
 
   const {
     isLoading: isContentLoading,
     data: Content,
     refetch: contentRefetch,
-  } = useContentFetch(contentType, contentId);
+  } = useContentFetch(contentTypeParam, contentIdParam);
   const { isLoading: isReviewsLoading, data: Review } = useSeletedContentReviews(
-    contentType,
-    contentId,
+    contentTypeParam,
+    contentIdParam,
   );
 
   if (contentInfo !== isPrevInfo) {

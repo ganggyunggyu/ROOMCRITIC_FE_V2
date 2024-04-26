@@ -11,18 +11,22 @@ import DetailBackground from '../DetailBackground';
 import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
 
 export default function UpdateForm() {
-  const { userId = '', reviewId = '' } = useParams();
+  const { userIdParam = '', reviewId = '' } = useParams();
   const navigator = useNavigate();
   const { mutate } = useReviewUpdate();
 
-  const { isLoading: isReviewLoading, data: Review, isSuccess } = useReviewDetail(userId, reviewId);
+  const {
+    isLoading: isReviewLoading,
+    data: Review,
+    isSuccess,
+  } = useReviewDetail(userIdParam, reviewId);
   const [lineReview, setLineReview] = React.useState<string>(
     isSuccess ? Review.review.lineReview : '',
   );
   const [grade, setGrade] = React.useState<number>(isSuccess && Review.review.grade);
 
   const reviewUpdateDTO = {
-    userId: userId,
+    userId: userIdParam,
     reviewId: reviewId,
     lineReview: lineReview,
     grade: grade,
