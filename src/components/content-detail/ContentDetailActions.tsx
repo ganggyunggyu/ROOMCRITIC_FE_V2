@@ -31,8 +31,6 @@ export default function ContentDetailActions({ isLoading, data }) {
   }
 
   const content = data?.data.content;
-  //로그인 한 유저의 id , 콘텐츠 id
-
   const handleAddWatch = () => {
     setIsWatch(!isWatch);
     watchMutate(
@@ -57,10 +55,10 @@ export default function ContentDetailActions({ isLoading, data }) {
   };
 
   return (
-    <div className={'flex flex-col w-full gap-5 z-10'}>
+    <section className={'flex flex-col w-full gap-5 z-10'}>
       {isLoggedIn ? (
         <React.Fragment>
-          <div className='flex gap-5'>
+          <article className='flex gap-5'>
             {isWatch ? (
               <Button
                 label={'봤어요 🤩 ✅'}
@@ -94,12 +92,12 @@ export default function ContentDetailActions({ isLoading, data }) {
             {isWishError && <ToastMessage message={'에러'} />}
             {isWatchSuccess && <ToastMessage message={'성공'} />}
             {isWishSuccess && <ToastMessage message={'성공'} />}
-          </div>
+          </article>
           <CreateForm content={content} />
         </React.Fragment>
       ) : (
         <LoginButton />
       )}
-    </div>
+    </section>
   );
 }

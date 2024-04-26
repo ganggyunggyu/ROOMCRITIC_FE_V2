@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ content, onClick, isHover }) => {
   };
 
   return (
-    <article
+    <figure
       onClick={onClick}
       onMouseOver={cardMouseOver}
       onMouseLeave={cardMouseLeave}
@@ -43,7 +43,7 @@ const Card: React.FC<CardProps> = ({ content, onClick, isHover }) => {
           etc={content.userName || formattedMonthEnd}
         />
       </div>
-    </article>
+    </figure>
   );
 };
 
