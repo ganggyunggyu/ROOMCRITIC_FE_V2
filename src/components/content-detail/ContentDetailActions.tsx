@@ -88,8 +88,8 @@ export default function ContentDetailActions({ isLoading, data }) {
                 onClick={handleAddWish}
               />
             )}
-            {isWatchError && <ToastMessage message={'에러'} />}
-            {isWishError && <ToastMessage message={'에러'} />}
+            {isWatchError && <ToastMessage message={'에러가 발생했습니다.'} />}
+            {isWishError && <ToastMessage message={'에러가 발생했습니다.'} />}
             {isWatchSuccess && <ToastMessage message={'성공'} />}
             {isWishSuccess && <ToastMessage message={'성공'} />}
           </article>
