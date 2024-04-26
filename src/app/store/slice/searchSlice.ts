@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TContent } from '../../types/main';
+import { TCardContent } from '../../types/main';
 
 interface SearchState {
-  searchContents: TContent[];
+  searchContents: TCardContent[];
 }
 
 const initialState: SearchState = {
