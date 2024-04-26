@@ -1,6 +1,6 @@
 import { KeyboardEvent } from 'react';
-import Button from '../AtomComponent/Button';
-import Input from '../AtomComponent/Input';
+import Button from '../atom-component/Button';
+import Input from '../atom-component/Input';
 import { useNavigate } from 'react-router-dom';
 import { passwordRegTest, emailRegTest } from '../../shared/util/regs';
 import useLogin from '../../shared/hooks/auth/useLogin';
@@ -53,8 +53,8 @@ const LoginForm = () => {
   };
   const testLogin = () => {
     const loginData = {
-      email: 'test@test.test',
-      password: '12Qwaszx!@',
+      email: 'test@test.com',
+      password: 'test',
     };
     mutate(loginData);
   };

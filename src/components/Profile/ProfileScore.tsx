@@ -42,11 +42,11 @@ const ProfileScore: React.FC<TProfileScore> = ({ name }) => {
             <p className='border-violet-400'>리뷰</p>
           </div>
           <div className='text-center w-1/3'>
-            <p className='text-lg font-bold'>{reviewCount}</p>
+            <p className='text-lg font-bold'>0</p>
             <p>보고싶어요</p>
           </div>
           <div className='text-center w-1/3'>
-            <p className='text-lg font-bold'>{reviewCount}</p>
+            <p className='text-lg font-bold'>0</p>
             <p>봤어요</p>
           </div>
         </div>

@@ -1,84 +1,37 @@
-import { useQuery } from '@tanstack/react-query';
-import { useRecoilValue } from 'recoil';
-import { searchContentsState } from '../app/store/atoms';
-import ResponsiveProvider from './WrapProvider/ResponsiveProvider';
-import CardWrapProvider from './WrapProvider/CardWrapProvider';
+import { useAppSelector } from '../app/store';
+import useCategoryContentFetch from '../shared/hooks/content/useCategoryContent';
+import ResponsiveProvider from './wrap-provider/ResponsiveProvider';
+import CardWrapProvider from './wrap-provider/CardWrapProvider';
 import Loading from './Loading';
-import * as API from '../shared/api/API';
 
 const CategoryContents = () => {
-  const searchContents = useRecoilValue(searchContentsState);
+  const searchContents = useAppSelector((state) => state.search.searchContents);
+  const isSearchContentEmpty = searchContents.length === 0;
 
-  const latestTvContentQuery = useQuery({
-    queryKey: ['latestTvContent'],
-    queryFn: API.fetchLatestTvContent,
-  });
-  const latestMovieContentQuery = useQuery({
-    queryKey: ['latestMovieContent'],
-    queryFn: API.fetchLatestMovieContent,
-  });
-
-  const ownerPickMovieQuery = useQuery({
-    queryKey: ['ownerMovieContent'],
-    queryFn: API.fetchOwnerPickMovieContent,
-  });
-
-  const ownerPickTvQuery = useQuery({
-    queryKey: ['ownerTvContent'],
-    queryFn: API.fetchOwnerPickTvContent,
-  });
-  const topRatedMovieQuery = useQuery({
-    queryKey: ['topRatedMovie'],
-    queryFn: API.fetchTopRatedMovie,
-  });
-
-  const { isLoading: isLatestMovieLoading, data: latestMovieData } = latestMovieContentQuery;
-  const { isLoading: isLatestTvLoading, data: latestTvData } = latestTvContentQuery;
-  const { isLoading: isOwnerPickMovieLoading, data: ownerPickMovieData } = ownerPickMovieQuery;
-  const { isLoading: isOwnerPickTvLoading, data: ownerPickTvData } = ownerPickTvQuery;
-  const { isLoading: isTopRatedMovieLoading, data: topRatedMovieData } = topRatedMovieQuery;
-
-  const isTotalLoading =
-    isLatestMovieLoading &&
-    isLatestTvLoading &&
-    isOwnerPickMovieLoading &&
-    isOwnerPickTvLoading &&
-    isTopRatedMovieLoading &&
-    !searchContents;
-
-  if (isTotalLoading) {
+  const { isSucess, OwnerMovie, OwnerTv, TopMovie, LatestMovie, LatestTv } =
+    useCategoryContentFetch();
+  if (!isSucess) {
     return <Loading />;
   }
-
-  if (!isTotalLoading) {
-    const latestMovies = latestMovieData?.data?.movies;
-    const latestTvs = latestTvData?.data?.tvs;
-    const ownerMovies = ownerPickMovieData?.data?.movies;
-    const ownerTvs = ownerPickTvData?.data?.tvs;
-    const topRatedMovies = topRatedMovieData?.data?.movies;
-
+  if (isSucess) {
+    const ownerMovie = OwnerMovie.movies;
+    const ownerTv = OwnerTv.tvs;
+    const topMovie = TopMovie.movies;
+    const latestMovie = LatestMovie.movies;
+    const latestTv = LatestTv.tvs;
     return (
       <ResponsiveProvider direction={'col'}>
-        {searchContents.length > 0 && (
+        {!isSearchContentEmpty && (
           <CardWrapProvider title={'최근 검색 결과'} cardList={searchContents} />
         )}
-        {ownerMovies && (
-          <CardWrapProvider title={'주인장 선정 작품입니다!'} cardList={ownerMovies} />
-        )}
-        {ownerTvs && <CardWrapProvider title={'주인장 선정 작품입니다!'} cardList={ownerTvs} />}
-
-        {latestMovies && (
-          <CardWrapProvider title={'최근에 평론을 받은 영화에요!'} cardList={latestMovies} />
-        )}
-        {latestTvs && (
-          <CardWrapProvider title={'최근에 평론을 받은 프로그램이에요!'} cardList={latestTvs} />
-        )}
-        {topRatedMovies && (
-          <CardWrapProvider title={'길이 남을 명작들을 가져왔어요'} cardList={topRatedMovies} />
-        )}
+        <CardWrapProvider title={'주인장 선정 작품입니다!'} cardList={ownerMovie} />
+        <CardWrapProvider title={'주인장 선정 작품입니다!'} cardList={ownerTv} />
+        <CardWrapProvider title={'최근에 평론을 받은 영화에요!'} cardList={latestMovie} />
+        <CardWrapProvider title={'최근에 평론을 받은 프로그램이에요!'} cardList={latestTv} />
+        <CardWrapProvider title={'길이 남을 명작들을 가져왔어요'} cardList={topMovie} />
       </ResponsiveProvider>
     );
   }
-  return <Loading />;
 };
+
 export default CategoryContents;

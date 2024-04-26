@@ -2,52 +2,53 @@ import React from 'react';
 import StarIcon from '../shared/icons/StarIcon';
 import HalfStar from '../shared/icons/HalfStar';
 
-export default function Stars({ hoverIndex }: { hoverIndex: number }) {
+export default function Stars({ grade }: { grade: number }) {
   const GRADES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+  const hoverIndex = grade * 2 - 1;
   return (
-    <div className='relative flex transition-all'>
+    <section className='relative flex transition-all'>
       {GRADES.map((GRADE, i) => {
         return (
           <React.Fragment key={GRADE}>
             {i % 2 ? (
-              <div className='transition-all'>
+              <article className='transition-all'>
                 <StarIcon color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
-              </div>
+              </article>
             ) : (
               <React.Fragment>
                 {i === 0 && (
-                  <div className='absolute transition-all '>
+                  <article className='absolute transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
-                  </div>
+                  </article>
                 )}
                 {i === 2 && (
-                  <div className='absolute translate-x-14 transition-all '>
+                  <article className='absolute translate-x-14 transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
-                  </div>
+                  </article>
                 )}
                 {i === 4 && (
-                  <div className='absolute translate-x-28 transition-all '>
+                  <article className='absolute translate-x-28 transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
-                  </div>
+                  </article>
                 )}
                 {i === 6 && (
-                  <div
+                  <article
                     style={{ transform: 'translateX(10.5rem)' }}
                     className='absolute translate-x-42 transition-all '
                   >
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
-                  </div>
+                  </article>
                 )}
                 {i === 8 && (
-                  <div className='absolute translate-x-56 transition-all '>
+                  <article className='absolute translate-x-56 transition-all '>
                     <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
-                  </div>
+                  </article>
                 )}
               </React.Fragment>
             )}
           </React.Fragment>
         );
       })}
-    </div>
+    </section>
   );
 }

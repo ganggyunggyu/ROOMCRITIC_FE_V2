@@ -1,4 +1,4 @@
-import { KAKAOREST } from '../../../env-config';
+import { KAKAOREST } from '../../../app/config/env-config';
 
 const useKakaoLogin = () => {
   const redirectKakao = () => {

@@ -1,13 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { isLoggedInState, userInfoState } from '../app/store/atoms';
 import AxiosConfig from '../shared/api/AxiosConfig';
 import useDarkMode from '../shared/hooks/common/useDarkMode';
+import { useAppSelector } from '../app/store';
 
 export default function Header() {
   const navigator = useNavigate();
-  const userInfo = useRecoilValue(userInfoState);
-  const isLoggedIn = useRecoilValue(isLoggedInState);
+  const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
   const { darkModeClasses } = useDarkMode();
 
   const submitLogout = async () => {

@@ -1,10 +1,7 @@
 import axios from 'axios';
-import { HOST } from '../../env-config';
+import { HOST } from '../../app/config/env-config';
 const AxiosConfig = axios.create({
-  // baseURL: 'https://api.room-critic.online',
-  // baseURL: 'http://localhost:4000',
   baseURL: HOST,
-
   headers: {
     Authorization: 'Bearer your-token',
   },

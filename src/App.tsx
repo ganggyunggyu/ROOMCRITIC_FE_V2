@@ -9,14 +9,15 @@ import ContentDetail from './pages/ContentDetail';
 import ReviewDetail from './pages/ReviewDetail';
 import Update from './pages/Update';
 import Header from './components/Header';
-import DarkModeButton from './components/AtomComponent/DarkModeButton';
+import DarkModeButton from './components/atom-component/DarkModeButton';
 import useCheckLoginStatus from './shared/hooks/auth/useCheckLoginStatus';
 import useDarkMode from './shared/hooks/common/useDarkMode';
 import { cn } from './shared/util/cn';
+import Footer from './components/Footer';
 
 function App() {
-  const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
   useCheckLoginStatus();
+  const { isDarkMode, darkModeClasses, toggleDarkMode } = useDarkMode();
 
   return (
     <main className={cn(`${darkModeClasses} transition-all`)}>
@@ -33,6 +34,7 @@ function App() {
           <Route path='/update/:userId/:reviewId' element={<Update />} />
         </Routes>
       </section>
+      <Footer />
       <DarkModeButton darkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
     </main>
   );

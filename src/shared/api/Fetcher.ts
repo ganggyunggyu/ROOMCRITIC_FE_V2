@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { HOST } from '../../env-config';
+import { HOST } from '../../app/config/env-config';
 
 export const API_URI = HOST;
 interface ErrorResponse {

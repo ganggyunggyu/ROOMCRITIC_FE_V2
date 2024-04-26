@@ -1,24 +1,23 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import useReviewCreate from '../shared/hooks/review/useReviewCreate';
-import { useRecoilValue } from 'recoil';
-import { isDarkModeState, userInfoState } from '../app/store/atoms';
-import Input from './AtomComponent/Input';
+import Input from './atom-component/Input';
 import StarsInput from './StarsInput';
 
-import Button from './AtomComponent/Button';
+import Button from './atom-component/Button';
 import useFormInput from '../shared/hooks/common/useFormInput';
 import { getGradeText } from '../shared/util/getGradeText';
 import { TContent } from '../app/types/main';
 import { ReviewCreateDTO } from '../app/types/dtos';
-import useSelectedContentReviews from '../shared/hooks/content/useSelectedContentReviewsQuery';
+import useContentReviews from '../shared/hooks/content/useContentReviews';
+import { useAppSelector } from '../app/store';
 
 interface CreateFormProps {
   content: TContent;
 }
 
 const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
-  const isDarkMode = useRecoilValue(isDarkModeState);
-  const userInfo = useRecoilValue(userInfoState);
+  const { userInfo } = useAppSelector((state) => state.user);
+  const { isDarkMode } = useAppSelector((state) => state.darkMode);
   const [grade, setGrade] = React.useState(0);
   const reviewInput = useFormInput('');
 
@@ -34,15 +33,15 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     contentType: content.content_type,
   };
 
-  const { mutate, isError, error, isSuccess } = useReviewCreate();
-  const { selectedContentReviewsQuery } = useSelectedContentReviews(
+  const { mutate, error, isSuccess, isError } = useReviewCreate();
+  const { refetch: reviewsRefetch } = useContentReviews(
     reviewCreateDTO.contentType,
     reviewCreateDTO.contentId,
   );
 
   const successReviewCreate = () => {
     reviewInput.setValue('');
-    selectedContentReviewsQuery.refetch();
+    reviewsRefetch();
   };
   const handleEnterKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.nativeEvent.isComposing) return;
@@ -57,19 +56,15 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
 
   return (
-    <React.Fragment>
+    <form className='flex flex-col gap-5'>
       <StarsInput grade={grade} setGrade={setGrade} />
-
       {grade === 0 && (
         <p className='text-lg'>
-          <span className={isDarkMode ? `text-yellow-400` : `text-yellow-500`}>별</span>을 클릭해서
-          평점을 선택해주세요 !
+          <span className={``}>별</span>을 클릭해서 평점을 선택해주세요 !
         </p>
       )}
       {grade !== 0 && (
-        <p className={`text-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-800'}`}>
-          {getGradeText(grade)}
-        </p>
+        <p className={isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}>{getGradeText(grade)}</p>
       )}
       <Input
         label={'한줄평 작성'}
@@ -87,7 +82,7 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
         </p>
       )}
       {isError && <p>{error.message}</p>}
-    </React.Fragment>
+    </form>
   );
 };
 export default CreateForm;

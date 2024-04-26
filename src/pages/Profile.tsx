@@ -1,28 +1,24 @@
-import { userInfoState } from '../app/store/atoms';
-import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router-dom';
-import CardWrapProvider from '../components/WrapProvider/CardWrapProvider';
-import useMyReviewFetch from '../shared/hooks/review/useMyReviewFetch';
+import CardWrapProvider from '../components/wrap-provider/CardWrapProvider';
+import useUserReviewFetch from '../shared/hooks/review/useUserReviewFetch';
 import Loading from '../components/Loading';
-import ResponsiveProvider from '../components/WrapProvider/ResponsiveProvider';
-import ProfileImage from '../components/Profile/ProfileImage';
-import ProfileInfo from '../components/Profile/ProfileInfo';
-import ProfileScore from '../components/Profile/ProfileScore';
-
-//쓴 리뷰를 위한 정보 userId
-//취향점수를 위한 정보 userId
+import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
+import ProfileImage from '../components/profile/ProfileImage';
+import ProfileInfo from '../components/profile/ProfileInfo';
+import ProfileScore from '../components/profile/ProfileScore';
+import { useAppSelector } from '../app/store';
 
 export default function Profile() {
   const { userId = '' } = useParams();
+  const { userInfo } = useAppSelector((state) => state.user);
+  const myId = userInfo ? userInfo._id : '';
+  const { data: userReview, isLoading: isUserReviewLoading } = useUserReviewFetch(userId);
 
-  const userInfo = useRecoilValue(userInfoState);
-  const { myReviewQuery } = useMyReviewFetch(userId);
-  const { isLoading: isMyReviewLoading, data: myReviewData } = myReviewQuery;
+  const isMyProfile = userId === myId;
+  if (isUserReviewLoading) return <Loading />;
 
-  if (isMyReviewLoading) return <Loading />;
-
-  if (!isMyReviewLoading) {
-    const reviews = myReviewData?.data?.reviews;
+  if (!isUserReviewLoading) {
+    const reviews = userReview?.data?.reviews;
 
     return (
       <ResponsiveProvider
@@ -31,7 +27,7 @@ export default function Profile() {
       >
         <article className='flex flex-col justify-start w-full gap-5'>
           <ProfileImage />
-          <ProfileInfo name={userInfo.displayName} />
+          <ProfileInfo name={userInfo.displayName} isMyProfile={isMyProfile} />
           <ProfileScore name={userInfo.displayName} />
         </article>
         <CardWrapProvider

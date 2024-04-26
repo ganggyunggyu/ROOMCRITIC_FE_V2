@@ -1,34 +1,36 @@
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { darkModeClassesState, isDarkModeState } from '../../../app/store/atoms';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
+import { setDarkMode, setDarkModeClasses } from '../../../app/store/slice/darkModeSlice';
 
 const useDarkMode = () => {
-  const [isDarkMode, setIsDarkMode] = useRecoilState(isDarkModeState);
-  const [darkModeClasses, setDarkModeClasses] = useRecoilState(darkModeClassesState);
+  const isDarkMode = useAppSelector((state) => state.darkMode.isDarkMode);
+  const darkModeClasses = useAppSelector((state) => state.darkMode.darkModeClasses);
+  const dispatch = useAppDispatch();
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    dispatch(setDarkMode(!isDarkMode));
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isDarkMode) {
-      setDarkModeClasses('bg-zinc-800 text-white');
+      dispatch(setDarkModeClasses('bg-zinc-800 text-white'));
       document.body.style.backgroundColor = '#27272A';
     } else {
-      setDarkModeClasses('bg-white text-black');
+      dispatch(setDarkModeClasses('bg-white text-black'));
       document.body.style.backgroundColor = 'white';
     }
-  }, [isDarkMode, darkModeClasses]);
+  }, [isDarkMode, darkModeClasses, dispatch]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isDarkMode) {
-      setDarkModeClasses('bg-zinc-800 text-white');
+      dispatch(setDarkModeClasses('bg-zinc-800 text-white'));
       document.body.style.backgroundColor = '#27272A';
     } else {
-      setDarkModeClasses('bg-white text-black');
+      dispatch(setDarkModeClasses('bg-white text-black'));
       document.body.style.backgroundColor = 'white';
+      document.body.classList.add('bg-zinc-800');
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, darkModeClasses, dispatch]);
 
   return { isDarkMode, darkModeClasses, toggleDarkMode };
 };

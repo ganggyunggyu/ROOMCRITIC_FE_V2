@@ -1,29 +1,28 @@
-import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { isLoggedInState, userInfoState } from '../../../app/store/atoms';
+import React from 'react';
 import useLoginStatus from './useLoginStatus';
+import { useAppDispatch } from '../../../app/store';
+import { setIsLoggedIn, setUserInfo } from '../../../app/store/slice/userSlice';
 
 const useCheckLoginStatus = () => {
-  const setUserInfo = useSetRecoilState(userInfoState);
-  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const { data, error, isSuccess, refetch } = useLoginStatus();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isSuccess) {
       if (data.status === 200) {
         const { isLoggedIn, userInfo } = data.data;
-        setIsLoggedIn(isLoggedIn);
-        setUserInfo(userInfo.user);
+        dispatch(setIsLoggedIn(isLoggedIn));
+        dispatch(setUserInfo(userInfo.user));
       }
       if (data.status === 201) {
         setIsLoggedIn(false);
-        setUserInfo({ _id: '', displayName: '', phoneNumber: '', email: '' });
+        setUserInfo(null);
       }
     }
     if (error) {
       console.error(error);
       setIsLoggedIn(false);
-      setUserInfo({ _id: '', displayName: '', phoneNumber: '', email: '' });
+      setUserInfo(null);
     }
   }, [isSuccess, error, data, setIsLoggedIn, setUserInfo]);
 
