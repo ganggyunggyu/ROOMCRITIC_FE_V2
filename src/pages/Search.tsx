@@ -4,9 +4,8 @@ import useSearchContents from '../shared/hooks/content/useSearchContents';
 import SearchInput from '../components/search/SearchInput';
 import SearchContents from '../components/search/SearchContents';
 import SearchButton from '../components/search/SearchButton';
-
+import { SEARCH_INPUT, SEARCH_BUTTON } from '../../public/constant/SEARCH_LABEL';
 export default function Serch() {
-  // const searchRef = React.useRef(null);
   const [searchValue, setSearchValue] = React.useState('');
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
   const [prevType, setPrevType] = React.useState(searchType);
@@ -25,19 +24,24 @@ export default function Serch() {
   const { isLoading: isTvsLoading, data: tvs } = searchTvContentsQuery;
 
   const SearchButtons = [
-    { label: '전체 검색', isActive: searchType === 0, onClick: () => setSearchType(0) },
-    { label: '영화 검색', isActive: searchType === 1, onClick: () => setSearchType(1) },
-    { label: 'TV 검색', isActive: searchType === 2, onClick: () => setSearchType(2) },
+    { label: SEARCH_BUTTON[0], isActive: searchType === 0, onClick: () => setSearchType(0) },
+    { label: SEARCH_BUTTON[1], isActive: searchType === 1, onClick: () => setSearchType(1) },
+    { label: SEARCH_BUTTON[2], isActive: searchType === 2, onClick: () => setSearchType(2) },
   ];
 
   React.useEffect(() => {
-    setSearchValue(contentSearchInput.value);
+    const value = contentSearchInput.value;
+    setSearchValue(value);
   }, [contentSearchInput.value]);
+
   React.useEffect(() => {
-    setSearchValue(movieSearchInput.value);
+    const value = movieSearchInput.value;
+    setSearchValue(value);
   }, [movieSearchInput.value]);
+
   React.useEffect(() => {
-    setSearchValue(tvSearchInput.value);
+    const value = tvSearchInput.value;
+    setSearchValue(value);
   }, [tvSearchInput.value]);
 
   if (prevType !== searchType) {
@@ -47,6 +51,36 @@ export default function Serch() {
     if (searchType === 1) movieSearchInput.setValue(value);
     if (searchType === 2) tvSearchInput.setValue(value);
   }
+
+  const SearchConfig = [
+    {
+      label: SEARCH_INPUT[0],
+      value: contentSearchInput.value,
+      onChange: contentSearchInput.onChange,
+      type: contentSearchInput.type,
+      isActive: contentSearchInput.isEmpty,
+      isLoading: isContentsLoading,
+      contents: contents,
+    },
+    {
+      label: SEARCH_INPUT[1],
+      value: movieSearchInput.value,
+      onChange: movieSearchInput.onChange,
+      type: movieSearchInput.type,
+      isActive: movieSearchInput.isEmpty,
+      isLoading: isMoviesLoading,
+      contents: movies,
+    },
+    {
+      label: SEARCH_INPUT[2],
+      value: tvSearchInput.value,
+      onChange: tvSearchInput.onChange,
+      type: tvSearchInput.type,
+      isActive: tvSearchInput.isEmpty,
+      isLoading: isTvsLoading,
+      contents: tvs,
+    },
+  ];
 
   return (
     <ResponsiveProvider direction={'col'} className={'gap-5'}>
@@ -62,48 +96,24 @@ export default function Serch() {
           );
         })}
       </div>
-      {searchType === contentSearchInput.type && (
-        <React.Fragment>
-          <SearchInput
-            label={'영화 & TV프로그램 검색'}
-            value={contentSearchInput.value}
-            onChange={contentSearchInput.onChange}
-          />
-          <SearchContents
-            isActive={contentSearchInput.isEmpty}
-            isLoading={isContentsLoading}
-            contents={contents}
-          />
-        </React.Fragment>
-      )}
-      {searchType === movieSearchInput.type && (
-        <React.Fragment>
-          <SearchInput
-            label={'영화 검색'}
-            value={movieSearchInput.value}
-            onChange={movieSearchInput.onChange}
-          />
-          <SearchContents
-            isActive={movieSearchInput.isEmpty}
-            isLoading={isMoviesLoading}
-            contents={movies}
-          />
-        </React.Fragment>
-      )}
-      {searchType === tvSearchInput.type && (
-        <React.Fragment>
-          <SearchInput
-            label={'TV프로그램 검색'}
-            value={tvSearchInput.value}
-            onChange={tvSearchInput.onChange}
-          />
-          <SearchContents
-            isActive={tvSearchInput.isEmpty}
-            isLoading={isTvsLoading}
-            contents={tvs}
-          />
-        </React.Fragment>
-      )}
+      {SearchConfig.map((searchConfig) => {
+        return (
+          searchType === searchConfig.type && (
+            <React.Fragment key={searchConfig.type}>
+              <SearchInput
+                label={searchConfig.label}
+                value={searchConfig.value}
+                onChange={searchConfig.onChange}
+              />
+              <SearchContents
+                isActive={searchConfig.isActive}
+                isLoading={searchConfig.isLoading}
+                contents={searchConfig.contents}
+              />
+            </React.Fragment>
+          )
+        );
+      })}
     </ResponsiveProvider>
   );
 }
