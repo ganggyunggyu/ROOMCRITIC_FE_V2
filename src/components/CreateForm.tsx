@@ -8,7 +8,7 @@ import useFormInput from '../shared/hooks/common/useFormInput';
 import { getGradeText } from '../shared/util/getGradeText';
 import { TContent } from '../app/types/main';
 import { ReviewCreateDTO } from '../app/types/dtos';
-import useSelectedContentReviews from '../shared/hooks/content/useSelectedContentReviewsQuery';
+import useContentReviews from '../shared/hooks/content/useContentReviews';
 import { useAppSelector } from '../app/store';
 
 interface CreateFormProps {
@@ -34,14 +34,14 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
 
   const { mutate, error, isSuccess, isError } = useReviewCreate();
-  const { selectedContentReviewsQuery } = useSelectedContentReviews(
+  const { refetch: reviewsRefetch } = useContentReviews(
     reviewCreateDTO.contentType,
     reviewCreateDTO.contentId,
   );
 
   const successReviewCreate = () => {
     reviewInput.setValue('');
-    selectedContentReviewsQuery.refetch();
+    reviewsRefetch();
   };
   const handleEnterKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.nativeEvent.isComposing) return;

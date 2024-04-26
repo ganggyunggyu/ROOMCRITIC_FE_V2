@@ -2,52 +2,64 @@ import React, { KeyboardEvent } from 'react';
 import Input from '../atom-component/Input';
 import Button from '../atom-component/Button';
 import Loading from '../Loading';
-import useReviewSelect from '../../shared/hooks/review/useReviewSelect';
-import { useParams } from 'react-router-dom';
+
+import { useNavigate, useParams } from 'react-router-dom';
 import useReviewUpdate from '../../shared/hooks/review/useReviewUpdate';
 import { getGradeText } from '../../shared/util/getGradeText';
 import StarsInput from '../StarsInput';
+import DetailBackground from '../DetailBackground';
+import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
 
 export default function UpdateForm() {
   const { userId = '', reviewId = '' } = useParams();
-  const { selectReviewQuery } = useReviewSelect(userId, reviewId);
-  const [review, setReview] = React.useState(
-    selectReviewQuery.isLoading ? '' : selectReviewQuery.data?.data.review.lineReview,
-  );
+  const navigator = useNavigate();
+  const { mutate } = useReviewUpdate();
 
-  const [grade, setGrade] = React.useState(
-    selectReviewQuery.isLoading ? 3 : selectReviewQuery.data?.data.review.grade,
-  );
-  const updateData = {
+  const { isLoading: isReviewLoading, data: Review, isSuccess } = useReviewDetail(userId, reviewId);
+  const [lineReview, setLineReview] = React.useState<string>(isSuccess && Review.review.lineReview);
+  const [grade, setGrade] = React.useState<number>(isSuccess && Review.review.grade);
+
+  const reviewUpdateDTO = {
     userId: userId,
     reviewId: reviewId,
-    lineReview: review,
+    lineReview: lineReview,
     grade: grade,
   };
 
-  const { updateMutate } = useReviewUpdate(updateData);
+  if (isReviewLoading) return <Loading />;
+
+  const updateMutate = () => {
+    mutate(reviewUpdateDTO, {
+      onSuccess: () => {
+        console.log('수정 성공');
+        navigator(`/detail/review/${reviewUpdateDTO.userId}/${reviewUpdateDTO.reviewId}`);
+      },
+    });
+  };
 
   const handleEnterKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.nativeEvent.isComposing) return;
     if (event.key === 'Enter') {
       event.preventDefault();
-      updateMutate.mutate();
+      updateMutate();
     }
   };
-  if (selectReviewQuery.isLoading) return <Loading />;
+
+  const { review } = Review;
 
   return (
     <React.Fragment>
+      <DetailBackground path={review.contentBackdropImg} />
+      <p className='text-3xl'>{review.contentName} 리뷰 수정</p>
       <StarsInput grade={grade} setGrade={setGrade} />
       <span className='text-violet-400'>{getGradeText(grade)}</span>
-      <form className='w-1/2 relative flex flex-col gap-5'></form>
       <form className='w-1/2 relative'>
         <Input
           placeholder='한줄평 쓰기'
           type='text'
-          value={review}
+          value={review.lineReview}
           onChange={(e) => {
-            setReview(e.target.value);
+            setLineReview(e.target.value);
           }}
           onKeyDown={handleEnterKeyPress}
           className='text-center'
@@ -55,8 +67,8 @@ export default function UpdateForm() {
         <Button
           label={'수정'}
           bg={'main'}
-          onClick={() => updateMutate.mutate()}
-          className='absolute right-0 top-4'
+          onClick={updateMutate}
+          className='absolute right-0 top-3'
         />
       </form>
     </React.Fragment>
