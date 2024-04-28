@@ -16,7 +16,9 @@ export default function UpdateForm() {
   const { mutate } = useReviewUpdate();
 
   const { isLoading: isReviewLoading, data: Review, isSuccess } = useReviewDetail(userId, reviewId);
-  const [lineReview, setLineReview] = React.useState<string>(isSuccess && Review.review.lineReview);
+  const [lineReview, setLineReview] = React.useState<string>(
+    isSuccess ? Review.review.lineReview : '',
+  );
   const [grade, setGrade] = React.useState<number>(isSuccess && Review.review.grade);
 
   const reviewUpdateDTO = {
@@ -26,6 +28,9 @@ export default function UpdateForm() {
     grade: grade,
   };
 
+  React.useEffect(() => {
+    if (isSuccess) setLineReview(Review.lineReview);
+  }, [isSuccess, Review]);
   if (isReviewLoading) return <Loading />;
 
   const updateMutate = () => {
@@ -57,7 +62,7 @@ export default function UpdateForm() {
         <Input
           placeholder='한줄평 쓰기'
           type='text'
-          value={review.lineReview}
+          value={lineReview}
           onChange={(e) => {
             setLineReview(e.target.value);
           }}
