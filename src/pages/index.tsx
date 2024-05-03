@@ -2,14 +2,14 @@ import React from 'react';
 import useCheckLoginStatus from '../shared/hooks/auth/useCheckLoginStatus';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-const HomePage = React.lazy(() => import('./Home'));
-const ProfilePage = React.lazy(() => import('./Profile'));
-const JoinPage = React.lazy(() => import('./Join'));
-const LoginPage = React.lazy(() => import('./Login'));
-const SearchPage = React.lazy(() => import('./Search'));
-const ContentDetailPage = React.lazy(() => import('./ContentDetail'));
-const ReviewDetailPage = React.lazy(() => import('./ReviewDetail'));
-const UpdatePage = React.lazy(() => import('./Update'));
+const HomePage = React.lazy(() => import('./home'));
+const ProfilePage = React.lazy(() => import('./profile'));
+const JoinPage = React.lazy(() => import('./join'));
+const LoginPage = React.lazy(() => import('./login'));
+const SearchPage = React.lazy(() => import('./search'));
+const ContentDetailPage = React.lazy(() => import('./content-detail'));
+const ReviewDetailPage = React.lazy(() => import('./review-detail'));
+const UpdatePage = React.lazy(() => import('./update'));
 
 const Routing: React.FC = () => {
   useCheckLoginStatus();

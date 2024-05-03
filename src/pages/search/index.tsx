@@ -1,10 +1,10 @@
 import React from 'react';
-import ResponsiveProvider from '../entities/wrap-provider/ResponsiveProvider';
-import useSearchContents from '../shared/hooks/content/useSearchContents';
-import SearchInput from '../entities/search/SearchInput';
-import SearchContents from '../entities/search/SearchContents';
-import SearchButton from '../entities/search/SearchButton';
-import { SEARCH_INPUT, SEARCH_BUTTON } from '../../public/constant/SEARCH_LABEL';
+import ResponsiveProvider from '../../entities/wrap-provider/ResponsiveProvider';
+import useSearchContents from '../../shared/hooks/content/useSearchContents';
+import SearchInput from '../../entities/search/SearchInput';
+import SearchContents from '../../entities/search/SearchContents';
+import SearchButton from '../../entities/search/SearchButton';
+import { SEARCH_INPUT, SEARCH_BUTTON } from '../../../public/constant/SEARCH_LABEL';
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
