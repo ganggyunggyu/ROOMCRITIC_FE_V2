@@ -1,8 +1,8 @@
 import React from 'react';
-import CategoryReviewList from '../components/CategoryContents';
-import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
-import ReviewDetailInfo from '../components/review-detail/ReviewDetailInfo';
-import ReviewDetailActions from '../components/review-detail/ReviewDetailActions';
+import CategoryReviewList from '../entities/CategoryContents';
+import ResponsiveProvider from '../entities/wrap-provider/ResponsiveProvider';
+import ReviewDetailInfo from '../entities/review-detail/ReviewDetailInfo';
+import ReviewDetailActions from '../entities/review-detail/ReviewDetailActions';
 
 export default function ReviewDetail() {
   return (

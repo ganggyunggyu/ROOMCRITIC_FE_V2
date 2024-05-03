@@ -1,6 +1,6 @@
-import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
-import FormHeader from '../components/atom-component/FormHeader';
-import LoginForm from '../components/login/LoginForm';
+import ResponsiveProvider from '../entities/wrap-provider/ResponsiveProvider';
+import FormHeader from '../entities/atom-component/FormHeader';
+import LoginForm from '../entities/login/LoginForm';
 export default function Login() {
   return (
     <ResponsiveProvider direction={'col'}>

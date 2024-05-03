@@ -1,9 +1,9 @@
 import React from 'react';
-import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
+import ResponsiveProvider from '../entities/wrap-provider/ResponsiveProvider';
 import useSearchContents from '../shared/hooks/content/useSearchContents';
-import SearchInput from '../components/search/SearchInput';
-import SearchContents from '../components/search/SearchContents';
-import SearchButton from '../components/search/SearchButton';
+import SearchInput from '../entities/search/SearchInput';
+import SearchContents from '../entities/search/SearchContents';
+import SearchButton from '../entities/search/SearchButton';
 import { SEARCH_INPUT, SEARCH_BUTTON } from '../../public/constant/SEARCH_LABEL';
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');

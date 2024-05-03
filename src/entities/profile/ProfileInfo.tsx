@@ -1,9 +1,14 @@
+import useAuthenticatedUserInfo from '../../shared/hooks/auth/useAuthenticatedUserInfo';
+import useIsMyPostOwner from '../../shared/hooks/auth/useIsMyPostOwner';
 import Button from '../atom-component/Button';
 
-const ProfileInfo = ({ name, isMyProfile }) => {
+const ProfileInfo = () => {
+  const isMyProfile = useIsMyPostOwner();
+  const { displayName } = useAuthenticatedUserInfo();
+
   return (
     <div className='flex gap-3 flex-col'>
-      <p className='text-xl'>{name}</p>
+      <p className='text-xl'>{displayName}</p>
       <div className='flex gap-1'>
         <p>팔로워</p>
         <span>10</span>

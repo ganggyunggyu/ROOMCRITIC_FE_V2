@@ -11,7 +11,7 @@ import DetailBackground from '../DetailBackground';
 import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
 
 export default function UpdateForm() {
-  const { userIdParam = '', reviewId = '' } = useParams();
+  const { userIdParam = '', reviewIdParam = '' } = useParams();
   const navigator = useNavigate();
   const { mutate } = useReviewUpdate();
 
@@ -19,15 +19,15 @@ export default function UpdateForm() {
     isLoading: isReviewLoading,
     data: Review,
     isSuccess,
-  } = useReviewDetail(userIdParam, reviewId);
+  } = useReviewDetail(userIdParam, reviewIdParam);
   const [lineReview, setLineReview] = React.useState<string>(
     isSuccess ? Review.review.lineReview : '',
   );
-  const [grade, setGrade] = React.useState<number>(isSuccess && Review.review.grade);
+  const [grade, setGrade] = React.useState<number>(isSuccess ? Review.review.grade : 3);
 
   const reviewUpdateDTO = {
     userId: userIdParam,
-    reviewId: reviewId,
+    reviewId: reviewIdParam,
     lineReview: lineReview,
     grade: grade,
   };
@@ -35,6 +35,7 @@ export default function UpdateForm() {
   React.useEffect(() => {
     if (isSuccess) setLineReview(Review.lineReview);
   }, [isSuccess, Review]);
+
   if (isReviewLoading) return <Loading />;
 
   const updateMutate = () => {
@@ -68,6 +69,8 @@ export default function UpdateForm() {
           type='text'
           value={lineReview}
           onChange={(e) => {
+            e.preventDefault();
+
             setLineReview(e.target.value);
           }}
           onKeyDown={handleEnterKeyPress}

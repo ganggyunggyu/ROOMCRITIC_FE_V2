@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HOST } from '../../app/config/env-config';
+import { HOST } from '../../config/env-config';
 const AxiosConfig = axios.create({
   baseURL: HOST,
   headers: {

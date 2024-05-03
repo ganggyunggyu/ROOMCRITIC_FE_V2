@@ -1,8 +1,8 @@
 import React from 'react';
-import axiosConfig from '../../shared/api/AxiosConfig';
-import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading';
 import { useParams } from 'react-router-dom';
+import useUserInfoFetch from '../../shared/hooks/auth/useUserInfoFetch';
+import useAuthenticatedUserInfo from '../../shared/hooks/auth/useAuthenticatedUserInfo';
 
 type GenreScore = {
   genre_id: number;
@@ -12,27 +12,18 @@ type GenreScore = {
   _id: string;
 };
 
-type TProfileScore = {
-  name: string;
+type ProfileScoreProps = {
+  // name: string;
 };
 
-const ProfileScore: React.FC<TProfileScore> = ({ name }) => {
-  const { userId = '' } = useParams();
+const ProfileScore: React.FC<ProfileScoreProps> = () => {
+  const { userIdParam = '' } = useParams();
+  const { Score, isScoreLoading } = useUserInfoFetch(userIdParam);
+  const { displayName } = useAuthenticatedUserInfo();
+  if (isScoreLoading) return <Loading />;
 
-  const fetchGenreScore = async () => {
-    const result = axiosConfig.get(`/score/${userId}`);
-    return result;
-  };
-
-  const { isLoading: isGenreScoreLoading, data: genreScoreData } = useQuery({
-    queryKey: ['genreScore', userId],
-    queryFn: fetchGenreScore,
-  });
-
-  if (isGenreScoreLoading) return <Loading />;
-
-  if (!isGenreScoreLoading) {
-    const { reviewCount, genreScore } = genreScoreData?.data || {};
+  if (!isScoreLoading) {
+    const { reviewCount, genreScore } = Score;
 
     return (
       <React.Fragment>
@@ -50,7 +41,7 @@ const ProfileScore: React.FC<TProfileScore> = ({ name }) => {
             <p>봤어요</p>
           </div>
         </div>
-        <p>{name} 님의 취향 점수</p>
+        <p>{displayName} 님의 취향 점수</p>
         <div className='flex flex-col gap-3'>
           {!genreScore && <div>리뷰 데이터가 부족해요 🥲</div>}
           {genreScore &&

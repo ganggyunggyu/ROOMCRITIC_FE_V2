@@ -1,6 +1,6 @@
-import ResponsiveProvider from '../components/wrap-provider/ResponsiveProvider';
-import FormHeader from '../components/atom-component/FormHeader';
-import JoinForm from '../components/join/JoinForm';
+import ResponsiveProvider from '../entities/wrap-provider/ResponsiveProvider';
+import FormHeader from '../entities/atom-component/FormHeader';
+import JoinForm from '../entities/join/JoinForm';
 
 export default function Join() {
   return (
