@@ -1,8 +1,8 @@
 import { KeyboardEvent } from 'react';
-import Button from '../atom-component/Button';
-import Input from '../atom-component/Input';
+import Button from '../../shared/ui/Button';
+import Input from '../../shared/ui/Input';
 import { useNavigate } from 'react-router-dom';
-import { passwordRegTest, emailRegTest } from '../../shared/util/regs';
+import { passwordRegTest, emailRegTest } from '../../shared/lib/regs';
 import useLogin from '../../shared/hooks/auth/useLogin';
 import useFormInput from '../../shared/hooks/common/useFormInput';
 

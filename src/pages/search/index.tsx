@@ -1,5 +1,5 @@
 import React from 'react';
-import ResponsiveProvider from '../../entities/wrap-provider/ResponsiveProvider';
+import ResponsiveProvider from '../ui/ResponsiveProvider';
 import useSearchContents from '../../shared/hooks/content/useSearchContents';
 import SearchInput from '../../entities/search/SearchInput';
 import SearchContents from '../../entities/search/SearchContents';

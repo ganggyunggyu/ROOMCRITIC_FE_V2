@@ -1,10 +1,10 @@
 import React from 'react';
-import Stars from '../Stars';
+import Stars from '../../shared/ui/Stars';
 import { Link, useParams } from 'react-router-dom';
 import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
-import Loading from '../Loading';
-import { formatDateWithTime } from '../../shared/util/regs';
-import DetailBackground from '../DetailBackground';
+import Loading from '../../shared/ui/Loading';
+import { formatDateWithTime } from '../../shared/lib/regs';
+import DetailBackground from '../../pages/ui/DetailBackground';
 
 export default function ReviewDetailInfo() {
   const { userIdParam, reviewIdParam } = useParams();

@@ -6,11 +6,11 @@ import useSeletedContentReviews from '../../shared/hooks/content/useContentRevie
 
 import ContentInfo from '../../entities/content-detail/ContentInfo';
 import ContentDetailActions from '../../entities/content-detail/ContentDetailActions';
-import ResponsiveProvider from '../../entities/wrap-provider/ResponsiveProvider';
+import ResponsiveProvider from '../ui/ResponsiveProvider';
 import CardWrapProvider from '../../entities/wrap-provider/CardWrapProvider';
-import CartegofyContents from '../../entities/CategoryContents';
-import Loading from '../../entities/Loading';
-import DetailBackground from '../../entities/DetailBackground';
+import CartegofyContents from '../../features/content/ui/CategoryContents';
+import Loading from '../../shared/ui/Loading';
+import DetailBackground from '../ui/DetailBackground';
 
 export default function ContentDetail() {
   const { contentTypeParam = '', contentIdParam = '' } = useParams();
@@ -41,22 +41,20 @@ export default function ContentDetail() {
     const reviews = Review?.data.reviews;
 
     return (
-      <React.Fragment>
-        <ResponsiveProvider direction={'col'} className={'gap-10'}>
-          <DetailBackground path={content.backdrop_path} />
-          <ContentInfo content={content} />
-          <ContentDetailActions isLoading={isContentLoading} data={Content} />
-          {reviews.length === 0 && <p className='pt-10 text-lg'>남겨진 리뷰가 없어요 🥲</p>}
-          {reviews.length !== 0 && (
-            <CardWrapProvider
-              title={`${content.title}에 남겨진 리뷰`}
-              cardList={reviews}
-              isHover={true}
-            />
-          )}
-        </ResponsiveProvider>
+      <ResponsiveProvider direction={'col'} className={'gap-10'}>
+        <DetailBackground path={content.backdrop_path} />
+        <ContentInfo content={content} />
+        <ContentDetailActions isLoading={isContentLoading} data={Content} />
+        {reviews.length === 0 && <p className='pt-10 text-lg'>남겨진 리뷰가 없어요 🥲</p>}
+        {reviews.length !== 0 && (
+          <CardWrapProvider
+            title={`${content.title}에 남겨진 리뷰`}
+            cardList={reviews}
+            isHover={true}
+          />
+        )}
         <CartegofyContents />
-      </React.Fragment>
+      </ResponsiveProvider>
     );
   }
 }

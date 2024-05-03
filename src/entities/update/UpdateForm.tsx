@@ -1,13 +1,13 @@
 import React, { KeyboardEvent } from 'react';
-import Input from '../atom-component/Input';
-import Button from '../atom-component/Button';
-import Loading from '../Loading';
+import Input from '../../shared/ui/Input';
+import Button from '../../shared/ui/Button';
+import Loading from '../../shared/ui/Loading';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import useReviewUpdate from '../../shared/hooks/review/useReviewUpdate';
-import { getGradeText } from '../../shared/util/getGradeText';
-import StarsInput from '../StarsInput';
-import DetailBackground from '../DetailBackground';
+import { getGradeText } from '../../shared/lib/getGradeText';
+import StarsInput from '../../shared/ui/StarsInput';
+import DetailBackground from '../../pages/ui/DetailBackground';
 import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
 
 export default function UpdateForm() {

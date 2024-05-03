@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../card/Card';
-import Loading from '../Loading';
-import { cn } from '../../shared/util/cn';
+import Loading from '../../shared/ui/Loading';
+import { cn } from '../../shared/lib/cn';
 import { TCardContent } from '../../app/types/main';
 import { useIntersectionObserver } from '../../shared/hooks/common/useIntersectionObserver';
 import CardWrapButtons from './CardWrapButtons';

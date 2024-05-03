@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import { cn } from '../../shared/util/cn';
+import { cn } from '../lib/cn';
 import { VariantProps, cva } from 'class-variance-authority';
 
 export const InputVariants = cva(

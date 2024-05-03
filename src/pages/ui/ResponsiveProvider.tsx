@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-import { cn } from '../../shared/util/cn';
+import { cn } from '../../shared/lib/cn';
 export const ResponsiveProviderVariants = cva(`w-10/12 flex pt-10`, {
   variants: {
     direction: {

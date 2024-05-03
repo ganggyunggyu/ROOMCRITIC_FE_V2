@@ -1,12 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import AxiosConfig from '../shared/api/AxiosConfig';
-import useDarkMode from '../shared/hooks/common/useDarkMode';
-import { useAppSelector } from '../app/store';
+import AxiosConfig from '../../shared/api/AxiosConfig';
+import { useAppSelector } from '../store';
 
-export default function Header() {
+const Header = () => {
   const navigator = useNavigate();
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
-  const { darkModeClasses } = useDarkMode();
+  const { darkModeClasses } = useAppSelector((state) => state.darkMode);
 
   const submitLogout = async () => {
     try {
@@ -63,4 +62,6 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;

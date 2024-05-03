@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAppSelector } from '../../app/store';
-import Loading from '../Loading';
-import Button from '../atom-component/Button';
-import LoginButton from '../atom-component/LoginButton';
-import CreateForm from '../CreateForm';
+import Loading from '../../shared/ui/Loading';
+import Button from '../../shared/ui/Button';
+import LoginButton from '../../shared/ui/LoginButton';
+import CreateForm from './CreateForm';
 import useAddWatchContent from '../../shared/hooks/content/ussAddWatchContent';
 import useAddWishContent from '../../shared/hooks/content/useAddWishContent';
-import ToastMessage from '../atom-component/ToastMessage';
+import ToastMessage from '../../shared/ui/ToastMessage';
 
 export default function ContentDetailActions({ isLoading, data }) {
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.user);

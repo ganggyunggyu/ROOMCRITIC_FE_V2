@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, MouseEvent } from 'react';
-import { cn } from '../../shared/util/cn';
+import { cn } from '../lib/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 export const ButtonVariants = cva(
@@ -49,4 +49,6 @@ const Button: React.FC<ButtonProps> = ({ label, item, bg, text, className, onCli
     </button>
   );
 };
+Button.displayName = 'Button';
+
 export default Button;

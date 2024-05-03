@@ -1,6 +1,6 @@
 import React from 'react';
 import CardWrapProvider from '../wrap-provider/CardWrapProvider';
-import Loading from '../Loading';
+import Loading from '../../shared/ui/Loading';
 
 export default function SearchContents({ isActive, isLoading, contents }) {
   if (isActive)

@@ -1,8 +1,8 @@
-import { useAppSelector } from '../app/store';
-import useCategoryContentFetch from '../shared/hooks/content/useCategoryContent';
-import ResponsiveProvider from './wrap-provider/ResponsiveProvider';
-import CardWrapProvider from './wrap-provider/CardWrapProvider';
-import Loading from './Loading';
+import { useAppSelector } from '../../../app/store';
+import useCategoryContentFetch from '../../../shared/hooks/content/useCategoryContent';
+import CardWrapProvider from '../../../entities/wrap-provider/CardWrapProvider';
+import Loading from '../../../shared/ui/Loading';
+import React from 'react';
 
 const CategoryContents = () => {
   const searchContents = useAppSelector((state) => state.search.searchContents);
@@ -20,7 +20,7 @@ const CategoryContents = () => {
     const latestMovie = LatestMovie.movies;
     const latestTv = LatestTv.tvs;
     return (
-      <ResponsiveProvider direction={'col'}>
+      <React.Fragment>
         {!isSearchContentEmpty && (
           <CardWrapProvider title={'최근 검색 결과'} cardList={searchContents} />
         )}
@@ -29,7 +29,7 @@ const CategoryContents = () => {
         <CardWrapProvider title={'최근에 평론을 받은 영화에요!'} cardList={latestMovie} />
         <CardWrapProvider title={'최근에 평론을 받은 프로그램이에요!'} cardList={latestTv} />
         <CardWrapProvider title={'길이 남을 명작들을 가져왔어요'} cardList={topMovie} />
-      </ResponsiveProvider>
+      </React.Fragment>
     );
   }
 };

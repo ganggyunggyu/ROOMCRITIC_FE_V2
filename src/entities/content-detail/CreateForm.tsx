@@ -1,15 +1,15 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import useReviewCreate from '../shared/hooks/review/useReviewCreate';
-import Input from './atom-component/Input';
-import StarsInput from './StarsInput';
+import useReviewCreate from '../../shared/hooks/review/useReviewCreate';
+import Input from '../../shared/ui/Input';
+import StarsInput from '../../shared/ui/StarsInput';
 
-import Button from './atom-component/Button';
-import useFormInput from '../shared/hooks/common/useFormInput';
-import { getGradeText } from '../shared/util/getGradeText';
-import { TContent } from '../app/types/main';
-import { ReviewCreateDTO } from '../app/types/dtos';
-import useContentReviews from '../shared/hooks/content/useContentReviews';
-import { useAppSelector } from '../app/store';
+import Button from '../../shared/ui/Button';
+import useFormInput from '../../shared/hooks/common/useFormInput';
+import { getGradeText } from '../../shared/lib/getGradeText';
+import { TContent } from '../../app/types/main';
+import { ReviewCreateDTO } from '../../app/types/dtos';
+import useContentReviews from '../../shared/hooks/content/useContentReviews';
+import { useAppSelector } from '../../app/store';
 
 interface CreateFormProps {
   content: TContent;

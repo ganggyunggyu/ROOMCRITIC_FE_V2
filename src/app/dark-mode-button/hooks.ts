@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/store';
-import { setDarkMode, setDarkModeClasses } from '../../../app/store/slice/darkModeSlice';
+import { useAppDispatch, useAppSelector } from '../store';
+import { setDarkMode, setDarkModeClasses } from '../store/slice/darkModeSlice';
 
-const useDarkMode = () => {
+export const useDarkMode = () => {
   const isDarkMode = useAppSelector((state) => state.darkMode.isDarkMode);
   const darkModeClasses = useAppSelector((state) => state.darkMode.darkModeClasses);
   const dispatch = useAppDispatch();
@@ -34,5 +34,3 @@ const useDarkMode = () => {
 
   return { isDarkMode, toggleDarkMode };
 };
-
-export default useDarkMode;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ResponsiveProvider from '../../entities/wrap-provider/ResponsiveProvider';
+import ResponsiveProvider from '../ui/ResponsiveProvider';
 import UpdateForm from '../../entities/update/UpdateForm';
 export default function Update() {
   return (

@@ -1,10 +1,10 @@
 import React from 'react';
-import { scrollToTop } from '../../shared/util/scrollToTop';
+import { scrollToTop } from '../../shared/lib/scrollToTop';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../app/store';
-import Button from '../atom-component/Button';
+import Button from '../../shared/ui/Button';
 import useReviewSelect from '../../shared/hooks/review/useReviewDetail';
-import Loading from '../Loading';
+import Loading from '../../shared/ui/Loading';
 import useReviewDelete from '../../shared/hooks/review/useReviewDelete';
 import { ReviewDeleteDTO } from '../../app/types/dtos';
 

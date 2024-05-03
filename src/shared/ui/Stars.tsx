@@ -1,6 +1,6 @@
 import React from 'react';
-import StarIcon from '../shared/icons/StarIcon';
-import HalfStar from '../shared/icons/HalfStar';
+import StarIcon from './icons/StarIcon';
+import HalfStar from './icons/HalfStar';
 
 export default function Stars({ grade }: { grade: number }) {
   const GRADES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];

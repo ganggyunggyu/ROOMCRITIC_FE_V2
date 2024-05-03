@@ -1,6 +1,6 @@
 import useAuthenticatedUserInfo from '../../shared/hooks/auth/useAuthenticatedUserInfo';
 import useIsMyPostOwner from '../../shared/hooks/auth/useIsMyPostOwner';
-import Button from '../atom-component/Button';
+import Button from '../../shared/ui/Button';
 
 const ProfileInfo = () => {
   const isMyProfile = useIsMyPostOwner();

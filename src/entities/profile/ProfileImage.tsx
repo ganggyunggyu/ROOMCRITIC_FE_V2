@@ -1,6 +1,6 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import SettingIcon from '../../shared/icons/SettingIcon';
-import Button from '../atom-component/Button';
+import SettingIcon from '../../shared/ui/icons/SettingIcon';
+import Button from '../../shared/ui/Button';
 
 const ProfileImage = () => {
   return (

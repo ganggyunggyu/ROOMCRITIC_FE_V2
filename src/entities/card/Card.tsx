@@ -2,9 +2,9 @@ import React from 'react';
 import CardImage from './CardImage';
 import CardHover from './CardHover';
 import CardInfo from './CardInfo';
-import { formatDateWithTime } from '../../shared/util/regs';
+import { formatDateWithTime } from '../../shared/lib/regs';
 import { TCardContent } from '../../app/types/main';
-import { scrollToTop } from '../../shared/util/scrollToTop';
+import { scrollToTop } from '../../shared/lib/scrollToTop';
 import { useNavigate } from 'react-router-dom';
 
 type CardProps = {

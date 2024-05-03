@@ -1,4 +1,4 @@
-import useDarkMode from '../shared/hooks/common/useDarkMode';
+import useDarkMode from '../../shared/hooks/common/useDarkMode';
 export default function Footer() {
   const { isDarkMode } = useDarkMode();
   return (

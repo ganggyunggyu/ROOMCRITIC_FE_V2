@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from './Button';
 
-import useDarkMode from '../../shared/hooks/common/useDarkMode';
-import { cn } from '../../shared/util/cn';
+import useDarkMode from '../hooks/common/useDarkMode';
+import { cn } from '../lib/cn';
 
 const Modal = ({ isModal, setIsModal }) => {
   const backgroundRef = React.useRef(null);

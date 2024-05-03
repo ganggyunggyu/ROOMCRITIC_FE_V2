@@ -1,5 +1,5 @@
-import ResponsiveProvider from '../../entities/wrap-provider/ResponsiveProvider';
-import FormHeader from '../../entities/atom-component/FormHeader';
+import ResponsiveProvider from '../ui/ResponsiveProvider';
+import FormHeader from '../../shared/ui/FormHeader';
 import LoginForm from '../../entities/login/LoginForm';
 export default function Login() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { cn } from '../../shared/util/cn';
+import { cn } from '../../shared/lib/cn';
 
 type TReview = {
   title: string;

@@ -1,5 +1,5 @@
-import Button from '../atom-component/Button';
-import Input from '../atom-component/Input';
+import Button from '../../shared/ui/Button';
+import Input from '../../shared/ui/Input';
 import useJoin from '../../shared/hooks/auth/useJoin';
 import {
   passwordRegTest,
@@ -7,7 +7,7 @@ import {
   isSame,
   isTrim,
   phoneNumberRegTest,
-} from '../../shared/util/regs';
+} from '../../shared/lib/regs';
 import { useNavigate } from 'react-router-dom';
 import useFormInput from '../../shared/hooks/common/useFormInput';
 

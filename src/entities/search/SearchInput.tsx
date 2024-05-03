@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../atom-component/Input';
+import Input from '../../shared/ui/Input';
 
 function SearchInput({ label, value, onChange }) {
   return (
