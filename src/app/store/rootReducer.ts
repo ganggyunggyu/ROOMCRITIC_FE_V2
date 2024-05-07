@@ -5,10 +5,12 @@ import reviewSlice from './slice/reviewSlice';
 import darkModeSlice from './slice/darkModeSlice';
 import searchSlice from './slice/searchSlice';
 import userSlice from './slice/userSlice';
+import prevPathhNameSlice from './slice/prevPathName';
 
 export const rootReducer = combineReducers({
   darkMode: darkModeSlice,
   review: reviewSlice,
   search: searchSlice,
   user: userSlice,
+  prevPathName: prevPathhNameSlice,
 });

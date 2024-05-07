@@ -2,6 +2,8 @@ import React from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import useCheckLoginStatus from '../shared/hooks/auth/useCheckLoginStatus';
 import { scrollToTop } from '../shared/lib/scrollToTop';
+import { useAppDispatch } from '../app/store';
+import { setPrevPathName } from '../app/store/slice/prevPathName';
 
 const HomePage = React.lazy(() => import('./home'));
 const ProfilePage = React.lazy(() => import('./profile'));
@@ -15,11 +17,13 @@ const UpdatePage = React.lazy(() => import('./update'));
 const Routing: React.FC = () => {
   useCheckLoginStatus();
   const location = useLocation();
-
+  const dispatch = useAppDispatch();
   React.useEffect(() => {
     const scrollTop = scrollToTop();
+    const isLoginPage = location.pathname === '/login';
+    if (!isLoginPage) dispatch(setPrevPathName(location.pathname));
     return () => scrollTop;
-  }, [location]);
+  }, [location, dispatch]);
 
   return (
     <section className='mt-12 flex flex-col items-center justify-center'>
