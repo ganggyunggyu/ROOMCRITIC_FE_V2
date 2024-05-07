@@ -1,4 +1,4 @@
-import AxiosConfig from '../../app/config/axios-config';
+import AxiosConfig from '../../config/axios-config';
 import * as DTO from '../../app/types/dtos';
 
 export const submitJoin = async (joinUserDTO: DTO.JoinRequestDTO) => {
@@ -229,6 +229,15 @@ export const sendDislikeReview = async (
 export const fetchUserInfo = async (userId: string) => {
   try {
     const result = await AxiosConfig.get(`user/profile/${userId}`);
+    return result;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const fetchGenreScore = async (userId: string) => {
+  try {
+    const result = AxiosConfig.get(`/score/${userId}`);
     return result;
   } catch (error) {
     throw Error(error);

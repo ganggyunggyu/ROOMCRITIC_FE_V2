@@ -32,7 +32,7 @@ const useDarkMode = () => {
     }
   }, [isDarkMode, darkModeClasses, dispatch]);
 
-  return { isDarkMode, darkModeClasses, toggleDarkMode };
+  return { isDarkMode, toggleDarkMode };
 };
 
 export default useDarkMode;

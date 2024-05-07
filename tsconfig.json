@@ -27,6 +27,6 @@
     "noUnusedParameters": false, // 사용되지 않는 매개변수 경고 해제
     "noFallthroughCasesInSwitch": false // switch 문에서의 case 절의 모든 경우 처리 경고 해제
   },
-  "include": ["src", "src/app/config/svg.d.ts"],
+  "include": ["src", "src/config/svg.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
