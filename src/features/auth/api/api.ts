@@ -1,5 +1,5 @@
-import { JoinRequestDTO, LoginRequestDTO } from '../../app/types/dtos';
-import AxiosConfig from '../../config/axios-config';
+import { JoinRequestDTO, LoginRequestDTO } from '../../../app/types/dtos';
+import AxiosConfig from '../../../config/axios-config';
 
 export const join = async (joinUserDTO: JoinRequestDTO) => {
   try {
