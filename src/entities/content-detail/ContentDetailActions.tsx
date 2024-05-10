@@ -30,7 +30,7 @@ export default function ContentDetailActions({ isLoading, data }) {
     return <Loading />;
   }
 
-  const content = data?.data.content;
+  const content = data?.content;
   const handleAddWatch = () => {
     setIsWatch(!isWatch);
     watchMutate(

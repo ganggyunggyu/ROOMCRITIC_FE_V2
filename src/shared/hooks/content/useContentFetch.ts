@@ -5,6 +5,7 @@ const useContentFetch = (contentType: string, contentId: string) => {
   return useQuery({
     queryKey: ['detailContent', contentType, contentId],
     queryFn: () => API.fetchContentDetail(contentType, contentId),
+    select: (data) => data.data,
   });
 };
 
