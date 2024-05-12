@@ -15,7 +15,7 @@ export default function ReviewDetailActions() {
   const { userIdParam, reviewIdParam } = useParams();
   const _id = useAppSelector((state) => state.user.userInfo?._id);
 
-  const { isLoading: isReviewLoading, data: Review } = useReviewSelect(userIdParam, reviewIdParam);
+  const { isLoading: isReviewLoading, data: review } = useReviewSelect(userIdParam, reviewIdParam);
   const { mutate } = useReviewDelete();
   const testQuery = useQuery({
     queryKey: ['like', reviewIdParam, userIdParam],
@@ -43,7 +43,6 @@ export default function ReviewDetailActions() {
     );
   };
   if (isReviewLoading) return <Loading />;
-  const { review } = Review;
 
   const directUpdate = () => {
     navigator(`/update/${userIdParam}/${reviewIdParam}`);

@@ -2,7 +2,7 @@ import React from 'react';
 import Loading from '../../shared/ui/Loading';
 import { useParams } from 'react-router-dom';
 import useUserInfoFetch from '../../shared/hooks/auth/useUserInfoFetch';
-import useAuthenticatedUserInfo from '../../shared/hooks/auth/useAuthenticatedUserInfo';
+import useAuth from '../../shared/hooks/auth/useAuth';
 
 type GenreScore = {
   genre_id: number;
@@ -19,7 +19,7 @@ type ProfileScoreProps = {
 const ProfileScore: React.FC<ProfileScoreProps> = () => {
   const { userIdParam = '' } = useParams();
   const { Score, isScoreLoading } = useUserInfoFetch(userIdParam);
-  const { displayName } = useAuthenticatedUserInfo();
+  const { displayName } = useAuth();
   if (isScoreLoading) return <Loading />;
 
   if (!isScoreLoading) {

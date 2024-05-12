@@ -17,13 +17,11 @@ export default function UpdateForm() {
 
   const {
     isLoading: isReviewLoading,
-    data: Review,
+    data: review,
     isSuccess,
   } = useReviewDetail(userIdParam, reviewIdParam);
-  const [lineReview, setLineReview] = React.useState<string>(
-    isSuccess ? Review.review.lineReview : '',
-  );
-  const [grade, setGrade] = React.useState<number>(isSuccess ? Review.review.grade : 3);
+  const [lineReview, setLineReview] = React.useState<string>(isSuccess ? review.lineReview : '');
+  const [grade, setGrade] = React.useState<number>(isSuccess ? review.grade : 3);
 
   const reviewUpdateDTO = {
     userId: userIdParam,
@@ -33,8 +31,8 @@ export default function UpdateForm() {
   };
 
   React.useEffect(() => {
-    if (isSuccess) setLineReview(Review.lineReview);
-  }, [isSuccess, Review]);
+    if (isSuccess) setLineReview(review.lineReview);
+  }, [isSuccess, review]);
 
   if (isReviewLoading) return <Loading />;
 
@@ -54,8 +52,6 @@ export default function UpdateForm() {
       updateMutate();
     }
   };
-
-  const { review } = Review;
 
   return (
     <React.Fragment>

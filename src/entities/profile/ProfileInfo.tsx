@@ -1,10 +1,10 @@
-import useAuthenticatedUserInfo from '../../shared/hooks/auth/useAuthenticatedUserInfo';
+import useAuth from '../../shared/hooks/auth/useAuth';
 import useIsMyPostOwner from '../../shared/hooks/auth/useIsMyPostOwner';
 import Button from '../../shared/ui/Button';
 
 const ProfileInfo = () => {
   const isMyProfile = useIsMyPostOwner();
-  const { displayName } = useAuthenticatedUserInfo();
+  const { displayName } = useAuth();
 
   return (
     <div className='flex gap-3 flex-col'>

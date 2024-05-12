@@ -49,7 +49,7 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
         backgroundSize: '100% 100%',
         position: 'relative',
         width: '100vw',
-        height: '40vw',
+        paddingBottom: '56.25%',
         transition: 'background-image 500ms ease-in-out',
       }}
     >
@@ -59,6 +59,7 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
             prevBannerButton(e);
           }}
           title='left-move-btn'
+          className='absolute left-0 top-0 bottom-0 flex items-center justify-center w-12 z-10'
         >
           <LeftChevrom />
         </button>
@@ -67,6 +68,7 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
             nextBannerButton(e);
           }}
           title='right-move-btn'
+          className='absolute right-0 top-0 bottom-0 flex items-center justify-center w-12'
         >
           <RightChevrom />
         </button>

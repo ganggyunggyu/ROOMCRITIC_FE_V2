@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import useAuthenticatedUserInfo from './useAuthenticatedUserInfo';
+import useAuthInfo from './useAuth';
 
 const useIsMyPostOwner = () => {
-  const { userId } = useAuthenticatedUserInfo();
+  const { userId } = useAuthInfo();
   const { userIdParam = '' } = useParams();
 
   return userId === userIdParam;
