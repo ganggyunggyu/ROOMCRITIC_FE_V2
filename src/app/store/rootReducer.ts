@@ -6,6 +6,7 @@ import darkModeSlice from './slice/darkModeSlice';
 import searchSlice from './slice/searchSlice';
 import userSlice from './slice/userSlice';
 import prevPathhNameSlice from './slice/prevPathName';
+import accessTokenSlice from './slice/accessTokenSlice';
 
 export const rootReducer = combineReducers({
   darkMode: darkModeSlice,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   search: searchSlice,
   user: userSlice,
   prevPathName: prevPathhNameSlice,
+  accessToken: accessTokenSlice,
 });

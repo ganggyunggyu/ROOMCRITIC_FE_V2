@@ -26,7 +26,6 @@ const CardWrapProvider: React.FC<CardWrapProviderProps> = ({
     console.log(cardList[cardList.length - 1]._id);
     const id = cardList[cardList.length - 1]._id;
     const result = await axios.get(`http://localhost:8080/product?limit=10&cursor=${id}`);
-    console.log(result);
     return result?.data;
   };
 

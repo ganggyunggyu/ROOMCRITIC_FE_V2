@@ -1,14 +1,14 @@
 import React from 'react';
 import Button from './Button';
 
-import useDarkMode from '../hooks/common/useDarkMode';
 import { cn } from '../lib/cn';
+import { useAppSelector } from '../../app/store';
 
 const Modal = ({ isModal, setIsModal }) => {
   const backgroundRef = React.useRef(null);
   const modalRef = React.useRef(null);
 
-  const { darkModeClasses } = useDarkMode();
+  const darkModeClasses = useAppSelector((state) => state.darkMode.darkModeClasses);
 
   React.useEffect(() => {
     const modalObserver = new IntersectionObserver((entries) => {

@@ -10,7 +10,7 @@ export default function ReviewDetailInfo() {
   const { userIdParam, reviewIdParam } = useParams();
   const {
     isLoading: isReviewLoading,
-    data: Review,
+    data: review,
     isSuccess,
   } = useReviewDetail(userIdParam, reviewIdParam);
 
@@ -19,7 +19,6 @@ export default function ReviewDetailInfo() {
   }
 
   if (isSuccess) {
-    const { review } = Review;
     const { formattedDateEnd } = formatDateWithTime(review.createTime);
     return (
       <React.Fragment>

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useUserReviewFetch from '../../shared/hooks/review/useUserReviewFetch';
-import useAuthenticatedUserInfo from '../../shared/hooks/auth/useAuthenticatedUserInfo';
+import useAuth from '../../shared/hooks/auth/useAuth';
 import ResponsiveProvider from '../ui/ResponsiveProvider';
 import ProfileContainer from '../../entities/profile/ProfileContainer';
 import CardWrapProvider from '../../entities/wrap-provider/CardWrapProvider';
@@ -8,7 +8,7 @@ import Loading from '../../shared/ui/Loading';
 
 export default function Profile() {
   const { userIdParam = '' } = useParams();
-  const { displayName } = useAuthenticatedUserInfo();
+  const { displayName } = useAuth();
 
   const { data: userReview, isLoading: isUserReviewLoading } = useUserReviewFetch(userIdParam);
 

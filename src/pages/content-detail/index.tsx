@@ -11,6 +11,7 @@ import CardWrapProvider from '../../entities/wrap-provider/CardWrapProvider';
 import CartegofyContents from '../../features/content/ui/CategoryContents';
 import Loading from '../../shared/ui/Loading';
 import DetailBackground from '../ui/DetailBackground';
+import { ContentVideo } from '../../entities/content-detail/ContentVideo';
 
 export default function ContentDetail() {
   const { contentTypeParam = '', contentIdParam = '' } = useParams();
@@ -19,10 +20,10 @@ export default function ContentDetail() {
 
   const {
     isLoading: isContentLoading,
-    data: Content,
+    data: content,
     refetch: contentRefetch,
   } = useContentFetch(contentTypeParam, contentIdParam);
-  const { isLoading: isReviewsLoading, data: Review } = useSeletedContentReviews(
+  const { isLoading: isReviewsLoading, data: reviews } = useSeletedContentReviews(
     contentTypeParam,
     contentIdParam,
   );
@@ -37,14 +38,12 @@ export default function ContentDetail() {
   }
 
   if (!isContentLoading && !isReviewsLoading) {
-    const content = Content?.data.content;
-    const reviews = Review?.data.reviews;
-
     return (
       <ResponsiveProvider direction={'col'} className={'gap-10'}>
+        <ContentVideo type={content.content_type} id={content.id} />
         <DetailBackground path={content.backdrop_path} />
         <ContentInfo content={content} />
-        <ContentDetailActions isLoading={isContentLoading} data={Content} />
+        <ContentDetailActions isLoading={isContentLoading} data={content} />
         {reviews.length === 0 && <p className='pt-10 text-lg'>남겨진 리뷰가 없어요 🥲</p>}
         {reviews.length !== 0 && (
           <CardWrapProvider

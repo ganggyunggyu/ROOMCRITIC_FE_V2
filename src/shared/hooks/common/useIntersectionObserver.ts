@@ -19,7 +19,6 @@ export const useIntersectionObserver = ({
       entries.forEach((entry) => {
         if (entry.isIntersecting && hasNextPage) {
           fetchNextPage();
-          console.log('next');
         }
       });
     },

@@ -1,17 +1,10 @@
 import { useAppSelector } from '../../../app/store';
-import useCheckLoginStatus from './useCheckLoginStatus';
 
-const useAuthenticatedUserInfo = () => {
-  useCheckLoginStatus();
-
+const useAuth = () => {
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.user);
 
-  if (!userInfo) {
-    return {
-      userId: '',
-      displayName: '',
-      email: '',
-    };
+  if (!isLoggedIn) {
+    return null;
   }
 
   const { _id: userId, displayName, email } = userInfo;
@@ -24,4 +17,4 @@ const useAuthenticatedUserInfo = () => {
   };
 };
 
-export default useAuthenticatedUserInfo;
+export default useAuth;

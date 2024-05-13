@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { join, login } from './api';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../app/store';
-import { setIsLoggedIn, setUserInfo } from '../../app/store/slice/userSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
+import { setIsLoggedIn, setUserInfo } from '../../../app/store/slice/userSlice';
 
 export const useJoin = () => {
   return useMutation({
@@ -34,4 +34,11 @@ export const useLogin = () => {
     },
   });
 };
+
+export const useAuth = () => {
+  const { userInfo: viewerInfo, isLoggedIn } = useAppSelector((state) => state.user);
+
+  return { viewerInfo, isLoggedIn };
+};
+
 export default useLogin;

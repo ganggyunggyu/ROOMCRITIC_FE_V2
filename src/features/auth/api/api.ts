@@ -1,7 +1,7 @@
-import { JoinRequestDTO, LoginRequestDTO } from '../../app/types/dtos';
-import AxiosConfig from '../../config/axios-config';
+import { JoinRequestDTO, LoginRequestDTO } from '../../../app/types/dtos';
+import AxiosConfig from '../../../config/axios-config';
 
-export const join = async (joinUserDTO: JoinRequestDTO) => {
+export const submitJoin = async (joinUserDTO: JoinRequestDTO) => {
   try {
     const result = await AxiosConfig.post('/auth/join', {
       ...joinUserDTO,
@@ -12,7 +12,7 @@ export const join = async (joinUserDTO: JoinRequestDTO) => {
   }
 };
 
-export const login = async (loginUserDTO: LoginRequestDTO) => {
+export const submiuLogin = async (loginUserDTO: LoginRequestDTO) => {
   try {
     const result = await AxiosConfig.post('/auth/login', loginUserDTO);
     console.debug(result);

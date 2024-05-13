@@ -48,9 +48,9 @@ const useCategoryContentFetch = () => {
     return isLoadingArray.every((isLoading) => !isLoading);
   };
 
-  const isSucess = checkAllLoadings();
+  const isSuccess = checkAllLoadings();
 
-  return { isSucess, LatestTv, OwnerTv, LatestMovie, OwnerMovie, TopMovie };
+  return { isSuccess, LatestTv, OwnerTv, LatestMovie, OwnerMovie, TopMovie };
 };
 
 export default useCategoryContentFetch;
