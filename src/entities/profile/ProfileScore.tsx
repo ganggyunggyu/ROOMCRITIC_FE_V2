@@ -1,12 +1,11 @@
 import React from 'react';
 import Loading from '../../shared/ui/Loading';
 import { useParams } from 'react-router-dom';
-import useUserInfoFetch from '../../shared/hooks/auth/useUserInfoFetch';
-import useAuth from '../../shared/hooks/auth/useAuth';
+import useUserInfoFetch from '../../shared/hooks/user/useUserInfoFetch';
 
 type GenreScore = {
-  genre_id: number;
-  genre_name: string;
+  genreId?: number;
+  genreName: string;
   score: number;
   count: number;
   _id: string;
@@ -18,18 +17,18 @@ type ProfileScoreProps = {
 
 const ProfileScore: React.FC<ProfileScoreProps> = () => {
   const { userIdParam = '' } = useParams();
-  const { Score, isScoreLoading } = useUserInfoFetch(userIdParam);
-  const { displayName } = useAuth();
-  if (isScoreLoading) return <Loading />;
+  const { score, isScoreLoading, userInfo, isUserInfoLoading } = useUserInfoFetch(userIdParam);
 
-  if (!isScoreLoading) {
-    const { reviewCount, genreScore } = Score;
+  if (isScoreLoading || isUserInfoLoading) return <Loading />;
+
+  if (!isScoreLoading || !isUserInfoLoading) {
+    const { userInfo: info } = userInfo;
 
     return (
       <React.Fragment>
         <div className='flex gap-3'>
           <div className='text-center w-1/3'>
-            <p className='text-lg font-bold'>{reviewCount}</p>
+            <p className='text-lg font-bold'>{info.reviewCount}</p>
             <p className='border-violet-400'>리뷰</p>
           </div>
           <div className='text-center w-1/3'>
@@ -41,15 +40,15 @@ const ProfileScore: React.FC<ProfileScoreProps> = () => {
             <p>봤어요</p>
           </div>
         </div>
-        <p>{displayName} 님의 취향 점수</p>
+        <p>{info.displayName} 님의 취향 점수</p>
         <div className='flex flex-col gap-3'>
-          {!genreScore && <div>리뷰 데이터가 부족해요 🥲</div>}
-          {genreScore &&
-            genreScore.map((el: GenreScore) => {
+          {!score && <div>리뷰 데이터가 부족해요 🥲</div>}
+          {score &&
+            score.map((el: GenreScore) => {
               return (
-                <div key={el.genre_id} className='flex gap-2 justify-between'>
+                <div key={el._id} className='flex gap-2 justify-between'>
                   <div className='flex items-center'>
-                    <p className=''>{el.genre_name}</p>
+                    <p className=''>{el.genreName}</p>
                   </div>
                   <div className='flex gap-2'>
                     <p>

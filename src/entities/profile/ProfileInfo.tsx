@@ -1,22 +1,22 @@
-import useAuth from '../../shared/hooks/auth/useAuth';
-import useIsMyPostOwner from '../../shared/hooks/auth/useIsMyPostOwner';
-import Button from '../../shared/ui/Button';
+import { useParams } from 'react-router-dom';
+import useUserInfoFetch from '../../shared/hooks/user/useUserInfoFetch';
+import Loading from '../../shared/ui/Loading';
 
 const ProfileInfo = () => {
-  const isMyProfile = useIsMyPostOwner();
-  const { displayName } = useAuth();
-
+  const { userIdParam = '' } = useParams();
+  const { userInfo, isUserInfoLoading } = useUserInfoFetch(userIdParam);
+  console.log(userIdParam);
+  if (isUserInfoLoading) return <Loading />;
+  const { userInfo: info } = userInfo;
   return (
     <div className='flex gap-3 flex-col'>
-      <p className='text-xl'>{displayName}</p>
+      <p className='text-xl'>{info.displayName}</p>
       <div className='flex gap-1'>
         <p>팔로워</p>
         <span>10</span>
         <p>팔로잉</p>
         <span>10</span>
       </div>
-      {isMyProfile && '내 프로필'}
-      {!isMyProfile && <Button label={'팔로우'} bg={'main'} />}
     </div>
   );
 };
