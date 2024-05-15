@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { addWishContent } from '../../api/API';
+import { addWishContent } from '../../api/api';
 
 const useAddWishContent = () => {
   return useMutation({

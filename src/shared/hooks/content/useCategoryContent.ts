@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import * as API from '../../api/API';
+import * as API from '../../api/api';
 
 const useCategoryContentFetch = () => {
   const latestTvContentQuery = useQuery({

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { addWatchContent } from '../../api/API';
+import { addWatchContent } from '../../api/api';
 
 const useAddWatchContent = () => {
   return useMutation({

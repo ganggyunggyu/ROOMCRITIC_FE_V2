@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import * as API from '../../api/API';
+import * as API from '../../api/api';
 import { useAppDispatch } from '../../../app/store';
 import { setSearchContents } from '../../../app/store/slice/searchSlice';
 import useSearchInput from '../common/useSearchInput';
