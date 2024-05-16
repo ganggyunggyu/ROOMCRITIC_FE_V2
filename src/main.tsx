@@ -13,16 +13,14 @@ import { store } from './app/store/index.ts';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <ReactQueryDevtools />
-            <App />
-          </RecoilRoot>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <RecoilRoot>
+          <ReactQueryDevtools />
+          <App />
+        </RecoilRoot>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </Provider>,
 );
