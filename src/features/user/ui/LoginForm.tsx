@@ -1,12 +1,15 @@
 import { KeyboardEvent } from 'react';
-import Button from '../../shared/ui/Button';
-import Input from '../../shared/ui/Input';
+import Button from '../../../shared/ui/Button';
+import Input from '../../../shared/ui/Input';
 import { useNavigate } from 'react-router-dom';
-import { passwordRegTest, emailRegTest } from '../../shared/lib/regs';
-import useLogin from '../../shared/hooks/auth/useLogin';
-import useFormInput from '../../shared/hooks/common/useFormInput';
+import { passwordRegTest, emailRegTest } from '../../../shared/lib/regs';
+import useLogin from '../../../shared/hooks/auth/useLogin';
+import useFormInput from '../../../shared/hooks/common/useFormInput';
+import { Auth } from '../..';
 
 const LoginForm = () => {
+  const { login } = Auth.HOOK.useAuth();
+
   const navigator = useNavigate();
   const { mutate, isError, error } = useLogin();
   const [emailInput, passwordInput] = [useFormInput(''), useFormInput('')];
