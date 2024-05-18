@@ -13,14 +13,14 @@ interface CookieOptions {
 }
 
 export const setCookie = (name: string, value: string, options?: CookieOptions) => {
-  const defaultOptions =
-    process.env.NODE_ENV === 'development'
-      ? { httpOnly: false, secure: false }
-      : { httpOnly: true, secure: true };
+  // const defaultOptions =
+  //   process.env.NODE_ENV === 'development'
+  //     ? { httpOnly: false, secure: false }
+  //     : { httpOnly: true, secure: true };
 
   // return cookies.set(name, value, { httpOnly: true, secure: true, ...options });
-  // return cookies.set(name, value, { ...options });
-  return cookies.set(name, value, { ...defaultOptions, ...options });
+  return cookies.set(name, value, { ...options, sameSite: 'lax' });
+  // return cookies.set(name, value, { ...defaultOptions, ...options });
 };
 
 export const getCookie = (name: string) => {
