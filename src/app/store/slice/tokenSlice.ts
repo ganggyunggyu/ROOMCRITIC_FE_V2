@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-type accessTokenProps = {
+type tokenProps = {
   accessToken: string | null;
 };
 
-const initialState: accessTokenProps = {
+const initialState: tokenProps = {
   accessToken: null,
 };
 
-export const accessTokenSlice = createSlice({
-  name: 'accessToken',
+export const tokenSlice = createSlice({
+  name: 'token',
   initialState,
   reducers: {
     setAccessToken: (state, action: PayloadAction<string>) => {
@@ -21,6 +21,6 @@ export const accessTokenSlice = createSlice({
   },
 });
 
-export const { setAccessToken, setClearAccessToken } = accessTokenSlice.actions;
+export const { setAccessToken, setClearAccessToken } = tokenSlice.actions;
 
-export default accessTokenSlice.reducer;
+export default tokenSlice.reducer;
