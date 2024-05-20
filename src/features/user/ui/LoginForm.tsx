@@ -1,15 +1,12 @@
 import { KeyboardEvent } from 'react';
-import Button from '../../../shared/ui/Button';
+import { Button } from '../../../shared/ui';
 import Input from '../../../shared/ui/Input';
 import { useNavigate } from 'react-router-dom';
-import { passwordRegTest, emailRegTest } from '../../../shared/lib/regs';
 import useLogin from '../../../shared/hooks/auth/useLogin';
 import useFormInput from '../../../shared/hooks/common/useFormInput';
-import { Auth } from '../..';
+import { isEmail, isPassword } from '../../../shared/lib';
 
-const LoginForm = () => {
-  const { login } = Auth.HOOK.useAuth();
-
+export const LoginForm = () => {
   const navigator = useNavigate();
   const { mutate, isError, error } = useLogin();
   const [emailInput, passwordInput] = [useFormInput(''), useFormInput('')];
@@ -20,14 +17,14 @@ const LoginForm = () => {
       onChange: emailInput.onChange,
       type: 'email',
       label: '이메일',
-      isReg: emailRegTest(emailInput.value),
+      isReg: isEmail(emailInput.value),
     },
     {
       value: passwordInput.value,
       onChange: passwordInput.onChange,
       type: 'password',
       label: '비밀번호',
-      isReg: passwordRegTest(passwordInput.value),
+      isReg: isPassword(passwordInput.value),
     },
   ];
 
@@ -87,5 +84,3 @@ const LoginForm = () => {
     </form>
   );
 };
-
-export default LoginForm;
