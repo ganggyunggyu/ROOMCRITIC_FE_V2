@@ -23,25 +23,17 @@ const useCategoryContentFetch = () => {
     queryFn: API.fetchOwnerPickedMovieContents,
     select: (data) => data.data,
   });
-
-  const topRatedMovieQuery = useQuery({
-    queryKey: ['topRatedMovie'],
-    queryFn: API.fetchTopRatedMovies,
-    select: (data) => data.data,
-  });
   const { isLoading: isLatestTvLoading, data: LatestTv } = latestTvContentQuery;
   const { isLoading: isOwnerTvLoading, data: OwnerTv } = ownerPickTvQuery;
 
   const { isLoading: isLatestMovieLoading, data: LatestMovie } = latestMovieContentQuery;
   const { isLoading: isOwnerMovieLoading, data: OwnerMovie } = ownerPickMovieQuery;
-  const { isLoading: isTopMovieLoading, data: TopMovie } = topRatedMovieQuery;
 
   const isLoadingArray = [
     isLatestTvLoading,
     isOwnerTvLoading,
     isLatestMovieLoading,
     isOwnerMovieLoading,
-    isTopMovieLoading,
   ];
 
   const checkAllLoadings = () => {
@@ -50,7 +42,7 @@ const useCategoryContentFetch = () => {
 
   const isSuccess = checkAllLoadings();
 
-  return { isSuccess, LatestTv, OwnerTv, LatestMovie, OwnerMovie, TopMovie };
+  return { isSuccess, LatestTv, OwnerTv, LatestMovie, OwnerMovie };
 };
 
 export default useCategoryContentFetch;
