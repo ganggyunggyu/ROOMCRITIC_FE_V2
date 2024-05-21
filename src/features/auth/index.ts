@@ -1,1 +1,1 @@
-export * from './hooks';
+export * as HOOK from './api/hooks';
