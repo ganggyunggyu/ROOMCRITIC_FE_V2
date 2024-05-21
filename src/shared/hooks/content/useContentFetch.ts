@@ -1,4 +1,4 @@
-import * as API from '../../api/API';
+import * as API from '../../api/api';
 import { useQuery } from '@tanstack/react-query';
 
 const useContentFetch = (contentType: string, contentId: string) => {

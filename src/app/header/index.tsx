@@ -1,27 +1,20 @@
-import { Link, useNavigate } from 'react-router-dom';
-import AxiosConfig from '../../shared/api/AxiosConfig';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../store';
 
+import useLogout from '../../shared/hooks/auth/useLogout';
+
 const Header = () => {
-  const navigator = useNavigate();
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
   const { darkModeClasses } = useAppSelector((state) => state.darkMode);
+  const { mutate } = useLogout();
 
-  const submitLogout = async () => {
-    try {
-      const result = await AxiosConfig.get('auth/logout');
-      if (result.status === 200) {
-        navigator('/');
-        window.location.reload();
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  const logoutHandler = () => {
+    mutate(userInfo._id);
   };
 
   return (
     <header
-      className={`h-12 fixed top-0 left-0 right-0 p-3 flex items-center justify-center shadow-lg z-20 ${darkModeClasses}`}
+      className={`h-12 fixed top-0 left-0 right-0 p-3 flex items-center justify-center shadow-lg z-30 ${darkModeClasses}`}
     >
       <nav className='flex justify-around gap-3 w-10/12 transition-all'>
         <Link to={'/'}>
@@ -38,7 +31,7 @@ const Header = () => {
                 {userInfo.displayName} 평론가
               </Link>
               <button
-                onClick={submitLogout}
+                onClick={logoutHandler}
                 className='hover:text-violet-400 transition-all w-min-fit'
               >
                 로그아웃

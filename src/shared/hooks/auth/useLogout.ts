@@ -1,12 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { submitLogout } from '../../api/API';
+import { submitLogout } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../app/store';
 import { setClearAuth } from '../../../app/store/slice/userSlice';
-
-//로그아웃
-//홈으로
-//
+import { clearCookie } from '../../lib/cookie';
 
 const useLogout = () => {
   const navigate = useNavigate();
@@ -16,6 +13,11 @@ const useLogout = () => {
     onSuccess: () => {
       navigate('/');
       dispatch(() => setClearAuth());
+      clearCookie('accessToken');
+      clearCookie('refreshToken');
+      clearCookie('userId');
+
+      window.location.reload();
     },
   });
 };

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchGenreScore, fetchUserInfo } from '../../api/API';
+import { fetchGenreScore, fetchUserInfo } from '../../api/api';
 
 const useUserInfoFetch = (userId: string) => {
   const fetchUserInfoQuery = useQuery({
@@ -13,13 +13,13 @@ const useUserInfoFetch = (userId: string) => {
     select: (data) => data.data,
   });
 
-  const { data: UserInfo, isLoading: isUserInfoLoading } = fetchUserInfoQuery;
-  const { data: Score, isLoading: isScoreLoading } = fetchUserScoreQuery;
+  const { data: userInfo, isLoading: isUserInfoLoading } = fetchUserInfoQuery;
+  const { data: score, isLoading: isScoreLoading } = fetchUserScoreQuery;
 
   return {
-    UserInfo,
+    userInfo,
     isUserInfoLoading,
-    Score,
+    score,
     isScoreLoading,
   };
 };

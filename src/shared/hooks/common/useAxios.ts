@@ -1,50 +1,57 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../../app/store';
-import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+// import axiosConfig, { refreshAccessToken } from '../../../config/axios-config';
+// import { getCookie } from '../../lib/cookie';
+// import { useAppSelector } from '../../../app/store';
+// import { useEffect } from 'react';
 
-const instance = axios.create({
-  baseURL: 'http://www.togetherlab.co.kr',
-  timeout: 10000,
-});
+// const useAxiosInterceptor = () => {
+//   const navigate = useNavigate();
+//   const accessToken = useAppSelector((state) => state.accessToken);
+//   const { userId } = useAuth();
+//   const requestHandler = (config) => {
+//     if (accessToken) {
+//       config.headers.Authorization = `Bearer ${accessToken}`;
+//     }
 
-const useAxiosInterceptor = () => {
-  const { accessToken } = useAppSelector((state) => state.accessToken);
+//     return config;
+//   };
 
-  const navigate = useNavigate();
+//   const responseHandler = (response) => {
+//     return response;
+//   };
 
-  const errorHandler = (error) => {
-    console.log('errInterceptor!', error);
-    if (error.response.status === 401) {
-      navigate('/');
-    }
-    return Promise.reject(error);
-  };
+//   const responseErrorHandler = async (error) => {
+//     const refreshToken = getCookie('refreshToken');
 
-  const requestHandler = (config) => {
-    config.headers = {
-      Authorization: accessToken ? `Bearer ${accessToken}` : '',
-    };
-    return config;
-  };
+//     const originalRequest = error.config;
+//     if (error.response.status === 401 && !originalRequest._retry) {
+//       originalRequest._retry = true;
+//       try {
+//         const accessToken = await refreshAccessToken(userId, refreshToken);
 
-  const responseHandler = (response) => {
-    return response;
-  };
+//         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
-  const requestInterceptor = instance.interceptors.request.use(requestHandler);
+//         return axiosConfig(originalRequest);
+//       } catch (error) {
+//         console.error('토큰 갱신에 실패했습니다.');
+//         navigate('/login');
+//         return Promise.reject(error);
+//       }
+//     }
+//     return Promise.reject(error);
+//   };
+//   const requestInterceptor = axiosConfig.interceptors.request.use(requestHandler);
 
-  const responseInterceptor = instance.interceptors.response.use(
-    (response) => responseHandler(response),
-    (error) => errorHandler(error.response.data),
-  );
+//   const responseInterceptor = axiosConfig.interceptors.response.use(
+//     (response) => responseHandler(response),
+//     (error) => responseErrorHandler(error.response.data),
+//   );
 
-  React.useEffect(() => {
-    return () => {
-      instance.interceptors.request.eject(requestInterceptor);
-      instance.interceptors.response.eject(responseInterceptor);
-    };
-  }, [responseInterceptor, requestInterceptor]);
-};
-
-export { useAxiosInterceptor, instance };
+//   useEffect(() => {
+//     return () => {
+//       axiosConfig.interceptors.request.eject(requestInterceptor);
+//       axiosConfig.interceptors.response.eject(responseInterceptor);
+//     };
+//   }, [responseInterceptor, requestInterceptor]);
+// };
+// export { useAxiosInterceptor };

@@ -1,17 +1,16 @@
 import React from 'react';
-import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 
-type UseIntersectionObserverProps = {
+type IUseIntersectionObserverProps = {
   threshold?: number;
   hasNextPage: boolean | undefined;
-  fetchNextPage: () => Promise<InfiniteQueryObserverResult>;
+  fetchNextPage: () => void;
 };
 
 export const useIntersectionObserver = ({
   threshold = 0.1,
   hasNextPage,
   fetchNextPage,
-}: UseIntersectionObserverProps) => {
+}: IUseIntersectionObserverProps) => {
   const observeTargetRef = React.useRef<HTMLDivElement>(null);
 
   const observerCallback: IntersectionObserverCallback = React.useCallback(

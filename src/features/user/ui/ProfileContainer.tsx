@@ -1,6 +1,6 @@
-import ProfileImage from './ProfileImage';
-import ProfileInfo from './ProfileInfo';
-import ProfileScore from './ProfileScore';
+import ProfileImage from '../../../entities/profile/ProfileImage';
+import ProfileInfo from '../../../entities/profile/ProfileInfo';
+import ProfileScore from '../../../entities/profile/ProfileScore';
 
 export default function ProfileContainer() {
   return (

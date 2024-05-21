@@ -9,20 +9,22 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
 import { store } from './app/store/index.ts';
+import { Interceptor } from './test/Interceptor.tsx';
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <RecoilRoot>
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <RecoilRoot>
+          <Interceptor>
             <ReactQueryDevtools />
             <App />
-          </RecoilRoot>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </Provider>
-  </React.StrictMode>,
+          </Interceptor>
+          ,
+        </RecoilRoot>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </Provider>,
 );

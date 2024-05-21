@@ -38,4 +38,10 @@ export type TCardContent = {
   content_type?: string;
 };
 
-export type TUserInfo = { _id: string; displayName: string; phoneNumber: string; email: string };
+export type TUserInfo = {
+  _id?: string;
+  userId?: string;
+  displayName: string;
+  phoneNumber: string;
+  email: string;
+};

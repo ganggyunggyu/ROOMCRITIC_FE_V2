@@ -1,17 +1,12 @@
-import Button from '../../shared/ui/Button';
-import Input from '../../shared/ui/Input';
-import useJoin from '../../shared/hooks/auth/useJoin';
-import {
-  passwordRegTest,
-  emailRegTest,
-  isSame,
-  isTrim,
-  phoneNumberRegTest,
-} from '../../shared/lib/regs';
+import { Button } from '../../../shared/ui';
+import Input from '../../../shared/ui/Input';
+import useJoin from '../../../shared/hooks/auth/useJoin';
+import { isSame, isTrim } from '../../../shared/lib/regs';
 import { useNavigate } from 'react-router-dom';
-import useFormInput from '../../shared/hooks/common/useFormInput';
+import useFormInput from '../../../shared/hooks/common/useFormInput';
+import { isEmail, isPassword, isPhoneNumber } from '../../../shared/lib';
 
-const JoinForm = () => {
+export const JoinForm = () => {
   const navigator = useNavigate();
   const { mutate, data, isSuccess } = useJoin();
 
@@ -31,7 +26,7 @@ const JoinForm = () => {
       type: 'email',
       placeholder: '이메일 형식에 맞춰 입력해주세요',
       name: '이메일',
-      isReg: emailRegTest(emailInput.value),
+      isReg: isEmail(emailInput.value),
     },
     {
       value: passwordInput.value,
@@ -39,7 +34,7 @@ const JoinForm = () => {
       type: 'password',
       placeholder: '영문 숫자 특수기호 조합 8자리 이상',
       name: '비밀번호',
-      isReg: passwordRegTest(passwordInput.value),
+      isReg: isPassword(passwordInput.value),
     },
     {
       value: confirmPasswordInput.value,
@@ -63,7 +58,7 @@ const JoinForm = () => {
       type: 'text',
       placeholder: '(-)를 빼고 전화번호를 입력해주세요',
       name: '전화번호',
-      isReg: phoneNumberRegTest(phoneNumberInput.value),
+      isReg: isPhoneNumber(phoneNumberInput.value),
     },
   ];
 
@@ -117,4 +112,3 @@ const JoinForm = () => {
     </form>
   );
 };
-export default JoinForm;

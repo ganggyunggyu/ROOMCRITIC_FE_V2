@@ -1,6 +1,6 @@
 import React from 'react';
-import Sun from '../../shared/ui/icons/Sun';
-import Moon from '../../shared/ui/icons/Moon';
+import Sun from '../../shared/icons/Sun';
+import Moon from '../../shared/icons/Moon';
 import { useDarkMode } from './hooks';
 
 const DarkModeButton: React.FC = () => {

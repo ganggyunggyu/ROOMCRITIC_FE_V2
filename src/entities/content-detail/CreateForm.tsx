@@ -3,7 +3,7 @@ import useReviewCreate from '../../shared/hooks/review/useReviewCreate';
 import Input from '../../shared/ui/Input';
 import StarsInput from '../../shared/ui/StarsInput';
 
-import Button from '../../shared/ui/Button';
+import { Button } from '../../shared/ui/button/button';
 import useFormInput from '../../shared/hooks/common/useFormInput';
 import { getGradeText } from '../../shared/lib/getGradeText';
 import { TContent } from '../../app/types/main';
@@ -26,8 +26,8 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     userName: userInfo.displayName,
     lineReview: reviewInput.value,
     grade: grade,
-    contentPosterImg: `https://www.themoviedb.org/t/p/original${content.poster_path}`,
-    contentBackdropImg: `https://www.themoviedb.org/t/p/original${content.backdrop_path}`,
+    contentPosterImg: content.poster_path,
+    contentBackdropImg: content.backdrop_path,
     contentName: content.title,
     contentId: content._id,
     contentType: content.content_type,
@@ -52,6 +52,7 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
   const handleReviewCreate = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    console.log(reviewCreateDTO);
     mutate(reviewCreateDTO, { onSuccess: successReviewCreate });
   };
 

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { reviewDelete } from '../../api/API';
+import { reviewDelete } from '../../api/api';
 
 const useReviewDelete = () => {
   return useMutation({

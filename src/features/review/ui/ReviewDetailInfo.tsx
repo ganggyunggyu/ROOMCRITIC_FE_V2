@@ -1,10 +1,10 @@
 import React from 'react';
-import Stars from '../../shared/ui/Stars';
+import Stars from '../../../shared/ui/Stars';
 import { Link, useParams } from 'react-router-dom';
-import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
-import Loading from '../../shared/ui/Loading';
-import { formatDateWithTime } from '../../shared/lib/regs';
-import DetailBackground from '../../pages/ui/DetailBackground';
+import useReviewDetail from '../../../shared/hooks/review/useReviewDetail';
+import Loading from '../../../shared/ui/Loading';
+import { formatMinute } from '../../../shared/lib';
+// import DetailBackground from '../../../pages/ui/DetailBackground';
 
 export default function ReviewDetailInfo() {
   const { userIdParam, reviewIdParam } = useParams();
@@ -19,10 +19,11 @@ export default function ReviewDetailInfo() {
   }
 
   if (isSuccess) {
-    const { formattedDateEnd } = formatDateWithTime(review.createTime);
+    const formattedDateEnd = formatMinute(review.createdAt);
+    console.log(review);
     return (
       <React.Fragment>
-        <DetailBackground path={review.contentBackdropImg} />
+        {/* <DetailBackground path={review.contentBackdropImg} /> */}
         <Link className='z-20' to={`/profile/${review.userId}`}>
           {review.userName}님의 {review.contentName} 리뷰
         </Link>

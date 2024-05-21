@@ -2,21 +2,19 @@ import React from 'react';
 import CardImage from './CardImage';
 import CardHover from './CardHover';
 import CardInfo from './CardInfo';
-import { formatDateWithTime } from '../../shared/lib/regs';
 import { TCardContent } from '../../app/types/main';
-import { scrollToTop } from '../../shared/lib/scrollToTop';
 import { useNavigate } from 'react-router-dom';
+import { formatMonth } from '../../shared/lib';
 
 type CardProps = {
   content: TCardContent;
-  // onClick: React.MouseEventHandler<HTMLDivElement>;
   isHover?: boolean;
 };
 
 const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTMLDivElement>> =
   React.forwardRef(({ content, isHover }, ref) => {
     const navigator = useNavigate();
-    const { formattedMonthEnd } = formatDateWithTime(content.release_date);
+    const formattedMonthEnd = formatMonth(content.release_date);
     const [cardHover, setCardHover] = React.useState(false);
     const isReview = content.lineReview;
     const redirectContent = () => {
@@ -25,7 +23,6 @@ const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTML
       } else {
         navigator(`/content/${content.content_type}/${content._id}`);
       }
-      scrollToTop();
     };
 
     const cardMouseOver = () => {
