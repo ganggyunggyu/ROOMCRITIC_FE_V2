@@ -1,7 +1,7 @@
 import CategoryReviewList from '../../features/content/ui/CategoryContents';
 import ResponsiveProvider from '../ui/ResponsiveProvider';
-import ReviewDetailInfo from '../../entities/review-detail/ReviewDetailInfo';
-import ReviewDetailActions from '../../entities/review-detail/ReviewDetailActions';
+import ReviewDetailInfo from '../../features/review/ui/ReviewDetailInfo';
+import ReviewDetailActions from '../../features/review/ui/ReviewDetailActions';
 
 export default function ReviewDetail() {
   return (

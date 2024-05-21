@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../app/store';
 import Loading from '../../shared/ui/Loading';
-import Button from '../../shared/ui/Button';
+import { Button } from '../../shared/ui/button/button';
 import LoginButton from '../../shared/ui/LoginButton';
 import CreateForm from './CreateForm';
 import useAddWatchContent from '../../shared/hooks/content/ussAddWatchContent';

@@ -1,5 +1,5 @@
 import * as DTO from '../../app/types/dtos';
-import axiosConfig from '../../config/axios-config';
+import { axiosConfig } from '../../test/axios-config';
 
 export const submitJoin = async (joinUserDTO: DTO.JoinRequestDTO) => {
   try {
@@ -31,6 +31,12 @@ export const submitLogout = async (userId: string) => {
     console.log(err);
   }
 };
+
+// export const loginCheck = async () => {
+//   try{
+
+//   }c
+// }
 
 export const fetchAccessToken = async (userId: string, refreshToken: string) => {
   try {
@@ -148,9 +154,9 @@ export const fetchOwnerPickedMovieContents = async () => {
   return result;
 };
 
-export const fetchTopRatedMovies = async () => {
-  const result = await axiosConfig.get('content/movie/top-rated-movie');
-  return result;
+export const fetchTopRatedMovies = async (pageParam: number) => {
+  const result = await axiosConfig.get(`content/movie/top-rated-movie?skip=${pageParam}`);
+  return result.data;
 };
 
 export const addWishContent = async (WishContentRequestDTO: DTO.WishContentRequestDTO) => {

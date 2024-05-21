@@ -1,6 +1,6 @@
 import React from 'react';
-import LeftChevrom from '../../shared/ui/icons/LeftChevrom';
-import RightChevrom from '../../shared/ui/icons/RightChevrom';
+import LeftChevrom from '../../shared/icons/LeftChevrom';
+import RightChevrom from '../../shared/icons/RightChevrom';
 import { BANNER_IMAGES } from '../../../public/constant/BANNER_INFO';
 
 type BannerBackgroundImageProps = {

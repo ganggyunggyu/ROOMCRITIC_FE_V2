@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '../../shared/ui/Button';
+import { Button } from '../../shared/ui/button/button';
 const ErrorProvider = () => {
   const navigate = useNavigate();
   const redirectHome = () => {

@@ -1,6 +1,6 @@
 import React, { KeyboardEvent } from 'react';
 import Input from '../../shared/ui/Input';
-import Button from '../../shared/ui/Button';
+import { Button } from '../../shared/ui/button/button';
 import Loading from '../../shared/ui/Loading';
 
 import { useNavigate, useParams } from 'react-router-dom';
