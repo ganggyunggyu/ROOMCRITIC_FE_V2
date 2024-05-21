@@ -3,36 +3,24 @@ import Card from '../card/Card';
 import Loading from '../../shared/ui/Loading';
 import { cn } from '../../shared/lib/cn';
 import { TCardContent } from '../../app/types/main';
-import { useIntersectionObserver } from '../../shared/hooks/common/useIntersectionObserver';
 import CardWrapButtons from './CardWrapButtons';
-import axios from 'axios';
+// import axios from 'axios';
 
 type CardWrapProviderProps = {
   title: string;
   cardList: TCardContent[];
   isHover?: boolean;
+  observeTargetRef?: React.Ref<HTMLDivElement>; // ref 타입 지정
 };
 
 const CardWrapProvider: React.FC<CardWrapProviderProps> = ({
   title,
   cardList,
   isHover,
+  observeTargetRef,
   ...props
 }) => {
   const cardContainerRef = React.useRef<HTMLDivElement>(null);
-  const hasNextPage = true;
-
-  const fetchNextPage = async () => {
-    console.log(cardList[cardList.length - 1]._id);
-    const id = cardList[cardList.length - 1]._id;
-    const result = await axios.get(`http://localhost:8080/product?limit=10&cursor=${id}`);
-    return result?.data;
-  };
-
-  const observeTargetRef = useIntersectionObserver({
-    hasNextPage,
-    fetchNextPage,
-  });
 
   if (!cardList) return <Loading />;
   if (!cardList.length && cardList.length !== 0) return <Loading />;
@@ -51,7 +39,7 @@ const CardWrapProvider: React.FC<CardWrapProviderProps> = ({
           return (
             <Card
               ref={isLastCard ? observeTargetRef : null}
-              key={content._id}
+              key={index}
               content={content}
               isHover={isHover}
             />

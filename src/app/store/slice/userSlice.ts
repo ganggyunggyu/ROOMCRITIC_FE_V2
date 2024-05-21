@@ -22,9 +22,17 @@ export const userSlice = createSlice({
     setUserInfo: (state, action) => {
       state.userInfo = action.payload;
     },
+    setLoginStatus: (state, action) => {
+      console.log(state);
+      console.log(action);
+      state.isLoggedIn = action.payload.isLoggedIn;
+      state.userInfo._id = action.payload._id;
+      state.userInfo.email = action.payload.email;
+      state.userInfo.displayName = action.payload.displayName;
+    },
     setClearAuth: (state) => {
       state.userInfo = null;
-      state.isLoggedIn = null;
+      state.isLoggedIn = false;
     },
   },
 });

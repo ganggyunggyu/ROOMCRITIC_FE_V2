@@ -1,22 +1,20 @@
 import { useParams } from 'react-router-dom';
 import useUserReviewFetch from '../../shared/hooks/review/useUserReviewFetch';
-import useAuth from '../../shared/hooks/auth/useAuth';
 import ResponsiveProvider from '../ui/ResponsiveProvider';
-import ProfileContainer from '../../entities/profile/ProfileContainer';
+import ProfileContainer from '../../features/user/ui/ProfileContainer';
 import CardWrapProvider from '../../entities/wrap-provider/CardWrapProvider';
 import Loading from '../../shared/ui/Loading';
+import useUserInfoFetch from '../../shared/hooks/user/useUserInfoFetch';
 
 export default function Profile() {
   const { userIdParam = '' } = useParams();
-  const { displayName } = useAuth();
 
   const { data: userReview, isLoading: isUserReviewLoading } = useUserReviewFetch(userIdParam);
+  const { userInfo, isUserInfoLoading } = useUserInfoFetch(userIdParam);
 
-  if (isUserReviewLoading) return <Loading />;
+  if (isUserReviewLoading || isUserInfoLoading) return <Loading />;
 
-  if (!isUserReviewLoading) {
-    const reviews = userReview?.data?.reviews;
-
+  if (!isUserReviewLoading || !isUserInfoLoading) {
     return (
       <ResponsiveProvider
         direction={'col'}
@@ -25,8 +23,8 @@ export default function Profile() {
         <ProfileContainer />
         <CardWrapProvider
           isHover={true}
-          title={`${displayName}님이 쓰신 리뷰`}
-          cardList={reviews}
+          title={`${userInfo.userInfo.displayName}님이 쓰신 리뷰`}
+          cardList={userReview}
         />
       </ResponsiveProvider>
     );

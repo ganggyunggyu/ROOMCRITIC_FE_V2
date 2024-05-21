@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import useCheckLoginStatus from '../shared/hooks/auth/useCheckLoginStatus';
+
 import { scrollToTop } from '../shared/lib/scrollToTop';
 import { useAppDispatch } from '../app/store';
 import { setPrevPathName } from '../app/store/slice/prevPathName';
@@ -15,9 +15,9 @@ const ReviewDetailPage = React.lazy(() => import('./review-detail'));
 const UpdatePage = React.lazy(() => import('./update'));
 
 const Routing: React.FC = () => {
-  useCheckLoginStatus();
   const location = useLocation();
   const dispatch = useAppDispatch();
+
   React.useEffect(() => {
     const scrollTop = scrollToTop();
     const isLoginPage = location.pathname === '/login';
