@@ -12,7 +12,7 @@ type CardProps = {
 };
 
 const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTMLDivElement>> =
-  React.forwardRef(({ content, isHover }, ref) => {
+  React.forwardRef(({ content }, ref) => {
     const navigator = useNavigate();
     const formattedMonthEnd = formatMonth(content.release_date);
     const [cardHover, setCardHover] = React.useState(false);
@@ -41,7 +41,7 @@ const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTML
         className='relative hover:scale-105 transition-all rounded-md cursor-pointer py-2 shadow-lg'
       >
         {cardHover && <CardHover review={content.lineReview} />}
-        {isHover && <CardHover review={content.lineReview} />}
+        {isReview && <CardHover review={content.lineReview} />}
         <div
           className={`text-center flex gap-2 flex-col md:w-[card-img-w] w-[card-img-sm-w] transition-1s`}
         >

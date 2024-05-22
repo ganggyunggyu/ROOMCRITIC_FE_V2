@@ -16,7 +16,6 @@ type CardWrapProviderProps = {
 const CardWrapProvider: React.FC<CardWrapProviderProps> = ({
   title,
   cardList,
-  isHover,
   observeTargetRef,
   ...props
 }) => {
@@ -36,14 +35,7 @@ const CardWrapProvider: React.FC<CardWrapProviderProps> = ({
       >
         {cardList.map((content, index) => {
           const isLastCard = index === cardList.length - 1;
-          return (
-            <Card
-              ref={isLastCard ? observeTargetRef : null}
-              key={index}
-              content={content}
-              isHover={isHover}
-            />
-          );
+          return <Card ref={isLastCard ? observeTargetRef : null} key={index} content={content} />;
         })}
       </article>
     </section>
