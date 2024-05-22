@@ -18,5 +18,9 @@ export const ButtonVariants = cva(
         black: 'text-black',
       },
     },
+    defaultVariants: {
+      bg: 'default',
+      text: 'white',
+    },
   },
 );
