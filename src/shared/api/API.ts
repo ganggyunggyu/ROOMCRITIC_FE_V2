@@ -23,9 +23,9 @@ export const submitLogin = async (loginUserDTO: DTO.LoginRequestDTO) => {
   }
 };
 
-export const submitLogout = async (userId: string) => {
+export const submitLogout = async (refreshToken: string) => {
   try {
-    const result = await axiosConfig.post('user/auth/logout', { userId });
+    const result = await axiosConfig.post('user/auth/logout', { refreshToken });
     return result;
   } catch (err) {
     console.log(err);
