@@ -7,6 +7,7 @@ import searchSlice from './slice/searchSlice';
 import userSlice from './slice/userSlice';
 import prevPathhNameSlice from './slice/prevPathName';
 import tokenSlice from './slice/tokenSlice';
+import backgroundPathSlice from './slice/backgroundPath';
 
 export const rootReducer = combineReducers({
   darkMode: darkModeSlice,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   user: userSlice,
   prevPathName: prevPathhNameSlice,
   token: tokenSlice,
+  backgroundPath: backgroundPathSlice,
 });
