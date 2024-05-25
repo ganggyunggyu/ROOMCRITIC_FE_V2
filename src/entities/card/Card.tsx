@@ -31,7 +31,6 @@ const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTML
     const cardMouseLeave = () => {
       setCardHover(false);
     };
-
     return (
       <figure
         ref={ref}
@@ -50,7 +49,7 @@ const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTML
           />
           <CardInfo
             title={content.title || content.contentName}
-            grade={content.grade || (content.vote_average / 2).toFixed(2)}
+            grade={+content.grade || (content.vote_average / 2).toFixed(2)}
             etc={content.userName || formattedMonthEnd}
           />
         </div>

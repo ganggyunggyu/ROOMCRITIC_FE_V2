@@ -13,6 +13,7 @@ export const formatMinute = (inputDateString: string): string => {
 };
 
 export const formatMonth = (inputDateString: string): string => {
+  if (inputDateString === undefined) return '개봉 정보가 없습니다.';
   const inputDate: Date = new Date(inputDateString);
   const year: number = inputDate.getFullYear();
   const month: string = String(inputDate.getMonth() + 1).padStart(2, '0');
