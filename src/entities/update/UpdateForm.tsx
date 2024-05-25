@@ -7,7 +7,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useReviewUpdate from '../../shared/hooks/review/useReviewUpdate';
 import { getGradeText } from '../../shared/lib/getGradeText';
 import StarsInput from '../../shared/ui/StarsInput';
-import DetailBackground from '../../pages/ui/DetailBackground';
 import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
 
 export default function UpdateForm() {
@@ -55,7 +54,6 @@ export default function UpdateForm() {
 
   return (
     <React.Fragment>
-      <DetailBackground path={review.contentBackdropImg} />
       <p className='text-3xl'>{review.contentName} 리뷰 수정</p>
       <StarsInput grade={grade} setGrade={setGrade} />
       <span className='text-violet-400'>{getGradeText(grade)}</span>

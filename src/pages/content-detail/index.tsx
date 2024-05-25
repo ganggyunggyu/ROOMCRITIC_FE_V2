@@ -10,14 +10,15 @@ import ResponsiveProvider from '../ui/ResponsiveProvider';
 import CardWrapProvider from '../../entities/wrap-provider/CardWrapProvider';
 import CartegofyContents from '../../features/content/ui/CategoryContents';
 import Loading from '../../shared/ui/Loading';
-import DetailBackground from '../ui/DetailBackground';
 import { ContentVideo } from '../../entities/content-detail/ContentVideo';
+import { useAppDispatch } from '../../app/store';
+import { setBackgroundPath } from '../../app/store/slice/backgroundPath';
 
 export default function ContentDetail() {
   const { contentTypeParam = '', contentIdParam = '' } = useParams();
   const contentInfo = (contentTypeParam as string) + contentIdParam;
   const [isPrevInfo, setIsPrevInfo] = React.useState(contentInfo);
-
+  const dispath = useAppDispatch();
   const {
     isLoading: isContentLoading,
     data: content,
@@ -27,6 +28,12 @@ export default function ContentDetail() {
     contentTypeParam,
     contentIdParam,
   );
+
+  React.useEffect(() => {
+    if (!isContentLoading && content) {
+      dispath(setBackgroundPath(content.backdrop_path));
+    }
+  }, [isContentLoading, content]);
 
   if (contentInfo !== isPrevInfo) {
     contentRefetch();
@@ -41,16 +48,11 @@ export default function ContentDetail() {
     return (
       <ResponsiveProvider direction={'col'} className={'gap-10'}>
         <ContentVideo type={content.content_type} id={content.id} />
-        <DetailBackground path={content.backdrop_path} />
         <ContentInfo content={content} />
-        <ContentDetailActions isLoading={isContentLoading} data={content} />
+        <ContentDetailActions isLoading={isContentLoading} content={content} />
         {reviews.length === 0 && <p className='pt-10 text-lg'>남겨진 리뷰가 없어요 🥲</p>}
         {reviews.length !== 0 && (
-          <CardWrapProvider
-            title={`${content.title}에 남겨진 리뷰`}
-            cardList={reviews}
-            isHover={true}
-          />
+          <CardWrapProvider title={`${content.title}에 남겨진 리뷰`} cardList={reviews} />
         )}
         <CartegofyContents />
       </ResponsiveProvider>
