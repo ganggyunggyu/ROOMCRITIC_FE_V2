@@ -1,7 +1,11 @@
+import DetailBackground from '../../pages/ui/DetailBackground';
+import { useAppSelector } from '../store';
+
 const Fullback = () => {
+  const { backgroundPath } = useAppSelector((state) => state.backgroundPath);
   return (
     <div className='flex items-center justify-center h-screen'>
-      <div className='text-gray-600 text-lg font-semibold'>Loading...</div>
+      <DetailBackground path={backgroundPath}></DetailBackground>
     </div>
   );
 };
