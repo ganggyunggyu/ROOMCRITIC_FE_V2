@@ -8,7 +8,7 @@ import useAddWatchContent from '../../shared/hooks/content/ussAddWatchContent';
 import useAddWishContent from '../../shared/hooks/content/useAddWishContent';
 import ToastMessage from '../../shared/ui/ToastMessage';
 
-export default function ContentDetailActions({ isLoading, data }) {
+export default function ContentDetailActions({ isLoading, content }) {
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.user);
   const {
     mutate: watchMutate,
@@ -29,8 +29,6 @@ export default function ContentDetailActions({ isLoading, data }) {
   if (isLoading) {
     return <Loading />;
   }
-
-  const content = data;
   const handleAddWatch = () => {
     setIsWatch(!isWatch);
     watchMutate(
@@ -56,9 +54,15 @@ export default function ContentDetailActions({ isLoading, data }) {
 
   return (
     <section className={'flex flex-col w-full gap-5 z-10'}>
+      <div className='w-full h-full flex items-center justify-center relative'>
+        {isWatchError && <ToastMessage message={'에러가 발생했습니다.'} />}
+        {isWishError && <ToastMessage message={'에러가 발생했습니다.'} />}
+        {isWatchSuccess && <ToastMessage message={'성공'} />}
+        {isWishSuccess && <ToastMessage message={'성공'} />}
+      </div>
       {isLoggedIn ? (
         <React.Fragment>
-          <article className='flex gap-5'>
+          <article className='flex gap-5 relative'>
             {isWatch ? (
               <Button
                 label={'봤어요 🤩 ✅'}
@@ -88,16 +92,16 @@ export default function ContentDetailActions({ isLoading, data }) {
                 onClick={handleAddWish}
               />
             )}
-            {isWatchError && <ToastMessage message={'에러가 발생했습니다.'} />}
-            {isWishError && <ToastMessage message={'에러가 발생했습니다.'} />}
-            {isWatchSuccess && <ToastMessage message={'성공'} />}
-            {isWishSuccess && <ToastMessage message={'성공'} />}
           </article>
           <CreateForm content={content} />
         </React.Fragment>
       ) : (
         <LoginButton />
       )}
+      {/* <button type='button' className='bg-indigo-500 ...' disabled>
+        <svg className='animate-spin h-5 w-5 mr-3 ...' viewBox='0 0 24 24'></svg>
+        Processing...
+      </button> */}
     </section>
   );
 }
