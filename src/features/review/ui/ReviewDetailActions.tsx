@@ -9,12 +9,15 @@ import { useReviewLike } from '../hooks/useReviewLike';
 import { useReviewDislike } from '../hooks/useReviewDislike';
 import { useReviewLikeFetch } from '../hooks/useReviewLikeFetch';
 import { ReviewDeleteDTO } from '../../../app/types/dtos';
+import { useAppSelector } from '../../../app/store';
 
 export default function ReviewDetailActions() {
   const navigator = useNavigate();
   const { userIdParam, reviewIdParam } = useParams();
   const { isLoading: isReviewLoading, data: review } = useReviewSelect(userIdParam, reviewIdParam);
   const { mutate: deleteMutate } = useReviewDelete();
+  const { isLoggedIn, userInfo } = useAppSelector((state) => state.user);
+
   const {
     data: likeStatus,
     isLoading: isLikeStatusLoading,
@@ -80,8 +83,8 @@ export default function ReviewDetailActions() {
           <Button
             onClick={handleLike}
             label={'좋아요 🤩'}
-            bg={'main'}
             className={'lg:w-6/12 w-full text-lg z-10'}
+            bg={'main'}
           />
           <Button
             onClick={handleDislike}
@@ -102,13 +105,13 @@ export default function ReviewDetailActions() {
           <Button
             onClick={handleDislike}
             label={!likeStatus.isLike ? '별로에요 🧐 ✅' : '별로에요 🧐'}
-            bg={!likeStatus.isLike ? 'mainHover' : 'main'}
+            bg={(!likeStatus.isLike && 'mainHover') || 'default'}
             className={'lg:w-6/12 w-full text-lg z-10'}
           />
         </React.Fragment>
       )}
 
-      {userIdParam === userIdParam && (
+      {isLoggedIn && userIdParam === userInfo._id && (
         <React.Fragment>
           <Button
             onClick={redirectUpdatePage}

@@ -3,8 +3,9 @@ import ResponsiveProvider from '../ui/ResponsiveProvider';
 import useSearchContents from '../../shared/hooks/content/useSearchContents';
 import SearchInput from '../../entities/search/SearchInput';
 import SearchContents from '../../entities/search/SearchContents';
-import SearchButton from '../../entities/search/SearchButton';
-import { SEARCH_INPUT, SEARCH_BUTTON } from '../../../public/constant/SEARCH_LABEL';
+import { SearchButton } from '../../entities/search/SearchButton';
+import { SEARCH_INPUT, SEARCH_BUTTON } from '../../../constant/SEARCH_LABEL';
+import { AuthError } from '../error';
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
@@ -83,37 +84,39 @@ export default function Serch() {
   ];
 
   return (
-    <ResponsiveProvider direction={'col'} className={'gap-5'}>
-      <div className='flex gap-3 w-2/3'>
-        {SearchButtons.map((buttonConfig) => {
+    <AuthError>
+      <ResponsiveProvider direction={'col'} className={'gap-5 pt-10'}>
+        <div className='flex gap-3 w-2/3'>
+          {SearchButtons.map((buttonConfig) => {
+            return (
+              <SearchButton
+                key={buttonConfig.label}
+                label={buttonConfig.label}
+                isActive={buttonConfig.isActive}
+                onClick={buttonConfig.onClick}
+              />
+            );
+          })}
+        </div>
+        {SearchConfig.map((searchConfig) => {
           return (
-            <SearchButton
-              key={buttonConfig.label}
-              label={buttonConfig.label}
-              isActive={buttonConfig.isActive}
-              onClick={buttonConfig.onClick}
-            />
+            searchType === searchConfig.type && (
+              <React.Fragment key={searchConfig.type}>
+                <SearchInput
+                  label={searchConfig.label}
+                  value={searchConfig.value}
+                  onChange={searchConfig.onChange}
+                />
+                <SearchContents
+                  isActive={searchConfig.isActive}
+                  isLoading={searchConfig.isLoading}
+                  contents={searchConfig.contents}
+                />
+              </React.Fragment>
+            )
           );
         })}
-      </div>
-      {SearchConfig.map((searchConfig) => {
-        return (
-          searchType === searchConfig.type && (
-            <React.Fragment key={searchConfig.type}>
-              <SearchInput
-                label={searchConfig.label}
-                value={searchConfig.value}
-                onChange={searchConfig.onChange}
-              />
-              <SearchContents
-                isActive={searchConfig.isActive}
-                isLoading={searchConfig.isLoading}
-                contents={searchConfig.contents}
-              />
-            </React.Fragment>
-          )
-        );
-      })}
-    </ResponsiveProvider>
+      </ResponsiveProvider>
+    </AuthError>
   );
 }
