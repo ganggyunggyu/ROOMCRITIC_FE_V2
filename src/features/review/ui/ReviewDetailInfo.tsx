@@ -4,15 +4,28 @@ import { Link, useParams } from 'react-router-dom';
 import useReviewDetail from '../../../shared/hooks/review/useReviewDetail';
 import Loading from '../../../shared/ui/Loading';
 import { formatMinute } from '../../../shared/lib';
-// import DetailBackground from '../../../pages/ui/DetailBackground';
+import { useAppDispatch } from '../../../app/store';
+import { setBackgroundPath } from '../../../app/store/slice/backgroundPath';
+import { scrollToTopSmooth } from '../../../shared/lib/scrollToTop';
 
 export default function ReviewDetailInfo() {
   const { userIdParam, reviewIdParam } = useParams();
+  const dispatch = useAppDispatch();
+  const prevParam = userIdParam + reviewIdParam;
+  React.useEffect(() => {
+    scrollToTopSmooth();
+  }, [prevParam]);
   const {
     isLoading: isReviewLoading,
     data: review,
     isSuccess,
   } = useReviewDetail(userIdParam, reviewIdParam);
+
+  React.useEffect(() => {
+    if (isSuccess && review) {
+      dispatch(setBackgroundPath(review.contentBackdropImg));
+    }
+  }, [isSuccess, review]);
 
   if (isReviewLoading) {
     return <Loading />;
@@ -20,10 +33,9 @@ export default function ReviewDetailInfo() {
 
   if (isSuccess) {
     const formattedDateEnd = formatMinute(review.createdAt);
-    console.log(review);
+
     return (
       <React.Fragment>
-        {/* <DetailBackground path={review.contentBackdropImg} /> */}
         <Link className='z-20' to={`/profile/${review.userId}`}>
           {review.userName}님의 {review.contentName} 리뷰
         </Link>

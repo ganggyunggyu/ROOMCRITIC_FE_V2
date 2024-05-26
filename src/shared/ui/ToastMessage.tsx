@@ -38,10 +38,10 @@ const ToastMessage = ({ message, duration = 3000 }) => {
   return (
     <div
       ref={ref}
-      className='fixed top-0 left-1/2 transform -translate-x-1/2 bg-violet-400 text-white px-4 py-2 rounded-md shadow-md transition-all hidden'
+      className='absolute p-3 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-violet-400 text-white rounded-md shadow-md transition-all z-20 flex items-center justify-center'
       role='alert'
     >
-      <p>{message}</p>
+      {message}
     </div>
   );
 };

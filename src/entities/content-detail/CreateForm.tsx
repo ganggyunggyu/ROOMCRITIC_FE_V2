@@ -47,12 +47,13 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     if (event.nativeEvent.isComposing) return;
     if (event.key === 'Enter') {
       event.preventDefault();
+      reviewInput.setValue('');
       mutate(reviewCreateDTO, { onSuccess: successReviewCreate });
     }
   };
   const handleReviewCreate = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log(reviewCreateDTO);
+    reviewInput.setValue('');
     mutate(reviewCreateDTO, { onSuccess: successReviewCreate });
   };
 

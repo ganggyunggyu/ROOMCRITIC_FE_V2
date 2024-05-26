@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import * as API from '../../api/api';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { setIsLoggedIn, setUserInfo } from '../../../app/store/slice/userSlice';
-import { setAccessToken } from '../../../app/store/slice/tokenSlice';
+import { setAccessToken, setRefreshTokenExp } from '../../../app/store/slice/tokenSlice';
 import { setCookie } from '../../lib/cookie';
 
 const useLogin = () => {
@@ -20,10 +20,13 @@ const useLogin = () => {
       const isLoggedIn = result.data.isLoggedIn;
       const accessToken = result.data.accessToken;
       const refreshToken = result.data.refreshToken.refreshToken;
+      const refreshTokenExp = result.data.refreshToken.refreshTokenExp;
 
+      console.log(result);
       dispatch(setIsLoggedIn(isLoggedIn));
       dispatch(setUserInfo(userInfo));
       dispatch(setAccessToken(accessToken));
+      dispatch(setRefreshTokenExp(refreshTokenExp));
       setCookie('refreshToken', refreshToken);
 
       navigator(prevPathName);

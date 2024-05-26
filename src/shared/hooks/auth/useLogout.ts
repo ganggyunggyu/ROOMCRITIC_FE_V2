@@ -13,9 +13,7 @@ const useLogout = () => {
     onSuccess: () => {
       navigate('/');
       dispatch(() => setClearAuth());
-      clearCookie('accessToken');
       clearCookie('refreshToken');
-      clearCookie('userId');
 
       window.location.reload();
     },

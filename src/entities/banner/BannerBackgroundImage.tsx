@@ -1,7 +1,7 @@
 import React from 'react';
 import LeftChevrom from '../../shared/icons/LeftChevrom';
 import RightChevrom from '../../shared/icons/RightChevrom';
-import { BANNER_IMAGES } from '../../../public/constant/BANNER_INFO';
+import { BANNER_IMAGES } from '../../../constant/BANNER_INFO';
 
 type BannerBackgroundImageProps = {
   bannerIndex: number;
@@ -51,6 +51,7 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
         width: '100vw',
         paddingBottom: '56.25%',
         transition: 'background-image 500ms ease-in-out',
+        minHeight: '250px',
       }}
     >
       <div className='flex h-full justify-between items-center'>

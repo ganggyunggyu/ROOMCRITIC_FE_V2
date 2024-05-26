@@ -2,10 +2,11 @@ import CategoryReviewList from '../../features/content/ui/CategoryContents';
 import ResponsiveProvider from '../ui/ResponsiveProvider';
 import ReviewDetailInfo from '../../features/review/ui/ReviewDetailInfo';
 import ReviewDetailActions from '../../features/review/ui/ReviewDetailActions';
+import React from 'react';
 
 export default function ReviewDetail() {
   return (
-    <ResponsiveProvider direction={'col'} className={'gap-5 z-10'}>
+    <ResponsiveProvider direction={'col'} className={'gap-5 z-10 pt-10'}>
       <ReviewDetailInfo />
       <ReviewDetailActions />
       <CategoryReviewList />

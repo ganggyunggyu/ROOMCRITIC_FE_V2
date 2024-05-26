@@ -2,10 +2,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type tokenProps = {
   accessToken: string | null;
+  refreshTokenExp: string | null;
 };
 
 const initialState: tokenProps = {
   accessToken: null,
+  refreshTokenExp: null,
 };
 
 export const tokenSlice = createSlice({
@@ -18,9 +20,12 @@ export const tokenSlice = createSlice({
     setClearAccessToken: (state) => {
       state.accessToken = null;
     },
+    setRefreshTokenExp: (state, action) => {
+      state.refreshTokenExp = action.payload;
+    },
   },
 });
 
-export const { setAccessToken, setClearAccessToken } = tokenSlice.actions;
+export const { setAccessToken, setClearAccessToken, setRefreshTokenExp } = tokenSlice.actions;
 
 export default tokenSlice.reducer;

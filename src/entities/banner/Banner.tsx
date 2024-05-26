@@ -1,6 +1,6 @@
 import React from 'react';
 import BannerReview from './BannerReview';
-import { BANNER_REVIEWS } from '../../../public/constant/BANNER_INFO';
+import { BANNER_REVIEWS } from '../../../constant/BANNER_INFO';
 import BannerBackgroundImage from './BannerBackgroundImage';
 const Banner = () => {
   const [bannerIndex, setBannerIndex] = React.useState(0);

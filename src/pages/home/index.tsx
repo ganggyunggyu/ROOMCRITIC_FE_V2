@@ -5,11 +5,9 @@ import ResponsiveProvider from '../ui/ResponsiveProvider';
 
 export default function Home() {
   return (
-    <React.Fragment>
+    <ResponsiveProvider direction='col'>
       <Banner />
-      <ResponsiveProvider direction='col'>
-        <CategoryContents />
-      </ResponsiveProvider>
-    </React.Fragment>
+      <CategoryContents />
+    </ResponsiveProvider>
   );
 }

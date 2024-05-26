@@ -1,3 +1,11 @@
+.page {
+  /* position: absolute; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 100vw;
+  height: 100vh;
+}
 .smooth-scroll {
   scroll-behavior: smooth;
 }
@@ -29,4 +37,18 @@
 
 .animate-toast-out {
   animation: toast-out 0.5s ease forwards;
+}
+
+/* 애니메이션 정의 */
+.fade-out {
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
 }

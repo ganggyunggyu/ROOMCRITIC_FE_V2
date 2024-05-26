@@ -18,11 +18,10 @@ export default function Profile() {
     return (
       <ResponsiveProvider
         direction={'col'}
-        className={'gap-5 md:w-2/3 md:px-5 md:py-10 md:shadow-lg justify-start'}
+        className={'gap-5 md:w-2/3 md:px-5 md:py-10 md:shadow-lg justify-start transition-all'}
       >
         <ProfileContainer />
         <CardWrapProvider
-          isHover={true}
           title={`${userInfo.userInfo.displayName}님이 쓰신 리뷰`}
           cardList={userReview}
         />

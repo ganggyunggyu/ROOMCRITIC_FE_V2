@@ -1,8 +1,10 @@
 import React from 'react';
 
 export default function CardInfo({ title, grade, etc }) {
-  const getGradeInfo = (grade: string) => {
-    if (grade === '0.00') return '별점 정보가 없네요.';
+  if (grade === 'NaN') grade = 0.0;
+  const getGradeInfo = (grade: number) => {
+    if (grade === 0.0) return '별점 정보가 없네요.';
+
     return grade;
   };
 

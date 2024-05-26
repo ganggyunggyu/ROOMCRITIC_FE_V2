@@ -6,6 +6,11 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof ButtonVariants> & {
     label?: string;
     item?: React.ReactElement;
-    bg?: string;
-    text?: string;
   };
+
+// export interface ButtonProps
+//   extends ButtonHTMLAttributes<HTMLButtonElement>,
+//     VariantProps<typeof ButtonVariants> {
+//   label?: string;
+//   item?: React.ReactElement;
+// }

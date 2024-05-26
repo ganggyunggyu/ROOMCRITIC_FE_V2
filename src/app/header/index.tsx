@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../store';
 
 import useLogout from '../../shared/hooks/auth/useLogout';
+import { getCookie } from '../../shared/lib/cookie';
 
 const Header = () => {
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
@@ -9,7 +10,7 @@ const Header = () => {
   const { mutate } = useLogout();
 
   const logoutHandler = () => {
-    mutate(userInfo._id);
+    mutate(getCookie('refreshToken'));
   };
 
   return (
