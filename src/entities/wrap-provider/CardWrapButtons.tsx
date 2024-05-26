@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function CardWrapButtons({ cardContainerRef }) {
   const handleScroll = (direction: string) => {
-    const scrollAmount = 600;
+    const scrollAmount = window.innerWidth > 500 ? 800 : 300;
     const cardContainer = cardContainerRef.current;
 
     if (cardContainer) {
