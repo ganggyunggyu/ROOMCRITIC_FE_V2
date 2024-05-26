@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './button';
+import { Button } from './';
 
 import { cn } from '../lib/cn';
 import { useAppSelector } from '../../app/store';
