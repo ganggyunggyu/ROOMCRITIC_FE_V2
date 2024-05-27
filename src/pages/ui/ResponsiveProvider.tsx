@@ -1,8 +1,7 @@
 import { cva } from 'class-variance-authority';
 import { cn } from '../../shared/lib/cn';
-import { motion } from 'framer-motion';
 
-export const ResponsiveProviderVariants = cva(`w-10/12 flex `, {
+export const ResponsiveProviderVariants = cva(`w-10/12 flex`, {
   variants: {
     direction: {
       col: `flex-col items-center justify-center`,
@@ -23,28 +22,13 @@ const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
   ...props
 }) => {
   return (
-    <motion.section
+    <section
       className={cn(ResponsiveProviderVariants({ direction, className }), {
         ...props,
       })}
-      // initial={{ x: 300, opacity: 0 }}
-      // animate={{ x: 0, opacity: 1 }}
-      // exit={{ x: -300, opacity: 0 }}
-      // initial={{ opacity: 0 }}
-      // animate={{ opacity: 1 }}
-      // exit={{ opacity: 0 }}
-      initial={{ x: '100vw' }}
-      animate={{ x: 0 }}
-      exit={{ x: '-100vw' }}
-      // initial={{ scale: 0.7 }}
-      // animate={{ scale: 1 }}
-      // initial={{ y: '-100%' }}
-      // animate={{ y: 0 }}
-      // exit={{ y: '100%' }}
-      transition={{ duration: 0.5 }}
     >
       {children}
-    </motion.section>
+    </section>
   );
 };
 export default ResponsiveProvider;
