@@ -8,6 +8,7 @@ import userSlice from './slice/userSlice';
 import prevPathhNameSlice from './slice/prevPathName';
 import tokenSlice from './slice/tokenSlice';
 import backgroundPathSlice from './slice/backgroundPath';
+import navigationTypeSlice from './slice/navigationTypeSlice';
 
 export const rootReducer = combineReducers({
   darkMode: darkModeSlice,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   prevPathName: prevPathhNameSlice,
   token: tokenSlice,
   backgroundPath: backgroundPathSlice,
+  navigationType: navigationTypeSlice,
 });
