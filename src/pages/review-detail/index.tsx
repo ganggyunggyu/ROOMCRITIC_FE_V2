@@ -2,7 +2,6 @@ import CategoryReviewList from '../../features/content/ui/CategoryContents';
 import ResponsiveProvider from '../ui/ResponsiveProvider';
 import ReviewDetailInfo from '../../features/review/ui/ReviewDetailInfo';
 import ReviewDetailActions from '../../features/review/ui/ReviewDetailActions';
-import React from 'react';
 
 export default function ReviewDetail() {
   return (

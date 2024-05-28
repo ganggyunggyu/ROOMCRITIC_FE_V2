@@ -9,7 +9,6 @@ import ContentDetailActions from '../../entities/content-detail/ContentDetailAct
 import ResponsiveProvider from '../ui/ResponsiveProvider';
 import CardWrapProvider from '../../entities/wrap-provider/CardWrapProvider';
 import CartegofyContents from '../../features/content/ui/CategoryContents';
-import Loading from '../../shared/ui/Loading';
 import { ContentVideo } from '../../entities/content-detail/ContentVideo';
 import { useAppDispatch } from '../../app/store';
 import { setBackgroundPath } from '../../app/store/slice/backgroundPath';
@@ -41,7 +40,7 @@ export default function ContentDetail() {
   }
 
   if (isContentLoading && isReviewsLoading) {
-    return <Loading />;
+    return <div />;
   }
 
   if (!isContentLoading && !isReviewsLoading) {

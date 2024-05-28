@@ -1,8 +1,13 @@
-import useDarkMode from '../../shared/hooks/common/useDarkMode';
+import { cn } from '../../shared/lib/cn';
+import { useAppSelector } from '../store';
 export default function Footer() {
-  const { isDarkMode } = useDarkMode();
+  const { darkModeClasses, isDarkMode } = useAppSelector((state) => state.darkMode);
   return (
-    <footer className='flex flex-col items-center justify-center w-full gap-5 p-10 opacity-60 text-sm'>
+    <footer
+      className={cn(
+        `${darkModeClasses} flex flex-col items-center justify-center w-full gap-5 p-10 opacity-60 text-sm`,
+      )}
+    >
       <p>develop by 강경규</p>
       <p>connect</p>
       <p>qwzx16@naver.com</p>

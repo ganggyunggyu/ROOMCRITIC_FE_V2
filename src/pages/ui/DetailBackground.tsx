@@ -12,14 +12,14 @@ const DetailBackground: React.FC<DetailBackgroundProps> = ({ path }) => {
   const dispath = useAppDispatch();
   React.useEffect(() => {
     dispath(setBackgroundPath(path));
-  }, [path]);
+  }, [path, dispath]);
 
   if (path) {
     return (
-      <div className='fixed top-0 opacity-20 w-screen h-screen z-0'>
+      <div className='fixed opacity-20 w-screen h-screen transition-all top-0'>
         <LazyLoadImage
           key={path}
-          className='h-full fixed top-0'
+          className='w-screen h-screen -z-10'
           src={`https://www.themoviedb.org/t/p/original/${path}`}
           loading='lazy'
           effect='blur'
