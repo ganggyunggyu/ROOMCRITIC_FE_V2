@@ -1,6 +1,8 @@
+import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../shared/lib/cn';
-
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAppSelector } from '../../app/store';
 export const ResponsiveProviderVariants = cva(`w-10/12 flex`, {
   variants: {
     direction: {
@@ -21,14 +23,39 @@ const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
   className,
   ...props
 }) => {
-  return (
-    <section
-      className={cn(ResponsiveProviderVariants({ direction, className }), {
-        ...props,
-      })}
-    >
-      {children}
-    </section>
-  );
+  const { navigationType } = useAppSelector((state) => state.navigationType);
+  const [currentNavigationType, setCurrentNavigationType] = React.useState(navigationType);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const push = {
+    initial: { x: '100%' },
+    animate: { x: 0 },
+    exit: { x: '-100%' },
+  };
+  const pop = {
+    initial: { x: '-100%' },
+    animate: { x: 0 },
+    exit: { x: '100%' },
+  };
+
+  React.useEffect(() => {
+    setCurrentNavigationType(navigationType);
+    setIsLoading(true);
+  }, [navigationType, currentNavigationType]);
+  if (isLoading) {
+    return (
+      <AnimatePresence>
+        <motion.section
+          {...(currentNavigationType === 'POP' ? pop : push)}
+          transition={{ duration: 0.3, type: 'easeIn' }}
+          className={cn(ResponsiveProviderVariants({ direction, className }), {
+            ...props,
+          })}
+        >
+          {children}
+        </motion.section>
+      </AnimatePresence>
+    );
+  }
 };
 export default ResponsiveProvider;
