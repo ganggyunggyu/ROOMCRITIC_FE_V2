@@ -5,11 +5,11 @@
   padding-bottom: 0%;
   z-index: 20;
   opacity: 0;
-  transition: padding-bottom, opacity 1s, 1.5s ease-in;
+  transition: padding-bottom, opacity 0.5s, 0.5s ease-in;
 }
 
 .video-button {
-  transition: opacity 1.5s ease-in;
+  transition: opacity 1s ease-in;
   opacity: 0;
 }
 .video-button-open {
