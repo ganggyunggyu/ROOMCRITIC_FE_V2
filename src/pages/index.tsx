@@ -12,10 +12,12 @@ const ProfilePage = React.lazy(() => import('./profile'));
 const JoinPage = React.lazy(() => import('./join'));
 const LoginPage = React.lazy(() => import('./login'));
 const SearchPage = React.lazy(() => import('./search'));
+const SearchesPage = React.lazy(() => import('./searches'));
 const ContentDetailPage = React.lazy(() => import('./content-detail'));
 const ReviewDetailPage = React.lazy(() => import('./review-detail'));
 const UpdatePage = React.lazy(() => import('./update'));
 const ProfileSettiongPage = React.lazy(() => import('./profile-setting'));
+const ContentReviews = React.lazy(() => import('./content-reviews'));
 
 const Routing: React.FC = () => {
   const location = useLocation();
@@ -41,7 +43,9 @@ const Routing: React.FC = () => {
         <Route path='/join' element={<JoinPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/search' element={<SearchPage />} />
-        <Route path='/content/:contentTypeParam/:contentIdParam' element={<ContentDetailPage />} />
+        <Route path='/searches' element={<SearchesPage />} />
+        <Route path='/content/:contentIdParam' element={<ContentDetailPage />} />
+        <Route path='/content/reviews/:contentIdParam' element={<ContentReviews />} />
         <Route path='/detail/review/:userIdParam/:reviewIdParam' element={<ReviewDetailPage />} />
         <Route path='/update/:userIdParam/:reviewIdParam' element={<UpdatePage />} />
         <Route path='*' element={<Navigate to={'/'} />} />
