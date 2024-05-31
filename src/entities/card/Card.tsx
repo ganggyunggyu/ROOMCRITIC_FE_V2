@@ -14,15 +14,11 @@ type CardProps = {
 const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTMLDivElement>> =
   React.forwardRef(({ content }, ref) => {
     const navigator = useNavigate();
-    const formattedMonthEnd = formatMonth(content.release_date);
+    const formattedMonthEnd = formatMonth(content.releaseDate);
     const [cardHover, setCardHover] = React.useState(false);
-    const isReview = content.lineReview;
+
     const redirectContent = () => {
-      if (isReview) {
-        navigator(`/detail/review/${content.userId}/${content._id}`);
-      } else {
-        navigator(`/content/${content.content_type}/${content._id}`);
-      }
+      navigator(`/content/${content._id}`);
     };
 
     const cardMouseOver = () => {
@@ -37,19 +33,15 @@ const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTML
         onClick={redirectContent}
         onMouseOver={cardMouseOver}
         onMouseLeave={cardMouseLeave}
-        className='relative hover:scale-105 transition-all rounded-md cursor-pointer py-2 shadow-lg'
+        className='relative hover:scale-105 hover:ring-4 hover:ring-zinc-700 rounded-md cursor-pointer transition-all'
       >
-        {cardHover && <CardHover review={content.lineReview} />}
-        {isReview && <CardHover review={content.lineReview} />}
-        <div
-          className={`text-center flex gap-2 flex-col md:w-[card-img-w] w-[card-img-sm-w] transition-1s`}
-        >
-          <CardImage
-            path={content.contentPosterImg || content.poster_path || content.backdrop_path}
-          />
+        {cardHover && <CardHover review={content.title} />}
+
+        <div className={`text-center flex gap-2 flex-col md:w-[card-img-w] w-[card-img-sm-w]`}>
+          <CardImage path={content.posterPath} />
           <CardInfo
             title={content.title || content.contentName}
-            grade={+content.grade || (content.vote_average / 2).toFixed(2)}
+            grade={(content.voteAverage / 2).toFixed(2)}
             etc={content.userName || formattedMonthEnd}
           />
         </div>

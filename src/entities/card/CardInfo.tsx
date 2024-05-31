@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 
 export default function CardInfo({ title, grade, etc }) {
   if (grade === 'NaN') grade = 0.0;
@@ -12,7 +13,7 @@ export default function CardInfo({ title, grade, etc }) {
     <React.Fragment>
       <p className='whitespace-nowrap	overflow-hidden text-ellipsis text-lg	z-10'>{title}</p>
       <p className='text-sm z-10 flex gap-1 w-full items-center justify-center'>
-        <span>⭐</span>
+        <FaStar className='text-yellow-400' />
         <span className='text-yellow-500'>{getGradeInfo(grade)}</span>
       </p>
       <span className='text-sm z-10 text-violet-500'>{etc}</span>

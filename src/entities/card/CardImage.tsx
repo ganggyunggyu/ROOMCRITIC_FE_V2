@@ -9,7 +9,7 @@ type CardImageProps = {
 const CardImage: React.FC<CardImageProps> = ({ path }) => {
   return (
     <LazyLoadImage
-      className='md:w-[card-img-w] md:h-[card-img-h] w-[card-img-sm-w] h-[card-img-sm-h] rounded-sm shadow-lg'
+      className='md:w-[card-img-w] md:h-[card-img-h] w-[card-img-sm-w] h-[card-img-sm-h]  shadow-lg rounded-t-md'
       src={
         path
           ? `https://www.themoviedb.org/t/p/original/${path}`
