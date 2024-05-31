@@ -10,22 +10,13 @@ export const useDarkMode = () => {
   const toggleDarkMode = () => {
     dispatch(setDarkMode(!isDarkMode));
   };
-
   React.useEffect(() => {
     if (isDarkMode) {
+      document.documentElement.classList.add('dark');
       dispatch(setDarkModeClasses('bg-zinc-800 text-white'));
       document.body.style.backgroundColor = '#27272A';
     } else {
-      dispatch(setDarkModeClasses('bg-white text-black'));
-      document.body.style.backgroundColor = 'white';
-    }
-  }, [isDarkMode, darkModeClasses, dispatch]);
-
-  React.useEffect(() => {
-    if (isDarkMode) {
-      dispatch(setDarkModeClasses('bg-zinc-800 text-white'));
-      document.body.style.backgroundColor = '#27272A';
-    } else {
+      document.documentElement.classList.remove('dark');
       dispatch(setDarkModeClasses('bg-white text-black'));
       document.body.style.backgroundColor = 'white';
       document.body.classList.add('bg-zinc-800');
