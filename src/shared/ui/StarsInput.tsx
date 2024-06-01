@@ -41,7 +41,7 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
                 onMouseLeave={onStarLeave}
                 onClick={handleStarClick}
               >
-                <StarIcon color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
+                <StarIcon color={`${hoverIndex >= i ? 'red' : 'white'}`} />
               </div>
             ) : (
               <React.Fragment>
@@ -52,7 +52,7 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
                     onMouseLeave={onStarLeave}
                     onClick={handleStarClick}
                   >
-                    <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
+                    <HalfStar color={`${hoverIndex >= i ? 'red' : 'white'}`} />
                   </div>
                 )}
                 {i === 2 && (
@@ -62,7 +62,7 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
                     onMouseLeave={onStarLeave}
                     onClick={handleStarClick}
                   >
-                    <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
+                    <HalfStar color={`${hoverIndex >= i ? 'red' : 'white'}`} />
                   </div>
                 )}
                 {i === 4 && (
@@ -72,7 +72,7 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
                     onMouseLeave={onStarLeave}
                     onClick={handleStarClick}
                   >
-                    <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
+                    <HalfStar color={`${hoverIndex >= i ? 'red' : 'white'}`} />
                   </div>
                 )}
                 {i === 6 && (
@@ -83,7 +83,7 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
                     onMouseLeave={onStarLeave}
                     onClick={handleStarClick}
                   >
-                    <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
+                    <HalfStar color={`${hoverIndex >= i ? 'red' : 'white'}`} />
                   </div>
                 )}
                 {i === 8 && (
@@ -93,7 +93,7 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
                     onMouseLeave={onStarLeave}
                     onClick={handleStarClick}
                   >
-                    <HalfStar color={`${hoverIndex >= i ? '#a38cf3' : 'white'}`} />
+                    <HalfStar color={`${hoverIndex >= i ? 'red' : 'white'}`} />
                   </div>
                 )}
               </React.Fragment>

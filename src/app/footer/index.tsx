@@ -1,11 +1,11 @@
 import { cn } from '../../shared/lib/cn';
 import { useAppSelector } from '../store';
 export default function Footer() {
-  const { darkModeClasses, isDarkMode } = useAppSelector((state) => state.darkMode);
+  const { isDarkMode } = useAppSelector((state) => state.darkMode);
   return (
     <footer
       className={cn(
-        `${darkModeClasses} flex flex-col items-center justify-center w-full gap-5 p-10 opacity-60 text-sm`,
+        ` flex flex-col items-center justify-center w-full gap-5 p-10 opacity-60 text-sm`,
       )}
     >
       <p>develop by 강경규</p>
