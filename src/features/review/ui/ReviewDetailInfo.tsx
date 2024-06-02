@@ -2,19 +2,13 @@ import React from 'react';
 import Stars from '../../../shared/ui/Stars';
 import { Link, useParams } from 'react-router-dom';
 import useReviewDetail from '../../../shared/hooks/review/useReviewDetail';
-import Loading from '../../../shared/ui/Loading';
 import { formatMinute } from '../../../shared/lib';
 import { useAppDispatch } from '../../../app/store';
 import { setBackgroundPath } from '../../../app/store/slice/backgroundPath';
-import { scrollToTopSmooth } from '../../../shared/lib/scrollToTop';
 
 export default function ReviewDetailInfo() {
   const { userIdParam, reviewIdParam } = useParams();
   const dispatch = useAppDispatch();
-  const prevParam = userIdParam + reviewIdParam;
-  React.useEffect(() => {
-    scrollToTopSmooth();
-  }, [prevParam]);
   const {
     isLoading: isReviewLoading,
     data: review,
@@ -28,7 +22,7 @@ export default function ReviewDetailInfo() {
   }, [isSuccess, review]);
 
   if (isReviewLoading) {
-    return <Loading />;
+    return <div />;
   }
 
   if (isSuccess) {

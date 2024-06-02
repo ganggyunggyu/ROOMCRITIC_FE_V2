@@ -3,7 +3,6 @@ import { scrollToTop } from '../../../shared/lib/scrollToTop';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../../shared/ui';
 import useReviewSelect from '../../../shared/hooks/review/useReviewDetail';
-import Loading from '../../../shared/ui/Loading';
 import useReviewDelete from '../../../shared/hooks/review/useReviewDelete';
 import { useReviewLike } from '../hooks/useReviewLike';
 import { useReviewDislike } from '../hooks/useReviewDislike';
@@ -41,7 +40,7 @@ export default function ReviewDetailActions() {
       { onSuccess: () => likeRefetch(), onError: (error) => console.log(error.message) },
     );
   };
-  if (isReviewLoading) return <Loading />;
+  if (isReviewLoading) return <div />;
 
   const redirectUpdatePage = () => {
     navigator(`/update/${userIdParam}/${reviewIdParam}`);

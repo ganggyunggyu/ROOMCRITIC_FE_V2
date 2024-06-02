@@ -1,8 +1,9 @@
+import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../shared/lib/cn';
-import { motion } from 'framer-motion';
-
-export const ResponsiveProviderVariants = cva(`w-10/12 flex `, {
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAppSelector } from '../../app/store';
+export const ResponsiveProviderVariants = cva(`w-10/12 flex`, {
   variants: {
     direction: {
       col: `flex-col items-center justify-center`,
@@ -22,29 +23,39 @@ const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
   className,
   ...props
 }) => {
-  return (
-    <motion.section
-      className={cn(ResponsiveProviderVariants({ direction, className }), {
-        ...props,
-      })}
-      // initial={{ x: 300, opacity: 0 }}
-      // animate={{ x: 0, opacity: 1 }}
-      // exit={{ x: -300, opacity: 0 }}
-      // initial={{ opacity: 0 }}
-      // animate={{ opacity: 1 }}
-      // exit={{ opacity: 0 }}
-      initial={{ x: '100vw' }}
-      animate={{ x: 0 }}
-      exit={{ x: '-100vw' }}
-      // initial={{ scale: 0.7 }}
-      // animate={{ scale: 1 }}
-      // initial={{ y: '-100%' }}
-      // animate={{ y: 0 }}
-      // exit={{ y: '100%' }}
-      transition={{ duration: 0.5 }}
-    >
-      {children}
-    </motion.section>
-  );
+  const { navigationType } = useAppSelector((state) => state.navigationType);
+  const [currentNavigationType, setCurrentNavigationType] = React.useState(navigationType);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const push = {
+    initial: { x: '100%' },
+    animate: { x: 0 },
+    exit: { x: '-100%' },
+  };
+  const pop = {
+    initial: { x: '-100%' },
+    animate: { x: 0 },
+    exit: { x: '100%' },
+  };
+
+  React.useEffect(() => {
+    setCurrentNavigationType(navigationType);
+    setIsLoading(true);
+  }, [navigationType, currentNavigationType]);
+  if (isLoading) {
+    return (
+      <AnimatePresence>
+        <motion.section
+          {...(currentNavigationType === 'POP' ? pop : push)}
+          transition={{ duration: 0.3, type: 'easeIn' }}
+          className={cn(ResponsiveProviderVariants({ direction, className }), {
+            ...props,
+          })}
+        >
+          {children}
+        </motion.section>
+      </AnimatePresence>
+    );
+  }
 };
 export default ResponsiveProvider;

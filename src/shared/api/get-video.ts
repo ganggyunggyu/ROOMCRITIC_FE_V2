@@ -15,18 +15,16 @@ const getVideo = async (type: string, id: number) => {
   }, 100);
   try {
     clearTimeout(timeoutId);
-    const response = await fetch(
-      `https://api.themoviedb.org/3/${type}/${id}/videos?language=ko-KR`,
-      {
-        ...option,
-        signal: AbortSignal.timeout(500),
-      },
-    );
+    const response = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos`, {
+      ...option,
+      signal: AbortSignal.timeout(500),
+    });
 
     if (!response.ok) {
       throw new Error('네트워크 통신 에러');
     }
     const data = await response.json();
+    console.log(data);
     if (data.results.length === 0) throw Error('비디오 정보 없음');
 
     return data;

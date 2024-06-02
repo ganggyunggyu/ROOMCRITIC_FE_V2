@@ -17,7 +17,7 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
   React.useEffect(() => {
     const interval = setInterval(() => {
       setBannerIndex((prevIndex) => (prevIndex + 1) % BANNER_IMAGES.length);
-    }, 3000);
+    }, 5000);
     setCarouselInterval(interval);
 
     return () => {

@@ -3,14 +3,13 @@ import { useAppSelector } from '../../../app/store';
 import useCategoryContentFetch from '../../../shared/hooks/content/useCategoryContent';
 import CardWrapProvider from '../../../entities/wrap-provider/CardWrapProvider';
 import CardInfinityProvider from '../../../entities/wrap-provider/CardInfinityProvider';
-import Loading from '../../../shared/ui/Loading';
 
 const CategoryContents = () => {
   const searchContents = useAppSelector((state) => state.search.searchContents);
   const isSearchContentEmpty = searchContents.length === 0;
 
   const { isSuccess, OwnerMovie, OwnerTv, LatestMovie, LatestTv } = useCategoryContentFetch();
-  if (!isSuccess) return <Loading />;
+  if (!isSuccess) return <div />;
 
   return (
     <React.Fragment>

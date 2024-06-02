@@ -8,6 +8,7 @@ export function ContentVideo({ type, id }) {
   const [showNoVideoMessage, setShowNoVideoMessage] = React.useState(false);
   const [fadeOut, setFadeOut] = React.useState(false);
   const [videoLoaded, setVideoLoaded] = React.useState(false); // 비디오 로딩 여부 상태 추가
+  const [isPending, startTeansition] = React.useTransition();
 
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.playVideo();
@@ -46,6 +47,7 @@ export function ContentVideo({ type, id }) {
       setShowNoVideoMessage(true);
       const timer = setTimeout(() => {
         setFadeOut(true);
+
         setTimeout(() => {
           setShowNoVideoMessage(false);
           setFadeOut(false);
@@ -56,26 +58,22 @@ export function ContentVideo({ type, id }) {
   }, [videoQuery.isLoading, videoQuery.isSuccess]);
 
   React.useEffect(() => {
-    if (videoQuery.isSuccess) {
-      const timer = setTimeout(() => {
+    const timer = setTimeout(() => {
+      startTeansition(() => {
         setVideoLoaded(true); // 비디오 요청 성공 시 loaded 클래스 추가
-      }, 450);
+      });
+    }, 450);
+    if (videoQuery.isSuccess) {
       return () => clearTimeout(timer);
     }
   }, [videoQuery.isSuccess]);
-  if (videoQuery.isLoading)
-    return (
-      <div></div>
-      // <div className='video-container flex items-center justify-center w-screen h-full pt-10 bg-slate-800'>
-      //   <div className='w-full h-full bg-slate-700'></div>
-      // </div>
-    );
+  if (videoQuery.isLoading) return <div></div>;
 
   if (videoQuery.isSuccess) {
     const findTrailer = () => {
       return videoQuery.data.results.find((item) => item.type === 'Trailer');
     };
-    const item = findTrailer();
+    const item = findTrailer() ? findTrailer() : videoQuery.data.results[0];
     if (item === undefined) {
       return (
         <div className='relative w-full h-full flex items-center justify-center top-10 '>
@@ -101,13 +99,17 @@ export function ContentVideo({ type, id }) {
             className='z-10 absolute bottom-12 min-w-fit'
             onClick={videoHendler}
           />
-          <YouTube
-            className='h-full'
-            videoId={item.key ? item.key : 'key'}
-            opts={opts}
-            onReady={onPlayerReady}
-            onError={onError}
-          />
+          {isPending ? (
+            <div>loading</div>
+          ) : (
+            <YouTube
+              className='h-full'
+              videoId={item.key ? item.key : 'key'}
+              opts={opts}
+              onReady={onPlayerReady}
+              onError={onError}
+            />
+          )}
         </article>
         <div
           className={`video-button ${
