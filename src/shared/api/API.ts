@@ -28,16 +28,9 @@ export const submitLogout = async (refreshToken: string) => {
     const result = await axiosConfig.post('user/auth/logout', { refreshToken });
     return result;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
-
-// export const loginCheck = async () => {
-//   try{
-
-//   }c
-// }
-
 export const fetchAccessToken = async (userId: string, refreshToken: string) => {
   try {
     const result = await axiosConfig.post('user/auth/access-token', { userId, refreshToken });
@@ -50,37 +43,6 @@ export const fetchAccessToken = async (userId: string, refreshToken: string) => 
   } catch (error) {
     console.error('fetchLoginERROR !!', error);
   }
-};
-
-export const fetchContentDetail = async (contentType: string, contentId: string) => {
-  try {
-    const result = await axiosConfig.get(`content/detail/${contentType}/${contentId}`);
-    return result;
-  } catch (err) {
-    console.debug(err);
-  }
-};
-
-export const fetchSearchedContent = async (searchValue: string) => {
-  if (!searchValue) throw new Error('검색어 입력 필요');
-  if (searchValue.length <= 1) throw new Error('검색어 입력 필요');
-  const result = await axiosConfig.get(`content/search?search_value=${searchValue}`);
-  return result;
-};
-
-export const fetchSearchedTvContent = async (searchValue: string) => {
-  if (!searchValue) throw new Error('검색어 입력 필요');
-  if (searchValue.length <= 1) throw new Error('검색어 입력 필요');
-  const result = await axiosConfig.get(`content/tv/search?search_value=${searchValue}`);
-  return result;
-};
-
-export const fetchSearchedMovieContent = async (searchValue: string) => {
-  if (!searchValue) throw new Error('검색어 입력 필요');
-  if (searchValue.length <= 1) throw new Error('검색어 입력 필요');
-  const result = await axiosConfig.get(`content/movie/search?search_value=${searchValue}`);
-
-  return result;
 };
 
 export const fetchContentReviews = async (contentType: string, contentId: string) => {
@@ -119,44 +81,9 @@ export const reviewDelete = async (reviewDeleteDTO: DTO.ReviewDeleteDTO) => {
   }
 };
 
-export const fetchReviewDetail = async (userId: string, reviewId: string) => {
-  try {
-    const result = await axiosConfig.get(`review/detail/${reviewId}`);
-
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const reviewUpdate = async (reviewUpdateDTO: DTO.ReviewUpdateDTO) => {
   const result = await axiosConfig.put('review/update', reviewUpdateDTO);
   return result;
-};
-
-export const fetchLatestTvContents = async () => {
-  const result = await axiosConfig.get('content/tv/latest');
-  return result;
-};
-
-export const fetchLatestMovieContents = async () => {
-  const result = await axiosConfig.get('content/movie/latest');
-  return result;
-};
-
-export const fetchOwnerPickedTvContents = async () => {
-  const result = await axiosConfig.get('content/tv/owner');
-  return result;
-};
-
-export const fetchOwnerPickedMovieContents = async () => {
-  const result = await axiosConfig.get('content/movie/owner');
-  return result;
-};
-
-export const fetchTopRatedMovies = async (pageParam: number) => {
-  const result = await axiosConfig.get(`content/movie/top-rated-movie?skip=${pageParam}`);
-  return result.data;
 };
 
 export const addWishContent = async (WishContentRequestDTO: DTO.WishContentRequestDTO) => {
