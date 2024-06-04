@@ -10,6 +10,7 @@ import { TContent } from '../../app/types/main';
 import { ReviewCreateDTO } from '../../app/types/dtos';
 import useContentReviews from '../../shared/hooks/content/useContentReviews';
 import { useAppSelector } from '../../app/store';
+import { useReviewByContentTemp } from '../../features/review/hooks/hooks';
 
 interface CreateFormProps {
   content: TContent;
@@ -26,22 +27,19 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     userName: userInfo.displayName,
     lineReview: reviewInput.value,
     grade: grade,
-    contentPosterImg: content.poster_path,
-    contentBackdropImg: content.backdrop_path,
+    contentPosterImg: content.posterPath,
+    contentBackdropImg: content.backdropPath,
     contentName: content.title,
     contentId: content._id,
-    contentType: content.content_type,
+    contentType: content.contentType,
   };
 
   const { mutate, error, isSuccess, isError } = useReviewCreate();
-  const { refetch: reviewsRefetch } = useContentReviews(
-    reviewCreateDTO.contentType,
-    reviewCreateDTO.contentId,
-  );
+  const { refetch } = useReviewByContentTemp(content._id);
 
   const successReviewCreate = () => {
     reviewInput.setValue('');
-    reviewsRefetch();
+    refetch();
   };
   const handleEnterKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.nativeEvent.isComposing) return;
@@ -68,21 +66,29 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
       {grade !== 0 && (
         <p className={isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}>{getGradeText(grade)}</p>
       )}
-      <Input
-        label={'한줄평 작성'}
-        className='w-full mt-0'
-        type='text'
-        value={reviewInput.value}
-        onChange={reviewInput.onChange}
-        onKeyDown={handleEnterKeyPress}
-      />
+      <div className='relative'>
+        <Input
+          label={'한줄평 작성'}
+          className='w-full mt-0'
+          type='text'
+          value={reviewInput.value}
+          onChange={reviewInput.onChange}
+          onKeyDown={handleEnterKeyPress}
+        />
 
-      <Button type='button' label='발행' bg='main' onClick={handleReviewCreate} />
-      {isSuccess && (
-        <p className=''>
-          리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>
-        </p>
-      )}
+        <Button
+          className='absolute right-0 top-2'
+          type='button'
+          label='발행'
+          bg='main'
+          onClick={handleReviewCreate}
+        />
+        {isSuccess && (
+          <p className=''>
+            리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>
+          </p>
+        )}
+      </div>
       {isError && <p>{error.message}</p>}
     </form>
   );

@@ -8,7 +8,6 @@ import { formatMonth } from '../../shared/lib';
 
 type CardProps = {
   content: TCardContent;
-  isHover?: boolean;
 };
 
 const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTMLDivElement>> =
@@ -40,9 +39,9 @@ const Card: React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTML
         <div className={`text-center flex gap-2 flex-col md:w-[card-img-w] w-[card-img-sm-w]`}>
           <CardImage path={content.posterPath} />
           <CardInfo
-            title={content.title || content.contentName}
+            title={content.title}
             grade={(content.voteAverage / 2).toFixed(2)}
-            etc={content.userName || formattedMonthEnd}
+            etc={formattedMonthEnd}
           />
         </div>
       </figure>
