@@ -1,28 +1,18 @@
 import React from 'react';
 import ResponsiveProvider from '../ui/ResponsiveProvider';
-import useSearchContents from '../../shared/hooks/content/useSearchContents';
 import SearchInput from '../../entities/search/SearchInput';
 import SearchContents from '../../entities/search/SearchContents';
 import { SearchButton } from '../../entities/search/SearchButton';
 import { SEARCH_INPUT, SEARCH_BUTTON } from '../../../constant/SEARCH_LABEL';
 import { AuthError } from '../error';
+import { useSearchContentQuery } from '../../features/content/api/hooks';
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
   const [prevType, setPrevType] = React.useState(searchType);
 
-  const {
-    searchContentsQuery,
-    searchMovieContentsQuery,
-    searchTvContentsQuery,
-    contentSearchInput,
-    movieSearchInput,
-    tvSearchInput,
-  } = useSearchContents(searchType);
-
-  const { isLoading: isContentsLoading, data: contents } = searchContentsQuery;
-  const { isLoading: isMoviesLoading, data: movies } = searchMovieContentsQuery;
-  const { isLoading: isTvsLoading, data: tvs } = searchTvContentsQuery;
+  const { contentSearchInput, searchContents, movieSearchInput, tvSearchInput } =
+    useSearchContentQuery(searchType);
 
   const SearchButtons = [
     { label: SEARCH_BUTTON[0], isActive: searchType === 0, onClick: () => setSearchType(0) },
@@ -34,16 +24,6 @@ export default function Serch() {
     const value = contentSearchInput.value;
     setSearchValue(value);
   }, [contentSearchInput.value]);
-
-  React.useEffect(() => {
-    const value = movieSearchInput.value;
-    setSearchValue(value);
-  }, [movieSearchInput.value]);
-
-  React.useEffect(() => {
-    const value = tvSearchInput.value;
-    setSearchValue(value);
-  }, [tvSearchInput.value]);
 
   if (prevType !== searchType) {
     setPrevType(searchType);
@@ -60,8 +40,8 @@ export default function Serch() {
       onChange: contentSearchInput.onChange,
       type: contentSearchInput.type,
       isActive: contentSearchInput.isEmpty,
-      isLoading: isContentsLoading,
-      contents: contents,
+      isLoading: searchContents.isLoading,
+      contents: searchContents.data,
     },
     {
       label: SEARCH_INPUT[1],
@@ -69,8 +49,8 @@ export default function Serch() {
       onChange: movieSearchInput.onChange,
       type: movieSearchInput.type,
       isActive: movieSearchInput.isEmpty,
-      isLoading: isMoviesLoading,
-      contents: movies,
+      isLoading: searchContents.isLoading,
+      contents: searchContents.data,
     },
     {
       label: SEARCH_INPUT[2],
@@ -78,8 +58,8 @@ export default function Serch() {
       onChange: tvSearchInput.onChange,
       type: tvSearchInput.type,
       isActive: tvSearchInput.isEmpty,
-      isLoading: isTvsLoading,
-      contents: tvs,
+      isLoading: searchContents.isLoading,
+      contents: searchContents.data,
     },
   ];
 

@@ -13,11 +13,26 @@ const Header = () => {
   const logoutHandler = () => {
     mutate(getCookie('refreshToken'));
   };
+  const [isHeaderBackground, setIsHeaderBackground] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 100) {
+        setIsHeaderBackground(false);
+      } else {
+        setIsHeaderBackground(true);
+      }
+    });
+    console.log(isHeaderBackground);
+  }, [window.scrollY]);
 
   return (
     <header
       className={cn(
-        `h-12 fixed top-0 left-0 right-0 p-3 flex items-center justify-center shadow-lg z-30 ${darkModeClasses}`,
+        `h-12 fixed top-0 left-0 right-0 p-3 flex items-center justify-center z-30 transition-all ${darkModeClasses} ${
+          isHeaderBackground && 'bg-opacity-0'
+        }`,
       )}
     >
       <nav className='flex justify-around gap-3 w-10/12 transition-all'>

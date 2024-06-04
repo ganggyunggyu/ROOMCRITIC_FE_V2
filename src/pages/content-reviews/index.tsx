@@ -4,7 +4,7 @@ import ResponsiveProvider from '../ui/ResponsiveProvider';
 
 const index: React.FC = () => {
   return (
-    <ResponsiveProvider direction='col'>
+    <ResponsiveProvider direction='col' className='pt-20'>
       <ContentReviews />
     </ResponsiveProvider>
   );

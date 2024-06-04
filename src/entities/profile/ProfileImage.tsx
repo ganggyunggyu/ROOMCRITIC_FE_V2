@@ -27,8 +27,8 @@ const ProfileImage = () => {
         <Button
           onClick={redirectSettiong}
           item={<SettingIcon />}
-          bg='main'
           className={'h-12 w-12'}
+          variant='icon'
         />
       )}
     </div>

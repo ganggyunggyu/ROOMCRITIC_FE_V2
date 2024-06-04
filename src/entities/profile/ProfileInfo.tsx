@@ -5,7 +5,6 @@ import Loading from '../../shared/ui/Loading';
 const ProfileInfo = () => {
   const { userIdParam = '' } = useParams();
   const { userInfo, isUserInfoLoading } = useUserInfoFetch(userIdParam);
-  console.log(userIdParam);
   if (isUserInfoLoading) return <Loading />;
   const { userInfo: info } = userInfo;
   return (
