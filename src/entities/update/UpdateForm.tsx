@@ -2,23 +2,18 @@ import React, { KeyboardEvent } from 'react';
 import Input from '../../shared/ui/Input';
 import { Button } from '../../shared/ui/button/button';
 import Loading from '../../shared/ui/Loading';
-
 import { useNavigate, useParams } from 'react-router-dom';
 import useReviewUpdate from '../../shared/hooks/review/useReviewUpdate';
 import { getGradeText } from '../../shared/lib/getGradeText';
 import StarsInput from '../../shared/ui/StarsInput';
-import useReviewDetail from '../../shared/hooks/review/useReviewDetail';
+import { useReviewDetail } from '../../features/review/hooks/hooks';
 
 export default function UpdateForm() {
   const { userIdParam = '', reviewIdParam = '' } = useParams();
   const navigator = useNavigate();
   const { mutate } = useReviewUpdate();
 
-  const {
-    isLoading: isReviewLoading,
-    data: review,
-    isSuccess,
-  } = useReviewDetail(userIdParam, reviewIdParam);
+  const { isLoading: isReviewLoading, data: review, isSuccess } = useReviewDetail();
   const [lineReview, setLineReview] = React.useState<string>(isSuccess ? review.lineReview : '');
   const [grade, setGrade] = React.useState<number>(isSuccess ? review.grade : 3);
 
@@ -39,7 +34,7 @@ export default function UpdateForm() {
     mutate(reviewUpdateDTO, {
       onSuccess: () => {
         console.log('수정 성공');
-        navigator(`/detail/review/${reviewUpdateDTO.userId}/${reviewUpdateDTO.reviewId}`);
+        navigator(`/review/${reviewUpdateDTO.reviewId}/${reviewUpdateDTO.userId}`);
       },
     });
   };
@@ -72,7 +67,7 @@ export default function UpdateForm() {
         />
         <Button
           label={'수정'}
-          bg={'main'}
+          variant={'main'}
           onClick={updateMutate}
           className='absolute right-0 top-3'
         />

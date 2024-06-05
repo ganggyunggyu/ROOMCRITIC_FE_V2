@@ -1,9 +1,9 @@
 import React from 'react';
 import useLogout from '../shared/hooks/auth/useLogout';
 import { useAppDispatch, useAppSelector } from '../app/store';
-import { clearCookie, getCookie, setCookie } from '../shared/lib/cookie';
+import { clearCookie, getCookie } from '../shared/lib/cookie';
 import { axiosConfig } from './axios-config';
-import { setAccessToken, setRefreshTokenExp } from '../app/store/slice/tokenSlice';
+import { setAccessToken } from '../app/store/slice/tokenSlice';
 import { setIsLoggedIn, setUserInfo } from '../app/store/slice/userSlice';
 
 const Interceptor = ({ children }) => {
@@ -14,9 +14,9 @@ const Interceptor = ({ children }) => {
   const { userInfo } = useAppSelector((state) => state.user);
   const { mutate: logout } = useLogout();
 
-  console.log('current status');
-  console.log('accessToken:', accessToken);
-  console.log('userInfo:', userInfo);
+  console.debug('current status');
+  console.debug('accessToken:', accessToken);
+  console.debug('userInfo:', userInfo);
 
   const fetchLoginStatus = async () => {
     const result = await axiosConfig.get('/user/login-check');
@@ -31,7 +31,7 @@ const Interceptor = ({ children }) => {
 
   const refreshAccessToken = async (refreshToken: string) => {
     try {
-      console.log('401 응답 에러 오류 발생 리프레시 토큰 재발급 시작');
+      console.debug('401 응답 에러 오류 발생 리프레시 토큰 재발급 시작');
       if (!refreshToken) {
         throw new Error('리프레시 토큰 없음');
       }
@@ -40,7 +40,7 @@ const Interceptor = ({ children }) => {
 
       const accessToken = response.data.accessToken;
       dispatch(setAccessToken(accessToken));
-      console.log('엑세스 토큰 재발급 성공');
+      console.debug('엑세스 토큰 재발급 성공');
       return accessToken;
     } catch (error) {
       console.error('accessToken 재발급 실패', error);
@@ -55,15 +55,6 @@ const Interceptor = ({ children }) => {
       throw new Error('Failed to refresh token');
     }
   };
-  const reissueRefreshToken = async (refreshToken: string) => {
-    try {
-      const result = axiosConfig.post('/user/auth/refresh-token', { refreshToken });
-      return result;
-    } catch (error) {
-      console.error('리프레시 토큰 재발급 실패', error);
-      throw Error(error);
-    }
-  };
 
   React.useEffect(() => {
     const requestInterceptor = axiosConfig.interceptors.request.use(
@@ -74,7 +65,7 @@ const Interceptor = ({ children }) => {
         return config;
       },
       (error) => {
-        console.log(error);
+        console.debug(error);
       },
     );
 
@@ -85,17 +76,17 @@ const Interceptor = ({ children }) => {
         if (error.response && error.response.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
           try {
-            console.log('Attempting to refresh access token');
+            console.debug('Attempting to refresh access token');
             const newAccessToken = await refreshAccessToken(refreshToken);
             originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
-            console.log('Access token refreshed successfully');
+            console.debug('Access token refreshed successfully');
             const fetchInfo = await fetchLoginStatus();
-            console.log('Fetch login status:', fetchInfo);
+            console.debug('Fetch login status:', fetchInfo);
 
             return axiosConfig(originalRequest);
           } catch (refreshError) {
-            console.log('Failed to refresh access token');
+            console.debug('Failed to refresh access token');
             clearCookie('refreshToken');
 
             logout(refreshToken);
@@ -114,23 +105,8 @@ const Interceptor = ({ children }) => {
 
   const init = async () => {
     if (refreshToken) {
-      // const result = await reissueRefreshToken(refreshToken);
-      // console.log(result);
-      // if (result.status === 201) {
-      //   console.log(result);
-      // const { refresh_token, access_token } = result.data;
-      // clearCookie('refreshToken');
-      // setCookie('refreshToken', refresh_token.refresh_token);
-      // dispatch(setRefreshTokenExp(refresh_token.tokenExp));
-      // dispatch(setAccessToken(access_token));
-      // const fetchInfo = await fetchLoginStatus();
-      // console.log('새로 패치 된 유저 정보:', fetchInfo);
-      // dispatch(setUserInfo(fetchInfo));
-      // dispatch(setIsLoggedIn(fetchInfo.isLoggedIn));
-      // } else {
-      // }
       const fetchInfo = await fetchLoginStatus();
-      console.log('새로 패치 된 유저 정보:', fetchInfo);
+      console.debug('새로 패치 된 유저 정보:', fetchInfo);
       dispatch(setUserInfo(fetchInfo));
       dispatch(setIsLoggedIn(fetchInfo.isLoggedIn));
     }
