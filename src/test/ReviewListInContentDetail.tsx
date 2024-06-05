@@ -31,13 +31,12 @@ const ReviewListInContentDetail: React.FC<ReviewListProps> = ({ contentTitle, re
         {contentTitle}에 남겨진 리뷰들
         <Button
           onClick={() => {
-            navigate(`/content/reviews/${reviews[0]._id}`);
+            navigate(`/content/reviews/${reviews[0].contentId}`);
           }}
           label='더 보기'
-          bg='main'
+          variant='main'
           className='absolute right-0 top-0'
         />
-        {/* <Link to={`/content/reviews/${reviews[0].contentId}`}>더 보기</Link> */}
       </p>
       <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-3 gap-y-10'>
         {reviews.map((review) => (
