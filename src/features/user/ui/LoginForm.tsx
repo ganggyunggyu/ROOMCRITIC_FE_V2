@@ -2,13 +2,13 @@ import { KeyboardEvent } from 'react';
 import { Button } from '../../../shared/ui';
 import Input from '../../../shared/ui/Input';
 import { useNavigate } from 'react-router-dom';
-import useLogin from '../../../shared/hooks/auth/useLogin';
 import useFormInput from '../../../shared/hooks/common/useFormInput';
 import { isEmail, isPassword } from '../../../shared/lib';
+import { Auth } from '../..';
 
 export const LoginForm = () => {
   const navigator = useNavigate();
-  const { mutate, isError, error } = useLogin();
+  const { mutate, isError, error } = Auth.H.useLogin();
   const [emailInput, passwordInput] = [useFormInput(''), useFormInput('')];
 
   const LoginInputs = [
@@ -75,12 +75,12 @@ export const LoginForm = () => {
       {isError && <p className='py-3 text-red-400'>{error.message}</p>}
       <Button
         label={'로그인'}
-        bg={isLoginAble ? 'main' : 'disable'}
+        variant={isLoginAble ? 'main' : 'disable'}
         disabled={!isLoginAble}
         onClick={submitLogin}
       />
-      <Button label={'테스트 로그인'} bg={'main'} onClick={testLogin} />
-      <Button label={'회원가입'} bg={'main'} onClick={directJoin} />
+      <Button label={'테스트 로그인'} variant={'main'} onClick={testLogin} />
+      <Button label={'회원가입'} variant={'main'} onClick={directJoin} />
     </form>
   );
 };

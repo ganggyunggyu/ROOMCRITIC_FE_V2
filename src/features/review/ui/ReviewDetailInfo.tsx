@@ -1,19 +1,14 @@
 import React from 'react';
 import Stars from '../../../shared/ui/Stars';
-import { Link, useParams } from 'react-router-dom';
-import useReviewDetail from '../../../shared/hooks/review/useReviewDetail';
+import { Link } from 'react-router-dom';
 import { formatMinute } from '../../../shared/lib';
 import { useAppDispatch } from '../../../app/store';
 import { setBackgroundPath } from '../../../app/store/slice/backgroundPath';
+import { useReviewDetail } from '../api/hooks';
 
-export default function ReviewDetailInfo() {
-  const { userIdParam, reviewIdParam } = useParams();
+export function ReviewDetailInfo() {
   const dispatch = useAppDispatch();
-  const {
-    isLoading: isReviewLoading,
-    data: review,
-    isSuccess,
-  } = useReviewDetail(userIdParam, reviewIdParam);
+  const { isLoading: isReviewLoading, data: review, isSuccess } = useReviewDetail();
 
   React.useEffect(() => {
     if (isSuccess && review) {
@@ -31,7 +26,7 @@ export default function ReviewDetailInfo() {
     return (
       <React.Fragment>
         <Link className='z-20' to={`/profile/${review.userId}`}>
-          {review.userName}님의 {review.contentName} 리뷰
+          {review.userName}님의 {review.title} 리뷰
         </Link>
         <p>{formattedDateEnd} 작성</p>
         <p className='border border-b-4 p-2 text-center leading-loose text-3xl md:text-5xl'>

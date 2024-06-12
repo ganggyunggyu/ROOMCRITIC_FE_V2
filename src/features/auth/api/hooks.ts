@@ -1,36 +1,65 @@
 import { useMutation } from '@tanstack/react-query';
-import { submitJoin, submitLogin } from './api';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../app/store';
-import { setIsLoggedIn, setUserInfo } from '../../../app/store/slice/userSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
+import { setClearAuth, setIsLoggedIn, setUserInfo } from '../../../app/store/slice/userSlice';
+import { setAccessToken, setRefreshTokenExp } from '../../../app/store/slice/tokenSlice';
+import { clearCookie, setCookie } from '../../../shared/lib/cookie';
 
-export const useAuth = () => {
+import * as A from './api';
+
+export const useJoin = () => {
+  return useMutation({
+    mutationKey: ['join'],
+    mutationFn: A.submitJoin,
+  });
+};
+
+export const useLogin = () => {
   const navigator = useNavigate();
   const dispatch = useAppDispatch();
+  const { prevPathName } = useAppSelector((state) => state.prevPathName);
 
-  const join = useMutation({
-    mutationKey: ['join'],
-    mutationFn: submitJoin,
-  });
-
-  const login = useMutation({
+  return useMutation({
     mutationKey: ['login'],
-    mutationFn: submitLogin,
+    mutationFn: A.submitLogin,
+
     onSuccess: (result) => {
       const userInfo = result.data.userInfo;
       const isLoggedIn = result.data.isLoggedIn;
+      const accessToken = result.data.accessToken;
+      const refreshToken = result.data.refreshToken.refreshToken;
+      const refreshTokenExp = result.data.refreshToken.refreshTokenExp;
+
+      console.log(result);
       dispatch(setIsLoggedIn(isLoggedIn));
       dispatch(setUserInfo(userInfo));
-      navigator('/');
-      console.log(result);
+      dispatch(setAccessToken(accessToken));
+      dispatch(setRefreshTokenExp(refreshTokenExp));
+      setCookie('refreshToken', refreshToken);
+
+      navigator(prevPathName);
     },
     onError: (error) => {
       throw error;
     },
     onSettled: (error) => {
-      console.error(error);
+      throw error;
     },
   });
+};
 
-  return { join, login };
+export const useLogout = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  return useMutation({
+    mutationFn: A.submitLogout,
+    onSuccess: () => {
+      navigate('/');
+      dispatch(() => setClearAuth());
+      clearCookie('refreshToken');
+
+      window.location.reload();
+    },
+  });
 };

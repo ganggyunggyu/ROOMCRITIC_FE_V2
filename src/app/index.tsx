@@ -6,7 +6,7 @@ import DarkModeButton from './dark-mode-button';
 import Routing from '../pages';
 import ErrorProvider from './error-provider';
 import Fullback from './full-back';
-import DetailBackground from '../pages/ui/DetailBackground';
+import { DetailBackground } from '../pages/ui';
 import { useAppSelector } from './store';
 import { AppProvider } from './app-provider';
 import { ErrorBoundary } from 'react-error-boundary';

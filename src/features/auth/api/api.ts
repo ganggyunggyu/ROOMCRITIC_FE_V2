@@ -1,10 +1,22 @@
-import { JoinRequestDTO, LoginRequestDTO } from '../../../app/types/dtos';
 import { axiosConfig } from '../../../test/axios-config';
-// import AxiosConfig from '../../../config/axios-config';
 
-export const submitJoin = async (joinUserDTO: JoinRequestDTO) => {
+export const getAccessToken = async (userId: string, refreshToken: string) => {
   try {
-    const result = await axiosConfig.post('/auth/join', {
+    const result = await axiosConfig.post('user/auth/access-token', { userId, refreshToken });
+    if (result.status === 200) {
+      return result;
+    }
+    if (result.status === 201) {
+      return result;
+    }
+  } catch (error) {
+    console.error('fetchLoginERROR !!', error);
+  }
+};
+
+export const submitJoin = async (joinUserDTO) => {
+  try {
+    const result = await axiosConfig.post('/user/join', {
       ...joinUserDTO,
     });
     return result;
@@ -13,13 +25,22 @@ export const submitJoin = async (joinUserDTO: JoinRequestDTO) => {
   }
 };
 
-export const submitLogin = async (loginUserDTO: LoginRequestDTO) => {
+export const submitLogin = async (loginUserDTO) => {
   try {
-    const result = await axiosConfig.post('/auth/login', loginUserDTO);
-    console.debug(result);
+    const result = await axiosConfig.post('/user/auth/login', loginUserDTO);
+    // console.debug(result);
     return result;
   } catch (error) {
     console.debug(error);
     throw Error(error.response.data);
+  }
+};
+
+export const submitLogout = async (refreshToken: string) => {
+  try {
+    const result = await axiosConfig.post('user/auth/logout', { refreshToken });
+    return result;
+  } catch (err) {
+    console.error(err);
   }
 };

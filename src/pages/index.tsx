@@ -46,8 +46,8 @@ const Routing: React.FC = () => {
         <Route path='/searches' element={<SearchesPage />} />
         <Route path='/content/:contentIdParam' element={<ContentDetailPage />} />
         <Route path='/content/reviews/:contentIdParam' element={<ContentReviews />} />
-        <Route path='/detail/review/:userIdParam/:reviewIdParam' element={<ReviewDetailPage />} />
-        <Route path='/update/:userIdParam/:reviewIdParam' element={<UpdatePage />} />
+        <Route path='/review/:reviewIdParam/:userIdParam' element={<ReviewDetailPage />} />
+        <Route path='/review/update/:reviewIdParam/:userIdParam' element={<UpdatePage />} />
         <Route path='*' element={<Navigate to={'/'} />} />
       </Routes>
     </AnimatePresence>

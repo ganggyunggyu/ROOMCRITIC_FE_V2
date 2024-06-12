@@ -1,14 +1,15 @@
 import { Button } from '../../../shared/ui';
 import Input from '../../../shared/ui/Input';
-import useJoin from '../../../shared/hooks/auth/useJoin';
+import useFormInput from '../../../shared/hooks/common/useFormInput';
+
 import { isSame, isTrim } from '../../../shared/lib/regs';
 import { useNavigate } from 'react-router-dom';
-import useFormInput from '../../../shared/hooks/common/useFormInput';
 import { isEmail, isPassword, isPhoneNumber } from '../../../shared/lib';
+import { Auth } from '../..';
 
 export const JoinForm = () => {
   const navigator = useNavigate();
-  const { mutate, data, isSuccess } = useJoin();
+  const { mutate, data, isSuccess } = Auth.H.useJoin();
 
   const [emailInput, passwordInput, confirmPasswordInput, displayNameInput, phoneNumberInput] = [
     useFormInput(''),
@@ -106,7 +107,7 @@ export const JoinForm = () => {
         onClick={handleJoin}
         disabled={!activeJoin}
         label={'회원가입'}
-        bg={activeJoin ? 'main' : 'disable'}
+        variant={activeJoin ? 'main' : 'disable'}
         className='mt-5'
       />
     </form>

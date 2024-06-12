@@ -1,17 +1,22 @@
 import React, { ChangeEvent } from 'react';
 
+export const getContentType = (typeNumber) => {
+  if (typeNumber === 0) return 'all';
+  if (typeNumber === 1) return 'movie';
+  if (typeNumber === 2) return 'tv';
+};
+
 const useSearchInput = (initialValue: string, initalType: number) => {
-  //0 전체 검색
-  //1 영화
-  //2 TV
   const [value, setValue] = React.useState(initialValue);
   const type = initalType;
+  const typeName = getContentType(initalType);
   const isEmpty = value.length === 0;
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
-  return { value, type, setValue, isEmpty, onChange: handleChange };
+  return { value, type, typeName, setValue, isEmpty, onChange: handleChange };
 };
 
 export default useSearchInput;
