@@ -1,14 +1,15 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { getPopularContent, getLatestContent, getSearchContent, getContentByOne } from './api';
 import { useAppDispatch } from '../../../app/store';
 import useSearchInput from '../../../shared/hooks/common/useSearchInput';
 import { setSearchContents } from '../../../app/store/slice/searchSlice';
+
+import * as A from './api';
 
 export const usePopularContentQuery = (contentType?: string) => {
   const t = contentType ? contentType : null;
   return useInfiniteQuery({
     queryKey: ['popularContent'],
-    queryFn: ({ pageParam }) => getPopularContent(pageParam, t),
+    queryFn: ({ pageParam }) => A.getPopularContent(pageParam, t),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages, allPages) => {
       return allPages + 10;
@@ -21,7 +22,7 @@ export const useLatestContentQuery = (contentType?: string) => {
   const t = contentType ? contentType : null;
   return useInfiniteQuery({
     queryKey: ['latestContent'],
-    queryFn: ({ pageParam }) => getLatestContent(pageParam, t),
+    queryFn: ({ pageParam }) => A.getLatestContent(pageParam, t),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages, allPages) => {
       return allPages + 10;
@@ -41,15 +42,15 @@ export const useSearchContentQuery = (searchType: number) => {
     queryFn: () => {
       if (searchType === 0) {
         if (!contentSearchInput.value) return null;
-        return getSearchContent(contentSearchInput.value, contentSearchInput.typeName);
+        return A.getSearchContent(contentSearchInput.value, contentSearchInput.typeName);
       }
       if (searchType === 1) {
         if (!movieSearchInput.value) return null;
-        return getSearchContent(movieSearchInput.value, movieSearchInput.typeName);
+        return A.getSearchContent(movieSearchInput.value, movieSearchInput.typeName);
       }
       if (searchType === 2) {
         if (!contentSearchInput.value) return null;
-        return getSearchContent(contentSearchInput.value, tvSearchInput.typeName);
+        return A.getSearchContent(contentSearchInput.value, tvSearchInput.typeName);
       }
     },
     select: (data) => {
@@ -69,7 +70,7 @@ export const useSearchContentQuery = (searchType: number) => {
 export const useContentFetch = (contentId: string) => {
   return useQuery({
     queryKey: ['content', contentId],
-    queryFn: () => getContentByOne(contentId),
+    queryFn: () => A.getContentByOne(contentId),
     select: (data) => {
       return data.data;
     },
