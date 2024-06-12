@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { formatMinute } from '../../../shared/lib';
 import { useAppDispatch } from '../../../app/store';
 import { setBackgroundPath } from '../../../app/store/slice/backgroundPath';
-import { useReviewDetail } from '../hooks/hooks';
+import { useReviewDetail } from '../api/hooks';
 
-export default function ReviewDetailInfo() {
+export function ReviewDetailInfo() {
   const dispatch = useAppDispatch();
   const { isLoading: isReviewLoading, data: review, isSuccess } = useReviewDetail();
 

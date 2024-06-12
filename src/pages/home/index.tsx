@@ -1,13 +1,11 @@
-import React from 'react';
-import Banner from '../../entities/banner/Banner';
-import CategoryContents from '../../features/content/ui/CategoryContents';
-import ResponsiveProvider from '../ui/ResponsiveProvider';
+import { ResponsiveProvider, Banner } from '../ui/index';
+import { Category } from '../../features/content/ui';
 
 export default function Home() {
   return (
     <ResponsiveProvider direction='col'>
       <Banner />
-      <CategoryContents />
+      <Category />
     </ResponsiveProvider>
   );
 }

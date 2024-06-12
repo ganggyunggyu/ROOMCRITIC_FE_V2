@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
 import { store } from './app/store/index.ts';
-import { Interceptor } from './test/Interceptor.tsx';
+import { Interceptor } from './app/axios-interceptor';
 
 const queryClient = new QueryClient();
 

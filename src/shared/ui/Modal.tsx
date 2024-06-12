@@ -76,10 +76,10 @@ const Modal = ({ isModal, setIsModal }) => {
           <p className='text-xl p-5 text-blue-400'>나가주세요</p>
 
           <div className='flex gap-3'>
-            <Button label='닫기' bg={'alert'} onClick={() => setIsModal(false)} />
+            <Button label='닫기' variant={'alert'} onClick={() => setIsModal(false)} />
             <Button
               label='나가기'
-              bg={'main'}
+              variant={'main'}
               onClick={() => (window.location.href = 'https://www.naver.com')}
             />
           </div>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { useIntersectionObserver } from '../../../shared/hooks/common/useIntersectionObserver';
-import { ReviewCard } from '../../../entities/review/ui/ReviewCard';
-import { TReview } from '../../../app/types/main';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
+
+import { useIntersectionObserver } from '../../../shared/hooks/common/useIntersectionObserver';
+import { TReview } from '../../../app/types/main';
 import { cn } from '../../../shared/lib/cn';
+import { Review } from '../../../entities';
 
 type ReviewInfinityListProps = {
   query: () => InfiniteQueryObserverResult<TReview[][]>;
@@ -31,7 +32,7 @@ export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({
             return group ? (
               <React.Fragment key={i}>
                 {group.map((review: TReview) => {
-                  return <ReviewCard review={review} key={review._id} className='w-full h-72' />;
+                  return <Review.U.Card review={review} key={review._id} className='w-full h-72' />;
                 })}
               </React.Fragment>
             ) : (

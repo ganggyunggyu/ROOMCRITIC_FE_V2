@@ -1,11 +1,14 @@
 import React from 'react';
-import ResponsiveProvider from '../ui/ResponsiveProvider';
-import SearchInput from '../../entities/search/SearchInput';
-import SearchContents from '../../entities/search/SearchContents';
-import { SearchButton } from '../../entities/search/SearchButton';
+import { ResponsiveProvider } from '../ui';
+
+import { SearchInput } from '../../entities/content/ui/SearchInput';
+import { SearchButton } from '../../entities/content/ui/SearchButton';
+
 import { SEARCH_INPUT, SEARCH_BUTTON } from '../../../constant/SEARCH_LABEL';
 import { AuthError } from '../error';
 import { useSearchContentQuery } from '../../features/content/api/hooks';
+import { Content } from '../../entities';
+
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
@@ -87,7 +90,7 @@ export default function Serch() {
                   value={searchConfig.value}
                   onChange={searchConfig.onChange}
                 />
-                <SearchContents
+                <Content.U.SearchContents
                   isActive={searchConfig.isActive}
                   isLoading={searchConfig.isLoading}
                   contents={searchConfig.contents}

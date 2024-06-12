@@ -1,16 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
-import ContentInfo from '../../entities/content-detail/ContentInfo';
-import ContentDetailActions from '../../entities/content-detail/ContentDetailActions';
-import ResponsiveProvider from '../ui/ResponsiveProvider';
-import CartegofyContents from '../../features/content/ui/CategoryContents';
-import { ContentVideo } from '../../entities/content-detail/ContentVideo';
+import { ResponsiveProvider } from '../ui';
 import { useAppDispatch } from '../../app/store';
 import { setBackgroundPath } from '../../app/store/slice/backgroundPath';
 import { useContentFetch } from '../../features/content/api/hooks';
-import ReviewListInContentDetail from '../../test/ReviewListInContentDetail';
-import { useReviewByContentTemp } from '../../features/review/hooks/hooks';
+
+import { Content, Review } from '../../features';
 
 export default function ContentDetail() {
   const { contentIdParam = '' } = useParams();
@@ -21,7 +16,7 @@ export default function ContentDetail() {
     data: result,
     refetch: contentRefetch,
   } = useContentFetch(contentIdParam);
-  const { data: reviews, isLoading: isReviewLoading } = useReviewByContentTemp(contentIdParam);
+  const { data: reviews, isLoading: isReviewLoading } = Review.H.useReviewByContentTemp();
 
   React.useEffect(() => {
     if (!isContentLoading && result.content) {
@@ -42,14 +37,14 @@ export default function ContentDetail() {
     const { content } = result;
     return (
       <ResponsiveProvider direction={'col'} className={'gap-10'}>
-        <ContentVideo type={content.contentType} id={content.id} />
-        <ContentInfo content={content} />
-        <ContentDetailActions isLoading={isContentLoading} content={content} />
+        <Content.U.Video type={content.contentType} id={content.id} />
+        <Content.U.Info content={content} />
+        <Content.U.Action isLoading={isContentLoading} content={content} />
         {reviews.length === 0 && <p className='pt-10 text-lg'>남겨진 리뷰가 없어요 🥲</p>}
         {reviews.length !== 0 && (
-          <ReviewListInContentDetail contentTitle={content.title} reviews={reviews} />
+          <Review.U.ReviewListInContentDetail contentTitle={content.title} reviews={reviews} />
         )}
-        <CartegofyContents />
+        <Content.U.Category />
       </ResponsiveProvider>
     );
   }

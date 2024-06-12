@@ -1,11 +1,11 @@
 import React from 'react';
-import { ContentReviews } from '../../features/content/ui/ContentReviews';
-import ResponsiveProvider from '../ui/ResponsiveProvider';
+import { ResponsiveProvider } from '../ui';
+import { Review } from '../../features';
 
 const index: React.FC = () => {
   return (
     <ResponsiveProvider direction='col' className='pt-20'>
-      <ContentReviews />
+      <Review.U.ContentReviews />
     </ResponsiveProvider>
   );
 };

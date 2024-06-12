@@ -1,6 +1,7 @@
-import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import React from 'react';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useAppDispatch } from '../../app/store';
 import { setBackgroundPath } from '../../app/store/slice/backgroundPath';
 
@@ -8,7 +9,7 @@ type DetailBackgroundProps = {
   path: string | null;
 };
 
-const DetailBackground: React.FC<DetailBackgroundProps> = ({ path }) => {
+export const DetailBackground: React.FC<DetailBackgroundProps> = ({ path }) => {
   const dispath = useAppDispatch();
   React.useEffect(() => {
     dispath(setBackgroundPath(path));
@@ -19,7 +20,7 @@ const DetailBackground: React.FC<DetailBackgroundProps> = ({ path }) => {
       <div className='fixed opacity-20 w-screen video transition-all top-0'>
         <LazyLoadImage
           key={path}
-          className='w-screen h-1/2 -z-10'
+          className='w-screen h-screen -z-10'
           src={`https://www.themoviedb.org/t/p/original/${path}`}
           loading='lazy'
           effect='blur'
@@ -30,4 +31,3 @@ const DetailBackground: React.FC<DetailBackgroundProps> = ({ path }) => {
     );
   }
 };
-export default DetailBackground;

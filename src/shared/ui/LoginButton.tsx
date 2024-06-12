@@ -6,7 +6,7 @@ export default function LoginButton() {
   return (
     <Button
       label={'로그인하고 리뷰 써요!'}
-      bg='main'
+      variant='main'
       className='w-full text-lg'
       onClick={() => navigator(`/login`)}
     />

@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../store';
 import { getCookie } from '../../shared/lib/cookie';
 import { cn } from '../../shared/lib/cn';
-
-import useLogout from '../../shared/hooks/auth/useLogout';
+import { Auth } from '../../features';
 
 const Header = () => {
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
   const { darkModeClasses } = useAppSelector((state) => state.darkMode);
-  const { mutate } = useLogout();
+  const { mutate } = Auth.H.useLogout();
   const logoutHandler = () => {
     mutate(getCookie('refreshToken'));
   };
@@ -31,7 +30,7 @@ const Header = () => {
     <header
       className={cn(
         `h-12 fixed top-0 left-0 right-0 p-3 flex items-center justify-center z-30 transition-all ${darkModeClasses} ${
-          isHeaderBackground && 'bg-opacity-0'
+          isHeaderBackground && 'bg-opacity-0 text-white'
         }`,
       )}
     >

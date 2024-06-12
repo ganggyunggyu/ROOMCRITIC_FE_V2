@@ -17,7 +17,7 @@ type ResponsiveProviderProps = {
   direction: 'col' | 'row'; // 'col' 또는 'row' 중 하나여야 함
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
+export const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
   children,
   direction,
   className,
@@ -58,4 +58,3 @@ const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
     );
   }
 };
-export default ResponsiveProvider;

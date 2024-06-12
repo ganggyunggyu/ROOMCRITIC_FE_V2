@@ -1,7 +1,7 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../shared/ui';
 import { useAppSelector } from '../../app/store';
-import React from 'react';
 
 export const AuthError = ({ children }) => {
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ export const AuthError = ({ children }) => {
         <h1 className='text-3xl font-bold text-red-600'>로그인이 필요한 작업입니다.</h1>
         <p className='text-lg text-gray-200'>아래의 버튼을 눌러 로그인을 먼저 해주십시오.</p>
         <div className='flex gap-5'>
-          <Button bg='main' label='로그인' onClick={redirectLogin} />
-          <Button bg='main' label='회원가입' onClick={redirectJoin} />
+          <Button variant='main' label='로그인' onClick={redirectLogin} />
+          <Button variant='main' label='회원가입' onClick={redirectJoin} />
         </div>
       </div>
     );

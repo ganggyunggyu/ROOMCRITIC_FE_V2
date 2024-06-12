@@ -1,41 +1,45 @@
 export type TContent = {
-  adult: boolean;
-  backdrop_path: string;
-  content_type: string;
-  genre_ids: number[];
   id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: Date;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
   _id: string;
+  title?: string;
+  contentName?: string;
+  releaseDate: string;
+  grade?: number;
+  voteAverage: number;
+  userName?: string;
+  contentPosterImg?: string;
+  posterPath?: string;
+  backdropPath?: string;
+  contentType?: string;
 };
 export type TReview = {
-  review: string;
+  _id: string;
+  userId: string;
+  contentId: string;
+  userName: string;
+  lineReview: string;
+  longReview?: string;
+  grade: number;
+  contentPosterImg: string;
+  contentBackdropImg: string;
+  contentName: string;
+  contentType: string;
+  like?: number;
 };
 
 export type TCardContent = {
   id: number;
   _id: string;
   title?: string;
-  userId?: string;
   contentName?: string;
-  // release_date: Date | string;
-  release_date: string;
-  lineReview?: string;
+  releaseDate: string;
   grade?: number;
-  vote_average: number;
+  voteAverage: number;
   userName?: string;
   contentPosterImg?: string;
-  poster_path?: string;
-  backdrop_path?: string;
-  content_type?: string;
+  posterPath?: string;
+  backdropPath?: string;
+  contentType?: string;
 };
 
 export type TUserInfo = {

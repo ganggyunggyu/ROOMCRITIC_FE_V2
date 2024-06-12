@@ -1,6 +1,6 @@
-import React from 'react';
-import ResponsiveProvider from '../ui/ResponsiveProvider';
-import UpdateForm from '../../entities/update/UpdateForm';
+import { ResponsiveProvider } from '../ui';
+import { UpdateForm } from '../../features/review/ui';
+
 export default function Update() {
   return (
     <ResponsiveProvider direction='col' className='gap-5 pt-10'>
