@@ -2,7 +2,7 @@ import React from 'react';
 import { H } from '..';
 import { useParams } from 'react-router-dom';
 import { Button } from '../../../shared/ui';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 
 export const WishWatchAction: React.FC = () => {
   const { contentIdParam } = useParams();

@@ -1,6 +1,6 @@
 import { Button } from '../../../shared/ui';
 import Input from '../../../shared/ui/Input';
-import useFormInput from '../../../shared/hooks/common/useFormInput';
+import useFormInput from '../../../shared/hooks/useFormInput';
 
 import { isSame, isTrim } from '../../../shared/lib/regs';
 import { useNavigate } from 'react-router-dom';

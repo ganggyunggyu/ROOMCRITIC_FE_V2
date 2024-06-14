@@ -2,8 +2,8 @@ import React from 'react';
 import Stars from '../../../shared/ui/Stars';
 import { Link } from 'react-router-dom';
 import { formatMinute } from '../../../shared/lib';
-import { useAppDispatch } from '../../../app/store';
-import { setBackgroundPath } from '../../../app/store/slice/backgroundPath';
+import { useAppDispatch } from '../../../shared/store';
+import { setBackgroundPath } from '../../../shared/store/slice/backgroundPath';
 import { useReviewDetail } from '../api/hooks';
 
 export function ReviewDetailInfo() {

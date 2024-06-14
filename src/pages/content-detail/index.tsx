@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ResponsiveProvider } from '../ui';
-import { useAppDispatch } from '../../app/store';
-import { setBackgroundPath } from '../../app/store/slice/backgroundPath';
+import { useAppDispatch } from '../../shared/store';
+import { setBackgroundPath } from '../../shared/store/slice/backgroundPath';
 import { useContentFetch } from '../../features/content/api/hooks';
 
 import { Content, Review } from '../../features';

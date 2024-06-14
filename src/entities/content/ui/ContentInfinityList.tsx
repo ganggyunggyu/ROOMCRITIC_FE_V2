@@ -3,8 +3,8 @@ import Card from './card';
 import Loading from '../../../shared/ui/Loading';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import { cn } from '../../../shared/lib/cn';
-import { useIntersectionObserver } from '../../../shared/hooks/common/useIntersectionObserver';
-import { TCardContent } from '../../../app/types/main';
+import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
+import { TCardContent } from '../../../shared/types/main';
 import { ContentListButtons } from './ContentListButtons';
 type TInfinityContent = TCardContent[];
 type CardInfinityProviderProps = {

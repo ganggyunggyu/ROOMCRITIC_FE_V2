@@ -2,7 +2,7 @@ import { KeyboardEvent } from 'react';
 import { Button } from '../../../shared/ui';
 import Input from '../../../shared/ui/Input';
 import { useNavigate } from 'react-router-dom';
-import useFormInput from '../../../shared/hooks/common/useFormInput';
+import useFormInput from '../../../shared/hooks/useFormInput';
 import { isEmail, isPassword } from '../../../shared/lib';
 import { Auth } from '../..';
 

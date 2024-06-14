@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 import { Content } from '../../../entities';
 import { H } from '..';
 

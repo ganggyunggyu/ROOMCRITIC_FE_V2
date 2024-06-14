@@ -1,4 +1,4 @@
-import { axiosConfig } from '../../../test/axios-config';
+import { axiosConfig } from '../../../shared/api/axios-config';
 
 export const getUserInfo = async (userId: string) => {
   try {

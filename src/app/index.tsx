@@ -7,9 +7,9 @@ import Routing from '../pages';
 import ErrorProvider from './error-provider';
 import Fullback from './full-back';
 import { DetailBackground } from '../pages/ui';
-import { useAppSelector } from './store';
 import { AppProvider } from './app-provider';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useAppSelector } from '../shared/store';
 
 function App() {
   const { backgroundPath } = useAppSelector((state) => state.backgroundPath);

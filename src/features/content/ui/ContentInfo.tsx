@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../../shared/ui';
 
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 import { WishWatchAction } from '../../../entities/content/ui/WishWatchAction';
 import { Grade } from '../../../entities/review/ui/Grade';
 import { Overview } from '../../../entities/content/ui/Overview';

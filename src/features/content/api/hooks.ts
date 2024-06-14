@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { useAppDispatch } from '../../../app/store';
-import useSearchInput from '../../../shared/hooks/common/useSearchInput';
-import { setSearchContents } from '../../../app/store/slice/searchSlice';
+import { useAppDispatch } from '../../../shared/store';
+import useSearchInput from '../../../shared/hooks/useSearchInput';
+import { setSearchContents } from '../../../shared/store/slice/searchSlice';
 
 import * as A from './api';
 

@@ -1,5 +1,5 @@
 import { TMDB_TOKEN } from '../../../config/env-config';
-import { axiosConfig } from '../../../test/axios-config';
+import { axiosConfig } from '../../../shared/api/axios-config';
 
 export const getContentByOne = async (contentId: string) => {
   try {

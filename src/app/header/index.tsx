@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../store';
+import { useAppSelector } from '../../shared/store';
 import { getCookie } from '../../shared/lib/cookie';
 import { cn } from '../../shared/lib/cn';
 import { Auth } from '../../features';

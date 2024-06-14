@@ -2,7 +2,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useNavigate, useParams } from 'react-router-dom';
 import SettingIcon from '../../../shared/icons/SettingIcon';
 import { Button } from '../../../shared/ui';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 
 const ProfileImage = () => {
   const { isLoggedIn } = useAppSelector((state) => state.user);

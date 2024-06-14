@@ -2,8 +2,8 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import React from 'react';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useAppDispatch } from '../../app/store';
-import { setBackgroundPath } from '../../app/store/slice/backgroundPath';
+import { useAppDispatch } from '../../shared/store';
+import { setBackgroundPath } from '../../shared/store/slice/backgroundPath';
 
 type DetailBackgroundProps = {
   path: string | null;
