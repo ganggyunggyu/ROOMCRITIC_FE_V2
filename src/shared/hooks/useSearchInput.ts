@@ -6,7 +6,7 @@ export const getContentType = (typeNumber) => {
   if (typeNumber === 2) return 'tv';
 };
 
-const useSearchInput = (initialValue: string, initalType: number) => {
+export const useSearchInput = (initialValue: string, initalType: number) => {
   const [value, setValue] = React.useState(initialValue);
   const type = initalType;
   const typeName = getContentType(initalType);
@@ -18,5 +18,3 @@ const useSearchInput = (initialValue: string, initalType: number) => {
 
   return { value, type, typeName, setValue, isEmpty, onChange: handleChange };
 };
-
-export default useSearchInput;

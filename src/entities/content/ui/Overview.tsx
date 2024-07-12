@@ -10,7 +10,6 @@ export const Overview: React.FC<OverviewProps> = ({ overview }) => {
       {overview ? (
         <p className='leading-loose overflow-y-scroll'>
           {overview.split('다.').map((sentence, index) => {
-            console.log(sentence, index, overview.split('다.').length);
             if (overview.split('다.').length - 1 !== index) sentence = sentence + '다.';
 
             return (

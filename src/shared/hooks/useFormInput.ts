@@ -5,7 +5,7 @@ const useFormInput = (initialValue: string) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
-  
+
   return { value, setValue, onChange: handleChange };
 };
 
