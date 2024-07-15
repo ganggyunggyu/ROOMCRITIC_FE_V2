@@ -1,4 +1,4 @@
-import { axiosConfig } from '../../../test/axios-config';
+import { axiosConfig } from '../../../shared/api/axios-config';
 
 export const getAccessToken = async (userId: string, refreshToken: string) => {
   try {
@@ -28,7 +28,7 @@ export const submitJoin = async (joinUserDTO) => {
 export const submitLogin = async (loginUserDTO) => {
   try {
     const result = await axiosConfig.post('/user/auth/login', loginUserDTO);
-    // console.debug(result);
+    console.debug(result);
     return result;
   } catch (error) {
     console.debug(error);

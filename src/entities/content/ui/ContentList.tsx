@@ -3,7 +3,7 @@ import { cn } from '../../../shared/lib/cn';
 import Loading from '../../../shared/ui/Loading';
 import { ContentListButtons } from './ContentListButtons';
 import Card from './card';
-import { TCardContent } from '../../../app/types/main';
+import { TCardContent } from '../../../shared/types/main';
 
 type CardWrapProviderProps = {
   title: string;

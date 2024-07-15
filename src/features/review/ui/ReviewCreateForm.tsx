@@ -1,12 +1,11 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
 import Input from '../../../shared/ui/Input';
 import StarsInput from '../../../shared/ui/StarsInput';
-import useFormInput from '../../../shared/hooks/common/useFormInput';
+import useFormInput from '../../../shared/hooks/useFormInput';
 import { Button } from '../../../shared/ui/button/button';
 import { getGradeText } from '../../../shared/lib/getGradeText';
-import { TContent } from '../../../app/types/main';
-import { ReviewCreateDTO } from '../../../app/types/dtos';
-import { useAppSelector } from '../../../app/store';
+import { TContent } from '../../../shared/types/main';
+import { useAppSelector } from '../../../shared/store';
 import { H } from '..';
 
 interface CreateFormProps {
@@ -19,7 +18,7 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   const [grade, setGrade] = React.useState(0);
   const reviewInput = useFormInput('');
 
-  const reviewCreateDTO: ReviewCreateDTO = {
+  const reviewCreateDTO = {
     userId: userInfo._id,
     userName: userInfo.displayName,
     lineReview: reviewInput.value,

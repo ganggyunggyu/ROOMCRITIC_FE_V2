@@ -1,5 +1,5 @@
 import { TMDB_TOKEN } from '../../../config/env-config';
-import { axiosConfig } from '../../../test/axios-config';
+import { axiosConfig } from '../../../shared/api/axios-config';
 
 export const getContentByOne = async (contentId: string) => {
   try {
@@ -59,7 +59,6 @@ export const getVideo = async (type: string, id: number) => {
       throw new Error('네트워크 통신 에러');
     }
     const data = await response.json();
-    console.log(data);
     if (data.results.length === 0) throw Error('비디오 정보 없음');
 
     return data;

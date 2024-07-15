@@ -1,10 +1,11 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../store';
-import { clearCookie, getCookie } from '../../shared/lib/cookie';
-import { axiosConfig } from '../../test/axios-config';
-import { setAccessToken } from '../store/slice/tokenSlice';
-import { setIsLoggedIn, setUserInfo } from '../store/slice/userSlice';
+
 import { Auth } from '../../features';
+import { clearCookie, getCookie } from '../../shared/lib/cookie';
+import { axiosConfig } from '../../shared/api/axios-config';
+import { setAccessToken } from '../../shared/store/slice/tokenSlice';
+import { useAppDispatch, useAppSelector } from '../../shared/store';
+import { setIsLoggedIn, setUserInfo } from '../../shared/store/slice/userSlice';
 
 const Interceptor = ({ children }) => {
   const dispatch = useAppDispatch();

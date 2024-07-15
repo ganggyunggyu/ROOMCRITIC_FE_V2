@@ -1,8 +1,8 @@
 import React from 'react';
 import { useReviewByContent } from '../../review/api/hooks';
-import { useIntersectionObserver } from '../../../shared/hooks/common/useIntersectionObserver';
+import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
 
-import { TReview } from '../../../app/types/main';
+import { TReview } from '../../../shared/types/main';
 import { Review } from '../../../entities';
 
 export const ContentReviews: React.FC = () => {

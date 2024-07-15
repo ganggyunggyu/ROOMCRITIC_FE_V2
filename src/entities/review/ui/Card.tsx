@@ -1,5 +1,5 @@
 import React from 'react';
-import { TReview } from '../../../app/types/main';
+import { TReview } from '../../../shared/types/main';
 import { FaRegCommentAlt, FaRegThumbsUp, FaStar } from 'react-icons/fa';
 import { Button } from '../../../shared/ui';
 import { cn } from '../../../shared/lib/cn';

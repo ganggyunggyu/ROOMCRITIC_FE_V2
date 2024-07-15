@@ -1,4 +1,4 @@
-import { axiosConfig } from '../../../test/axios-config';
+import { axiosConfig } from '../../../shared/api/axios-config';
 
 export const getReviewByContentTemp = async (contentId) => {
   const result = await axiosConfig(`review/temp/${contentId}`);

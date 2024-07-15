@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../shared/ui';
-import { useAppSelector } from '../../app/store';
+import { useAppSelector } from '../../shared/store';
 
 export const AuthError = ({ children }) => {
   const navigate = useNavigate();

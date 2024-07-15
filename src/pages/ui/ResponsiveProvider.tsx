@@ -2,7 +2,8 @@ import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../shared/lib/cn';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useAppSelector } from '../../app/store';
+import { useAppSelector } from '../../shared/store';
+
 export const ResponsiveProviderVariants = cva(`w-10/12 flex`, {
   variants: {
     direction: {

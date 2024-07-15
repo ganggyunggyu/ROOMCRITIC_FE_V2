@@ -1,5 +1,4 @@
-import React from 'react';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 import Loading from '../../../shared/ui/Loading';
 import LoginButton from '../../../shared/ui/LoginButton';
 import CreateForm from '../../review/ui/ReviewCreateForm';

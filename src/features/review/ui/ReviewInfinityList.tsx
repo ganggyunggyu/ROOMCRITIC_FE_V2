@@ -1,8 +1,8 @@
 import React from 'react';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 
-import { useIntersectionObserver } from '../../../shared/hooks/common/useIntersectionObserver';
-import { TReview } from '../../../app/types/main';
+import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
+import { TReview } from '../../../shared/types/main';
 import { cn } from '../../../shared/lib/cn';
 import { Review } from '../../../entities';
 

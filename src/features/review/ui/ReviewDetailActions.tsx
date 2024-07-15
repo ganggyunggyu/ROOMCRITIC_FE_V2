@@ -2,7 +2,7 @@ import React from 'react';
 import { scrollToTop } from '../../../shared/lib/scrollToTop';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../../shared/ui';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 import { useReviewDelete, useReviewDetail } from '../api/hooks';
 
 export function ReviewDetailActions() {

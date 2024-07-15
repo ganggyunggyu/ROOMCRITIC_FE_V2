@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from '../../../shared/store';
 
 import * as A from './api';
 

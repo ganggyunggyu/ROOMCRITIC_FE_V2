@@ -2,7 +2,7 @@ import React from 'react';
 import CardImage from './CardImage';
 import CardHover from './CardHover';
 import CardInfo from './CardInfo';
-import { TCardContent } from '../../../../app/types/main';
+import { TCardContent } from '../../../../shared/types/main';
 import { useNavigate } from 'react-router-dom';
 import { formatMonth } from '../../../../shared/lib';
 

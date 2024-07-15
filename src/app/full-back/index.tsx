@@ -1,4 +1,4 @@
-import { useAppSelector } from '../store';
+import { useAppSelector } from '../../shared/store';
 import { DetailBackground } from '../../pages/ui';
 
 const Fullback = () => {

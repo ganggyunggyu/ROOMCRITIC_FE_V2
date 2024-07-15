@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
-import { store } from './app/store/index.ts';
 import { Interceptor } from './app/axios-interceptor';
+import { store } from './shared/store/index.ts';
 
 const queryClient = new QueryClient();
 
