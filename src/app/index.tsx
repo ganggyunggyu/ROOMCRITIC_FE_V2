@@ -1,6 +1,5 @@
 import './styles/App.css';
 import { Suspense } from 'react';
-import Footer from './footer';
 import Header from './header';
 import DarkModeButton from './dark-mode-button';
 import Routing from '../pages';
@@ -24,7 +23,6 @@ function App() {
         </Suspense>
       </ErrorBoundary>
       <DarkModeButton />
-      <Footer />
     </AppProvider>
   );
 }

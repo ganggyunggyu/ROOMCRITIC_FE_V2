@@ -1,5 +1,5 @@
 import React from 'react';
-import { BANNER_IMAGES } from '../../../../constant/BANNER_INFO';
+import { BANNER_IMAGES } from '@public/constant/BANNER_INFO';
 import LeftChevrom from '../../../shared/icons/LeftChevrom';
 import RightChevrom from '../../../shared/icons/RightChevrom';
 
@@ -8,10 +8,7 @@ type BannerBackgroundImageProps = {
   setBannerIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
-  bannerIndex,
-  setBannerIndex,
-}) => {
+const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({ bannerIndex, setBannerIndex }) => {
   const [carouselInterval, setCarouselInterval] = React.useState<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
@@ -54,13 +51,13 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
         minHeight: '250px',
       }}
     >
-      <div className='flex h-full justify-between items-center'>
+      <div className="flex h-full justify-between items-center">
         <button
           onClick={(e) => {
             prevBannerButton(e);
           }}
-          title='left-move-btn'
-          className='absolute left-0 top-0 bottom-0 flex items-center justify-center w-12 z-10'
+          title="left-move-btn"
+          className="absolute left-0 top-0 bottom-0 flex items-center justify-center w-12 z-10"
         >
           <LeftChevrom />
         </button>
@@ -68,13 +65,13 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
           onClick={(e) => {
             nextBannerButton(e);
           }}
-          title='right-move-btn'
-          className='absolute right-0 top-0 bottom-0 flex items-center justify-center w-12'
+          title="right-move-btn"
+          className="absolute right-0 top-0 bottom-0 flex items-center justify-center w-12"
         >
           <RightChevrom />
         </button>
       </div>
-      <div className='pb-7 pr-10 flex gap-3 absolute bottom-0 right-0'>
+      <div className="pb-7 pr-10 flex gap-3 absolute bottom-0 right-0">
         {BANNER_IMAGES.map((_, i) => {
           return (
             <button

@@ -6,6 +6,18 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    // 절대경로
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@views/*": ["src/views/*"],
+      "@shared/*": ["src/shared/*"],
+      "@entities/*": ["src/entities/*"],
+      "@features/*": ["src/features/*"],
+      "@resource/*": ["public/resource/*"],
+      "@public/*": ["public/*"]
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

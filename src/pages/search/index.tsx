@@ -4,7 +4,7 @@ import { ResponsiveProvider } from '../ui';
 import { SearchInput } from '../../entities/content/ui/SearchInput';
 import { SearchButton } from '../../entities/content/ui/SearchButton';
 
-import { SEARCH_INPUT, SEARCH_BUTTON } from '../../../constant/SEARCH_LABEL';
+import { SEARCH_INPUT, SEARCH_BUTTON } from '@public/constant/SEARCH_LABEL';
 import { AuthError } from '../error';
 import { useSearchContentQuery } from '../../features/content/api/hooks';
 import { Content } from '../../entities';
@@ -14,8 +14,7 @@ export default function Serch() {
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
   const [prevType, setPrevType] = React.useState(searchType);
 
-  const { contentSearchInput, searchContents, movieSearchInput, tvSearchInput } =
-    useSearchContentQuery(searchType);
+  const { contentSearchInput, searchContents, movieSearchInput, tvSearchInput } = useSearchContentQuery(searchType);
 
   const SearchButtons = [
     { label: SEARCH_BUTTON[0], isActive: searchType === 0, onClick: () => setSearchType(0) },
@@ -69,7 +68,7 @@ export default function Serch() {
   return (
     <AuthError>
       <ResponsiveProvider direction={'col'} className={'gap-5 pt-10'}>
-        <div className='flex gap-3 w-2/3'>
+        <div className="flex gap-3 w-2/3">
           {SearchButtons.map((buttonConfig) => {
             return (
               <SearchButton
@@ -85,11 +84,7 @@ export default function Serch() {
           return (
             searchType === searchConfig.type && (
               <React.Fragment key={searchConfig.type}>
-                <SearchInput
-                  label={searchConfig.label}
-                  value={searchConfig.value}
-                  onChange={searchConfig.onChange}
-                />
+                <SearchInput label={searchConfig.label} value={searchConfig.value} onChange={searchConfig.onChange} />
                 <Content.U.SearchContents
                   isActive={searchConfig.isActive}
                   isLoading={searchConfig.isLoading}

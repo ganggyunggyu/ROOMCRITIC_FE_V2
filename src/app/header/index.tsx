@@ -23,7 +23,6 @@ const Header = () => {
         setIsHeaderBackground(true);
       }
     });
-    console.log(isHeaderBackground);
   }, [window.scrollY]);
 
   return (
@@ -34,37 +33,31 @@ const Header = () => {
         }`,
       )}
     >
-      <nav className='flex justify-around gap-3 w-10/12 transition-all'>
+      <nav className="flex justify-around gap-3 w-10/12 transition-all">
         <Link to={'/'}>
-          <h1 className='hover:text-violet-400 transition-all w-min-fit'>ROOM CRITIC</h1>
+          <h1 className="hover:text-violet-400 transition-all w-min-fit">ROOM CRITIC</h1>
         </Link>
-        <div className='grow'></div>
+        <div className="grow"></div>
         <div>
           {isLoggedIn ? (
-            <div className='flex gap-3 items-center justify-center w-min-fit'>
-              <Link
-                className='hover:text-violet-400 transition-all w-min-fit'
-                to={`/profile/${userInfo._id}`}
-              >
+            <div className="flex gap-3 items-center justify-center w-min-fit">
+              <Link className="hover:text-violet-400 transition-all w-min-fit" to={`/profile/${userInfo._id}`}>
                 {userInfo.displayName} 평론가
               </Link>
-              <button
-                onClick={logoutHandler}
-                className='hover:text-violet-400 transition-all w-min-fit'
-              >
+              <button onClick={logoutHandler} className="hover:text-violet-400 transition-all w-min-fit">
                 로그아웃
               </button>
-              <Link className='hover:text-violet-400 transition-all w-min-fit' to={'/search'}>
+              <Link className="hover:text-violet-400 transition-all w-min-fit" to={'/search'}>
                 검색
               </Link>
             </div>
           ) : (
-            <div className='flex gap-5 w-min-fit'>
-              <Link className='hover:text-violet-400 transition-all w-min-fit' to={'/login'}>
+            <div className="flex gap-5 w-min-fit">
+              <Link className="hover:text-violet-400 transition-all w-min-fit" to={'/login'}>
                 로그인
               </Link>
 
-              <Link className='hover:text-violet-400 transition-all w-min-fit' to={'/join'}>
+              <Link className="hover:text-violet-400 transition-all w-min-fit" to={'/join'}>
                 회원가입
               </Link>
             </div>

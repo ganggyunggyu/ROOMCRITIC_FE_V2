@@ -4,7 +4,7 @@ import { cn } from '../../shared/lib/cn';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAppSelector } from '../../shared/store';
 
-export const ResponsiveProviderVariants = cva(`w-10/12 flex`, {
+export const ResponsiveProviderVariants = cva(`w-10/12 flex pt-6`, {
   variants: {
     direction: {
       col: `flex-col items-center justify-center`,
@@ -18,12 +18,7 @@ type ResponsiveProviderProps = {
   direction: 'col' | 'row'; // 'col' 또는 'row' 중 하나여야 함
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({
-  children,
-  direction,
-  className,
-  ...props
-}) => {
+export const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({ children, direction, className, ...props }) => {
   const { navigationType } = useAppSelector((state) => state.navigationType);
   const [currentNavigationType, setCurrentNavigationType] = React.useState(navigationType);
   const [isLoading, setIsLoading] = React.useState(false);

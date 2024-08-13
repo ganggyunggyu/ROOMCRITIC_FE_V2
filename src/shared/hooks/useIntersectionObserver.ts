@@ -1,6 +1,6 @@
 import React from 'react';
 
-type IUseIntersectionObserverProps = {
+type TUseIntersectionObserverProps = {
   threshold?: number;
   hasNextPage: boolean | undefined;
   fetchNextPage: () => void;
@@ -10,7 +10,7 @@ export const useIntersectionObserver = ({
   threshold = 0.1,
   hasNextPage,
   fetchNextPage,
-}: IUseIntersectionObserverProps) => {
+}: TUseIntersectionObserverProps) => {
   const observeTargetRef = React.useRef<HTMLDivElement>(null);
 
   const observerCallback: IntersectionObserverCallback = React.useCallback(
