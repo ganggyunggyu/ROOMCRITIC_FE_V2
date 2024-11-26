@@ -1,5 +1,5 @@
-import { ResponsiveProvider } from '../../widgets/ui';
-import { UpdateForm } from '../../features/review/ui';
+import { UpdateForm } from '@/features';
+import { ResponsiveProvider } from '@/widgets';
 
 export default function Update() {
   return (

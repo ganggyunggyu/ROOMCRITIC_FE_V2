@@ -10,7 +10,7 @@ export type ReviewCardProps = {
   className?: string;
 };
 
-export const Card: React.FC<ReviewCardProps> = ({ review, className }) => {
+export const ReviewCard: React.FC<ReviewCardProps> = ({ review, className }) => {
   const navigate = useNavigate();
   const onClick = () => {
     navigate(`/review/${review._id}/${review.userId}`);

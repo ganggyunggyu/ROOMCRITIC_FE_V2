@@ -40,7 +40,6 @@ export const useReviewByContent = () => {
     queryFn: ({ pageParam }) => getReviewByContent(contentIdParam, pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages, allPages) => {
-      console.log(lastPage, pages, allPages);
       if (lastPage) return allPages + 10;
     },
     select: (data) => {
@@ -65,7 +64,6 @@ export const useReviewByUser = () => {
     queryFn: ({ pageParam }) => getReviewByUser(userIdParam, pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages, allPages) => {
-      console.log(lastPage, pages, allPages);
       if (lastPage) return allPages + 6;
     },
     select: (data) => {
@@ -96,9 +94,7 @@ export const useReviewUpdate = () => {
     onError: (error) => {
       console.error(error);
     },
-    onSettled: () => {
-      console.log('결과에 관계 없이 무언가 실행됨');
-    },
+    onSettled: () => {},
   });
 };
 

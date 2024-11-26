@@ -1,7 +1,7 @@
 import React from 'react';
-import CardImage from './CardImage';
-import CardHover from './CardHover';
-import CardInfo from './CardInfo';
+import { CardImage } from './CardImage';
+import { CardHover } from './CardHover';
+import { CardInfo } from './CardInfo';
 
 import { useNavigate } from 'react-router-dom';
 import { Content } from '@/entities';

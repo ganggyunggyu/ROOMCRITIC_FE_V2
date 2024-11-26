@@ -1,4 +1,4 @@
-import { ResponsiveProvider } from '../../widgets/ui';
+import { ResponsiveProvider } from '@/widgets';
 import { JoinForm } from '@/features';
 
 export default function Join() {

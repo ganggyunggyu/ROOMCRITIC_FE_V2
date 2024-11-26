@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { MineError } from '../error/MineError';
+import { MineError } from '../../features/error/ui/MineError';
 
 const ProfileSetting = () => {
   const { userIdParam } = useParams();

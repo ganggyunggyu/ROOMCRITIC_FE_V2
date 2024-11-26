@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { TUserInfo } from '../../../shared/types/main';
+import { User } from '@/entities';
 
 interface UserState {
   isLoggedIn: boolean;
-  userInfo: TUserInfo | null;
+  userInfo: User | null;
 }
 
 const initialState: UserState = {
@@ -23,8 +23,6 @@ export const userSlice = createSlice({
       state.userInfo = action.payload;
     },
     setLoginStatus: (state, action) => {
-      console.log(state);
-      console.log(action);
       state.isLoggedIn = action.payload.isLoggedIn;
       state.userInfo._id = action.payload._id;
       state.userInfo.email = action.payload.email;

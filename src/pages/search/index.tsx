@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsiveProvider } from '../../widgets';
 
 import { SEARCH_INPUT, SEARCH_BUTTON } from '@public/constant/SEARCH_LABEL';
-import { AuthError } from '../error';
+import { AuthError } from '@/features';
 
 import { SearchInput, SearchButton, SearchContents } from '@/features';
 import { useSearchContentQuery } from '@/entities';
