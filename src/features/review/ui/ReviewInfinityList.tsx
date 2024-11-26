@@ -1,7 +1,7 @@
 import React from 'react';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 
-import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '../../../shared/hooks/use-intersection-observer';
 import { TReview } from '../../../shared/types/main';
 import { cn } from '../../../shared/lib/cn';
 import { Card } from './Card';

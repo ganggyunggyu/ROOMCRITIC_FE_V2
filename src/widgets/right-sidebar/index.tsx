@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
 import { setIsRightSideBar } from '@/shared/store/slice/ui/sidebar';
-import { Button } from '@/shared/ui';
+import { Button } from '@/shared';
 import { delay } from '@/shared/lib/delay';
 import { Link } from 'react-router-dom';
 

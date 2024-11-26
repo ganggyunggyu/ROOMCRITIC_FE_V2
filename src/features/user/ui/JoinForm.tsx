@@ -1,10 +1,9 @@
-import Input from '../../../shared/ui/input';
-import useFormInput from '../../../shared/hooks/useFormInput';
-import { isSame, isTrim } from '../../../shared/lib/regs';
+import useFormInput from '../../../shared/hooks/use-form-input';
+import { isSame, isTrim } from '../../../shared/lib/get-regs';
 import { useNavigate } from 'react-router-dom';
 import { isEmail, isPassword, isPhoneNumber } from '../../../shared/lib';
 import { useJoin } from '@/entities';
-import { Button } from '@/shared/ui/button';
+import { Button, Input } from '@/shared';
 
 export const JoinForm = () => {
   const navigator = useNavigate();

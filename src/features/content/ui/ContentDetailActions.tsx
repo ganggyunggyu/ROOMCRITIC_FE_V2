@@ -1,6 +1,5 @@
 import { useAppSelector } from '../../../shared/store';
-import Loading from '../../../shared/ui/loading';
-import LoginButton from '../../../shared/ui/login-button';
+import { LoginButton, Loading } from '@/shared';
 import CreateForm from '../../review/ui/ReviewCreateForm';
 
 export function Action({ isLoading, content }) {

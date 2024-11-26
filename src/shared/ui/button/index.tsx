@@ -5,7 +5,7 @@ import { ButtonVariants } from './button.style';
 
 export const Button: React.FC<ButtonProps> = ({ label, item, variant, className, ...props }) => {
   return (
-    <button type='button' className={cn(ButtonVariants({ variant, className }))} {...props}>
+    <button type="button" className={cn(ButtonVariants({ variant, className }))} {...props}>
       {label && label}
       {item && item}
     </button>

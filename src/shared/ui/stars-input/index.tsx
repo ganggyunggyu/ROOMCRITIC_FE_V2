@@ -7,7 +7,7 @@ type StarsInput = {
   setGrade: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
+export const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
   const GRADES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
   const [hoverIndex, setHoverIndex] = React.useState(-1);
   const [isSelected, setIsSelected] = React.useState(false);
@@ -104,4 +104,3 @@ const StarsInput: React.FC<StarsInput> = ({ grade, setGrade }) => {
     </div>
   );
 };
-export default StarsInput;

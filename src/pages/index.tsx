@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigationType } from 'react-router-dom';
 
-import { scrollToTop } from '../shared/lib/scrollToTop';
+import { scrollToTop } from '../shared/lib/scroll-to-top';
 import { useAppDispatch } from '../shared/store';
 import { setPrevPathName } from '../shared/store/slice/prevPathName';
 import { setNavigationType } from '../shared/store/slice/navigationTypeSlice';
@@ -37,18 +37,18 @@ const Routing: React.FC = () => {
   return (
     <AnimatePresence key={location.key}>
       <Routes location={location}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/profile/:userIdParam' element={<ProfilePage />} />
-        <Route path='/profile-setting/:userIdParam' element={<ProfileSettiongPage />} />
-        <Route path='/join' element={<JoinPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/search' element={<SearchPage />} />
-        <Route path='/searches' element={<SearchesPage />} />
-        <Route path='/content/:contentIdParam' element={<ContentDetailPage />} />
-        <Route path='/content/reviews/:contentIdParam' element={<ContentReviews />} />
-        <Route path='/review/:reviewIdParam/:userIdParam' element={<ReviewDetailPage />} />
-        <Route path='/review/update/:reviewIdParam/:userIdParam' element={<UpdatePage />} />
-        <Route path='*' element={<Navigate to={'/'} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/profile/:userIdParam" element={<ProfilePage />} />
+        <Route path="/profile-setting/:userIdParam" element={<ProfileSettiongPage />} />
+        <Route path="/join" element={<JoinPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/searches" element={<SearchesPage />} />
+        <Route path="/content/:contentIdParam" element={<ContentDetailPage />} />
+        <Route path="/content/reviews/:contentIdParam" element={<ContentReviews />} />
+        <Route path="/review/:reviewIdParam/:userIdParam" element={<ReviewDetailPage />} />
+        <Route path="/review/update/:reviewIdParam/:userIdParam" element={<UpdatePage />} />
+        <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
     </AnimatePresence>
   );

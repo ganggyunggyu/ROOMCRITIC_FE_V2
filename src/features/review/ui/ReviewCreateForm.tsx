@@ -1,15 +1,13 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import Input from '../../../shared/ui/input';
-import StarsInput from '../../../shared/ui/stars-input';
-import useFormInput from '../../../shared/hooks/useFormInput';
-import { Button } from '../../../shared/ui/button';
-import { getGradeText } from '../../../shared/lib/getGradeText';
-import { TContent } from '../../../shared/types/main';
+import { useReviewByContentTemp, useReviewCreate, Content } from '@/entities';
+
+import useFormInput from '../../../shared/hooks/use-form-input';
+import { getGradeText } from '../../../shared/lib/get-grade-text';
 import { useAppSelector } from '../../../shared/store';
-import { useReviewByContentTemp, useReviewCreate } from '@/entities';
+import { Button, StarsInput, Input } from '@/shared';
 
 interface CreateFormProps {
-  content: TContent;
+  content: Content;
 }
 
 const CreateForm: React.FC<CreateFormProps> = ({ content }) => {

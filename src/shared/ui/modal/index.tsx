@@ -3,7 +3,7 @@ import { Button } from '../button';
 import { cn } from '@/shared/lib/cn';
 import { useAppSelector } from '@/shared/store';
 
-const Modal = ({ isModal, setIsModal }) => {
+export const Modal = ({ isModal, setIsModal }) => {
   const backgroundRef = React.useRef(null);
   const modalRef = React.useRef(null);
 
@@ -83,5 +83,3 @@ const Modal = ({ isModal, setIsModal }) => {
     );
   }
 };
-
-export default Modal;

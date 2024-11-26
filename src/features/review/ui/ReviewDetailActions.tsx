@@ -1,5 +1,5 @@
 import React from 'react';
-import { scrollToTop } from '../../../shared/lib/scrollToTop';
+import { scrollToTop } from '../../../shared/lib/scroll-to-top';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../../shared/ui';
 import { useAppSelector } from '../../../shared/store';

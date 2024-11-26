@@ -3,7 +3,7 @@ import StarIcon from '../icons/StarIcon';
 import HalfStar from '../icons/HalfStar';
 // import { FaRegStarHalf } from 'react-icons/fa';
 
-export default function Stars({ grade }: { grade: number }) {
+export function Stars({ grade }: { grade: number }) {
   const GRADES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
   const hoverIndex = grade * 2 - 1;
   return (

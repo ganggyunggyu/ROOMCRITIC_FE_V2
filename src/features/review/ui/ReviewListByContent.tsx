@@ -2,7 +2,7 @@ import React from 'react';
 import { TReview } from '../../../shared/types/main';
 import { useReviewByContent } from '../../../entities';
 import { Card } from './Card';
-import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '@/shared/hooks/use-intersection-observer';
 
 export const ContentReviews: React.FC = () => {
   const { data, hasNextPage, fetchNextPage, isSuccess, isLoading } = useReviewByContent();

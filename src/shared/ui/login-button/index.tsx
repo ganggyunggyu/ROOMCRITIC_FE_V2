@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../button';
 
-export default function LoginButton() {
+export function LoginButton() {
   const navigator = useNavigate();
   return (
     <Button

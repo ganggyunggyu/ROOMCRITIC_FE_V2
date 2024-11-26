@@ -1,10 +1,10 @@
 import { KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useFormInput from '../../../shared/hooks/useFormInput';
+import useFormInput from '../../../shared/hooks/use-form-input';
 import { isEmail, isPassword } from '../../../shared/lib';
 import { useLogin } from '@/entities';
-import Input from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
+
+import { Button, Input } from '@/shared';
 
 export const LoginForm = () => {
   const navigator = useNavigate();

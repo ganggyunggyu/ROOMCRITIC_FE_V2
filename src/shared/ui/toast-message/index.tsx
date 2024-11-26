@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ToastMessage = ({ message, duration = 3000 }) => {
+export const ToastMessage = ({ message, duration = 3000 }) => {
   const [visible, setVisible] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -45,5 +45,3 @@ const ToastMessage = ({ message, duration = 3000 }) => {
     </div>
   );
 };
-
-export default ToastMessage;

@@ -1,11 +1,8 @@
 import React, { KeyboardEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Input from '../../../shared/ui/input';
-import Loading from '../../../shared/ui/loading';
-import StarsInput from '../../../shared/ui/stars-input';
-import { Button } from '../../../shared/ui/button';
-import { getGradeText } from '../../../shared/lib/getGradeText';
 import { useReviewDetail, useReviewUpdate } from '@/entities';
+import { Button, Loading, Input, StarsInput } from '@/shared';
+import { getGradeText } from '../../../shared/lib/get-grade-text';
 
 export function UpdateForm() {
   const { userIdParam = '', reviewIdParam = '' } = useParams();
