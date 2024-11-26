@@ -2,7 +2,7 @@ import React from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '../../../shared/ui';
-import * as A from '../api/api';
+import { getVideo } from '@/entities';
 
 export function Video({ type, id }) {
   const [hide, setHide] = React.useState('');
@@ -14,6 +14,7 @@ export function Video({ type, id }) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.playVideo();
     event.target.mute();
+
     if (videoLoaded === false) event.target.stopVideo();
   };
   // const togglePlayer: YouTubeProps['onError'] = (event) => {
@@ -27,7 +28,7 @@ export function Video({ type, id }) {
 
   const videoQuery = useQuery({
     queryKey: ['video', type, id],
-    queryFn: () => A.getVideo(type, id),
+    queryFn: () => getVideo(type, id),
     retry: 1,
   });
 
@@ -71,16 +72,17 @@ export function Video({ type, id }) {
   if (videoQuery.isLoading) return <div></div>;
 
   if (videoQuery.isSuccess) {
+    console.log(videoQuery.data);
     const findTrailer = () => {
       return videoQuery.data.results.find((item) => item.type === 'Trailer');
     };
     const item = findTrailer() ? findTrailer() : videoQuery.data.results[0];
     if (item === undefined) {
       return (
-        <div className='relative w-full h-full flex items-center justify-center top-10 '>
+        <div className="relative w-full h-full flex items-center justify-center top-10 z-50">
           {showNoVideoMessage && (
             <p
-              className={`absolute p-3 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-400 rounded-md flex items-center justify-center ${
+              className={`absolute p-3 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-400 rounded-md flex items-center justify-center z-50 ${
                 fadeOut ? 'fade-out' : ''
               }`}
             >
@@ -95,16 +97,16 @@ export function Video({ type, id }) {
       <React.Fragment>
         <article className={`video-container ${videoLoaded ? 'loaded' : ''} ${hide} w-screen`}>
           <Button
-            label='비디오 접기'
-            variant='main'
-            className='z-10 absolute bottom-12 min-w-fit'
+            label="비디오 접기"
+            variant="main"
+            className="z-10 absolute bottom-12 min-w-fit"
             onClick={videoHendler}
           />
           {isPending ? (
             <div>loading</div>
           ) : (
             <YouTube
-              className='h-full'
+              className="h-full"
               videoId={item.key ? item.key : 'key'}
               opts={opts}
               onReady={onPlayerReady}
@@ -112,23 +114,14 @@ export function Video({ type, id }) {
             />
           )}
         </article>
-        <div
-          className={`video-button ${
-            videoLoaded ? 'pointer-events-none' : 'video-button-open'
-          } w-full relative`}
-        >
-          <Button
-            label='비디오 펼치기'
-            variant='main'
-            className={`absolute left-0`}
-            onClick={videoHendler}
-          />
+        <div className={`video-button ${videoLoaded ? 'pointer-events-none' : 'video-button-open'} w-full relative`}>
+          <Button label="비디오 펼치기" variant="main" className={`absolute left-0`} onClick={videoHendler} />
         </div>
       </React.Fragment>
     );
   }
   return (
-    <div className='relative w-full h-full flex items-center justify-center top-10 '>
+    <div className="relative w-full h-full flex items-center justify-center top-10 ">
       {showNoVideoMessage && (
         <p
           className={`absolute p-3 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-400 rounded-md flex items-center justify-center ${

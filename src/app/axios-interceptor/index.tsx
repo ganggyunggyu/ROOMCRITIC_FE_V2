@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Auth } from '../../features';
 import { clearCookie, getCookie } from '../../shared/lib/cookie';
 import { axiosConfig } from '../../shared/api/axios-config';
 import { setAccessToken } from '../../shared/store/slice/tokenSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/store';
 import { setIsLoggedIn, setUserInfo } from '../../shared/store/slice/userSlice';
+import { useLogout } from '@/entities';
 
 const Interceptor = ({ children }) => {
   const dispatch = useAppDispatch();
@@ -13,7 +13,7 @@ const Interceptor = ({ children }) => {
   const refreshToken = getCookie('refreshToken');
 
   const { userInfo } = useAppSelector((state) => state.user);
-  const { mutate: logout } = Auth.H.useLogout();
+  const { mutate: logout } = useLogout();
 
   console.debug('current status');
   console.debug('accessToken:', accessToken);
@@ -23,12 +23,6 @@ const Interceptor = ({ children }) => {
     const result = await axiosConfig.get('/user/login-check');
     return result.data;
   };
-  //refreshToken 그 재발급 시간도 받으니까 저장해놓기
-  //init or 요청 시 재발급 시간을 확인하기
-  //만약 남은 시간이 7일이하라면 재발급 요청하기
-  //기존에 리프레시 토큰과 리프레시 토큰 만료 시간을 받아온 걸로 바꿔주기
-  //중요 리프레시 토큰의 유효기간은 최초 한번 발급된 후 확인할 수 없음
-  //로그아웃에는 id가 불필요할지도 모른다..
 
   const refreshAccessToken = async (refreshToken: string) => {
     try {

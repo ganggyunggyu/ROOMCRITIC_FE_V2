@@ -4,7 +4,7 @@ import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
 import { TReview } from '../../../shared/types/main';
 import { cn } from '../../../shared/lib/cn';
-import { Review } from '../../../entities';
+import { Card } from './Card';
 
 type ReviewInfinityListProps = {
   query: () => InfiniteQueryObserverResult<TReview[][]>;
@@ -12,11 +12,7 @@ type ReviewInfinityListProps = {
   className?: string;
 };
 
-export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({
-  query,
-  title,
-  className,
-}) => {
+export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({ query, title, className }) => {
   const { data, hasNextPage, fetchNextPage, isSuccess, isLoading } = query();
   const observeTargetRef = useIntersectionObserver({ hasNextPage, fetchNextPage });
 
@@ -32,12 +28,12 @@ export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({
             return group ? (
               <React.Fragment key={i}>
                 {group.map((review: TReview) => {
-                  return <Review.U.Card review={review} key={review._id} className='w-full h-72' />;
+                  return <Card review={review} key={review._id} className="w-full h-72" />;
                 })}
               </React.Fragment>
             ) : (
-              <div className='py-5' key={i}>
-                <p className='text-center grid'>모든 리뷰를 불러왔습니다.</p>
+              <div className="py-5" key={i}>
+                <p className="text-center grid">모든 리뷰를 불러왔습니다.</p>
               </div>
             );
           })}

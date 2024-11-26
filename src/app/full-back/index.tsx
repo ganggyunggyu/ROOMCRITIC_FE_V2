@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../shared/store';
-import { DetailBackground } from '../../pages/ui';
+import { DetailBackground } from '../../widgets/ui';
 
 const Fullback = () => {
   const { backgroundPath } = useAppSelector((state) => state.backgroundPath);

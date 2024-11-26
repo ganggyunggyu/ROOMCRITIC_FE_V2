@@ -1,11 +1,11 @@
 import React, { KeyboardEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Input from '../../../shared/ui/Input';
-import Loading from '../../../shared/ui/Loading';
-import StarsInput from '../../../shared/ui/StarsInput';
-import { Button } from '../../../shared/ui/button/button';
+import Input from '../../../shared/ui/input';
+import Loading from '../../../shared/ui/loading';
+import StarsInput from '../../../shared/ui/stars-input';
+import { Button } from '../../../shared/ui/button';
 import { getGradeText } from '../../../shared/lib/getGradeText';
-import { useReviewDetail, useReviewUpdate } from '../api/hooks';
+import { useReviewDetail, useReviewUpdate } from '@/entities';
 
 export function UpdateForm() {
   const { userIdParam = '', reviewIdParam = '' } = useParams();
@@ -48,13 +48,13 @@ export function UpdateForm() {
 
   return (
     <React.Fragment>
-      <p className='text-3xl'>{review.contentName} 리뷰 수정</p>
+      <p className="text-3xl">{review.contentName} 리뷰 수정</p>
       <StarsInput grade={grade} setGrade={setGrade} />
-      <span className='text-violet-400'>{getGradeText(grade)}</span>
-      <form className='w-1/2 relative'>
+      <span className="text-violet-400">{getGradeText(grade)}</span>
+      <form className="w-1/2 relative">
         <Input
-          placeholder='한줄평 쓰기'
-          type='text'
+          placeholder="한줄평 쓰기"
+          type="text"
           value={lineReview}
           onChange={(e) => {
             e.preventDefault();
@@ -62,14 +62,9 @@ export function UpdateForm() {
             setLineReview(e.target.value);
           }}
           onKeyDown={handleEnterKeyPress}
-          className='text-center'
+          className="text-center"
         />
-        <Button
-          label={'수정'}
-          variant={'main'}
-          onClick={updateMutate}
-          className='absolute right-0 top-3'
-        />
+        <Button label={'수정'} variant={'main'} onClick={updateMutate} className="absolute right-0 top-3" />
       </form>
     </React.Fragment>
   );

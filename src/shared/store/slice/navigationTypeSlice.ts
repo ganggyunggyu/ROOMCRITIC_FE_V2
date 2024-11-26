@@ -9,7 +9,7 @@ const initialState: navigationTypeProps = {
   navigationType: 'PUSH',
 };
 
-export const navigationTypeSlice = createSlice({
+const navigationTypeSlice = createSlice({
   name: 'navigationType',
   initialState,
   reducers: {

@@ -1,14 +1,14 @@
 import { KeyboardEvent } from 'react';
-import { Button } from '../../../shared/ui';
-import Input from '../../../shared/ui/Input';
 import { useNavigate } from 'react-router-dom';
 import useFormInput from '../../../shared/hooks/useFormInput';
 import { isEmail, isPassword } from '../../../shared/lib';
-import { Auth } from '../..';
+import { useLogin } from '@/entities';
+import Input from '@/shared/ui/input';
+import { Button } from '@/shared/ui/button';
 
 export const LoginForm = () => {
   const navigator = useNavigate();
-  const { mutate, isError, error } = Auth.H.useLogin();
+  const { mutate, isError, error } = useLogin();
   const [emailInput, passwordInput] = [useFormInput(''), useFormInput('')];
 
   const LoginInputs = [
@@ -59,7 +59,7 @@ export const LoginForm = () => {
     mutate(loginData);
   };
   return (
-    <form className='flex flex-col gap-5 md:w-1/2 w-full pb-10 transition-all'>
+    <form className="flex flex-col gap-5 md:w-1/2 w-full transition-all">
       {LoginInputs.map((FormItem) => {
         return (
           <Input
@@ -72,7 +72,7 @@ export const LoginForm = () => {
           />
         );
       })}
-      {isError && <p className='py-3 text-red-400'>{error.message}</p>}
+      {isError && <p className="py-3 text-red-400">{error.message}</p>}
       <Button
         label={'로그인'}
         variant={isLoginAble ? 'main' : 'disable'}

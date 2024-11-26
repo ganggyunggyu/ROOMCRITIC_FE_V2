@@ -3,7 +3,7 @@ import { scrollToTop } from '../../../shared/lib/scrollToTop';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../../shared/ui';
 import { useAppSelector } from '../../../shared/store';
-import { useReviewDelete, useReviewDetail } from '../api/hooks';
+import { useReviewDelete, useReviewDetail } from '@/entities/review/hooks';
 
 export function ReviewDetailActions() {
   const navigator = useNavigate();
@@ -28,7 +28,7 @@ export function ReviewDetailActions() {
 
   return (
     <React.Fragment>
-      <Button label='좋아요' variant='main' />
+      <Button label="좋아요" variant="main" />
 
       {isLoggedIn && userIdParam === userInfo._id && (
         <React.Fragment>
@@ -46,10 +46,7 @@ export function ReviewDetailActions() {
           />
         </React.Fragment>
       )}
-      <Link
-        className='text-xl cursor-pointer hover:text-violet-400 z-10'
-        to={`/content/${review.contentId}`}
-      >
+      <Link className="text-xl cursor-pointer hover:text-violet-400 z-10" to={`/content/${review.contentId}`}>
         {review.contentName} 다른 리뷰도 보러가기 !
       </Link>
     </React.Fragment>

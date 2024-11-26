@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveProvider } from '../ui';
+import { ResponsiveProvider } from '../../widgets/ui';
 
 import { SearchInput } from '../../entities/content/ui/SearchInput';
 import { SearchButton } from '../../entities/content/ui/SearchButton';

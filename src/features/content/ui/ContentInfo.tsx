@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button } from '../../../shared/ui';
-
 import { useAppSelector } from '../../../shared/store';
-import { WishWatchAction } from '../../../entities/content/ui/WishWatchAction';
-import { Grade } from '../../../entities/review/ui/Grade';
-import { Overview } from '../../../entities/content/ui/Overview';
-import { H } from '../../../entities/content';
+import { useAddWatchContent, useAddWishContent } from '@/entities/content';
+
+import { Overview } from './Overview';
+import { WishWatchAction } from './WishWatchAction';
+import { useDevice } from '@/shared';
+import { Grade } from '@/features/review/ui/Grade';
 
 type ContentInfoProps = {
   content: {
@@ -15,21 +15,16 @@ type ContentInfoProps = {
     originalTitle: string;
     voteAverage: number;
     posterPath: string;
+    backdropPath: string;
   };
 };
 
 export const Info: React.FC<ContentInfoProps> = ({ content }) => {
-  const { userInfo } = useAppSelector((state) => state.user);
-  const {
-    mutate: watchMutate,
-    isSuccess: isWatchSuccess,
-    isError: isWatchError,
-  } = H.useAddWatchContent();
-  const {
-    mutate: whsiMutate,
-    isSuccess: isWishSuccess,
-    isError: isWishError,
-  } = H.useAddWishContent();
+  const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
+  const { mutate: watchMutate, isSuccess: isWatchSuccess, isError: isWatchError } = useAddWatchContent();
+  const { mutate: whsiMutate, isSuccess: isWishSuccess, isError: isWishError } = useAddWishContent();
+
+  const deviceType = useDevice();
 
   const [isWatch, setIsWatch] = React.useState(false);
   const [isWish, setIsWish] = React.useState(false);
@@ -58,28 +53,31 @@ export const Info: React.FC<ContentInfoProps> = ({ content }) => {
     );
   };
 
+  const isMobile = deviceType === 'mobile';
+
   return (
     <React.Fragment>
-      <div className='flex flex-col sm:flex-row w-full gap-5 sm:gap-3 z-10 relative justify-between items-start sm:items-center'>
-        <div className='flex flex-col md:flex-row gap-5 w-full'>
-          <div className='w-48 h-80'>
+      <div className="flex flex-col w-full gap-10 sm:gap-3 z-10 relative justify-between items-start ">
+        <div className="flex flex-col gap-5 w-full">
+          {/* <div className="w-full h-full">
             <img
-              src={`https://www.themoviedb.org/t/p/original/${content.posterPath}`}
-              alt=''
-              className='w-full h-full'
+              src={`https://www.themoviedb.org/t/p/original/${isMobile ? content.posterPath : content.backdropPath}`}
+              alt=""
+              className="w-full h-full"
             />
-          </div>
-          <div className='flex flex-col gap-5'>
-            <p className='text-3xl'>{content.title}</p>
-            <p className='text-md'>{content.originalTitle}</p>
-            <p className='border-b border-gray-300'>만족도 {content.voteAverage}</p>
-            <p className='text-md'>애니메이션, 액션, 모험</p>
+          </div> */}
+          <div className="flex flex-col gap-5">
+            <p className="text-3xl">{content.title}</p>
+            <p className="text-md">{content.originalTitle}</p>
+            <p className="border-b border-gray-300">만족도 {content.voteAverage}</p>
+            <p className="text-md">애니메이션, 액션, 모험</p>
             <Grade />
           </div>
         </div>
-        <WishWatchAction />
+        {isLoggedIn && <WishWatchAction />}
       </div>
-      <Overview overview={content.overview} />
+
+      {!isMobile && <Overview overview={content.overview} />}
     </React.Fragment>
   );
 };

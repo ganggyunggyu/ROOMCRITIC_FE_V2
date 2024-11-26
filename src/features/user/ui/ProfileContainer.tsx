@@ -1,10 +1,10 @@
-import ProfileImage from '../../../entities/user/ui/ProfileImage';
-import ProfileInfo from '../../../entities/user/ui/ProfileInfo';
-import ProfileScore from '../../../entities/user/ui/ProfileScore';
+import ProfileImage from './ProfileImage';
+import ProfileInfo from './ProfileInfo';
+import ProfileScore from './ProfileScore';
 
 export const ProfileContainer = () => {
   return (
-    <article className='flex flex-col justify-start w-full gap-5'>
+    <article className="flex flex-col justify-start w-full gap-5">
       <ProfileImage />
       <ProfileInfo />
       <ProfileScore />

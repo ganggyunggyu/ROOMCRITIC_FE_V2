@@ -1,12 +1,12 @@
 import React, { KeyboardEvent, MouseEvent } from 'react';
-import Input from '../../../shared/ui/Input';
-import StarsInput from '../../../shared/ui/StarsInput';
+import Input from '../../../shared/ui/input';
+import StarsInput from '../../../shared/ui/stars-input';
 import useFormInput from '../../../shared/hooks/useFormInput';
-import { Button } from '../../../shared/ui/button/button';
+import { Button } from '../../../shared/ui/button';
 import { getGradeText } from '../../../shared/lib/getGradeText';
 import { TContent } from '../../../shared/types/main';
 import { useAppSelector } from '../../../shared/store';
-import { H } from '..';
+import { useReviewByContentTemp, useReviewCreate } from '@/entities';
 
 interface CreateFormProps {
   content: TContent;
@@ -30,8 +30,8 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     contentType: content.contentType,
   };
 
-  const { mutate, error, isSuccess, isError } = H.useReviewCreate();
-  const { refetch } = H.useReviewByContentTemp();
+  const { mutate, error, isSuccess, isError } = useReviewCreate();
+  const { refetch } = useReviewByContentTemp();
 
   const successReviewCreate = () => {
     reviewInput.setValue('');
@@ -52,36 +52,34 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   };
 
   return (
-    <form className='flex flex-col gap-5'>
+    <form className="flex flex-col gap-5">
       <StarsInput grade={grade} setGrade={setGrade} />
       {grade === 0 && (
-        <p className='text-lg'>
+        <p className="text-lg">
           <span className={``}>별</span>을 클릭해서 평점을 선택해주세요 !
         </p>
       )}
-      {grade !== 0 && (
-        <p className={isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}>{getGradeText(grade)}</p>
-      )}
-      <div className='relative'>
+      {grade !== 0 && <p className={isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}>{getGradeText(grade)}</p>}
+      <div className="relative">
         <Input
           label={'한줄평 작성'}
-          className='w-full mt-0'
-          type='text'
+          className="w-full mt-0"
+          type="text"
           value={reviewInput.value}
           onChange={reviewInput.onChange}
           onKeyDown={handleEnterKeyPress}
         />
 
         <Button
-          className='absolute right-0 top-2'
-          type='button'
-          label='발행'
-          variant='main'
+          className="absolute right-0 top-2"
+          type="button"
+          label="발행"
+          variant="main"
           onClick={handleReviewCreate}
         />
         {isSuccess && (
-          <p className=''>
-            리뷰 작성이 완료되었어요! <span className='animate-bounce'>👇</span>
+          <p className="">
+            리뷰 작성이 완료되었어요! <span className="animate-bounce">👇</span>
           </p>
         )}
       </div>

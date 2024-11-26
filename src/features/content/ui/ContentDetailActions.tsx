@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../../shared/store';
-import Loading from '../../../shared/ui/Loading';
-import LoginButton from '../../../shared/ui/LoginButton';
+import Loading from '../../../shared/ui/loading';
+import LoginButton from '../../../shared/ui/login-button';
 import CreateForm from '../../review/ui/ReviewCreateForm';
 
 export function Action({ isLoading, content }) {
@@ -11,7 +11,7 @@ export function Action({ isLoading, content }) {
   }
 
   return (
-    <section className={'flex flex-col w-full gap-5 z-10'}>
+    <section className={'flex flex-col w-full gap-10 z-10'}>
       {isLoggedIn ? <CreateForm content={content} /> : <LoginButton />}
     </section>
   );

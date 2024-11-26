@@ -1,9 +1,8 @@
 import React from 'react';
-import { useReviewByContent } from '../../review/api/hooks';
-import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
-
 import { TReview } from '../../../shared/types/main';
-import { Review } from '../../../entities';
+import { useReviewByContent } from '../../../entities';
+import { Card } from './Card';
+import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver';
 
 export const ContentReviews: React.FC = () => {
   const { data, hasNextPage, fetchNextPage, isSuccess, isLoading } = useReviewByContent();
@@ -13,17 +12,17 @@ export const ContentReviews: React.FC = () => {
 
   if (isSuccess) {
     return (
-      <div className=' w-10/12 grid grid-cols-1 gap-10'>
+      <div className=" w-10/12 grid grid-cols-1 gap-10">
         {data.map((group, i) => {
           return group ? (
             <React.Fragment key={i}>
               {group.map((review: TReview) => {
-                return <Review.U.Card review={review} key={review._id} className='w-full h-72' />;
+                return <Card review={review} key={review._id} className="w-full h-72" />;
               })}
             </React.Fragment>
           ) : (
-            <div className='py-5' key={i}>
-              <p className='text-center'>모든 리뷰를 불러왔습니다.</p>
+            <div className="py-5" key={i}>
+              <p className="text-center">모든 리뷰를 불러왔습니다.</p>
             </div>
           );
         })}

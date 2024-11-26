@@ -1,15 +1,14 @@
-import { Button } from '../../../shared/ui';
-import Input from '../../../shared/ui/Input';
+import Input from '../../../shared/ui/input';
 import useFormInput from '../../../shared/hooks/useFormInput';
-
 import { isSame, isTrim } from '../../../shared/lib/regs';
 import { useNavigate } from 'react-router-dom';
 import { isEmail, isPassword, isPhoneNumber } from '../../../shared/lib';
-import { Auth } from '../..';
+import { useJoin } from '@/entities';
+import { Button } from '@/shared/ui/button';
 
 export const JoinForm = () => {
   const navigator = useNavigate();
-  const { mutate, data, isSuccess } = Auth.H.useJoin();
+  const { mutate, data, isSuccess } = useJoin();
 
   const [emailInput, passwordInput, confirmPasswordInput, displayNameInput, phoneNumberInput] = [
     useFormInput(''),
@@ -87,7 +86,7 @@ export const JoinForm = () => {
     if (data.status === 200) navigator('/login');
   }
   return (
-    <form className='flex flex-col gap-3 md:w-1/2 w-full pb-10'>
+    <form className="flex flex-col justify-center gap-3 md:w-1/2 w-full pb-10">
       {FormItems.map((FormItem, i) => {
         return (
           <Input
@@ -96,19 +95,19 @@ export const JoinForm = () => {
             value={FormItem.value}
             onChange={FormItem.onChange}
             type={FormItem.type}
-            maxLength={FormItem.value === phoneNumberInput.value ? 11 : undefined}
-            alertMessage={FormItem.isReg ? undefined : FormItem.placeholder}
+            maxLength={FormItem.value === phoneNumberInput.value ? 11 : null}
+            alertMessage={FormItem.isReg ? null : FormItem.placeholder}
           />
         );
       })}
 
-      {isSuccess && <p className='text-red-400'>{data.data.message}</p>}
+      {isSuccess && <p className="text-red-400">{data.data.message}</p>}
       <Button
         onClick={handleJoin}
         disabled={!activeJoin}
         label={'회원가입'}
         variant={activeJoin ? 'main' : 'disable'}
-        className='mt-5'
+        className="mt-5"
       />
     </form>
   );

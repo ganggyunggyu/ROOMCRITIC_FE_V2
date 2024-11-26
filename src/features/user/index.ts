@@ -1,2 +1,1 @@
-export * as U from './ui/index';
-export * as H from './api/hooks';
+export * from './ui';

@@ -1,5 +1,5 @@
 import { Content, Review } from '../../features';
-import { ResponsiveProvider } from '../ui';
+import { ResponsiveProvider } from '../../widgets/ui';
 
 export default function index() {
   return (

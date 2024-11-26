@@ -1,4 +1,3 @@
-// src/app/store/rootReducer.ts
 import { combineReducers } from '@reduxjs/toolkit';
 
 import reviewSlice from './slice/reviewSlice';
@@ -9,6 +8,7 @@ import prevPathhNameSlice from './slice/prevPathName';
 import tokenSlice from './slice/tokenSlice';
 import backgroundPathSlice from './slice/backgroundPath';
 import navigationTypeSlice from './slice/navigationTypeSlice';
+import sidebarSlice from './slice/ui/sidebar';
 
 export const rootReducer = combineReducers({
   darkMode: darkModeSlice,
@@ -19,4 +19,5 @@ export const rootReducer = combineReducers({
   token: tokenSlice,
   backgroundPath: backgroundPathSlice,
   navigationType: navigationTypeSlice,
+  sidebar: sidebarSlice,
 });
