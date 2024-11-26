@@ -1,13 +1,11 @@
 import React from 'react';
-import { ResponsiveProvider } from '../../widgets/ui';
-
-import { SearchInput } from '../../entities/content/ui/SearchInput';
-import { SearchButton } from '../../entities/content/ui/SearchButton';
+import { ResponsiveProvider } from '../../widgets';
 
 import { SEARCH_INPUT, SEARCH_BUTTON } from '@public/constant/SEARCH_LABEL';
 import { AuthError } from '../error';
-import { useSearchContentQuery } from '../../features/content/api/hooks';
-import { Content } from '../../entities';
+
+import { SearchInput, SearchButton, SearchContents } from '@/features';
+import { useSearchContentQuery } from '@/entities';
 
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');
@@ -85,7 +83,7 @@ export default function Serch() {
             searchType === searchConfig.type && (
               <React.Fragment key={searchConfig.type}>
                 <SearchInput label={searchConfig.label} value={searchConfig.value} onChange={searchConfig.onChange} />
-                <Content.U.SearchContents
+                <SearchContents
                   isActive={searchConfig.isActive}
                   isLoading={searchConfig.isLoading}
                   contents={searchConfig.contents}

@@ -2,7 +2,7 @@ import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../shared/lib/cn';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useAppSelector } from '../../shared/store';
+import { useAppSelector } from '../../app/store';
 import { useLocation } from 'react-router-dom';
 
 export const ResponsiveProviderVariants = cva(`w-10/12 flex `, {
@@ -26,7 +26,6 @@ export const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({ children
   const location = useLocation();
 
   const isHome = location.pathname === '/';
-  console.log(location.pathname);
 
   const push = {
     initial: { x: '100%' },

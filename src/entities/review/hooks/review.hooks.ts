@@ -13,7 +13,7 @@ import {
   reviewLike,
   reviewUpdate,
 } from '../api';
-import { useAppSelector } from '@/shared/store';
+import { useAppSelector } from '@/app/store';
 getAverageGradeByContent;
 
 export const useAverageGradeByContent = () => {

@@ -1,3 +1,3 @@
-export { LoginForm } from './LoginForm';
-export { JoinForm } from './JoinForm';
-export { ProfileContainer } from './ProfileContainer';
+export * from './join-form';
+export * from './login-form';
+export * from './profile';

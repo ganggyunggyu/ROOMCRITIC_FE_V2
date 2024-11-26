@@ -12,16 +12,20 @@ interface CookieOptions {
   sameSite?: 'strict' | 'lax' | 'none';
 }
 
-export const setCookie = (name: string, value: string, options?: CookieOptions) => {
-  const defaultOptions =
-    process.env.NODE_ENV === 'development' ? { httpOnly: false, secure: false } : { httpOnly: true, secure: true };
+// export const setCookie = (name: string, value: string, options?: CookieOptions) => {
+//   const defaultOptions =
+//     process.env.NODE_ENV === 'development' ? { httpOnly: false, secure: false } : { httpOnly: true, secure: true };
 
-  console.log(process.env.NODE_ENV);
-  // return cookies.set(name, value, { httpOnly: true, secure: true, ...options });
-  // return cookies.set(name, value, { ...options, sameSite: 'lax' });
+//   // return cookies.set(name, value, { httpOnly: true, secure: true, ...options });
+//   // return cookies.set(name, value, { ...options, sameSite: 'lax' });
+//   return cookies.set(name, value, { ...defaultOptions, ...options, sameSite: 'lax' });
+// };
+
+export const setCookie = (name: string, value: string, options?: CookieOptions) => {
+  const defaultOptions = process.env.NODE_ENV === 'development' ? { secure: false } : { secure: true };
+
   return cookies.set(name, value, { ...defaultOptions, ...options, sameSite: 'lax' });
 };
-
 export const getCookie = (name: string) => {
   return cookies.get(name);
 };

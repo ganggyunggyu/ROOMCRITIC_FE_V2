@@ -1,14 +1,14 @@
-// import axios from 'axios';
+import axios from 'axios';
 // import { clearCookie, getCookie, setCookie } from '../shared/lib/cookie';
-// import { HOST } from './env-config';
+import { HOST } from './env-config';
 // import useLogout from '../shared/hooks/auth/useLogout';
 // import { useAppDispatch } from '../app/store';
 // import { setLoginStatus } from '../app/store/slice/userSlice';
 // import { submitLogout } from '../shared/api/api';
 
-// const axiosConfig = axios.create({
-//   baseURL: HOST,
-// });
+export const axiosConfig = axios.create({
+  baseURL: HOST,
+});
 
 // axiosConfig.interceptors.request.use(
 //   async (config) => {

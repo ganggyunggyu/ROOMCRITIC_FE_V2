@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { clearCookie, getCookie } from '../../shared/lib/cookie';
-import { axiosConfig } from '../../shared/api/axios-config';
-import { setAccessToken } from '../../shared/store/slice/tokenSlice';
-import { useAppDispatch, useAppSelector } from '../../shared/store';
-import { setIsLoggedIn, setUserInfo } from '../../shared/store/slice/userSlice';
-import { useLogout } from '@/entities';
+import { setAccessToken } from '../store/slice/tokenSlice';
+import { useAppDispatch, useAppSelector } from '../store';
+import { setIsLoggedIn, setUserInfo } from '../store/slice/userSlice';
+import { fetchLoginStatus, useLogout } from '@/entities';
+import { axiosConfig } from '@/config/axios-config';
 
 const Interceptor = ({ children }) => {
   const dispatch = useAppDispatch();
@@ -18,11 +18,6 @@ const Interceptor = ({ children }) => {
   console.debug('current status');
   console.debug('accessToken:', accessToken);
   console.debug('userInfo:', userInfo);
-
-  const fetchLoginStatus = async () => {
-    const result = await axiosConfig.get('/user/login-check');
-    return result.data;
-  };
 
   const refreshAccessToken = async (refreshToken: string) => {
     try {

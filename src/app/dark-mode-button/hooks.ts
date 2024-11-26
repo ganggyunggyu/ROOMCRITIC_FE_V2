@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../shared/store';
-import { setDarkMode, setDarkModeClasses } from '../../shared/store/slice/darkModeSlice';
+import { useAppDispatch, useAppSelector } from '../store';
+import { setDarkMode, setDarkModeClasses } from '../store/slice/darkModeSlice';
 
 export const useDarkMode = () => {
   const isDarkMode = useAppSelector((state) => state.darkMode.isDarkMode);

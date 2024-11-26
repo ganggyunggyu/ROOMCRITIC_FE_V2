@@ -8,8 +8,8 @@ import {
   getSearchContent,
 } from '../api';
 import { useSearchInput } from '@/shared';
-import { useAppDispatch } from '@/shared/store';
-import { setSearchContents } from '@/shared/store/slice/searchSlice';
+import { useAppDispatch } from '@/app/store';
+import { setSearchContents } from '@/app/store/slice/searchSlice';
 
 export const useAddWatchContent = () => {
   return useMutation({

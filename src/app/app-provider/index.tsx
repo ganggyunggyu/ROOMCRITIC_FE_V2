@@ -1,5 +1,5 @@
 import { cn } from '../../shared/lib/cn';
-import { useAppSelector } from '../../shared/store';
+import { useAppSelector } from '../store';
 
 export const AppProvider = ({ children }) => {
   const { darkModeClasses } = useAppSelector((state) => state.darkMode);

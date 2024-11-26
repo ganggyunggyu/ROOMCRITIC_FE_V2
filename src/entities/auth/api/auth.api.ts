@@ -1,4 +1,4 @@
-import { axiosConfig } from '../../../shared/api/axios-config';
+import { axiosConfig } from '@/config/axios-config';
 
 export const getAccessToken = async (userId: string, refreshToken: string) => {
   try {
@@ -42,5 +42,14 @@ export const submitLogout = async (refreshToken: string) => {
     return result;
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const fetchLoginStatus = async () => {
+  try {
+    const result = await axiosConfig.get('/user/login-check');
+    return result.data;
+  } catch (error) {
+    console.error(error);
   }
 };

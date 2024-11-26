@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../button';
 import { cn } from '@/shared/lib/cn';
-import { useAppSelector } from '@/shared/store';
+import { useAppSelector } from '@/app/store';
 
 export const Modal = ({ isModal, setIsModal }) => {
   const backgroundRef = React.useRef(null);

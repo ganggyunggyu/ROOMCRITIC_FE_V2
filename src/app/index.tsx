@@ -8,7 +8,7 @@ import Fullback from './full-back';
 import { DetailBackground } from '../widgets/detail-background';
 import { AppProvider } from './app-provider';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useAppSelector } from '../shared/store';
+import { useAppSelector } from './store';
 import RightSideBar from '@/widgets/right-sidebar';
 
 function App() {

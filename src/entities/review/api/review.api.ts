@@ -1,4 +1,4 @@
-import { axiosConfig } from '../../../shared/api/axios-config';
+import { axiosConfig } from '@/config/axios-config';
 
 export const getAverageGradeByContent = async (contentId) => {
   const result = axiosConfig.get(`review/average/${contentId}`);

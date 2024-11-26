@@ -1,7 +1,10 @@
-export { ReviewDetailActions } from './ReviewDetailActions';
-export { ReviewDetailInfo } from './ReviewDetailInfo';
-export { ReviewInfinityList } from './ReviewInfinityList';
-export { ReviewList } from './ReviewList';
-export { ReviewListInContentDetail } from './ReviewListInContentDetail';
-export { ContentReviews } from './ReviewListByContent';
-export { UpdateForm } from './ReviewUpdateForm';
+export * from './card';
+export * from './grade';
+export * from './review-action';
+export * from './review-create-form';
+export * from './review-infinity-list';
+export * from './review-info';
+export * from './review-list';
+export * from './review-list-by-content';
+export * from './review-list-in-content-detail';
+export * from './review-update-form';

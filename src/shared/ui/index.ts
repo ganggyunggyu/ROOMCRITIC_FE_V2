@@ -11,3 +11,6 @@ export * from './toast-message';
 export { default as CloseIcon } from './icons/CloseIcon';
 export { default as LeftChevrom } from './icons/LeftChevrom';
 export { default as RightChevrom } from './icons/RightChevrom';
+export { default as HamburgerIcon } from './icons/HamburgerIcon';
+export { default as StarIcon } from './icons/StarIcon';
+export { default as HalfStar } from './icons/HalfStar';

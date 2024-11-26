@@ -2,9 +2,9 @@ import React from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigationType } from 'react-router-dom';
 
 import { scrollToTop } from '../shared/lib/scroll-to-top';
-import { useAppDispatch } from '../shared/store';
-import { setPrevPathName } from '../shared/store/slice/prevPathName';
-import { setNavigationType } from '../shared/store/slice/navigationTypeSlice';
+import { useAppDispatch } from '../app/store';
+import { setPrevPathName } from '../app/store/slice/prevPathName';
+import { setNavigationType } from '../app/store/slice/navigationTypeSlice';
 import { AnimatePresence } from 'framer-motion';
 
 const HomePage = React.lazy(() => import('./home'));

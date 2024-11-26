@@ -1,5 +1,5 @@
 import { cn } from '../../shared/lib/cn';
-import { useAppSelector } from '../../shared/store';
+import { useAppSelector } from '../../app/store';
 export default function Footer() {
   const { isDarkMode } = useAppSelector((state) => state.darkMode);
   return (

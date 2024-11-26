@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../shared/store';
-import { getCookie } from '../../shared/lib/cookie';
-import { cn } from '../../shared/lib/cn';
-import { useDevice } from '@/shared';
-import HamburgerIcon from '@/shared/ui/icons/HamburgerIcon';
-import Logo from '@/shared/ui/logo';
-import { setIsRightSideBar } from '@/shared/store/slice/ui/sidebar';
+import { setIsRightSideBar } from '@/app/store/slice/ui/sidebar';
+import { useAppDispatch, useAppSelector } from '../store';
 import { useLogout } from '@/entities';
+import { useDevice, Logo, cn, getCookie, HamburgerIcon } from '@/shared';
 
 const Header = () => {
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);

@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
-import StarIcon from './icons/StarIcon';
-import HalfStar from './icons/HalfStar';
+import StarIcon from '../icons/StarIcon';
+import HalfStar from '../icons/HalfStar';
 
 type StarsInput = {
   grade: number;

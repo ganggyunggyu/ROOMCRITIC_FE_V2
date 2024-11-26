@@ -1,5 +1,5 @@
+import { axiosConfig } from '@/config/axios-config';
 import { TMDB_TOKEN } from '@/config/env-config';
-import { axiosConfig } from '../../../shared/api/axios-config';
 
 export const addWishContent = async (WishContentRequestDTO) => {
   try {

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../shared/store';
-import { setClearAuth, setIsLoggedIn, setUserInfo } from '../../../shared/store/slice/userSlice';
-import { setAccessToken, setRefreshTokenExp } from '../../../shared/store/slice/tokenSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
+import { setClearAuth, setIsLoggedIn, setUserInfo } from '../../../app/store/slice/userSlice';
+import { setAccessToken, setRefreshTokenExp } from '../../../app/store/slice/tokenSlice';
 import { clearCookie, setCookie } from '../../../shared/lib/cookie';
 import { submitJoin, submitLogin, submitLogout } from '../api';
 
@@ -29,7 +29,6 @@ export const useLogin = () => {
       const refreshToken = result.data.refreshToken.refreshToken;
       const refreshTokenExp = result.data.refreshToken.refreshTokenExp;
 
-      console.log(result);
       dispatch(setIsLoggedIn(isLoggedIn));
       dispatch(setUserInfo(userInfo));
       dispatch(setAccessToken(accessToken));
