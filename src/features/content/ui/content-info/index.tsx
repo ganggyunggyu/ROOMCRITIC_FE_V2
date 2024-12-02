@@ -7,6 +7,7 @@ import { useDevice } from '@/shared';
 import { Overview } from '../content-overview';
 import { WishButton } from '../wish-button';
 import { WatchButton } from '../watch-button';
+import { LikeButton } from '../like-button';
 
 type ContentInfoProps = {
   content: {
@@ -79,6 +80,7 @@ export const Info: React.FC<ContentInfoProps> = ({ content }) => {
           <article className="flex gap-5">
             <WishButton />
             <WatchButton />
+            <LikeButton />
           </article>
         )}
       </div>

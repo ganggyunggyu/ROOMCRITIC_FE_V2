@@ -14,7 +14,6 @@ import {
   reviewUpdate,
 } from '../api';
 import { useAppSelector } from '@/app/store';
-getAverageGradeByContent;
 
 export const useAverageGradeByContent = () => {
   const { contentIdParam } = useParams();
@@ -98,12 +97,12 @@ export const useReviewUpdate = () => {
   });
 };
 
-export const useGetReviewLikeStatus = () => {
-  const { userIdParam, reviewIdParam } = useParams();
-  const userInfo = useAppSelector((state) => state.user.userInfo);
+export const useGetReviewLikeStatus = (options?: { userId?: string; reviewId?: string }) => {
+  const { userId, reviewId } = options;
+
   return useQuery({
-    queryKey: ['like', reviewIdParam, userIdParam],
-    queryFn: () => getReviewLikeStatus(reviewIdParam, userInfo.userId),
+    queryKey: ['like', reviewId, userId],
+    queryFn: () => getReviewLikeStatus(reviewId, userId),
     select: (data) => data.data,
   });
 };
@@ -111,6 +110,10 @@ export const useGetReviewLikeStatus = () => {
 export const useReviewLike = () => {
   return useMutation({
     mutationFn: reviewLike,
+
+    onSuccess: (result) => {
+      // console.log(result);
+    },
   });
 };
 

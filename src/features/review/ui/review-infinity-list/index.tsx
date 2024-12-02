@@ -3,7 +3,7 @@ import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 
 import { Review } from '@/entities';
 import { cn, useIntersectionObserver } from '@/shared';
-import { Card } from '../card';
+import { ReviewCard } from '../card';
 
 type ReviewInfinityListProps = {
   query: () => InfiniteQueryObserverResult<Review[][]>;
@@ -23,11 +23,10 @@ export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({ query, t
         <p>{title}</p>
         <div className={cn('w-full grid grid-cols-1 gap-10', className)}>
           {data.map((group, i) => {
-            console.log(group);
             return group ? (
               <React.Fragment key={i}>
                 {group.map((review: Review) => {
-                  return <Card review={review} key={review._id} className="w-full h-72" />;
+                  return <ReviewCard review={review} key={review._id} className="w-full h-72" />;
                 })}
               </React.Fragment>
             ) : (

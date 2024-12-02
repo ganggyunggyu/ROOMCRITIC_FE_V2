@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../../../app/store';
+import { useAppSelector } from '@/app/store';
+import { CreateForm } from '@/features/review';
 import { LoginButton, Loading } from '@/shared';
-import CreateForm from '../../../review/ui/review-create-form';
 
 export function Action({ isLoading, content }) {
   const { isLoggedIn } = useAppSelector((state) => state.user);

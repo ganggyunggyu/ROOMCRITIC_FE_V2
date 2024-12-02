@@ -27,7 +27,7 @@ export const getReview = async (reviewId: string) => {
 export const getReviewByUser = async (userId: string, skip: number) => {
   try {
     const result = await axiosConfig.get(`review/user/${userId}?limit=6&skip=${skip}`);
-    console.log(result);
+
     return result.data;
   } catch (error) {
     console.error(error);

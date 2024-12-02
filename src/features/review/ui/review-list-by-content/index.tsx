@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useIntersectionObserver } from '@/shared/hooks/use-intersection-observer';
-import { Card } from '../card';
+import { ReviewCard } from '../card';
 import { useReviewByContent, Review } from '@/entities';
 
 export const ContentReviews: React.FC = () => {
@@ -17,7 +17,7 @@ export const ContentReviews: React.FC = () => {
           return group ? (
             <React.Fragment key={i}>
               {group.map((review: Review) => {
-                return <Card review={review} key={review._id} className="w-full h-72" />;
+                return <ReviewCard review={review} key={review._id} className="w-full h-72" />;
               })}
             </React.Fragment>
           ) : (

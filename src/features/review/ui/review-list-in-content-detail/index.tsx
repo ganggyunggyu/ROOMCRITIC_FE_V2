@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Card } from '../card';
+import { ReviewCard } from '../card';
 import { Button } from '@/shared';
 
 interface Review {
@@ -41,7 +41,7 @@ export const ReviewListInContentDetail: React.FC<ReviewListProps> = ({ contentTi
       </p>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-3 gap-y-10">
         {reviews.map((review) => (
-          <Card key={review._id} review={review} />
+          <ReviewCard key={review._id} review={review} />
         ))}
       </div>
     </div>

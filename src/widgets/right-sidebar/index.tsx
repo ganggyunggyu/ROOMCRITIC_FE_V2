@@ -53,7 +53,9 @@ const RightSideBar = () => {
         )}
         {isLoggedIn && (
           <React.Fragment>
-            <p className="min-w-max">{userInfo.displayName}님 환영합니다!</p>
+            <Link onClick={closeSidebar} to={`/profile/${userInfo._id}`} className="min-w-max">
+              {userInfo.displayName}님 환영합니다!
+            </Link>
 
             <Link onClick={closeSidebar} to={'/search'}>
               검색

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../card';
+import { ReviewCard } from '../card';
 import { cn } from '@/shared';
 
 interface Review {
@@ -29,7 +29,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({ reviews, title, classNam
       <p className="text-2xl">{title}</p>
       <div className={cn(`grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3`, className)}>
         {reviews.map((review) => (
-          <Card key={review._id} review={review} />
+          <ReviewCard key={review._id} review={review} />
         ))}
       </div>
     </div>

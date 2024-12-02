@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 import { setIsRightSideBar } from '@/app/store/slice/ui/sidebar';
 import { useAppDispatch, useAppSelector } from '../store';
 import { useLogout } from '@/entities';
 import { useDevice, Logo, cn, getCookie, HamburgerIcon } from '@/shared';
+import { GrPrevious } from 'react-icons/gr';
 
 const Header = () => {
+  const navigate = useNavigate();
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
   const { darkModeClasses } = useAppSelector((state) => state.darkMode);
   const dispatch = useAppDispatch();
@@ -33,6 +35,9 @@ const Header = () => {
     dispatch(setIsRightSideBar(true));
   };
 
+  const handlePrevClick = () => {
+    navigate(-1);
+  };
   return (
     <React.Fragment>
       {deviceType === 'mobile' ? (
@@ -43,7 +48,8 @@ const Header = () => {
             }`,
           )}
         >
-          <div className="w-8" />
+          <GrPrevious onClick={handlePrevClick} className="w-8" />
+
           <Logo />
           <HamburgerIcon onClick={handleHamburgerClick} className=" w-8" />
         </header>

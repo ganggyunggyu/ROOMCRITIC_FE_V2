@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '@/app/store';
 import { Button, scrollToTop } from '@/shared';
-import { useReviewDelete, useReviewDetail } from '@/entities/review/hooks';
+import { useReviewDelete, useReviewDetail, useReviewLike } from '@/entities/review/hooks';
 
 export function ReviewDetailActions() {
   const navigator = useNavigate();
@@ -10,6 +10,8 @@ export function ReviewDetailActions() {
   const { isLoading: isReviewLoading, data: review } = useReviewDetail();
   const { mutate: deleteMutate } = useReviewDelete();
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.user);
+
+  const { mutate: reviewLike } = useReviewLike();
 
   if (isReviewLoading) return <div />;
 
@@ -25,9 +27,18 @@ export function ReviewDetailActions() {
     });
   };
 
+  const handleReviewLikeClick = () => {
+    console.log('asd');
+
+    reviewLike({
+      reviewId: reviewIdParam,
+      userId: userInfo._id,
+    });
+  };
+
   return (
     <React.Fragment>
-      <Button label="좋아요" variant="main" />
+      <Button onClick={handleReviewLikeClick} label="좋아요" variant="main" />
 
       {isLoggedIn && userIdParam === userInfo._id && (
         <React.Fragment>

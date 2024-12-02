@@ -10,7 +10,7 @@ interface CreateFormProps {
   content: Content;
 }
 
-const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
+export const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
   const { userInfo } = useAppSelector((state) => state.user);
   const { isDarkMode } = useAppSelector((state) => state.darkMode);
   const [grade, setGrade] = React.useState(0);
@@ -85,4 +85,3 @@ const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
     </form>
   );
 };
-export default CreateForm;

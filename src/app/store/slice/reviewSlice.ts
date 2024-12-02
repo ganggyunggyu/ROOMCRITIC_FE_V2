@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TReview } from '../../../shared/types/main';
+import { Review } from '@/entities';
 
 interface ReviewState {
-  reviews: TReview[];
-  selectedReview: TReview | null;
+  reviews: Review[];
+  selectedReview: Review | null;
 }
 
 const initialState: ReviewState = {

@@ -26,8 +26,6 @@ export const ResponsiveProvider: React.FC<ResponsiveProviderProps> = ({ children
   const location = useLocation();
 
   const isHome = location.pathname === '/';
-  console.log(location.pathname);
-
   const push = {
     initial: { x: '100%' },
     animate: { x: 0 },
