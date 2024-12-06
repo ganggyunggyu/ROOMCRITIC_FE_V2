@@ -18,7 +18,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review, className }) => 
   };
   const { mutateAsync } = useReviewLike();
 
-  const { data, isSuccess } = useGetReviewLikeStatus({ reviewId: review?._id, userId: userInfo?._id });
+  const { data, isSuccess } = useGetReviewLikeStatus({ reviewId: review?._id, userId: review?.userId });
   const [isLike, setIsLike] = React.useState<boolean>(false);
 
   const handleReviewLikeClick = async () => {
