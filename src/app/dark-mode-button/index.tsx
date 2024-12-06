@@ -8,7 +8,7 @@ const DarkModeButton: React.FC = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="h-12 w-12 border rounded-full flex items-center justify-center fixed bottom-8 right-8 z-20"
+      className={`${isDarkMode ? 'bg-zinc-800' : 'bg-white'} h-12 w-12 border rounded-full flex items-center justify-center fixed bottom-8 right-8 z-20`}
     >
       {isDarkMode ? <Sun /> : <Moon />}
     </button>

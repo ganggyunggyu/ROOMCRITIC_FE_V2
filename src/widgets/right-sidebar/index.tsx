@@ -37,7 +37,7 @@ const RightSideBar = () => {
   return (
     <div className={`fixed top-0 w-screen h-screen z-40`}>
       <section
-        className={`fixed right-0 flex flex-col items-center gap-5 p-5 bg-zinc-800 w-5/12 h-screen z-50 
+        className={`fixed right-0 flex flex-col items-center gap-5 p-5 bg-zinc-800 text-white w-5/12 h-screen z-50 
         ${isOpen && !isExiting ? 'translate-x-0' : 'translate-x-full'} 
         transition-transform duration-300`}
       >
