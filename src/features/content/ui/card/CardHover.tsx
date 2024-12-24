@@ -1,7 +1,7 @@
 import React from 'react';
 
 type CardHoverProps = {
-  review?: string;
+  review: string;
 };
 
 export const CardHover: React.FC<CardHoverProps> = ({ review }) => {

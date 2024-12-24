@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppSelector } from '@/app/store';
 import { Grade } from '@/features/review/ui/grade';
 import { useAddWatchContent, useAddWishContent } from '@/entities/content';
-
 import { useDevice } from '@/shared';
 import { Overview } from '../content-overview';
 import { WishButton } from '../wish-button';

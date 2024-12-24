@@ -1,8 +1,15 @@
 import { useAppSelector } from '@/app/store';
+import { Content } from '@/entities';
 import { CreateForm } from '@/features/review';
 import { LoginButton, Loading } from '@/shared';
+import React from 'react';
 
-export function Action({ isLoading, content }) {
+interface ActionProps {
+  isLoading: boolean;
+  content: Content;
+}
+
+export const Action: React.FC<ActionProps> = ({ isLoading, content }) => {
   const { isLoggedIn } = useAppSelector((state) => state.user);
 
   if (isLoading) {
@@ -14,4 +21,4 @@ export function Action({ isLoading, content }) {
       {isLoggedIn ? <CreateForm content={content} /> : <LoginButton />}
     </section>
   );
-}
+};
