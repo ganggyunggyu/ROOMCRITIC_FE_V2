@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { getCookie } from '@/shared/lib/cookie';
 import { useLogout } from '@/entities';
 
-const RightSideBar = () => {
+export const RightSideBar = () => {
   const dispatch = useAppDispatch();
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
   const { mutate } = useLogout();
@@ -53,7 +53,11 @@ const RightSideBar = () => {
         )}
         {isLoggedIn && (
           <React.Fragment>
-            <Link onClick={closeSidebar} to={`/profile/${userInfo._id}`} className="min-w-max">
+            <Link
+              onClick={closeSidebar}
+              to={`/profile/${userInfo._id}`}
+              className="min-w-max"
+            >
               {userInfo.displayName}님 환영합니다!
             </Link>
 
@@ -71,5 +75,3 @@ const RightSideBar = () => {
     </div>
   );
 };
-
-export default RightSideBar;

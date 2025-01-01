@@ -9,7 +9,7 @@ import { DetailBackground } from '../widgets/detail-background';
 import { AppProvider } from './app-provider';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useAppSelector } from './store';
-import RightSideBar from '@/widgets/right-sidebar';
+import { RightSideBar } from '@/widgets/right-sidebar';
 
 function App() {
   const { backgroundPath } = useAppSelector((state) => state.backgroundPath);
