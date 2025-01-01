@@ -1,8 +1,4 @@
-import fs from 'fs';
 import svgr from 'vite-plugin-svgr';
-
-const cert = fs.readFileSync('localhost.pem');
-const key = fs.readFileSync('localhost-key.pem');
 
 export default {
   plugins: [svgr()],
@@ -16,13 +12,6 @@ export default {
   esbuild: {
     define: {
       this: 'window',
-    },
-  },
-  server: {
-    host: true,
-    https: {
-      key,
-      cert,
     },
   },
 };
