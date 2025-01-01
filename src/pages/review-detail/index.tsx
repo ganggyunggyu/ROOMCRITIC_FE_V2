@@ -1,5 +1,5 @@
 import { Category, ReviewDetailActions, ReviewDetailInfo } from '@/features';
-import { ResponsiveProvider } from '../../widgets';
+import { ResponsiveProvider } from '@/widgets';
 
 export default function index() {
   return (

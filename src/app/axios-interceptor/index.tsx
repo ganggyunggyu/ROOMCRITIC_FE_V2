@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { clearCookie, getCookie } from '../../shared/lib/cookie';
-import { setAccessToken } from '../store/slice/tokenSlice';
 import { useAppDispatch, useAppSelector } from '../store';
+import { setAccessToken } from '../store/slice/tokenSlice';
 import { setIsLoggedIn, setUserInfo } from '../store/slice/userSlice';
+import { clearCookie, getCookie } from '@/shared/lib/cookie';
 import { fetchLoginStatus, useLogout } from '@/entities';
 import { axiosConfig } from '@/config/axios-config';
 
@@ -93,7 +93,7 @@ const Interceptor = ({ children }) => {
     };
   }, [accessToken, userInfo, dispatch, logout]);
 
-  const init = async () => {
+  const refreshLoginCheck = async () => {
     if (refreshToken) {
       const fetchInfo = await fetchLoginStatus();
       console.debug('새로 패치 된 유저 정보:', fetchInfo);
@@ -102,7 +102,7 @@ const Interceptor = ({ children }) => {
     }
   };
   React.useEffect(() => {
-    init();
+    refreshLoginCheck();
   }, []);
   return children;
 };

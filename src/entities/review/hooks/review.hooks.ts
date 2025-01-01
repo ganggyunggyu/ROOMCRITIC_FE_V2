@@ -97,7 +97,10 @@ export const useReviewUpdate = () => {
   });
 };
 
-export const useGetReviewLikeStatus = (options?: { userId?: string; reviewId?: string }) => {
+export const useGetReviewLikeStatus = (options?: {
+  userId?: string;
+  reviewId?: string;
+}) => {
   const { userId, reviewId } = options;
 
   return useQuery({
@@ -112,7 +115,7 @@ export const useReviewLike = () => {
     mutationFn: reviewLike,
 
     onSuccess: (result) => {
-      // console.log(result);
+      console.debug(result);
     },
   });
 };

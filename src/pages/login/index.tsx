@@ -1,4 +1,4 @@
-import { ResponsiveProvider } from '@/widgets/responsive-provider';
+import { ResponsiveProvider } from '@/widgets';
 import { LoginForm } from '@/features';
 
 export default function Login() {

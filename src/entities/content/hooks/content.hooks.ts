@@ -90,15 +90,24 @@ export const useInfinitySearchContentQuery = (searchType: number) => {
     queryFn: () => {
       if (searchType === 0) {
         if (!contentSearchInput.value) return null;
-        return getSearchContent(contentSearchInput.value, contentSearchInput.typeName);
+        return getSearchContent(
+          contentSearchInput.value,
+          contentSearchInput.typeName,
+        );
       }
       if (searchType === 1) {
         if (!movieSearchInput.value) return null;
-        return getSearchContent(movieSearchInput.value, movieSearchInput.typeName);
+        return getSearchContent(
+          movieSearchInput.value,
+          movieSearchInput.typeName,
+        );
       }
       if (searchType === 2) {
         if (!contentSearchInput.value) return null;
-        return getSearchContent(contentSearchInput.value, tvSearchInput.typeName);
+        return getSearchContent(
+          contentSearchInput.value,
+          tvSearchInput.typeName,
+        );
       }
     },
     initialPageParam: 0,
@@ -120,15 +129,24 @@ export const useSearchContentQuery = (searchType: number) => {
     queryFn: () => {
       if (searchType === 0) {
         if (!contentSearchInput.value) return null;
-        return getSearchContent(contentSearchInput.value, contentSearchInput.typeName);
+        return getSearchContent(
+          contentSearchInput.value,
+          contentSearchInput.typeName,
+        );
       }
       if (searchType === 1) {
         if (!movieSearchInput.value) return null;
-        return getSearchContent(movieSearchInput.value, movieSearchInput.typeName);
+        return getSearchContent(
+          movieSearchInput.value,
+          movieSearchInput.typeName,
+        );
       }
       if (searchType === 2) {
         if (!contentSearchInput.value) return null;
-        return getSearchContent(contentSearchInput.value, tvSearchInput.typeName);
+        return getSearchContent(
+          contentSearchInput.value,
+          tvSearchInput.typeName,
+        );
       }
     },
 

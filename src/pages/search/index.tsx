@@ -1,10 +1,12 @@
 import React from 'react';
-import { ResponsiveProvider } from '../../widgets';
-
 import { SEARCH_INPUT, SEARCH_BUTTON } from '@public/constant/SEARCH_LABEL';
-import { AuthError } from '@/features';
-
-import { SearchInput, SearchButton, SearchContents } from '@/features';
+import { ResponsiveProvider } from '@/widgets';
+import {
+  SearchInput,
+  SearchButton,
+  SearchContents,
+  AuthError,
+} from '@/features';
 import { useSearchContentQuery } from '@/entities';
 
 export default function Serch() {
@@ -12,12 +14,29 @@ export default function Serch() {
   const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
   const [prevType, setPrevType] = React.useState(searchType);
 
-  const { contentSearchInput, searchContents, movieSearchInput, tvSearchInput } = useSearchContentQuery(searchType);
+  const {
+    contentSearchInput,
+    searchContents,
+    movieSearchInput,
+    tvSearchInput,
+  } = useSearchContentQuery(searchType);
 
   const SearchButtons = [
-    { label: SEARCH_BUTTON[0], isActive: searchType === 0, onClick: () => setSearchType(0) },
-    { label: SEARCH_BUTTON[1], isActive: searchType === 1, onClick: () => setSearchType(1) },
-    { label: SEARCH_BUTTON[2], isActive: searchType === 2, onClick: () => setSearchType(2) },
+    {
+      label: SEARCH_BUTTON[0],
+      isActive: searchType === 0,
+      onClick: () => setSearchType(0),
+    },
+    {
+      label: SEARCH_BUTTON[1],
+      isActive: searchType === 1,
+      onClick: () => setSearchType(1),
+    },
+    {
+      label: SEARCH_BUTTON[2],
+      isActive: searchType === 2,
+      onClick: () => setSearchType(2),
+    },
   ];
 
   React.useEffect(() => {
@@ -82,7 +101,11 @@ export default function Serch() {
           return (
             searchType === searchConfig.type && (
               <React.Fragment key={searchConfig.type}>
-                <SearchInput label={searchConfig.label} value={searchConfig.value} onChange={searchConfig.onChange} />
+                <SearchInput
+                  label={searchConfig.label}
+                  value={searchConfig.value}
+                  onChange={searchConfig.onChange}
+                />
                 <SearchContents
                   isActive={searchConfig.isActive}
                   isLoading={searchConfig.isLoading}

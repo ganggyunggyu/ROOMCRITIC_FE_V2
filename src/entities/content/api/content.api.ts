@@ -3,7 +3,10 @@ import { TMDB_TOKEN } from '@/config/env-config';
 
 export const addWishContent = async (WishContentRequestDTO) => {
   try {
-    const result = await axiosConfig.post('content/wish', WishContentRequestDTO);
+    const result = await axiosConfig.post(
+      'content/wish',
+      WishContentRequestDTO,
+    );
     return result;
   } catch (error) {
     console.error(error);
@@ -13,7 +16,10 @@ export const addWishContent = async (WishContentRequestDTO) => {
 
 export const addWatchContent = async (WatchContentRequestDTO) => {
   try {
-    const result = await axiosConfig.post('content/watch', WatchContentRequestDTO);
+    const result = await axiosConfig.post(
+      'content/watch',
+      WatchContentRequestDTO,
+    );
     return result;
   } catch (error) {
     console.error(error);
@@ -30,14 +36,22 @@ export const getContentByOne = async (contentId: string) => {
   }
 };
 
-export const getSearchContent = async (searchValue: string, contentType?: string) => {
+export const getSearchContent = async (
+  searchValue: string,
+  contentType?: string,
+) => {
   if (!searchValue) throw new Error('검색어 입력 필요');
   if (searchValue.length <= 1) throw new Error('검색어 입력 필요');
-  const result = await axiosConfig.get(`content/?q=${searchValue}&content_type=${contentType}`);
+  const result = await axiosConfig.get(
+    `content/?q=${searchValue}&content_type=${contentType}`,
+  );
   return result;
 };
 
-export const getLatestContent = async (pageParam: number, contentType?: string) => {
+export const getLatestContent = async (
+  pageParam: number,
+  contentType?: string,
+) => {
   const url = contentType
     ? `content/latest?skip=${pageParam}&content_type=${contentType}`
     : `content/latest?skip=${pageParam}`;
@@ -46,7 +60,10 @@ export const getLatestContent = async (pageParam: number, contentType?: string) 
   return result.data;
 };
 
-export const getPopularContent = async (pageParam: number, contentType?: string) => {
+export const getPopularContent = async (
+  pageParam: number,
+  contentType?: string,
+) => {
   const url = contentType
     ? `content/popular?skip=${pageParam}&content_type=${contentType}`
     : `content/popular?skip=${pageParam}`;
@@ -70,10 +87,13 @@ export const getVideo = async (type: string, id: number) => {
   }, 100);
   try {
     clearTimeout(timeoutId);
-    const response = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos`, {
-      ...option,
-      signal: AbortSignal.timeout(500),
-    });
+    const response = await fetch(
+      `https://api.themoviedb.org/3/${type}/${id}/videos`,
+      {
+        ...option,
+        signal: AbortSignal.timeout(500),
+      },
+    );
 
     if (!response.ok) {
       throw new Error('네트워크 통신 에러');
