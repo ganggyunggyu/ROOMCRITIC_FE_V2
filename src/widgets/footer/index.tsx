@@ -1,9 +1,13 @@
 import { cn } from '../../shared/lib/cn';
 import { useAppSelector } from '../../app/store';
-export default function Footer() {
+export function Footer() {
   const { isDarkMode } = useAppSelector((state) => state.darkMode);
   return (
-    <footer className={cn(` flex flex-col items-center justify-center w-full gap-5 p-10 opacity-60 text-sm`)}>
+    <footer
+      className={cn(
+        ` flex flex-col items-center justify-center w-full gap-5 p-10 opacity-60 text-sm`,
+      )}
+    >
       <p>develop by 강경규</p>
       <p>connect</p>
       <p>qwzx16@naver.com</p>
