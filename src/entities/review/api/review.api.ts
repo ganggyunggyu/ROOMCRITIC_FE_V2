@@ -1,4 +1,5 @@
 import { axiosConfig } from '@/config/axios-config';
+import { AxiosPromise } from 'axios';
 
 export const getAverageGradeByContent = async (contentId) => {
   const result = axiosConfig.get(`review/average/${contentId}`);
@@ -26,7 +27,9 @@ export const getReview = async (reviewId: string) => {
 };
 export const getReviewByUser = async (userId: string, skip: number) => {
   try {
-    const result = await axiosConfig.get(`review/user/${userId}?limit=6&skip=${skip}`);
+    const result = await axiosConfig.get(
+      `review/user/${userId}?limit=6&skip=${skip}`,
+    );
 
     return result.data;
   } catch (error) {
@@ -66,9 +69,18 @@ export const getReviewLikeStatus = async (reviewId, userId) => {
   }
 };
 
-export const reviewLike = async (sendLikeReviewRequestDTO) => {
+export type ReviewLikeRequest = {
+  userId: string;
+  reviewId: string;
+};
+
+export type ReviewLikeResponse = { status: number; isSuccess: boolean };
+
+export const reviewLike = async (
+  reviewLikeRequest: ReviewLikeRequest,
+): AxiosPromise<ReviewLikeResponse> => {
   try {
-    const result = await axiosConfig.post(`review/like`, sendLikeReviewRequestDTO);
+    const result = await axiosConfig.post(`review/like`, reviewLikeRequest);
     return result;
   } catch (error) {
     throw Error(error);
@@ -77,7 +89,10 @@ export const reviewLike = async (sendLikeReviewRequestDTO) => {
 
 export const reviewDislike = async (sendDislikeReviewRequestDTO) => {
   try {
-    const result = await axiosConfig.post(`review/dislike`, sendDislikeReviewRequestDTO);
+    const result = await axiosConfig.post(
+      `review/dislike`,
+      sendDislikeReviewRequestDTO,
+    );
     return result;
   } catch (error) {
     throw Error(error);

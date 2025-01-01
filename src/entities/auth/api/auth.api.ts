@@ -1,8 +1,21 @@
 import { axiosConfig } from '@/config/axios-config';
+import { AxiosPromise } from 'axios';
+import {
+  GetAccessTokenRequest,
+  JoinRequest,
+  LoginRequest,
+  LoginResponse,
+} from '../model';
 
-export const getAccessToken = async (userId: string, refreshToken: string) => {
+export const getAccessToken = async (
+  getAccessTokenRequest: GetAccessTokenRequest,
+) => {
+  const { userId, refreshToken } = getAccessTokenRequest;
   try {
-    const result = await axiosConfig.post('user/auth/access-token', { userId, refreshToken });
+    const result = await axiosConfig.post('user/auth/access-token', {
+      userId,
+      refreshToken,
+    });
     if (result.status === 200) {
       return result;
     }
@@ -14,7 +27,7 @@ export const getAccessToken = async (userId: string, refreshToken: string) => {
   }
 };
 
-export const submitJoin = async (joinUserDTO) => {
+export const submitJoin = async (joinUserDTO: JoinRequest) => {
   try {
     const result = await axiosConfig.post('/user/join', {
       ...joinUserDTO,
@@ -25,9 +38,12 @@ export const submitJoin = async (joinUserDTO) => {
   }
 };
 
-export const submitLogin = async (loginUserDTO) => {
+export const submitLogin = async (
+  loginUserDTO: LoginRequest,
+): AxiosPromise<LoginResponse> => {
   try {
     const result = await axiosConfig.post('/user/auth/login', loginUserDTO);
+
     console.debug(result);
     return result;
   } catch (error) {

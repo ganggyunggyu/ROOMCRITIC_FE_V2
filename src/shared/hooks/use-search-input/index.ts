@@ -1,12 +1,17 @@
 import React, { ChangeEvent } from 'react';
 
-export const getContentType = (typeNumber) => {
+type TypeNumber = 0 | 1 | 2;
+
+export const getContentType = (typeNumber: TypeNumber) => {
   if (typeNumber === 0) return 'all';
   if (typeNumber === 1) return 'movie';
   if (typeNumber === 2) return 'tv';
 };
 
-export const useSearchInput = (initialValue: string, initalType: number) => {
+export const useSearchInput = (
+  initialValue: string,
+  initalType: TypeNumber,
+) => {
   const [value, setValue] = React.useState(initialValue);
   const type = initalType;
   const typeName = getContentType(initalType);

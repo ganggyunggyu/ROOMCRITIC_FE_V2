@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/shared';
 
-type TReview = {
+type BannerReview = {
   title: string;
   lines: string[];
   link: string;
@@ -11,7 +11,7 @@ type TReview = {
 };
 
 type BannerReviewProps = {
-  review: TReview;
+  review: BannerReview;
 };
 
 const BannerReview: React.FC<BannerReviewProps> = ({ review }) => {
@@ -32,7 +32,9 @@ const BannerReview: React.FC<BannerReviewProps> = ({ review }) => {
       <div className="md:w-7/12 w-10/12 flex flex-col justify-end md:justify-end gap-1 md:gap-3 transition-all max-w-fit absolute top-0 bottom-0 p-10 md:p-16">
         <p
           style={{ color: movieColor }}
-          className={cn(`text-xl md:text-5xl transition-1s text-${movieColor}-300 pb-2 md:pb-10`)}
+          className={cn(
+            `text-xl md:text-5xl transition-1s text-${movieColor}-300 pb-2 md:pb-10`,
+          )}
         >
           {review.title}
         </p>
@@ -45,7 +47,9 @@ const BannerReview: React.FC<BannerReviewProps> = ({ review }) => {
         })}
         <Link
           style={{ color: isHovering ? hoverColor : movieColor }}
-          className={cn(`transition-all py-1 md:text-3xl text-${movieColor}-300 hover:text-${movieColor}-700`)}
+          className={cn(
+            `transition-all py-1 md:text-3xl text-${movieColor}-300 hover:text-${movieColor}-700`,
+          )}
           to={review.link}
           onMouseEnter={() => {
             setIsHovering(!isHovering);
