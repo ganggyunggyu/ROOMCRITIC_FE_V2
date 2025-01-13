@@ -1,30 +1,10 @@
-# React + TypeScript + Vite
+# 룸크리틱
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- FE, BE 개발: 강경규
 
-Currently, two official plugins are available:
+- TMDB API를 활용해 영화 정보를 제공하고, 사용자 리뷰 기능을 구현한 영화 정보 서비스
+- React와 Tailwind CSS로 UI 구현, Nest.js와 MongoDB를 활용한 토큰 방식의 인증/인가와 데이터 관리 로직 개발
+- AWS와 ssh인증서를 이용한 https 배포 진행
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- 서비스 링크: https://room-critic.online
+- API 명세서: https://api.room-critic.online/api

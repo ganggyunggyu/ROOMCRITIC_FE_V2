@@ -1,5 +1,5 @@
 import { axiosConfig } from '@/config/axios-config';
-import { AxiosPromise } from 'axios';
+import { ReviewLikeRequest, ReviewLikeResponse } from '../model';
 
 export const getAverageGradeByContent = async (contentId) => {
   const result = axiosConfig.get(`review/average/${contentId}`);
@@ -69,30 +69,11 @@ export const getReviewLikeStatus = async (reviewId, userId) => {
   }
 };
 
-export type ReviewLikeRequest = {
-  userId: string;
-  reviewId: string;
-};
-
-export type ReviewLikeResponse = { status: number; isSuccess: boolean };
-
 export const reviewLike = async (
   reviewLikeRequest: ReviewLikeRequest,
-): AxiosPromise<ReviewLikeResponse> => {
+): ReviewLikeResponse => {
   try {
     const result = await axiosConfig.post(`review/like`, reviewLikeRequest);
-    return result;
-  } catch (error) {
-    throw Error(error);
-  }
-};
-
-export const reviewDislike = async (sendDislikeReviewRequestDTO) => {
-  try {
-    const result = await axiosConfig.post(
-      `review/dislike`,
-      sendDislikeReviewRequestDTO,
-    );
     return result;
   } catch (error) {
     throw Error(error);
