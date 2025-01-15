@@ -108,3 +108,4 @@ export const getVideo = async (type: string, id: number) => {
     throw new Error('네트워크 통신 에러');
   }
 };
+const getRecentlyCreateReviewContent = async () => {};

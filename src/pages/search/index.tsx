@@ -8,18 +8,14 @@ import {
   AuthError,
 } from '@/features';
 import { useSearchContentQuery } from '@/entities';
+import { TypeNumber } from '@/shared';
 
 export default function Serch() {
   const [searchValue, setSearchValue] = React.useState('');
-  const [searchType, setSearchType] = React.useState(0); //0 전체 1 영화 2 티비
+  const [searchType, setSearchType] = React.useState<TypeNumber>(0); //0 전체 1 영화 2 티비
   const [prevType, setPrevType] = React.useState(searchType);
 
-  const {
-    contentSearchInput,
-    searchContents,
-    movieSearchInput,
-    tvSearchInput,
-  } = useSearchContentQuery(searchType);
+  const { searchInput, searchContents } = useSearchContentQuery(searchType);
 
   const SearchButtons = [
     {
@@ -40,43 +36,41 @@ export default function Serch() {
   ];
 
   React.useEffect(() => {
-    const value = contentSearchInput.value;
+    const value = searchInput.value;
     setSearchValue(value);
-  }, [contentSearchInput.value]);
+  }, [searchInput.value]);
 
   if (prevType !== searchType) {
     setPrevType(searchType);
     const value = searchValue;
-    if (searchType === 0) contentSearchInput.setValue(value);
-    if (searchType === 1) movieSearchInput.setValue(value);
-    if (searchType === 2) tvSearchInput.setValue(value);
+    searchInput.setValue(value);
   }
 
   const SearchConfig = [
     {
       label: SEARCH_INPUT[0],
-      value: contentSearchInput.value,
-      onChange: contentSearchInput.onChange,
-      type: contentSearchInput.type,
-      isActive: contentSearchInput.isEmpty,
+      value: searchInput.value,
+      onChange: searchInput.onChange,
+      type: searchInput.type,
+      isActive: searchInput.isEmpty,
       isLoading: searchContents.isLoading,
       contents: searchContents.data,
     },
     {
       label: SEARCH_INPUT[1],
-      value: movieSearchInput.value,
-      onChange: movieSearchInput.onChange,
-      type: movieSearchInput.type,
-      isActive: movieSearchInput.isEmpty,
+      value: searchInput.value,
+      onChange: searchInput.onChange,
+      type: searchInput.type,
+      isActive: searchInput.isEmpty,
       isLoading: searchContents.isLoading,
       contents: searchContents.data,
     },
     {
       label: SEARCH_INPUT[2],
-      value: tvSearchInput.value,
-      onChange: tvSearchInput.onChange,
-      type: tvSearchInput.type,
-      isActive: tvSearchInput.isEmpty,
+      value: searchInput.value,
+      onChange: searchInput.onChange,
+      type: searchInput.type,
+      isActive: searchInput.isEmpty,
       isLoading: searchContents.isLoading,
       contents: searchContents.data,
     },
@@ -97,10 +91,10 @@ export default function Serch() {
             );
           })}
         </div>
-        {SearchConfig.map((searchConfig) => {
+        {SearchConfig.map((searchConfig, index) => {
           return (
-            searchType === searchConfig.type && (
-              <React.Fragment key={searchConfig.type}>
+            searchType === index && (
+              <React.Fragment key={index}>
                 <SearchInput
                   label={searchConfig.label}
                   value={searchConfig.value}

@@ -7,7 +7,7 @@ import {
   getPopularContent,
   getSearchContent,
 } from '../api';
-import { useSearchInput } from '@/shared';
+import { TypeNumber, useSearchInput } from '@/shared';
 import { useAppDispatch } from '@/app/store';
 import { setSearchContents } from '@/app/store/slice/searchSlice';
 
@@ -118,35 +118,23 @@ export const useInfinitySearchContentQuery = (searchType: number) => {
   });
 };
 
-export const useSearchContentQuery = (searchType: number) => {
+export const useSearchContentQuery = (searchType: TypeNumber) => {
   const dispatch = useAppDispatch();
-  const contentSearchInput = useSearchInput('', 0);
-  const movieSearchInput = useSearchInput('', 1);
-  const tvSearchInput = useSearchInput('', 2);
-
+  const searchInput = useSearchInput('', searchType);
   const searchContents = useQuery({
-    queryKey: ['searchContents', contentSearchInput.value, searchType],
+    queryKey: ['searchContents', searchInput.value, searchType],
     queryFn: () => {
       if (searchType === 0) {
-        if (!contentSearchInput.value) return null;
-        return getSearchContent(
-          contentSearchInput.value,
-          contentSearchInput.typeName,
-        );
+        if (!searchInput.value) return null;
+        return getSearchContent(searchInput.value, searchInput.typeName);
       }
       if (searchType === 1) {
-        if (!movieSearchInput.value) return null;
-        return getSearchContent(
-          movieSearchInput.value,
-          movieSearchInput.typeName,
-        );
+        if (!searchInput.value) return null;
+        return getSearchContent(searchInput.value, searchInput.typeName);
       }
       if (searchType === 2) {
-        if (!contentSearchInput.value) return null;
-        return getSearchContent(
-          contentSearchInput.value,
-          tvSearchInput.typeName,
-        );
+        if (!searchInput.value) return null;
+        return getSearchContent(searchInput.value, searchInput.typeName);
       }
     },
 
@@ -159,9 +147,10 @@ export const useSearchContentQuery = (searchType: number) => {
 
   return {
     searchContents,
-    contentSearchInput,
-    movieSearchInput,
-    tvSearchInput,
+    searchInput,
+    // contentSearchInput,
+    // movieSearchInput,
+    // tvSearchInput,
   };
 };
 export const useContentFetch = (contentId: string) => {
@@ -169,6 +158,7 @@ export const useContentFetch = (contentId: string) => {
     queryKey: ['content', contentId],
     queryFn: () => getContentByOne(contentId),
     select: (data) => {
+      console.log(data);
       return data.data;
     },
   });

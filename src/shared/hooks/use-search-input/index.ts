@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-type TypeNumber = 0 | 1 | 2;
+export type TypeNumber = 0 | 1 | 2;
 
 export const getContentType = (typeNumber: TypeNumber) => {
   if (typeNumber === 0) return 'all';
