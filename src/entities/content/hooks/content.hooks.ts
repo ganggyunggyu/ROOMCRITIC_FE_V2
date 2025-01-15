@@ -124,18 +124,8 @@ export const useSearchContentQuery = (searchType: TypeNumber) => {
   const searchContents = useQuery({
     queryKey: ['searchContents', searchInput.value, searchType],
     queryFn: () => {
-      if (searchType === 0) {
-        if (!searchInput.value) return null;
-        return getSearchContent(searchInput.value, searchInput.typeName);
-      }
-      if (searchType === 1) {
-        if (!searchInput.value) return null;
-        return getSearchContent(searchInput.value, searchInput.typeName);
-      }
-      if (searchType === 2) {
-        if (!searchInput.value) return null;
-        return getSearchContent(searchInput.value, searchInput.typeName);
-      }
+      if (!searchInput.value) return null;
+      return getSearchContent(searchInput.value, searchInput.typeName);
     },
 
     select: (data) => {
