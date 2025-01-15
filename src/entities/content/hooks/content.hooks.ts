@@ -148,9 +148,6 @@ export const useSearchContentQuery = (searchType: TypeNumber) => {
   return {
     searchContents,
     searchInput,
-    // contentSearchInput,
-    // movieSearchInput,
-    // tvSearchInput,
   };
 };
 export const useContentFetch = (contentId: string) => {
