@@ -6,11 +6,12 @@ type OverviewProps = {
 
 export const Overview: React.FC<OverviewProps> = ({ overview }) => {
   return (
-    <div className='w-full border-y border-solid py-5 border-slate-200'>
+    <div className="w-full border-y border-solid py-5 border-slate-200">
       {overview ? (
-        <p className='leading-loose overflow-y-scroll'>
+        <p className="leading-loose overflow-y-scroll">
           {overview.split('다.').map((sentence, index) => {
-            if (overview.split('다.').length - 1 !== index) sentence = sentence + '다.';
+            if (overview.split('다.').length - 1 !== index)
+              sentence = sentence + '다.';
 
             return (
               <span key={index}>
