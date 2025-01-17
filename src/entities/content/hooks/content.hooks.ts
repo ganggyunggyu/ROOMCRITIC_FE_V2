@@ -5,6 +5,7 @@ import {
   getContentByOne,
   getLatestContent,
   getPopularContent,
+  getRecentlyCreateReviewContent,
   getSearchContent,
 } from '../api';
 import { TypeNumber, useSearchInput } from '@/shared';
@@ -130,11 +131,9 @@ export const useSearchContentQuery = (searchType: TypeNumber) => {
 
     select: (data) => {
       dispatch(setSearchContents(data.data));
-
       return data.data;
     },
   });
-
   return {
     searchContents,
     searchInput,
@@ -148,5 +147,26 @@ export const useContentFetch = (contentId: string) => {
       console.log(data);
       return data.data;
     },
+  });
+};
+
+export const useRecentlyCreateReviewContent = (contentType?: string) => {
+  const t = contentType ? contentType : null;
+  // return useQuery({
+  //   queryKey: ['recently-content'],
+  //   queryFn: ()=>getRecentlyCreateReviewContent,
+  //   select: (data) => {
+  //     return data.data;
+  //   },
+  // });
+  return useInfiniteQuery({
+    queryKey: ['recently-create-content-list'],
+    queryFn: ({ pageParam }) => getRecentlyCreateReviewContent(pageParam, t),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages, allPages) => {
+      console.log(allPages);
+      return allPages + 10;
+    },
+    select: (data) => data.pages,
   });
 };
