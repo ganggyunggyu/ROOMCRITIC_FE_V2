@@ -152,13 +152,6 @@ export const useContentFetch = (contentId: string) => {
 
 export const useRecentlyCreateReviewContent = (contentType?: string) => {
   const t = contentType ? contentType : null;
-  // return useQuery({
-  //   queryKey: ['recently-content'],
-  //   queryFn: ()=>getRecentlyCreateReviewContent,
-  //   select: (data) => {
-  //     return data.data;
-  //   },
-  // });
   return useInfiniteQuery({
     queryKey: ['recently-create-content-list'],
     queryFn: ({ pageParam }) => getRecentlyCreateReviewContent(pageParam, t),
