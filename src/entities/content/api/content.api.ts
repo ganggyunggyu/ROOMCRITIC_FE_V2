@@ -73,6 +73,19 @@ export const getPopularContent = async (
   return result.data;
 };
 
+export const getRecentlyCreateReviewContent = async (
+  pageParam: number,
+  contentType?: string,
+) => {
+  const url = contentType
+    ? `/content/recently/created-review?skip=${pageParam}&content_type=${contentType}`
+    : `/content/recently/created-review?skip=${pageParam}`;
+
+  const recentlyCreateReviewPromise = await axiosConfig.get(url);
+
+  return recentlyCreateReviewPromise.data;
+};
+
 export const getVideo = async (type: string, id: number) => {
   const option = {
     method: 'GET',
@@ -108,4 +121,3 @@ export const getVideo = async (type: string, id: number) => {
     throw new Error('네트워크 통신 에러');
   }
 };
-const getRecentlyCreateReviewContent = async () => {};
