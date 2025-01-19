@@ -3,12 +3,12 @@ import { LoginRequest, JoinRequest, submitJoin, submitLogin } from '@/entities';
 
 import { beforeAll, describe, expect, it, test } from 'vitest';
 
-const LoginMock = {
+const LOGIN_MOCK = {
   email: TEST_EMAIL,
   password: TEST_PASSWORD,
 } as LoginRequest;
 
 test('Login', async () => {
-  const result = await submitLogin(LoginMock);
+  const result = await submitLogin(LOGIN_MOCK);
   expect(result.data.isLoggedIn).toEqual(true);
 });
