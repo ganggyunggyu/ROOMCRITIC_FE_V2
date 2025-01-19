@@ -73,8 +73,8 @@ export const reviewLike = async (
   reviewLikeRequest: ReviewLikeRequest,
 ): ReviewLikeResponse => {
   try {
-    const result = await axiosConfig.post(`review/like`, reviewLikeRequest);
-    return result;
+    const getIsLike = await axiosConfig.post(`review/like`, reviewLikeRequest);
+    return getIsLike;
   } catch (error) {
     throw Error(error);
   }

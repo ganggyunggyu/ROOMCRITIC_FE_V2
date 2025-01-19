@@ -9,7 +9,6 @@ import {
   getReviewLikeStatus,
   reviewCreate,
   reviewDelete,
-  reviewDislike,
   reviewLike,
   reviewUpdate,
 } from '../api';
@@ -114,14 +113,8 @@ export const useReviewLike = () => {
   return useMutation({
     mutationFn: reviewLike,
 
-    onSuccess: (result) => {
-      console.debug(result);
+    onSuccess: (isLikeResponse) => {
+      return isLikeResponse;
     },
-  });
-};
-
-export const useReviewDislike = () => {
-  return useMutation({
-    mutationFn: reviewDislike,
   });
 };
