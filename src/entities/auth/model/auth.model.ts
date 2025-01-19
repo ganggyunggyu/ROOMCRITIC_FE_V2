@@ -12,7 +12,10 @@ export type LoginRequest = {
 };
 
 export type LoginResponse = {
-  refreshToken: string;
+  refreshToken: {
+    refreshTokenExp: string;
+    refreshToken: string;
+  };
   accessToken: string;
   userInfo: {
     _id: string;
