@@ -44,10 +44,9 @@ export const submitLogin = async (
   try {
     const result = await axiosConfig.post('/user/auth/login', loginUserDTO);
 
-    console.debug(result);
     return result;
   } catch (error) {
-    console.debug(error);
+    console.error(error);
     throw Error(error.response.data);
   }
 };
