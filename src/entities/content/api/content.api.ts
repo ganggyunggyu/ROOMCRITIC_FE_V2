@@ -1,5 +1,9 @@
 import { axiosConfig } from '@/config/axios-config';
 import { TMDB_TOKEN } from '@/config/env-config';
+import {
+  RecentlyReviewedContentRequest,
+  RecentlyReviewedContentResponse,
+} from '../model';
 
 export const addWishContent = async (WishContentRequestDTO) => {
   try {
@@ -57,7 +61,7 @@ export const getLatestContent = async (
     : `content/latest?skip=${pageParam}`;
   const result = await axiosConfig.get(url);
 
-  return result.data;
+  return result;
 };
 
 export const getPopularContent = async (
@@ -70,20 +74,21 @@ export const getPopularContent = async (
 
   const result = await axiosConfig.get(url);
 
-  return result.data;
+  return result;
 };
 
-export const getRecentlyCreateReviewContent = async (
-  pageParam: number,
-  contentType?: string,
-) => {
+export const getRecentlyReviewedContent = async (
+  requestRecentlyReviewdContent: RecentlyReviewedContentRequest,
+): RecentlyReviewedContentResponse => {
+  const { contentType, pageParam } = requestRecentlyReviewdContent;
+
   const url = contentType
     ? `/content/recently/created-review?skip=${pageParam}&content_type=${contentType}`
     : `/content/recently/created-review?skip=${pageParam}`;
 
   const recentlyCreateReviewPromise = await axiosConfig.get(url);
 
-  return recentlyCreateReviewPromise.data;
+  return recentlyCreateReviewPromise;
 };
 
 export const getVideo = async (type: string, id: number) => {
