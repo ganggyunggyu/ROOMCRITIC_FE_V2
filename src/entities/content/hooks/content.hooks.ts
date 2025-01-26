@@ -5,12 +5,13 @@ import {
   getContentByOne,
   getLatestContent,
   getPopularContent,
-  getRecentlyCreateReviewContent,
+  getRecentlyReviewedContent,
   getSearchContent,
 } from '../api';
 import { TypeNumber, useSearchInput } from '@/shared';
 import { useAppDispatch } from '@/app/store';
 import { setSearchContents } from '@/app/store/slice/searchSlice';
+import { ContentType } from '../model';
 
 export const useAddWatchContent = () => {
   return useMutation({
@@ -33,7 +34,9 @@ export const usePopularContentQuery = (contentType?: string) => {
     getNextPageParam: (lastPage, pages, allPages) => {
       return allPages + 10;
     },
-    select: (data) => data.pages,
+    select: (data) => {
+      return data;
+    },
   });
 };
 
@@ -46,7 +49,7 @@ export const useLatestContentQuery = (contentType?: string) => {
     getNextPageParam: (lastPage, pages, allPages) => {
       return allPages + 10;
     },
-    select: (data) => data.pages,
+    select: (data) => data,
   });
 };
 
@@ -83,7 +86,7 @@ export const useInfinitySearchContentQuery = (searchType: number) => {
     getNextPageParam: (lastPage, pages, allPages) => {
       return allPages + 10;
     },
-    select: (data) => data.pages,
+    select: (data) => data,
   });
 };
 
@@ -118,15 +121,15 @@ export const useContentFetch = (contentId: string) => {
   });
 };
 
-export const useRecentlyCreateReviewContent = (contentType?: string) => {
-  const t = contentType ? contentType : null;
+export const useRecentlyCreateReviewContent = (contentType: ContentType) => {
   return useInfiniteQuery({
     queryKey: ['recently-create-content-list'],
-    queryFn: ({ pageParam }) => getRecentlyCreateReviewContent(pageParam, t),
+    queryFn: ({ pageParam }) =>
+      getRecentlyReviewedContent({ pageParam, contentType }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages, allPages) => {
       return allPages + 10;
     },
-    select: (data) => data.pages,
+    select: (data) => data,
   });
 };
