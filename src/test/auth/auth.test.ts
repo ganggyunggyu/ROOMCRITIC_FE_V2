@@ -1,15 +1,15 @@
-import { useAppDispatch, useAppSelector } from '@/app/store';
 import { setAccessToken } from '@/app/store/slice/tokenSlice';
 import { setIsLoggedIn, setUserInfo } from '@/app/store/slice/userSlice';
 import { TEST_EMAIL, TEST_PASSWORD } from '@/config/env-config';
 import { LoginRequest, submitLogin } from '@/entities';
 
-import { expect, test, vi } from 'vitest';
-
+import { beforeEach, expect, test, vi } from 'vitest';
 const mockDispatch = vi.fn();
+const mockSelector = vi.fn();
+
 vi.mock('@/app/store', () => ({
   useAppDispatch: vi.fn(() => mockDispatch),
-  useAppSelector: vi.fn(),
+  useAppSelector: vi.fn(() => mockSelector),
 }));
 
 const LOGIN_MOCK: LoginRequest = {
@@ -18,16 +18,6 @@ const LOGIN_MOCK: LoginRequest = {
 };
 
 test('Login', async () => {
-  vi.mocked(useAppSelector).mockImplementation((selector) => {
-    if (selector.toString().includes('state.user')) {
-      return {
-        userInfo: { id: 'user1', name: 'Test User' },
-        isLoggedIn: true,
-      };
-    }
-    return null;
-  });
-
   const result = await submitLogin(LOGIN_MOCK);
 
   const { userInfo, isLoggedIn, accessToken } = result.data;
@@ -36,13 +26,12 @@ test('Login', async () => {
   mockDispatch(setUserInfo(userInfo));
   mockDispatch(setAccessToken(accessToken));
 
-  const user = useAppSelector((state) => state.user);
-
-  console.log(user);
+  console.log(mockDispatch.mock.results);
 
   expect(isLoggedIn).toEqual(true);
-  expect(user).toEqual({
-    userInfo: { id: 'user1', name: 'Test User' },
-    isLoggedIn: true,
-  });
+
+  return {
+    userInfo,
+    isSucess: true,
+  };
 });

@@ -33,7 +33,7 @@ test('ReviewLike', async () => {
   if (reviewId && userId) {
     try {
       const result = await reviewLike(ReviewLikeMock);
-      console.log(result);
+      console.log(result.data);
     } catch (error) {
       console.error(error);
     }
