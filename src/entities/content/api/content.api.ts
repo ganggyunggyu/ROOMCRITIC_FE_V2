@@ -1,6 +1,8 @@
 import { axiosConfig } from '@/config/axios-config';
 import { TMDB_TOKEN } from '@/config/env-config';
 import {
+  FilterByGenreContentRequest,
+  FilterByGenreContentResponse,
   RecentlyReviewedContentRequest,
   RecentlyReviewedContentResponse,
 } from '../model';
@@ -89,6 +91,18 @@ export const getRecentlyReviewedContent = async (
   const recentlyCreateReviewPromise = await axiosConfig.get(url);
 
   return recentlyCreateReviewPromise;
+};
+
+export const getFilterByGenreContent = async (
+  filterByGenreContentRequest: FilterByGenreContentRequest,
+): FilterByGenreContentResponse => {
+  const { genreId, pageParam } = filterByGenreContentRequest;
+
+  const result = await axiosConfig.get(
+    `/content/genre/${genreId}/?skip=${pageParam}`,
+  );
+
+  return result;
 };
 
 export const getVideo = async (type: string, id: number) => {

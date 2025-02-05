@@ -1,4 +1,9 @@
-import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  UseInfiniteQueryResult,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 import {
   addWatchContent,
   addWishContent,
@@ -40,7 +45,10 @@ export const usePopularContentQuery = (contentType?: string) => {
   });
 };
 
-export const useLatestContentQuery = (contentType?: string) => {
+
+export const useLatestContentQuery = (
+  contentType?: string,
+): UseInfiniteQueryResult => {
   const t = contentType ? contentType : null;
   return useInfiniteQuery({
     queryKey: ['latestContent'],

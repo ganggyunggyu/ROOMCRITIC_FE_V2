@@ -29,3 +29,10 @@ export type RecentlyReviewedContentRequest = InfinityQueryContentRequest & {};
 
 export type RecentlyReviewedContentResponse =
   AxiosPromise<InfinityQueryContentResponse>;
+
+export type FilterByGenreContentRequest = InfinityQueryContentRequest & {
+  genreId: number;
+};
+
+export type FilterByGenreContentResponse =
+  AxiosPromise<InfinityQueryContentResponse>;

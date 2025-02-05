@@ -1,7 +1,10 @@
 import React from 'react';
 
 import { Loading } from '../../../../shared/ui/loading';
-import { InfiniteQueryObserverResult } from '@tanstack/react-query';
+import {
+  InfiniteQueryObserverResult,
+  UseInfiniteQueryResult,
+} from '@tanstack/react-query';
 import { cn } from '../../../../shared/lib/cn';
 import { useIntersectionObserver } from '../../../../shared/hooks/use-intersection-observer';
 import { Content, InfinityQueryContentResponse } from '@/entities';
@@ -11,6 +14,7 @@ import { AxiosResponse } from 'axios';
 
 type CardInfinityProviderProps = {
   title: string;
+  // query: () => UseInfiniteQueryResult<UseInfiniteQueryResult, Error>;
   query: any;
 };
 
@@ -29,6 +33,7 @@ export const ContentInfinityList: React.FC<CardInfinityProviderProps> = ({
 
   if (isLoading) return <Loading />;
   if (data.length === 0) return <p className="p-10">작품이 없습니다. 🥲</p>;
+
   if (isSuccess) {
     const { pages } = data;
     const isEndPages = pages.at(-1).data.contentList.length < 10;
