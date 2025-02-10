@@ -1,5 +1,11 @@
 import React from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigationType } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigationType,
+} from 'react-router-dom';
 
 import { scrollToTop } from '../shared/lib/scroll-to-top';
 import { useAppDispatch } from '../app/store';
@@ -39,19 +45,34 @@ const Routing: React.FC = () => {
       <Routes location={location}>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile/:userIdParam" element={<ProfilePage />} />
-        <Route path="/profile-setting/:userIdParam" element={<ProfileSettiongPage />} />
+        <Route
+          path="/profile-setting/:userIdParam"
+          element={<ProfileSettiongPage />}
+        />
         <Route path="/join" element={<JoinPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/searches" element={<SearchesPage />} />
-        <Route path="/content/:contentIdParam" element={<ContentDetailPage />} />
-        <Route path="/content/reviews/:contentIdParam" element={<ContentReviews />} />
-        <Route path="/review/:reviewIdParam/:userIdParam" element={<ReviewDetailPage />} />
-        <Route path="/review/update/:reviewIdParam/:userIdParam" element={<UpdatePage />} />
+        <Route
+          path="/content/:contentIdParam"
+          element={<ContentDetailPage />}
+        />
+        <Route
+          path="/content/reviews/:contentIdParam"
+          element={<ContentReviews />}
+        />
+        <Route
+          path="/review/:reviewIdParam/:userIdParam"
+          element={<ReviewDetailPage />}
+        />
+        <Route
+          path="/review/update/:reviewIdParam/:userIdParam"
+          element={<UpdatePage />}
+        />
         <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
     </AnimatePresence>
   );
 };
 
-export default Routing;
+export { Routing };

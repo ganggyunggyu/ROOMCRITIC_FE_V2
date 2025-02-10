@@ -15,4 +15,4 @@ const ErrorProvider = () => {
     </div>
   );
 };
-export default ErrorProvider;
+export { ErrorProvider };

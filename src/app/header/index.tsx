@@ -18,7 +18,8 @@ const Header = () => {
   const logoutHandler = () => {
     mutate(getCookie('refreshToken'));
   };
-  const [isHeaderBackground, setIsHeaderBackground] = React.useState<boolean>(true);
+  const [isHeaderBackground, setIsHeaderBackground] =
+    React.useState<boolean>(true);
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -63,29 +64,46 @@ const Header = () => {
         >
           <nav className="flex justify-around gap-3 w-10/12 transition-all">
             <Link to={'/'}>
-              <h1 className="hover:text-violet-400 transition-all w-min-fit">ROOM CRITIC</h1>
+              <h1 className="hover:text-violet-400 transition-all w-min-fit">
+                ROOM CRITIC
+              </h1>
             </Link>
             <div className="grow"></div>
             <div>
               {isLoggedIn ? (
                 <div className="flex gap-3 items-center justify-center w-min-fit">
-                  <Link className="hover:text-violet-400 transition-all w-min-fit" to={`/profile/${userInfo._id}`}>
+                  <Link
+                    className="hover:text-violet-400 transition-all w-min-fit"
+                    to={`/profile/${userInfo._id}`}
+                  >
                     {userInfo.displayName} 평론가
                   </Link>
-                  <button onClick={logoutHandler} className="hover:text-violet-400 transition-all w-min-fit">
+                  <button
+                    onClick={logoutHandler}
+                    className="hover:text-violet-400 transition-all w-min-fit"
+                  >
                     로그아웃
                   </button>
-                  <Link className="hover:text-violet-400 transition-all w-min-fit" to={'/search'}>
+                  <Link
+                    className="hover:text-violet-400 transition-all w-min-fit"
+                    to={'/search'}
+                  >
                     검색
                   </Link>
                 </div>
               ) : (
                 <div className="flex gap-5 w-min-fit">
-                  <Link className="hover:text-violet-400 transition-all" to={'/login'}>
+                  <Link
+                    className="hover:text-violet-400 transition-all"
+                    to={'/login'}
+                  >
                     로그인
                   </Link>
 
-                  <Link className="hover:text-violet-400 transition-all" to={'/join'}>
+                  <Link
+                    className="hover:text-violet-400 transition-all"
+                    to={'/join'}
+                  >
                     회원가입
                   </Link>
                 </div>
@@ -98,4 +116,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export { Header };

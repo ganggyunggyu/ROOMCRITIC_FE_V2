@@ -15,4 +15,4 @@ const DarkModeButton: React.FC = () => {
   );
 };
 
-export default DarkModeButton;
+export { DarkModeButton };

@@ -9,4 +9,4 @@ const Fullback = () => {
     </div>
   );
 };
-export default Fullback;
+export { Fullback };
