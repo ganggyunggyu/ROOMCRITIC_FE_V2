@@ -1,37 +1,10 @@
 import { axiosConfig } from '@/config/axios-config';
-import { TMDB_TOKEN } from '@/config/env-config';
 import {
   FilterByGenreContentRequest,
   FilterByGenreContentResponse,
   RecentlyReviewedContentRequest,
   RecentlyReviewedContentResponse,
 } from '../model';
-
-export const addWishContent = async (WishContentRequestDTO) => {
-  try {
-    const result = await axiosConfig.post(
-      'content/wish',
-      WishContentRequestDTO,
-    );
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw Error(error);
-  }
-};
-
-export const addWatchContent = async (WatchContentRequestDTO) => {
-  try {
-    const result = await axiosConfig.post(
-      'content/watch',
-      WatchContentRequestDTO,
-    );
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw Error(error);
-  }
-};
 
 export const getContentByOne = async (contentId: string) => {
   try {
@@ -105,38 +78,28 @@ export const getFilterByGenreContent = async (
   return result;
 };
 
-export const getVideo = async (type: string, id: number) => {
-  const option = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: TMDB_TOKEN,
-    },
-  };
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => {
-    controller.abort();
-  }, 100);
+export const addWishContent = async (WishContentRequestDTO) => {
   try {
-    clearTimeout(timeoutId);
-    const response = await fetch(
-      `https://api.themoviedb.org/3/${type}/${id}/videos`,
-      {
-        ...option,
-        signal: AbortSignal.timeout(500),
-      },
+    const result = await axiosConfig.post(
+      'content/wish',
+      WishContentRequestDTO,
     );
-
-    if (!response.ok) {
-      throw new Error('네트워크 통신 에러');
-    }
-    const data = await response.json();
-    if (data.results.length === 0) throw Error('비디오 정보 없음');
-
-    return data;
+    return result;
   } catch (error) {
-    clearTimeout(timeoutId);
+    console.error(error);
+    throw Error(error);
+  }
+};
 
-    throw new Error('네트워크 통신 에러');
+export const addWatchContent = async (WatchContentRequestDTO) => {
+  try {
+    const result = await axiosConfig.post(
+      'content/watch',
+      WatchContentRequestDTO,
+    );
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw Error(error);
   }
 };
