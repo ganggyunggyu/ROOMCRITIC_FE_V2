@@ -37,7 +37,6 @@ export default function ContentDetail() {
     const { content } = result;
     return (
       <ResponsiveProvider direction={'col'} className={'gap-10'}>
-        {/* <Video type={content.contentType} id={content.id} /> */}
         <Info content={content} />
         <Action isLoading={isContentLoading} content={content} />
         {reviews.length === 0 && (
