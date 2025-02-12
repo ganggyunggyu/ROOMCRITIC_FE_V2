@@ -23,6 +23,12 @@ export function Footer() {
       >
         Blog
       </a>
+      <a
+        href="https://linkedin.com/in/gyunggyugang"
+        className={`text-green-500 hover:text-green-700 ${isDarkMode && 'text-green-300'}`}
+      >
+        LinkedIn
+      </a>
     </footer>
   );
 }
