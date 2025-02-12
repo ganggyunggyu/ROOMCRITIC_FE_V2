@@ -12,14 +12,13 @@ export const Overview: React.FC<OverviewProps> = ({ overview }) => {
           {overview.split('다.').map((sentence, index) => {
             if (overview.split('다.').length - 1 !== index)
               sentence = sentence + '다.';
-
             return (
               <span key={index}>
                 {sentence.trim()}
                 {index < overview.split('다.').length - 1 && (
-                  <>
+                  <React.Fragment>
                     <br />
-                  </>
+                  </React.Fragment>
                 )}
               </span>
             );

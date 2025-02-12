@@ -1,17 +1,18 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '@/app/store';
-import { setIsRightSideBar } from '@/app/store/slice/ui/sidebar';
-import { Button } from '@/shared';
-import { delay } from '@/shared/lib/delay';
 import { Link } from 'react-router-dom';
 
-import { getCookie } from '@/shared/lib/cookie';
+import { useAppDispatch, useAppSelector } from '@/app/store';
+import { setIsRightSideBar } from '@/app/store/slice/ui/sidebar';
+
 import { useLogout } from '@/entities';
+
+import { delay } from '@/shared/lib/delay';
+import { getCookie } from '@/shared/lib/cookie';
 
 export const RightSideBar = () => {
   const dispatch = useAppDispatch();
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
-  const { mutate } = useLogout();
+  const { mutate: logoutMutate } = useLogout();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isExiting, setIsExiting] = React.useState(false);
@@ -31,7 +32,7 @@ export const RightSideBar = () => {
     closeSidebar();
   };
   const handleLogoutClick = () => {
-    mutate(getCookie('refreshToken'));
+    logoutMutate(getCookie('refreshToken'));
   };
 
   return (

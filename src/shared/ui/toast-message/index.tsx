@@ -1,24 +1,25 @@
 import React from 'react';
 
 export const ToastMessage = ({ message, duration = 3000 }) => {
+  let toastTimer = null;
   const [visible, setVisible] = React.useState(true);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const toastContainerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    ref.current.classList.add('top-20');
-    const timer = setTimeout(() => {
+    toastContainerRef.current.classList.add('top-20');
+    toastTimer = setTimeout(() => {
       setVisible(false);
     }, duration);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(toastTimer);
     };
   }, [duration]);
 
   React.useEffect(() => {
     if (visible) {
-      ref.current.classList.remove('hidden');
-      ref.current.classList.add('animate-toast-in');
+      toastContainerRef.current.classList.remove('hidden');
+      toastContainerRef.current.classList.add('animate-toast-in');
       const timer = setTimeout(() => {
         setVisible(false);
       }, duration);
@@ -27,21 +28,20 @@ export const ToastMessage = ({ message, duration = 3000 }) => {
         clearTimeout(timer);
       };
     } else {
-      ref.current.classList.remove('animate-toast-in');
-      ref.current.classList.add('animate-toast-out');
+      toastContainerRef.current.classList.remove('animate-toast-in');
+      toastContainerRef.current.classList.add('animate-toast-out');
       setTimeout(() => {
-        ref.current.classList.add('hidden');
+        toastContainerRef.current.classList.add('hidden');
       }, 500);
     }
   }, [visible, duration]);
 
   return (
-    <div
-      ref={ref}
+    <figure
+      ref={toastContainerRef}
       className="fixed p-3 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-violet-400 text-white rounded-md shadow-md transition-all z-50 flex items-center justify-center "
-      role="alert"
     >
       {message}
-    </div>
+    </figure>
   );
 };
