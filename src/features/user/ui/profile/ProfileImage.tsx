@@ -24,7 +24,12 @@ const ProfileImage = () => {
         alt="profile-img"
       />
       {isLoggedIn && userInfo._id === userIdParam && (
-        <Button onClick={redirectSettiong} item={<SettingIcon />} className={'h-12 w-12'} variant="bgNone" />
+        <Button
+          onClick={redirectSettiong}
+          item={<SettingIcon />}
+          className={'h-12 w-12'}
+          variant="bgNone"
+        />
       )}
     </div>
   );

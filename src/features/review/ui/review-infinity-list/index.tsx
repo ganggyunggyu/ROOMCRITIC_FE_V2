@@ -11,9 +11,16 @@ type ReviewInfinityListProps = {
   className?: string;
 };
 
-export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({ query, title, className }) => {
+export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({
+  query,
+  title,
+  className,
+}) => {
   const { data, hasNextPage, fetchNextPage, isSuccess, isLoading } = query();
-  const observeTargetRef = useIntersectionObserver({ hasNextPage, fetchNextPage });
+  const observeTargetRef = useIntersectionObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   if (isLoading) return <div />;
 
@@ -26,7 +33,13 @@ export const ReviewInfinityList: React.FC<ReviewInfinityListProps> = ({ query, t
             return group ? (
               <React.Fragment key={i}>
                 {group.map((review: Review) => {
-                  return <ReviewCard review={review} key={review._id} className="w-full h-72" />;
+                  return (
+                    <ReviewCard
+                      review={review}
+                      key={review._id}
+                      className="w-full h-72"
+                    />
+                  );
                 })}
               </React.Fragment>
             ) : (

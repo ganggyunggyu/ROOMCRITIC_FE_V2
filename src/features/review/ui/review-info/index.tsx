@@ -7,7 +7,11 @@ import { formatMinute, Stars } from '@/shared';
 
 export function ReviewDetailInfo() {
   const dispatch = useAppDispatch();
-  const { isLoading: isReviewLoading, data: review, isSuccess } = useReviewDetail();
+  const {
+    isLoading: isReviewLoading,
+    data: review,
+    isSuccess,
+  } = useReviewDetail();
 
   React.useEffect(() => {
     if (isSuccess && review) {
@@ -28,7 +32,9 @@ export function ReviewDetailInfo() {
           {review.userName}님의 {review.title} 리뷰
         </Link>
         <p>{formattedDateEnd} 작성</p>
-        <p className="border border-b-4 p-2 text-center leading-loose text-3xl md:text-5xl">{review.lineReview}</p>
+        <p className="border border-b-4 p-2 text-center leading-loose text-3xl md:text-5xl">
+          {review.lineReview}
+        </p>
         <Stars grade={review.grade} />
       </React.Fragment>
     );

@@ -25,18 +25,30 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> &
     alertMessage?: string;
   };
 
-export const Input: React.FC<InputProps> = ({ label, alertMessage, className, ...props }) => {
+export const Input: React.FC<InputProps> = ({
+  label,
+  alertMessage,
+  className,
+  ...props
+}) => {
   return (
     <React.Fragment>
       <div className="relative z-0 py-1 w-full">
-        <input placeholder=" " autoComplete="off" className={cn(InputVariants({ className }))} {...props} />
+        <input
+          placeholder=" "
+          autoComplete="off"
+          className={cn(InputVariants({ className }))}
+          {...props}
+        />
         {label && (
           <label className={cn(InputLabelVariants())} htmlFor="floating_filled">
             {label}
           </label>
         )}
       </div>
-      {alertMessage && <p className="text-red-400 text-xs transition-1s">{alertMessage}</p>}
+      {alertMessage && (
+        <p className="text-red-400 text-xs transition-1s">{alertMessage}</p>
+      )}
     </React.Fragment>
   );
 };

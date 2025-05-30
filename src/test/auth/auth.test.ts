@@ -1,6 +1,6 @@
 import { setAccessToken } from '@/app/store/slice/tokenSlice';
 import { setIsLoggedIn, setUserInfo } from '@/app/store/slice/userSlice';
-import { TEST_EMAIL, TEST_PASSWORD } from '@/config/env-config';
+import { TEST_EMAIL, TEST_PASSWORD } from '@/app/config/env-config/env-config';
 import { LoginRequest, submitLogin } from '@/entities';
 
 import { beforeEach, expect, test, vi } from 'vitest';

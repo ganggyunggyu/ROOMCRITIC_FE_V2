@@ -24,7 +24,10 @@ interface ReviewListProps {
   reviews: Review[];
 }
 
-export const ReviewListInContentDetail: React.FC<ReviewListProps> = ({ contentTitle, reviews }) => {
+export const ReviewListInContentDetail: React.FC<ReviewListProps> = ({
+  contentTitle,
+  reviews,
+}) => {
   const navigate = useNavigate();
   return (
     <div className="w-full rounded-lg flex flex-col gap-5">

@@ -11,9 +11,15 @@ type CardWrapProviderProps = {
   observeTargetRef?: React.Ref<HTMLDivElement>; // ref 타입 지정
 };
 
-export const ContentList: React.FC<CardWrapProviderProps> = ({ title, cardList, observeTargetRef, ...props }) => {
+export const ContentList: React.FC<CardWrapProviderProps> = ({
+  title,
+  cardList,
+  observeTargetRef,
+  ...props
+}) => {
   const cardContainerRef = React.useRef<HTMLDivElement>(null);
-  if (cardList?.length === 0) return <p className="p-10">작품이 없습니다. 🥲</p>;
+  if (cardList?.length === 0)
+    return <p className="p-10">작품이 없습니다. 🥲</p>;
 
   if (cardList?.length !== 0) {
     return (
@@ -21,11 +27,20 @@ export const ContentList: React.FC<CardWrapProviderProps> = ({ title, cardList, 
         <ContentListButtons cardContainerRef={cardContainerRef} />
         <p className="md:text-3xl text-lg">{title}</p>
 
-        <article ref={cardContainerRef} className="flex overflow-x-scroll overflow-y-hidden gap-5 py-5 smooth-scroll">
+        <article
+          ref={cardContainerRef}
+          className="flex overflow-x-scroll overflow-y-hidden gap-5 py-5 smooth-scroll"
+        >
           {cardList?.map((content, index) => {
             const isLastCard = index === cardList.length - 1;
             ``;
-            return <Card ref={isLastCard ? observeTargetRef : null} key={content._id} content={content} />;
+            return (
+              <Card
+                ref={isLastCard ? observeTargetRef : null}
+                key={content._id}
+                content={content}
+              />
+            );
           })}
         </article>
       </section>

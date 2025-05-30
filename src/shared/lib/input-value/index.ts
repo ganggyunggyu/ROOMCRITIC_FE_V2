@@ -11,7 +11,10 @@ type TInputHandler = {
 export const inputHandler = ({ event, setValue }: TInputHandler): void => {
   setValue(event.target.value);
 };
-export const phoneNumberHandler = ({ event, setValue }: TInputHandler): void => {
+export const phoneNumberHandler = ({
+  event,
+  setValue,
+}: TInputHandler): void => {
   setValue(
     event.target.value
       .replace(/[^0-9]/g, '')

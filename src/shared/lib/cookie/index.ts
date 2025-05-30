@@ -21,10 +21,21 @@ interface CookieOptions {
 //   return cookies.set(name, value, { ...defaultOptions, ...options, sameSite: 'lax' });
 // };
 
-export const setCookie = (name: string, value: string, options?: CookieOptions) => {
-  const defaultOptions = process.env.NODE_ENV === 'development' ? { secure: false } : { secure: true };
+export const setCookie = (
+  name: string,
+  value: string,
+  options?: CookieOptions,
+) => {
+  const defaultOptions =
+    process.env.NODE_ENV === 'development'
+      ? { secure: false }
+      : { secure: true };
 
-  return cookies.set(name, value, { ...defaultOptions, ...options, sameSite: 'lax' });
+  return cookies.set(name, value, {
+    ...defaultOptions,
+    ...options,
+    sameSite: 'lax',
+  });
 };
 export const getCookie = (name: string) => {
   return cookies.get(name);

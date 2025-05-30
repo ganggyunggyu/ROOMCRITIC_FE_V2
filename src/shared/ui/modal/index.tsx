@@ -7,7 +7,9 @@ export const Modal = ({ isModal, setIsModal }) => {
   const backgroundRef = React.useRef(null);
   const modalRef = React.useRef(null);
 
-  const darkModeClasses = useAppSelector((state) => state.darkMode.darkModeClasses);
+  const darkModeClasses = useAppSelector(
+    (state) => state.darkMode.darkModeClasses,
+  );
 
   React.useEffect(() => {
     const modalObserver = new IntersectionObserver((entries) => {
@@ -75,8 +77,16 @@ export const Modal = ({ isModal, setIsModal }) => {
           <p className="text-xl p-5 text-blue-400">나가주세요</p>
 
           <div className="flex gap-3">
-            <Button label="닫기" variant={'alert'} onClick={() => setIsModal(false)} />
-            <Button label="나가기" variant={'main'} onClick={() => (window.location.href = 'https://www.naver.com')} />
+            <Button
+              label="닫기"
+              variant={'alert'}
+              onClick={() => setIsModal(false)}
+            />
+            <Button
+              label="나가기"
+              variant={'main'}
+              onClick={() => (window.location.href = 'https://www.naver.com')}
+            />
           </div>
         </div>
       </div>

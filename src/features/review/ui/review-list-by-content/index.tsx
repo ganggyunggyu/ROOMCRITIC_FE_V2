@@ -5,8 +5,12 @@ import { ReviewCard } from '../card';
 import { useReviewByContent, Review } from '@/entities';
 
 export const ContentReviews: React.FC = () => {
-  const { data, hasNextPage, fetchNextPage, isSuccess, isLoading } = useReviewByContent();
-  const observeTargetRef = useIntersectionObserver({ hasNextPage, fetchNextPage });
+  const { data, hasNextPage, fetchNextPage, isSuccess, isLoading } =
+    useReviewByContent();
+  const observeTargetRef = useIntersectionObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   if (isLoading) return <div />;
 
@@ -17,7 +21,13 @@ export const ContentReviews: React.FC = () => {
           return group ? (
             <React.Fragment key={i}>
               {group.map((review: Review) => {
-                return <ReviewCard review={review} key={review._id} className="w-full h-72" />;
+                return (
+                  <ReviewCard
+                    review={review}
+                    key={review._id}
+                    className="w-full h-72"
+                  />
+                );
               })}
             </React.Fragment>
           ) : (

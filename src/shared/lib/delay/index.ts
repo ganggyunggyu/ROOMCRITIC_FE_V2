@@ -1,4 +1,7 @@
-export const delay = (ms: number, controller?: AbortController): Promise<void> => {
+export const delay = (
+  ms: number,
+  controller?: AbortController,
+): Promise<void> => {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
       resolve();

@@ -11,7 +11,9 @@ export function CardInfo({ title, grade, etc }) {
 
   return (
     <React.Fragment>
-      <p className="whitespace-nowrap	overflow-hidden text-ellipsis text-lg	z-10">{title}</p>
+      <p className="whitespace-nowrap	overflow-hidden text-ellipsis text-lg	z-10">
+        {title}
+      </p>
       <p className="text-sm z-10 flex gap-1 w-full items-center justify-center">
         <FaStar className="text-yellow-400" />
         <span className="text-yellow-500">{getGradeInfo(grade)}</span>

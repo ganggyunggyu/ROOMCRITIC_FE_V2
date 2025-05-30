@@ -2,7 +2,11 @@ import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '@/app/store';
 import { Button, scrollToTop } from '@/shared';
-import { useReviewDelete, useReviewDetail, useReviewLike } from '@/entities/review/hooks';
+import {
+  useReviewDelete,
+  useReviewDetail,
+  useReviewLike,
+} from '@/entities/review/hooks';
 
 export function ReviewDetailActions() {
   const navigator = useNavigate();
@@ -56,7 +60,10 @@ export function ReviewDetailActions() {
           />
         </React.Fragment>
       )}
-      <Link className="text-xl cursor-pointer hover:text-violet-400 z-10" to={`/content/${review.contentId}`}>
+      <Link
+        className="text-xl cursor-pointer hover:text-violet-400 z-10"
+        to={`/content/${review.contentId}`}
+      >
         {review.contentName} 다른 리뷰도 보러가기 !
       </Link>
     </React.Fragment>

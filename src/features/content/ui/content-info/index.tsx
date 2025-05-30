@@ -22,8 +22,16 @@ type ContentInfoProps = {
 
 export const Info: React.FC<ContentInfoProps> = ({ content }) => {
   const { userInfo, isLoggedIn } = useAppSelector((state) => state.user);
-  const { mutate: watchMutate, isSuccess: isWatchSuccess, isError: isWatchError } = useAddWatchContent();
-  const { mutate: whsiMutate, isSuccess: isWishSuccess, isError: isWishError } = useAddWishContent();
+  const {
+    mutate: watchMutate,
+    isSuccess: isWatchSuccess,
+    isError: isWatchError,
+  } = useAddWatchContent();
+  const {
+    mutate: whsiMutate,
+    isSuccess: isWishSuccess,
+    isError: isWishError,
+  } = useAddWishContent();
 
   const deviceType = useDevice();
 
@@ -70,7 +78,9 @@ export const Info: React.FC<ContentInfoProps> = ({ content }) => {
           <div className="flex flex-col gap-5">
             <p className="text-3xl">{content.title}</p>
             <p className="text-md">{content.originalTitle}</p>
-            <p className="border-b border-gray-300">만족도 {content.voteAverage}</p>
+            <p className="border-b border-gray-300">
+              만족도 {content.voteAverage}
+            </p>
             <p className="text-md">애니메이션, 액션, 모험</p>
             <Grade />
           </div>

@@ -15,7 +15,8 @@ type ProfileScoreProps = {
 };
 
 const ProfileScore: React.FC<ProfileScoreProps> = () => {
-  const { score, isScoreLoading, userInfo, isUserInfoLoading } = useGetUserInfo();
+  const { score, isScoreLoading, userInfo, isUserInfoLoading } =
+    useGetUserInfo();
 
   if (isScoreLoading || isUserInfoLoading) return <Loading />;
 
@@ -50,7 +51,11 @@ const ProfileScore: React.FC<ProfileScoreProps> = () => {
                   </div>
                   <div className="flex gap-2">
                     <p>
-                      <span className="text-sm text-violet-400"> 취향 점수</span> {el.score}점
+                      <span className="text-sm text-violet-400">
+                        {' '}
+                        취향 점수
+                      </span>{' '}
+                      {el.score}점
                     </p>
                     <p>
                       <span className="text-sm text-violet-400"> 리뷰 수</span>

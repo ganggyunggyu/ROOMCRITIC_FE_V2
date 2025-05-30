@@ -57,7 +57,11 @@ export const CreateForm: React.FC<CreateFormProps> = ({ content }) => {
           <span className={``}>별</span>을 클릭해서 평점을 선택해주세요 !
         </p>
       )}
-      {grade !== 0 && <p className={isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}>{getGradeText(grade)}</p>}
+      {grade !== 0 && (
+        <p className={isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}>
+          {getGradeText(grade)}
+        </p>
+      )}
       <div className="relative">
         <Input
           label={'한줄평 작성'}

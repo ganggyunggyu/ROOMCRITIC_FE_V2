@@ -9,7 +9,13 @@ export const JoinForm = () => {
   const navigator = useNavigate();
   const { mutate, data, isSuccess } = useJoin();
 
-  const [emailInput, passwordInput, confirmPasswordInput, displayNameInput, phoneNumberInput] = [
+  const [
+    emailInput,
+    passwordInput,
+    confirmPasswordInput,
+    displayNameInput,
+    phoneNumberInput,
+  ] = [
     useFormInput(''),
     useFormInput(''),
     useFormInput(''),

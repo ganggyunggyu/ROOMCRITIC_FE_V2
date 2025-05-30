@@ -9,9 +9,17 @@ export function UpdateForm() {
   const navigator = useNavigate();
   const { mutate } = useReviewUpdate();
 
-  const { isLoading: isReviewLoading, data: review, isSuccess } = useReviewDetail();
-  const [lineReview, setLineReview] = React.useState<string>(isSuccess ? review.lineReview : '');
-  const [grade, setGrade] = React.useState<number>(isSuccess ? review.grade : 3);
+  const {
+    isLoading: isReviewLoading,
+    data: review,
+    isSuccess,
+  } = useReviewDetail();
+  const [lineReview, setLineReview] = React.useState<string>(
+    isSuccess ? review.lineReview : '',
+  );
+  const [grade, setGrade] = React.useState<number>(
+    isSuccess ? review.grade : 3,
+  );
 
   const reviewUpdateDTO = {
     userId: userIdParam,
@@ -30,7 +38,9 @@ export function UpdateForm() {
     mutate(reviewUpdateDTO, {
       onSuccess: () => {
         console.log('수정 성공');
-        navigator(`/review/${reviewUpdateDTO.reviewId}/${reviewUpdateDTO.userId}`);
+        navigator(
+          `/review/${reviewUpdateDTO.reviewId}/${reviewUpdateDTO.userId}`,
+        );
       },
     });
   };
@@ -61,7 +71,12 @@ export function UpdateForm() {
           onKeyDown={handleEnterKeyPress}
           className="text-center"
         />
-        <Button label={'수정'} variant={'main'} onClick={updateMutate} className="absolute right-0 top-3" />
+        <Button
+          label={'수정'}
+          variant={'main'}
+          onClick={updateMutate}
+          className="absolute right-0 top-3"
+        />
       </form>
     </React.Fragment>
   );

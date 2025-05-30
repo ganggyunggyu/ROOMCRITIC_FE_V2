@@ -4,7 +4,8 @@ export const email = (email: string): boolean => {
 };
 
 export const password = (password: string): boolean => {
-  const passwordReg: RegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+  const passwordReg: RegExp =
+    /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
   return passwordReg.test(password);
 };
 

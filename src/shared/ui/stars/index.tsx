@@ -19,18 +19,24 @@ export function Stars({ grade }: { grade: number }) {
               <React.Fragment>
                 {i === 0 && (
                   <article className="absolute transition-all ">
-                    <HalfStar color={`${hoverIndex >= i ? 'yellow' : 'white'}`} />
+                    <HalfStar
+                      color={`${hoverIndex >= i ? 'yellow' : 'white'}`}
+                    />
                   </article>
                 )}
                 {i === 2 && (
                   <article className="absolute translate-x-14 transition-all ">
-                    <HalfStar color={`${hoverIndex >= i ? 'yellow' : 'white'}`} />
+                    <HalfStar
+                      color={`${hoverIndex >= i ? 'yellow' : 'white'}`}
+                    />
                     {/* <FaRegStarHalf size={} /> */}
                   </article>
                 )}
                 {i === 4 && (
                   <article className="absolute translate-x-28 transition-all ">
-                    <HalfStar color={`${hoverIndex >= i ? 'yellow' : 'white'}`} />
+                    <HalfStar
+                      color={`${hoverIndex >= i ? 'yellow' : 'white'}`}
+                    />
                   </article>
                 )}
                 {i === 6 && (
@@ -38,12 +44,16 @@ export function Stars({ grade }: { grade: number }) {
                     style={{ transform: 'translateX(10.5rem)' }}
                     className="absolute translate-x-42 transition-all "
                   >
-                    <HalfStar color={`${hoverIndex >= i ? 'yellow' : 'white'}`} />
+                    <HalfStar
+                      color={`${hoverIndex >= i ? 'yellow' : 'white'}`}
+                    />
                   </article>
                 )}
                 {i === 8 && (
                   <article className="absolute translate-x-56 transition-all ">
-                    <HalfStar color={`${hoverIndex >= i ? 'yellow' : 'white'}`} />
+                    <HalfStar
+                      color={`${hoverIndex >= i ? 'yellow' : 'white'}`}
+                    />
                   </article>
                 )}
               </React.Fragment>
