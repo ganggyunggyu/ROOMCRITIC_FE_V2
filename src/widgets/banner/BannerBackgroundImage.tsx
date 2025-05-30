@@ -8,8 +8,12 @@ type BannerBackgroundImageProps = {
   setBannerIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({ bannerIndex, setBannerIndex }) => {
-  const [carouselInterval, setCarouselInterval] = React.useState<NodeJS.Timeout | null>(null);
+const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({
+  bannerIndex,
+  setBannerIndex,
+}) => {
+  const [carouselInterval, setCarouselInterval] =
+    React.useState<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -35,7 +39,10 @@ const BannerBackgroundImage: React.FC<BannerBackgroundImageProps> = ({ bannerInd
   };
 
   const prevBannerButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setBannerIndex((prevIndex) => (prevIndex - 1 + BANNER_IMAGES.length) % BANNER_IMAGES.length);
+    setBannerIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + BANNER_IMAGES.length) % BANNER_IMAGES.length,
+    );
     e.preventDefault();
   };
 
