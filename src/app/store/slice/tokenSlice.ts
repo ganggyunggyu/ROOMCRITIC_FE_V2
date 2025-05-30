@@ -26,6 +26,7 @@ export const tokenSlice = createSlice({
   },
 });
 
-export const { setAccessToken, setClearAccessToken, setRefreshTokenExp } = tokenSlice.actions;
+export const { setAccessToken, setClearAccessToken, setRefreshTokenExp } =
+  tokenSlice.actions;
 
 export default tokenSlice.reducer;
