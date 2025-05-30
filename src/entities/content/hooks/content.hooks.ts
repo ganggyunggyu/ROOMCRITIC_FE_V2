@@ -45,7 +45,6 @@ export const usePopularContentQuery = (contentType?: string) => {
   });
 };
 
-
 export const useLatestContentQuery = (
   contentType?: string,
 ): UseInfiniteQueryResult => {

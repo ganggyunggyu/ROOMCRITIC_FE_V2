@@ -1,8 +1,8 @@
-import { axiosConfig } from '@/config/axios-config';
+import { axios } from '@/app/config';
 
 export const getUserInfo = async (userId: string) => {
   try {
-    const result = await axiosConfig.get(`user/profile/id/${userId}`);
+    const result = await axios.get(`user/profile/id/${userId}`);
 
     return result;
   } catch (error) {
@@ -12,7 +12,7 @@ export const getUserInfo = async (userId: string) => {
 
 export const getUserScore = async (userId: string) => {
   try {
-    const result = axiosConfig.get(`review/score/${userId}`);
+    const result = axios.get(`review/score/${userId}`);
     return result;
   } catch (error) {
     throw Error(error);

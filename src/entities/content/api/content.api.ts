@@ -1,4 +1,4 @@
-import { axiosConfig } from '@/config/axios-config';
+import { axios } from '@/app/config';
 import {
   FilterByGenreContentRequest,
   FilterByGenreContentResponse,
@@ -8,7 +8,7 @@ import {
 
 export const getContentByOne = async (contentId: string) => {
   try {
-    const result = await axiosConfig.get(`content/${contentId}`);
+    const result = await axios.get(`content/${contentId}`);
     return result;
   } catch (err) {
     console.debug(err);
@@ -21,7 +21,7 @@ export const getSearchContent = async (
 ) => {
   if (!searchValue) throw new Error('검색어 입력 필요');
   if (searchValue.length <= 1) throw new Error('검색어 입력 필요');
-  const result = await axiosConfig.get(
+  const result = await axios.get(
     `content/?q=${searchValue}&content_type=${contentType}`,
   );
   return result;
@@ -34,7 +34,7 @@ export const getLatestContent = async (
   const url = contentType
     ? `content/latest?skip=${pageParam}&content_type=${contentType}`
     : `content/latest?skip=${pageParam}`;
-  const result = await axiosConfig.get(url);
+  const result = await axios.get(url);
 
   return result;
 };
@@ -47,7 +47,7 @@ export const getPopularContent = async (
     ? `content/popular?skip=${pageParam}&content_type=${contentType}`
     : `content/popular?skip=${pageParam}`;
 
-  const result = await axiosConfig.get(url);
+  const result = await axios.get(url);
 
   return result;
 };
@@ -61,7 +61,7 @@ export const getRecentlyReviewedContent = async (
     ? `/content/recently/created-review?skip=${pageParam}&content_type=${contentType}`
     : `/content/recently/created-review?skip=${pageParam}`;
 
-  const recentlyCreateReviewPromise = await axiosConfig.get(url);
+  const recentlyCreateReviewPromise = await axios.get(url);
 
   return recentlyCreateReviewPromise;
 };
@@ -71,7 +71,7 @@ export const getFilterByGenreContent = async (
 ): FilterByGenreContentResponse => {
   const { genreId, pageParam } = filterByGenreContentRequest;
 
-  const result = await axiosConfig.get(
+  const result = await axios.get(
     `/content/genre/${genreId}/?skip=${pageParam}`,
   );
 
@@ -80,10 +80,7 @@ export const getFilterByGenreContent = async (
 
 export const addWishContent = async (WishContentRequestDTO) => {
   try {
-    const result = await axiosConfig.post(
-      'content/wish',
-      WishContentRequestDTO,
-    );
+    const result = await axios.post('content/wish', WishContentRequestDTO);
     return result;
   } catch (error) {
     console.error(error);
@@ -93,10 +90,7 @@ export const addWishContent = async (WishContentRequestDTO) => {
 
 export const addWatchContent = async (WatchContentRequestDTO) => {
   try {
-    const result = await axiosConfig.post(
-      'content/watch',
-      WatchContentRequestDTO,
-    );
+    const result = await axios.post('content/watch', WatchContentRequestDTO);
     return result;
   } catch (error) {
     console.error(error);
